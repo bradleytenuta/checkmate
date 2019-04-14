@@ -1,7 +1,7 @@
 # DevNotes
 Below is a bunch of random notes that I have gathered from researching different topics and trying to understand the development process of this project.
 
-#### Notes
+#### General Notes
 - Use XAMPP control panel and start Apache to open the localhost server.
 	- Type: 127.0.0.1 in browser to get in.
 - Router (York 2019) Does not give me rights to allow external access to this PC IP address and so currently can't display web server to outside world.
@@ -14,4 +14,25 @@ Below is a bunch of random notes that I have gathered from researching different
 - Look at webcat for inspiration.
 - Wed development for mobile, tablet and desktop. Start from mobile and style upwards.
 - Look at Auth2. This is a framework for authentication.
+
+
+#### SQL
+- Students:
+	- Email Address (Unique)
+	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.)
+	- First Name
+	- Last Name
+	- Year (int)
+- Staff:
+	- Email Address (Unique)
+	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.)
+	- First Name
+	- Last Name
+- Coursework:
+	- Location on disk (Unique)
+	- Email Address - Staff reviewer
+	- Email Address - Student
+	- Coursework ID (Unique)
+
+
 
