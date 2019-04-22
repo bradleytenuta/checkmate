@@ -35,4 +35,11 @@ Below is a bunch of random notes that I have gathered from researching different
 	- Coursework ID (Unique)
 
 
+#### How will I handle dependencies?
+
+
+#### How will I test this?
+- Look at Laravel test suits or test environments.
+- Look at php unit tests and other ways to test.
+- Is there a software project management and comprehension tool that I can use for PHP, JS and Laravel.
 

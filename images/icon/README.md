@@ -19,3 +19,4 @@ Add the following code to the head of the html/php file (make changes for the ic
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
+The website where I made these: [favicon-generator](https://www.favicon-generator.org/)
