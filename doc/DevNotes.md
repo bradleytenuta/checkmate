@@ -16,6 +16,10 @@ Below is a bunch of random notes that I have gathered from researching different
 - Look at Auth2. This is a framework for authentication.
 
 
+#### Designing Wire-frames
+I created wire-frames for Mobile, IPad and Desktop. They can be found in the wire-frame folder. I used this website to create my wire-frames: [https://app.moqups.com](https://app.moqups.com)
+
+
 #### SQL
 - Students:
 	- Email Address (Unique)
