@@ -22,21 +22,27 @@ I created wire-frames for Mobile, IPad and Desktop. They can be found in the wir
 
 #### SQL
 - Students:
-	- Email Address (Unique)
-	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.)
-	- First Name
-	- Last Name
+	- Email Address (Unique) (String)
+	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
+	- First Name (String)
+	- Last Name (String)
 	- Year (int)
 - Staff:
-	- Email Address (Unique)
-	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.)
-	- First Name
-	- Last Name
+	- Email Address (Unique) (String)
+	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
+	- First Name (String)
+	- Last Name (String)
 - Coursework:
-	- Location on disk (Unique)
-	- Email Address - Staff reviewer
-	- Email Address - Student
-	- Coursework ID (Unique)
+	- Location on disk (Unique) (String)
+	- Email Address - Staff reviewer (String)
+	- Email Address - Student (String)
+	- Coursework ID (Unique) (String)
+	- Deadline (dd/mm/yy:hh:mm:ss) (String)
+	- Score (int)
+- Activity:
+	- Coursework ID (String)
+	- Email Address (String)
+	- Date & Time (String)
 
 
 #### How will I handle dependencies?
