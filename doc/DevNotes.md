@@ -14,6 +14,7 @@ Below is a bunch of random notes that I have gathered from researching different
 - Look at webcat for inspiration.
 - Wed development for mobile, tablet and desktop. Start from mobile and style upwards.
 - Look at Auth2. This is a framework for authentication.
+- Max width of the website for css will be 1920. Wont expand width after that.
 
 
 #### Designing Wire-frames
@@ -32,17 +33,19 @@ I created wire-frames for Mobile, IPad and Desktop. They can be found in the wir
 	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
 	- First Name (String)
 	- Last Name (String)
-- Coursework:
+- Assignment:
 	- Location on disk (Unique) (String)
 	- Email Address - Staff reviewer (String)
 	- Email Address - Student (String)
-	- Coursework ID (Unique) (String)
+	- Assignment ID (String) (Identifies the different courseworks from each other e.g. coursework A and coursework B)
+	- Work ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
 	- Deadline (dd/mm/yy:hh:mm:ss) (String)
+	- Type (String) (Used so the different coursework widgets can be displayed. Also can display an image for the type. e.g. Java, php, html)
 	- Score (int)
 - Activity:
-	- Coursework ID (String)
+	- Work ID (String)
 	- Email Address (String)
-	- Date & Time (String)
+	- Date & Time (dd/mm/yy:hh:mm:ss) (String)
 
 
 #### How will I handle dependencies?
