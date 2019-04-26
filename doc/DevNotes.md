@@ -33,15 +33,16 @@ I created wire-frames for Mobile, IPad and Desktop. They can be found in the wir
 	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
 	- First Name (String)
 	- Last Name (String)
-- Assignment:
+- Coursework:
 	- Location on disk (Unique) (String)
 	- Email Address - Staff reviewer (String)
 	- Email Address - Student (String)
-	- Assignment ID (String) (Identifies the different courseworks from each other e.g. coursework A and coursework B)
-	- Work ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
+	- Coursework Tag (String) (Identifies the different coursework from each other e.g. coursework A and coursework B)
+	- Coursework ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
 	- Deadline (dd/mm/yy:hh:mm:ss) (String)
 	- Type (String) (Used so the different coursework widgets can be displayed. Also can display an image for the type. e.g. Java, php, html)
 	- Score (int)
+	- Coursework name
 - Activity:
 	- Work ID (String)
 	- Email Address (String)
