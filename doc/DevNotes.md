@@ -23,31 +23,28 @@ I created wire-frames for Mobile, IPad and Desktop. They can be found in the wir
 
 #### SQL
 - Students:
-	- Email Address (Unique) (String)
+	- Email Address (Unique) (String) (Used to identify a student)
 	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
 	- First Name (String)
 	- Last Name (String)
 	- Year (int)
 - Staff:
-	- Email Address (Unique) (String)
+	- Email Address (Unique) (String) (Used to identify a member of staff)
 	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
 	- First Name (String)
 	- Last Name (String)
 - Coursework:
-	- Location on disk (Unique) (String)
-	- Email Address - Staff reviewer (String)
-	- Email Address - Student (String)
-	- Coursework Tag (String) (Identifies the different coursework from each other e.g. coursework A and coursework B)
-	- Coursework ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
+	- Coursework ID (Unique) (String)
 	- Deadline (dd/mm/yy:hh:mm:ss) (String)
 	- Type (String) (Used so the different coursework widgets can be displayed. Also can display an image for the type. e.g. Java, php, html)
+	- Coursework Name (String)
+	- Email Address - Staff reviewer (String)
+- CourseworkSubmission:
+	- Location on disk (Unique) (String)
+	- Email Address - Student (String)
+	- CourseworkSubmission ID (String) (Identifies this coursework submission within the coursework)
+	- Coursework ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
 	- Score (int)
-	- Coursework name
-- Activity:
-	- Work ID (String)
-	- Email Address (String)
-	- Date & Time (dd/mm/yy:hh:mm:ss) (String)
-
 
 #### How will I handle dependencies?
 
