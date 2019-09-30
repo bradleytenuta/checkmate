@@ -17,7 +17,8 @@ Below is a bunch of random notes that I have gathered from researching different
 - Max width of the website for css will be 1920. Wont expand width after that.
 
 #### Env Set up
-Useful video on setting up the environment: [Link](https://www.youtube.com/watch?v=MBWXfaX9Gus&t=524s)
+Useful video on setting up the environment and launching Laravel: [Link](https://www.youtube.com/watch?v=MBWXfaX9Gus&t=524s)
+Don't load the vm using virtual box. use vigrant in the homstead directory.
 
 - Install virtual box.
 - Install Vagrant (manages virtual box for us).
