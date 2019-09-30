@@ -16,6 +16,12 @@ Below is a bunch of random notes that I have gathered from researching different
 - Look at Auth2. This is a framework for authentication.
 - Max width of the website for css will be 1920. Wont expand width after that.
 
+#### Env Set up
+Useful video on setting up the environment: [Link](https://www.youtube.com/watch?v=MBWXfaX9Gus&t=524s)
+
+- Install virtual box.
+- Install Vagrant (manages virtual box for us).
+
 
 #### Designing Wire-frames
 I created wire-frames for Mobile, IPad and Desktop. They can be found in the wire-frame folder. I used this website to create my wire-frames: [https://app.moqups.com](https://app.moqups.com)
