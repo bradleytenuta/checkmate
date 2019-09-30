@@ -16,6 +16,13 @@ Below is a bunch of random notes that I have gathered from researching different
 - Look at Auth2. This is a framework for authentication.
 - Max width of the website for css will be 1920. Wont expand width after that.
 
+#### Env Set up
+Useful video on setting up the environment and launching Laravel: [Link](https://www.youtube.com/watch?v=MBWXfaX9Gus&t=524s)
+Don't load the vm using virtual box. use vigrant in the homstead directory.
+
+- Install virtual box.
+- Install Vagrant (manages virtual box for us).
+
 
 #### Designing Wire-frames
 I created wire-frames for Mobile, IPad and Desktop. They can be found in the wire-frame folder. I used this website to create my wire-frames: [https://app.moqups.com](https://app.moqups.com)
@@ -23,31 +30,28 @@ I created wire-frames for Mobile, IPad and Desktop. They can be found in the wir
 
 #### SQL
 - Students:
-	- Email Address (Unique) (String)
+	- Email Address (Unique) (String) (Used to identify a student)
 	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
 	- First Name (String)
 	- Last Name (String)
 	- Year (int)
 - Staff:
-	- Email Address (Unique) (String)
+	- Email Address (Unique) (String) (Used to identify a member of staff)
 	- Password (The password text will be hashed using a 'salt' then this hash will be stored in the database.) (String)
 	- First Name (String)
 	- Last Name (String)
 - Coursework:
-	- Location on disk (Unique) (String)
-	- Email Address - Staff reviewer (String)
-	- Email Address - Student (String)
-	- Coursework Tag (String) (Identifies the different coursework from each other e.g. coursework A and coursework B)
-	- Coursework ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
+	- Coursework ID (Unique) (String)
 	- Deadline (dd/mm/yy:hh:mm:ss) (String)
 	- Type (String) (Used so the different coursework widgets can be displayed. Also can display an image for the type. e.g. Java, php, html)
+	- Coursework Name (String)
+	- Email Address - Staff reviewer (String)
+- CourseworkSubmission:
+	- Location on disk (Unique) (String)
+	- Email Address - Student (String)
+	- CourseworkSubmission ID (String) (Identifies this coursework submission within the coursework)
+	- Coursework ID (Unique) (String) (Identifies a piece of work assigned to a student inside an assignment)
 	- Score (int)
-	- Coursework name
-- Activity:
-	- Work ID (String)
-	- Email Address (String)
-	- Date & Time (dd/mm/yy:hh:mm:ss) (String)
-
 
 #### How will I handle dependencies?
 
