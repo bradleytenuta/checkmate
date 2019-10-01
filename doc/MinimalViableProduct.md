@@ -7,9 +7,18 @@ This file contains the contents of the minimal viable product for the 'checkmate
 - The user shall be able to change their image.
 
 ###### Coursework Requirements
+- Coursework shall have a name.
+- Coursework shall have a deadline.
+- Coursework shall have a total mark (int).
+- Coursework shall have an owner.
+- Coursework shall have a list of users with professor permissions.
+- Coursework shall have a list of assignees (People who do the coursework).
 - The owner of the coursework (The user that creates the coursework) can assign users as professors for that coursework.
-- The user shall be able to mark coursework items that have been submitted after the deadline of the coursework, if they have professor permission on that coursework.
+- The user shall be able to mark coursework items that have been submitted after the deadline of the coursework, if they have professor permission on that coursework. This means submitting a result.
 - A user that has professor permissions for a coursework cannot be assigned to that coursework.
+- A user that has professor permissions for a coursework can create overall comments
+- A user that has professor permissions for a coursework can create line specific comments.
+- A user with professor permissions shall be able to overwrite a result of a coursework that has been completed and submitting with a result.
 
 ###### Home Page Requirements
 - The user shall be able to view a list of all the coursework's they are assigned to.
@@ -35,3 +44,5 @@ This file contains the contents of the minimal viable product for the 'checkmate
 These shall only be completed once all the minimal requirements have been completed
 
 - An admin user can upgrade another user who is not admin, to admin.
+- A coursework owner shall be able to create Java unit tests and use these to automatically mark coursework.
+- A coursework shall have the ability to hid or show unit tests so users can view some of the unit tests that the coursework will be marked with.
