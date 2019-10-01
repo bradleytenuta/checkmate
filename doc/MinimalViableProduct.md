@@ -45,8 +45,12 @@ This file contains the contents of the minimal viable product for the 'checkmate
 - The user shall be able to enter a module name.
 - The user shall be able to upload an icon for the module.
 
-##### Create Coursework Page
-
+###### Create Coursework Page
+- The user shall be able to enter a coursework name.
+- The user shall be able to enter a deadline with a calendar.
+- The user shall be able to enter a maximum score.
+- The user shall be able to upload an icon.
+- The user shall be able to add a description.
 
 ###### Navbar
 - The navbar shall allow the user to log out.
