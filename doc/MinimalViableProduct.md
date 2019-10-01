@@ -1,6 +1,6 @@
 This file contains the contents of the minimal viable product for the 'checkmate' web application. The requirements below should be completed first before attempting any additional requirements.
 
-#### Minimum Requirements
+#### Minimum Requirements - Function Requirements
 
 ###### User Requirements
 - The user shall be able to change their password.
@@ -61,7 +61,7 @@ This file contains the contents of the minimal viable product for the 'checkmate
 	- create coursework.
 	- create modules.
 
-#### Additional Requirements
+#### Additional Requirements - Function Requirements
 These shall only be completed once all the minimal requirements have been completed
 
 - An admin user can upgrade another user who is not admin, to admin.
