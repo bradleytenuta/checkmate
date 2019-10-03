@@ -11,6 +11,15 @@
 |
 */
 
+/*
+    If the request is root then return the login view.
+*/
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+/*
+    Uses a controller to handle the logic.
+    Fetches a coursework page when a coursework ID is given.
+*/
+Route::get('/coursework/{courseworkID}', 'CourseworkController@show');
