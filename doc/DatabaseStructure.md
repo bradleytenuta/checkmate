@@ -8,7 +8,10 @@ Everyone who has an account is a user.
 	- Password
 	- FirstName
 	- Surname
-	- Image (Path to icon)
+	- Image (Relative path to icon)
+	- Student (Boolean)
+	- Staff (Boolean)
+	- YearOfStudy (Int, only filled out if Student is true. This value is useful for filtering users)
 
 ----
 The email address is the 'user' that created the module. This user is able to create coursework within this module.
@@ -16,7 +19,7 @@ The email address is the 'user' that created the module. This user is able to cr
 - Module
 	- Name
 	- ModuleId (Unique)
-	- EmailAddress
+	- EmailAddress (The user that created the module)
 	- image (Relative path to icon)
 
 ----
@@ -26,7 +29,7 @@ The email address is the user that owns the coursework. This user is able to mar
 	- Name
 	- CourseworkId (Unique)
 	- Deadline
-	- EmailAddress
+	- EmailAddress (The user that create the coursework)
 	- StorageLocation (Unique)
 	- ModuleId
 	- MaximumScore
@@ -41,7 +44,7 @@ A marker is a user that has been assigned to help mark a specific coursework. A 
 	- CourseworkId
 
 ----
-The email address is the user that submitted the coursework.
+The email address is the user that submitted the coursework. Coursework items only take in zip files. They are stored in the coursework storage location.
 #
 - Coursework Item
 	- EmailAddress

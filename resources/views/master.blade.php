@@ -5,9 +5,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSS Files -->
-
         <!-- JS Files -->
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/popper.min.js"></script>
+
+        <!-- CSS Files -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/navbar.css" rel="stylesheet">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
