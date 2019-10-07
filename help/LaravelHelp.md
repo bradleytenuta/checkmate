@@ -50,8 +50,27 @@ These can then be pulled into your views so you don't have to duplicate code for
 
 Public folder
 -------
-All Assets such as images and fonts that we want to use have to be stored in the 'public' folder. So when accessing local JS files or local CSS files, the root directory it looks in is 'public'. So if you want to create CSS or JS files, they need to be stored in there.
+All Assets such as images and fonts that we want to use have to be stored in the 'public' folder. So when accessing local JS files or local CSS files, the root directory it looks in is 'public'. So if you want to create CSS or JS files, they need to be stored in there. Files stored in this folder will be accessable by everyone at any time by typing in the url: 'checkmate.com/images/myimage.png'. A helper function to access that folder: 'asset("images/myimage.png")'
 
 Resource folder
 -------
 This folder contains stuff that will be compiled down to vanilla CSS / JavaScript and then appear in the public directory. This is useful if your using some CSS templates or special frameworks (like sass) that require the ability to be compiled down to JavaScript / CSS.
+
+Seeders
+-------
+Seeders produce test data for a database. All seed classes are found in the directory 'database/seeds'. A seeder class is needed for each table. You can use generators to make your own seeder class, like so: 'php artisan make:seeder UsersTableSeeder'.
+
+Seeder classes only contain one function 'run'. This is called when the function 'php artisan db:seed' is called. Inside the run function you should write code that inserts data into the table. It would be easier to create a factory class and then call the factory class inside this run function rather than manually adding the data into the table yourself. Here is a link to the seed documentation: [link]( https://laravel.com/docs/master/seeding).
+
+Your seeder classes get called by a DatabaseSeeder class. This class also contains a run function. You should update this function to add the calls to your new seeder classes you just made.
+
+Factories
+-------
+Link to doc about making factories: [Link](https://laravel.com/docs/master/database-testing#writing-factories).
+Factory classes are stored in 'database/factories/', there is already a example one there for you to use. You should make a factory for each table.
+
+Storage folder
+-------
+This folder is a public folder to hold files that can be used by your app. These files are not open to everyone to see but can be used by your app. Laravel has a 'php artisan storage:link' command that adds a symlink to 'public' from 'storage/app/public'. The reason for this is that your storage may not be your local filesystem, but rather an Amazon S3 bucket or a Rackspace CDN (or anything else). Helper function to access this folder: 'storage_path("images/myimage.png")'.
+
+This storage folder should be used for coursework, user icons, cousework icons.
