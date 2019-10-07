@@ -15,7 +15,7 @@
         <link href="css/navbar.css" rel="stylesheet">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        
     </head>
     <body>
         <!-- Nav Bar -->

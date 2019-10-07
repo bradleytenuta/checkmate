@@ -19,3 +19,8 @@ This file provides a step by step guide to set up Laravel on your PC. This guide
 
 #### Set Up Guide
 - Watch this video: [Link](https://www.youtube.com/watch?v=MBWXfaX9Gus&t=524s).
+
+#### Version of Software I'm Using
+- Bootstrap v4.3.1
+- JQuery v3.4.1
+- Popper v1.15.0
