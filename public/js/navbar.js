@@ -6,7 +6,7 @@
 function hover(element) {
 
     // Gets the attribute value
-    var imageTag = $(element).find("#navbar-image");
+    var imageTag = $(element).children();
     var srcValue = $(imageTag).attr('src');
 
     // Replaces '.png' with '-active.png' and updates the attribute.
@@ -23,7 +23,7 @@ function hover(element) {
 function unhover(element) {
 
     // Gets the attribute value
-    var imageTag = $(element).find("#navbar-image");
+    var imageTag = $(element).children();
     var srcValue = $(imageTag).attr('src');
 
     // Replaces '.png' with '-active.png' and updates the attribute.
