@@ -1,0 +1,33 @@
+.dropdown-container {
+    margin-top: 0px;
+    border-radius: 0px;
+    border: 0pc;
+    background-color: #f8f9fa !important;
+}
+
+.navbar-contents > li {
+    padding: 10px 0px;
+}
+
+/* Below is the styling for desktop.
+-------------------------------------------------- */
+
+@media screen and (min-width: 992px) {
+    .navbar-contents-container {
+        position: absolute;
+        width: 100%;
+    }
+    .navbar-contents {
+        margin: auto;
+    }
+    .navbar-contents > li {
+        padding: 0px 40px;
+        font-size: 1.10rem;
+    }
+    .navbar-contents > li > a {
+        margin-right: 0px;
+    }
+    .dropdown-container {
+        margin-top: 7px;
+    }
+}

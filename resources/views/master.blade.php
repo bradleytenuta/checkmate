@@ -12,6 +12,7 @@
 
         <!-- CSS Files -->
         <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/master.css" rel="stylesheet">
         <link href="css/navbar.css" rel="stylesheet">
 
         <!-- Fonts -->
