@@ -3,3 +3,7 @@
     height: 250px;
     background-image: url("../images/footer/footer.png");
 }
+
+.footer-container a:hover {
+    text-decoration: none;
+}
