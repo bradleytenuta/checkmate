@@ -109,6 +109,12 @@ body {
 -------------------------------------------------- */
 
 @media screen and (min-width: 992px) {
+    html {
+        height: auto;
+    }
+    body {
+        height: auto;
+    }
     .form-signin {
         position: absolute;
         right: 10%;
