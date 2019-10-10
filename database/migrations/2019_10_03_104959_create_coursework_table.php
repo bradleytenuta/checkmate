@@ -19,16 +19,12 @@ class CreateCourseworkTable extends Migration {
         // Creates the Schema for the table.
         Schema::create('coursework', function (Blueprint $table) {
             // All the headings for the table.
-            // TODO: Update the image relative path to point to a default coursework image.
-            // TODO: Storage path should be its own folder with the id as the name. Update this to point to the correct location.
             $table->bigIncrements('CourseworkId');
             $table->string('Name');
             $table->timestamp('Deadline');
             $table->string('EmailAddress');
-            $table->string('StorageLocation')->default("PATH/TO/GET/CourseWork/ID");
             $table->bigInteger('ModuleId');
             $table->integer('MaximumScore');
-            $table->string('Image')->default("PATH/TO/DEFAULT/IMAGE");
             $table->string('Description')->default("No description has been set.");
 
             // This will add 'created at' and 'updated at' timestamp.
