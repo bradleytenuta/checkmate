@@ -9,33 +9,29 @@ Everyone who has an account is a user. The backend will automatically check for 
 ----
 
 - Users:
-	- EmailAddress (Used to identify a user) (Unique)
+	- EmailAddress (Unique)
 	- UserId (Used to identify a user) (Unique)
 	- Password
 	- FirstName
 	- Surname
-	- Student (Boolean)
-	- Staff (Boolean)
-	- YearOfStudy (Int, only filled out if Student is true. This value is useful for filtering students)
 
 ----
 
 Modules
 
-The UserId is the 'user' that created the module. This user is able to create coursework within this module. The backend will automatically check for an uploaded icon, if one can't be found then the default is used.
+A module contains one or multiple courseworks. Roles are given when the module is created. Students are added when the module is created.
 
 ----
 
 - Modules
 	- Name
 	- ModuleId (Unique)
-	- UserId (The user that created the module)
 
 ----
 
 Courseworks
 
-The UserId is the user that owns the coursework. This user is able to mark the coursework and also assign other users to help mark this coursework. All users that have the ability to mark this coursework cannot be assigned this coursework. The backend will automatically check for an uploaded icon, if one can't be found then the default is used. The backend will automatically search for JUnit tests, if some are found then they are displayed, if not then non are displayed.
+Each module has a number of courseworks.
 
 ----
 
@@ -43,57 +39,118 @@ The UserId is the user that owns the coursework. This user is able to mark the c
 	- Name
 	- CourseworkId (Unique)
 	- Deadline
-	- UserId (The user that created the coursework)
 	- ModuleId
 	- MaximumScore
 	- Description
 
 ----
 
-Markers
+Submission
 
-A marker is a user that has been assigned to help mark a specific module. A user cannot be assigned to a module they are a marker of. The owner of a piece of module is automatically assigned as a marker for that module. This table can be used to check to see which users are markers for a given module. Markers can be assigned when the module is created. Markers can also be assigned later on, when a marker is assigned, if they are a student on that module they will be removed from being a student on that module and replaced with being a marker. Only the module owner can assign people as markers.
+The UserId is the user that submitted the coursework. Coursework items only take in zip files. They are stored in the coursework storage location. The JSON column is simply taking a json file and turning it into a string and placing it into the database. Then when you want to read it, take it out and convert it to json again, Larvel has this support already.
 
 ----
 
-- Markers
+- Submission
 	- UserId
-	- ModuleId
-
-----
-
-CourseworkItems
-
-The UserId is the user that submitted the coursework. Coursework items only take in zip files. They are stored in the coursework storage location.
-
-----
-
-- CourseworkItems
-	- UserId
-	- CourseworkItemId (Unique)
+	- SubmissionId (Unique)
 	- CourseworkId
 	- Score
+	- MainFeedback (Null to begin with)
+	- JSON
+		- Junit Test (One for each Unit test, can be zero)
+			- Passed (boolean)
+			- Failure Description
+		- LineComments
+			- FileName
+			- FileRelativePath
+			- LineNumber
+			- BeginingChar (The first char on the line selected)
+			- EndingChar (The last char on the line selected)
+			- Comment
 
 ----
 
-ModuleSignUps
+Module_Sign_Ups
 
 This table contains a list of all the modules that all the students are signed up to.
 This can be used to check what modules a student is signed up to. Students are assigned to modules when the module is created. Students can also be assigned to the module later on. Only the owner of the module can assign students to that module.
 
 ----
 
-- ModuleSignUps
+- Module_Sign_Ups
 	- UserId
 	- ModuleId
 
 ----
 
-Admins
+Permissions
 
-This table contains a list of all the users that are admins. Administrators is a type within a user, that is able to create modules and coursework within that module.
+A permission is an action a user can perform
+Some Permissions:
+- View all Students in Coursework
+- View all student's submission
+- View all Students in Module
+- Edit Module
+- Edit Coursework
+- Edit submission result
+- Mark Coursework
+- Upload Coursework
+- Create Module
+- Create Coursework
 
 ----
 
-- Admins
+- Permissions
+	- PermissionId (Unique)
+	- Name
+
+----
+
+Roles
+
+Roles provide a certain number of permissions.
+Some roles:
+	- Student (Role)
+		- Upload Coursework (Permissions)
+	- Marker
+		- Edit submission result
+		- Mark Coursework
+	- Admin
+		- Edit Coursework
+		- Create Coursework
+		- Edit Module
+		- Create Module
+		- Create new user/s
+
+----
+
+- Roles
+	- RoleId (Unique)
+	- Name
+
+----
+
+Role_Permission
+
+This table contains all the permissions that each role gets.
+
+----
+
+- Role_Permission
+	- RoleId
+	- PermissionId
+
+----
+
+User_Roles
+
+This table contains a list of all roles a user has for a specific module.
+Module can only be null for admin role. 
+
+----
+
+- User_Roles
 	- UserId
+	- RoleId
+	- ModuleId

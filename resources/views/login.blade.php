@@ -36,9 +36,6 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-        <!-- Create an account anchor -->
-        <a href="/signup" class="mt-2 text-muted">Create An Account</a>
-
     </form>
 </div>
 <!-- End Of Login Section -->
