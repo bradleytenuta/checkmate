@@ -56,18 +56,23 @@ The UserId is the user that submitted the coursework. Coursework items only take
 	- SubmissionId (Unique)
 	- CourseworkId
 	- Score
-	- MainFeedback (Null to begin with)
+	- MainFeedback (Can be empty)
 	- JSON
-		- Junit Test (One for each Unit test, can be zero)
-			- Passed (boolean)
-			- Failure Description
-		- LineComments
-			- FileName
-			- FileRelativePath
-			- LineNumber
-			- BeginingChar (The first char on the line selected)
-			- EndingChar (The last char on the line selected)
-			- Comment
+		- Compilation
+			- Passed (boolead)
+			- OutputString
+		- JUnitTests (This list can be empty)
+			- JUnitTest
+				- Passed (boolean)
+				- OutputString
+		- LineComments (This list can be empty)
+			- LineComment
+				- FileName
+				- FileRelativePath
+				- LineNumber
+				- BeginingChar (The first char on the line selected)
+				- EndingChar (The last char on the line selected)
+				- Comment
 
 ----
 
