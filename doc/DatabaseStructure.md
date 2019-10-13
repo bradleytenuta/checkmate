@@ -61,11 +61,11 @@ The UserId is the user that submitted the coursework. Coursework items only take
 		- Compilation
 			- Passed (boolead)
 			- OutputString
-		- JUnitTests (This list can be empty)
+		- JUnitTests [] (This list can be empty)
 			- JUnitTest
 				- Passed (boolean)
 				- OutputString
-		- LineComments (This list can be empty)
+		- LineComments [] (This list can be empty)
 			- LineComment
 				- FileName
 				- FileRelativePath
@@ -73,6 +73,10 @@ The UserId is the user that submitted the coursework. Coursework items only take
 				- BeginingChar (The first char on the line selected)
 				- EndingChar (The last char on the line selected)
 				- Comment
+		- MossComparisons [] (This list can be empty)
+			- MossComparison
+				- SubmissionId
+				- Result
 
 ----
 
