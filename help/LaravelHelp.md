@@ -74,3 +74,9 @@ Storage folder
 This folder is a public folder to hold files that can be used by your app. These files are not open to everyone to see but can be used by your app. Laravel has a 'php artisan storage:link' command that adds a symlink to 'public' from 'storage/app/public'. The reason for this is that your storage may not be your local filesystem, but rather an Amazon S3 bucket or a Rackspace CDN (or anything else). Helper function to access this folder: 'storage_path("images/myimage.png")'.
 
 This storage folder should be used for coursework, user icons, cousework icons.
+
+Multiple Projects
+-------
+In order to get multiple projects working you need to make sure you destroy the vagrant virtual machine. Whenever you edit the 'homestead' directory, you need to destroy the virtual machine to refresh it. 
+
+The commands needed are: 'vagrant destroy' then after you have made your changes to the homestead directory: 'vagrant up --provision'

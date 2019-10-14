@@ -23,7 +23,7 @@ class CourseworkController {
         // TODO: Logic
 
         // returns a view with the coursework data object.
-        return view('coursework', ['coursework'->$coursework]);
+        return view('private/coursework', ['coursework'->$coursework]);
     }
 }
 ?>

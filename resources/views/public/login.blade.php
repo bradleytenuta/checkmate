@@ -1,4 +1,4 @@
-@extends ('master')
+@extends ('layouts.master')
 
 <!-- Begining of the head css section -->
 @section ('master-head-css')
@@ -15,27 +15,51 @@
     <!-- Logo (Only for desktop) -->
     <div class="login-logo-container-desktop navbar-brand">
         <img src="/images/icon/checkmate_icon.png" width="60" height="60" class="d-inline-block align-top" alt="">
-        CheckMate
+        {{ __('CheckMate') }}
     </div>
 
     <!-- Sign in container -->
-    <form class="form-signin">
+    <form class="form-signin" action="{{ route('login') }}">
+
+        <!-- The csrf-token from the meta-data in head -->
+        @csrf
 
         <!-- Logo (Only used for Mobile) -->
         <img class="mb-4 login-image" src="/images/icon/checkmate_icon.png" alt="" width="72" height="72">
 
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me">
-                Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <!-- Input email -->
+        <label for="inputEmail" class="sr-only">{{ __('E-Mail Address') }}</label>
+        <input type="email" id="inputEmail" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
+        <!-- Input password -->
+        <label for="inputPassword" class="sr-only">{{ __('Password') }}</label>
+        <input type="password" id="inputPassword" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
+
+        <!-- Remember me check box -->
+        <div class="checkbox mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="remember">
+                    {{ __('Remember Me') }}
+                </label>
+            </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Sign In') }}</button>
+
+        <!-- Forgot password -->
+        <a class="btn btn-link" href="{{ route('password.request') }}">
+            {{ __('Forgot Your Password?') }}
+        </a>
+
+        <!-- Error Section -->
+        @error('inputEmail')
+            <p class="invalid-feedback" role="alert">{{ $message }}</p>
+        @enderror
+        @error('inputPassword')
+            <p class="invalid-feedback" role="alert">{{ $message }}</p>
+        @enderror
     </form>
 </div>
 <!-- End Of Login Section -->

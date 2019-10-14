@@ -15,7 +15,7 @@
     If the request is root then return the login view.
 */
 Route::get('/', function () {
-    return view('login');
+    return view('public/login');
 });
 
 /*
@@ -23,3 +23,6 @@ Route::get('/', function () {
     Fetches a coursework page when a coursework ID is given.
 */
 Route::get('/coursework/{courseworkID}', 'CourseworkController@show');
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

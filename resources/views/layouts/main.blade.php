@@ -72,17 +72,26 @@
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 onmouseover="hover(this);" onmouseout="unhover(this);">
                     <img src="/images/navbar/user.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    User
+                    {{ __('User') }}
                 </a>
                 <div class="dropdown-menu dropdown-container" aria-labelledby="navBarDropDown">
+
+                    <!-- User account -->
                     <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
                         <img src="/images/navbar/user-cog.png" width="24" height="24" class="d-inline-block align-top" alt="">
-                        Account
+                        {{ __('Account') }}
                     </a>
-                    <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
+
+                    <!-- Logout button and form -->
+                    <a class="dropdown-item" href="#" onmouseover="hover(this);"
+                        onmouseout="unhover(this);" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">>
                         <img src="/images/navbar/sign-out.png" width="24" height="24" class="d-inline-block align-top" alt="">
-                        Log Off
+                        {{ __('Log Off') }}
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>
