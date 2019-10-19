@@ -45,13 +45,13 @@ Each module has a number of courseworks.
 
 ----
 
-Submission
+Submissions
 
 The UserId is the user that submitted the coursework. Coursework items only take in zip files. They are stored in the coursework storage location. The JSON column is simply taking a json file and turning it into a string and placing it into the database. Then when you want to read it, take it out and convert it to json again, Larvel has this support already.
 
 ----
 
-- Submission
+- Submissions
 	- UserId
 	- SubmissionId (Unique)
 	- CourseworkId
@@ -80,23 +80,12 @@ The UserId is the user that submitted the coursework. Coursework items only take
 
 ----
 
-Module_Sign_Ups
-
-This table contains a list of all the modules that all the students are signed up to.
-This can be used to check what modules a student is signed up to. Students are assigned to modules when the module is created. Students can also be assigned to the module later on. Only the owner of the module can assign students to that module.
-
-----
-
-- Module_Sign_Ups
-	- UserId
-	- ModuleId
-
-----
-
 Permissions
 
 A permission is an action a user can perform
+
 Some Permissions:
+
 - View all Students in Coursework
 - View all student's submission
 - View all Students in Module
@@ -118,19 +107,19 @@ Some Permissions:
 
 Roles
 
-Roles provide a certain number of permissions.
-Some roles:
-	- Student (Role)
-		- Upload Coursework (Permissions)
-	- Marker
-		- Edit submission result
-		- Mark Coursework
-	- Admin
-		- Edit Coursework
-		- Create Coursework
-		- Edit Module
-		- Create Module
-		- Create new user/s
+Roles provide a certain number of permissions. Some roles:
+
+- Student (Role)
+	- Upload Coursework (Permissions)
+- Marker
+	- Edit submission result
+	- Mark Coursework
+- Admin
+	- Edit Coursework
+	- Create Coursework
+	- Edit Module
+	- Create Module
+	- Create new user/s
 
 ----
 
@@ -140,7 +129,7 @@ Some roles:
 
 ----
 
-Role_Permission
+Roles_Permissions
 
 This table contains all the permissions that each role gets.
 
@@ -152,7 +141,7 @@ This table contains all the permissions that each role gets.
 
 ----
 
-User_Roles
+Users_Roles
 
 This table contains a list of all roles a user has for a specific module.
 Module can only be null for admin role. 
@@ -162,4 +151,17 @@ Module can only be null for admin role.
 - User_Roles
 	- UserId
 	- RoleId
+	- ModuleId
+
+
+----
+
+Users_Modules
+
+This table contains a list of all the users and the modules they are signed up to. This includes users with different types of permissions.
+
+----
+
+- Users_Modules
+	- UserId
 	- ModuleId
