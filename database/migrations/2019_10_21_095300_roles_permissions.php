@@ -19,6 +19,7 @@ class RolesPermissions extends Migration {
             $table->unsignedInteger('permissionId');
 
             // Keys
+            $table->primary(['roleId', 'permissionId']);
             $table->foreign('roleId')->references('id')->
                 on('roles')->ondelete('cascade')->onUpdate('cascade');
             $table->foreign('permissionId')->references('id')->

@@ -19,6 +19,7 @@ class UsersRoles extends Migration {
             $table->unsignedInteger('roleId');
 
             // Keys
+            $table->primary(['userId', 'roleId']);
             $table->foreign('userId')->references('id')->
                 on('users')->ondelete('cascade')->onUpdate('cascade');
             $table->foreign('roleId')->references('id')->

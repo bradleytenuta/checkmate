@@ -20,6 +20,7 @@ class UsersModules extends Migration {
             
 
             // Keys
+            $table->primary(['userId', 'moduleId']);
             $table->foreign('userId')->references('id')->
                 on('users')->ondelete('cascade')->onUpdate('cascade');
             $table->foreign('moduleId')->references('id')->
