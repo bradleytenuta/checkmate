@@ -129,7 +129,7 @@ Roles provide a certain number of permissions. Some roles:
 
 ----
 
-Roles_Permissions
+Roles_Permissions - pivot
 
 This table contains all the permissions that each role gets.
 
@@ -141,7 +141,7 @@ This table contains all the permissions that each role gets.
 
 ----
 
-Users_Roles
+Users_Roles_Modules - pivot
 
 This table contains a list of all roles a user has for a specific module.
 Module can only be null for admin role. 
@@ -156,7 +156,7 @@ Module can only be null for admin role.
 
 ----
 
-Users_Modules
+Users_Modules - pivot
 
 This table contains a list of all the users and the modules they are signed up to. This includes users with different types of permissions.
 
@@ -165,3 +165,15 @@ This table contains a list of all the users and the modules they are signed up t
 - Users_Modules
 	- UserId
 	- ModuleId
+
+----
+
+Users_Roles - pivot
+
+gloabl permissions for users
+
+----
+
+- User_Roles_Global
+	- UserId
+	- RoleId
