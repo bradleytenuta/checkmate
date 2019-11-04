@@ -80,3 +80,13 @@ Multiple Projects
 In order to get multiple projects working you need to make sure you destroy the vagrant virtual machine. Whenever you edit the 'homestead' directory, you need to destroy the virtual machine to refresh it. 
 
 The commands needed are: 'vagrant destroy' then after you have made your changes to the homestead directory: 'vagrant up --provision'
+
+Other
+-------
+
+- `composer dump-autoload` can be used inside the 'vagrant ssh' to refresh your seeder files. If when seeding or migrating, php can't find your classes, then run the command and try again.
+- Migration files that only have a single primary key that is an incrementing integer will get automatically claimed as a PK when migrating, this means you do not have to specify it in the migration file, if you do, it will break it.
+- `$table->unique('[val]')` is used when you want to specify something as unique but not used as a primary key, just like an email.
+- Don't need to include the id in the factory as it is incremented automatically when that model object is created.
+- `Timestamps` in migration files creates two columns, one for the date of creation and one for the date of last updated.
+- use `php artisan migrate:fresh` instead of `php artisan migrate:reset` also can combine it with seeding to speed things up: `php artisan migrate:fresh --seed`. This also stops problems with removing data occurring which is helpful.
