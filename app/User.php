@@ -67,10 +67,6 @@ class User extends Authenticatable {
     }
 
     public function moduleRoles() {
-        return $this->hasMany('App\Role');
-    }
-
-    public function globalRoles() {
-        return $this->hasMany('App\Role');
+        return $this->hasMany('App\ModuleRole');
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class submission extends Model {
+class Submission extends Model {
 
     /**
      * Returns the coursework this submission belongs to.

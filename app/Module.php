@@ -12,4 +12,8 @@ class Module extends Model {
     public function courseworks() {
         return $this->hasMany('App\Coursework');
     }
+
+    public function moduleRoles() {
+        return $this->hasMany('App\ModuleRole');
+    }
 }

@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(RolesTableSeeder::class);
 
         // A seeded many to many relationship table.
-        $this->call(RolesPermissionsTable::class);
+        $this->call(RolesPermissionsTableSeeder::class);
     }
 }

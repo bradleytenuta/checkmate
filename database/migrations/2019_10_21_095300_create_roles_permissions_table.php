@@ -15,8 +15,8 @@ class RolesPermissions extends Migration {
         Schema::create('roles_permissions', function (Blueprint $table) {
 
             // Main Schema
-            $table->unsignedInteger('role_id');
-            $table->unsignedInteger('permission_id');
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('permission_id');
 
             // Keys
             $table->primary(['role_id', 'permission_id']);
