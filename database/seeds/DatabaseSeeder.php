@@ -11,11 +11,17 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
+
+        // The seeders get called in this order:
         $this->call(UsersTableSeeder::class);
         $this->call(ModulesTableSeeder::class);
         $this->call(CourseworksTableSeeder::class);
         $this->call(SubmissionsTableSeeder::class);
+
         $this->call(PermissionsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
+
+        // A seeded many to many relationship table.
+        $this->call(RolesPermissionsTable::class);
     }
 }

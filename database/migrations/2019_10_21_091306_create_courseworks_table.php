@@ -16,18 +16,16 @@ class CreateCourseworksTable extends Migration {
 
             // Main Schema
             $table->bigIncrements('id');
-            $table>unsignedInteger('moduleId');
+            $table>unsignedInteger('module_id');
+            $table>unsignedInteger('maximum_score');
             $table->string('name');
-            $table->dateTime('deadline');
-            $table>unsignedInteger('maximumScore');
             $table->string('description');
 
             // Meta Data
             $table->timestamps();
 
             // Keys
-            $table->primary('id');
-            $table->foreign('moduleId')->references('id')->
+            $table->foreign('module_id')->references('id')->
                 on('modules')->ondelete('cascade')->onUpdate('cascade');
         });
     }

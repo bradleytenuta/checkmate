@@ -15,14 +15,14 @@ class RolesPermissions extends Migration {
         Schema::create('roles_permissions', function (Blueprint $table) {
 
             // Main Schema
-            $table->unsignedInteger('roleId');
-            $table->unsignedInteger('permissionId');
+            $table->unsignedInteger('role_id');
+            $table->unsignedInteger('permission_id');
 
             // Keys
-            $table->primary(['roleId', 'permissionId']);
-            $table->foreign('roleId')->references('id')->
+            $table->primary(['role_id', 'permission_id']);
+            $table->foreign('role_id')->references('id')->
                 on('roles')->ondelete('cascade')->onUpdate('cascade');
-            $table->foreign('permissionId')->references('id')->
+            $table->foreign('permission_id')->references('id')->
                 on('permissions')->ondelete('cascade')->onUpdate('cascade');
         });
     }

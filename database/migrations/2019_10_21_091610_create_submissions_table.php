@@ -16,21 +16,20 @@ class CreateSubmissionsTable extends Migration {
 
             // Main Schema
             $table->bigIncrements('id');
-            $table->unsignedInteger('userId');
-            $table->unsignedInteger('courseworkId');
-            $table->unsignedInteger('score');
-            $table->string('mainFeedback');
-            $table->string('json');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('coursework_id');
+            $table->unsignedInteger('score')->nullable();
+            $table->string('main_feedback')->nullable();
+            $table->string('json')->nullable();
 
             // Meta Data
             $table->timestamps();
 
             // Keys
-            $table->primary('id');
-            $table->foreign('userId')->references('id')->
+            $table->foreign('user_id')->references('id')->
                 on('users')->ondelete('cascade')->onUpdate('cascade');
-            $table->foreign('courseworkId')->references('id')->
-                on('coursework')->ondelete('cascade')->onUpdate('cascade');
+            $table->foreign('coursework_id')->references('id')->
+                on('courseworks')->ondelete('cascade')->onUpdate('cascade');
         });
     }
 

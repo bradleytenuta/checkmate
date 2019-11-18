@@ -10,6 +10,6 @@ class SubmissionsTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Submission::class, 30)->create();
+        factory(App\Submission::class, 50)->create();
     }
 }

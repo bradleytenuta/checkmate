@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateModulesTable extends Migration {
+    
     /**
      * Run the migrations.
      *
@@ -14,14 +15,11 @@ class CreateModulesTable extends Migration {
         Schema::create('modules', function (Blueprint $table) {
 
             // Main Schema
-            $table->string('name');
             $table->bigIncrements('id');
+            $table->string('name');
 
             // Meta Data
             $table->timestamps();
-
-            // Keys
-            $table->primary('id');
         });
     }
 

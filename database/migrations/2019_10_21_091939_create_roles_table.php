@@ -20,9 +20,6 @@ class CreateRolesTable extends Migration {
 
             // Meta Data
             $table->timestamps();
-
-            // Keys
-            $table->primary('id');
         });
     }
 

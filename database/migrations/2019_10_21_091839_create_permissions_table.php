@@ -20,9 +20,6 @@ class CreatePermissionsTable extends Migration {
 
             // Meta Data
             $table->timestamps();
-
-            // Keys
-            $table->primary('id');
         });
     }
 
