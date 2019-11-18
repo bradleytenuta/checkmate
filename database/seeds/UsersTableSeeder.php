@@ -33,6 +33,6 @@ class UsersTableSeeder extends Seeder {
             
             // Assigns the role to the user for that module.
             $user->assignRoleTo()->attach($random_role_id, $random_module_id);
-        }
+        });
     }
 }
