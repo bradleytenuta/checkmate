@@ -17,9 +17,6 @@ class CreatePermissionsTable extends Migration {
             // Main Schema
             $table->bigIncrements('id');
             $table->string('name');
-
-            // Meta Data
-            $table->timestamps();
         });
     }
 

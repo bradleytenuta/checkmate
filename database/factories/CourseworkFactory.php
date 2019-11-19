@@ -4,6 +4,9 @@
 
 use Faker\Generator as Faker;
 
+/**
+ * Creates a coursework item.
+ */
 $factory->define(App\Coursework::class, function (Faker $faker) {
     return [
         'module_id' => App\Module::inRandomOrder()->first()->id,

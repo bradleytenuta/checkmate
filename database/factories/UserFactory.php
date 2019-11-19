@@ -4,6 +4,9 @@
 
 use Faker\Generator as Faker;
 
+/**
+ * Creates a user item.
+ */
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'firstname' => $faker->firstName(),
