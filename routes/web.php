@@ -1,28 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Auth::routes();
 
-/*
-    If the request is root then return the login view.
-*/
-Route::get('/', function () {
-    return view('public/login');
+// The login route and controller are already defined by default.
+// If the user is logged in already, then they cannot access the login page and are
+// redirected to the home page.
+Route::get('/', function () { 
+    return redirect()->route('login'); 
 });
 
-/*
-    Uses a controller to handle the logic.
-    Fetches a coursework page when a coursework ID is given.
-*/
-Route::get('/coursework/{courseworkID}', 'CourseworkController@show');
-
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@show')->name('home')->middleware('auth');

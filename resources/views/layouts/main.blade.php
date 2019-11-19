@@ -1,4 +1,4 @@
-@extends ('master')
+@extends ('layouts.master')
 
 <!-- Begining of head js section -->
 @section ('master-head-js')
@@ -85,7 +85,7 @@
                     <!-- Logout button and form -->
                     <a class="dropdown-item" href="#" onmouseover="hover(this);"
                         onmouseout="unhover(this);" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">>
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <img src="/images/navbar/sign-out.png" width="24" height="24" class="d-inline-block align-top" alt="">
                         {{ __('Log Off') }}
                     </a>

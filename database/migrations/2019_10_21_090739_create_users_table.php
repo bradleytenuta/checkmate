@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration {
 
             // Meta Data
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 
