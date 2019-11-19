@@ -51,10 +51,17 @@ class User extends Authenticatable {
         return $this->hasMany('App\Submission');
     }
 
+    /**
+     * Gets all the privileges the user has for each module.
+     */
     public function ModulePrivileges() {
         return $this->hasMany('App\ModulePrivilege');
     }
 
+    /**
+     * Gets the global privilage the user has. This can be null
+     * as its possible a user does not have any global privileges.
+     */
     public function globalPrivilege() {
         return $this->hasOne('App\GlobalPrivilege');
     }

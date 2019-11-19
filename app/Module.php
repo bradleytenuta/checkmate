@@ -13,6 +13,9 @@ class Module extends Model {
         return $this->hasMany('App\Coursework');
     }
 
+    /**
+     * Gets all the users that are within this module.
+     */
     public function users() {
         return $this->belongsToMany('App\User');
     }
