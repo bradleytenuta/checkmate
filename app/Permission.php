@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model {
-    
-    public function moduleRoles() {
-        return $this->hasMany('App\ModuleRole');
+
+    public function globalRole() {
+        return $this->belongsTo('App\GlobalRole');
     }
 
-    public function role() {
-        return $this->belongsTo('App\Role');
+    public function moduleRole() {
+        return $this->belongsTo('App\ModuleRole');
     }
 }

@@ -13,7 +13,7 @@ class Module extends Model {
         return $this->hasMany('App\Coursework');
     }
 
-    public function moduleRoles() {
-        return $this->hasMany('App\ModuleRole');
+    public function users() {
+        return $this->belongsToMany('App\User');
     }
 }

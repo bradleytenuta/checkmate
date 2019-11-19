@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ModuleRole extends Model
+class GlobalRole extends Model
 {
     public function permissions() {
         return $this->belongsToMany('App\Permission');

@@ -38,10 +38,10 @@ class User extends Authenticatable {
     ];
 
     /**
-     * Gets a list of all the courseworks the user belongs to.
+     * Gets a list of all the modules the user belongs to.
      */
-    public function courseworks() {
-        return $this->hasMany('App\Coursework');
+    public function modules() {
+        return $this->belongsToMany('App\Module');
     }
 
     /**
@@ -51,22 +51,11 @@ class User extends Authenticatable {
         return $this->hasMany('App\Submission');
     }
 
-    /**
-     * This function returns a list of all the modules the user belongs to.
-     */
-    public function modules() {
-        
-        // creates an empty list of modules.
-        $modules = array_unique();
-
-        foreach (courseworks() as $coursework) {
-            $modules->add($coursework->module());
-        }
-
-        return $modules;
+    public function ModulePrivileges() {
+        return $this->hasMany('App\ModulePrivilege');
     }
 
-    public function moduleRoles() {
-        return $this->hasMany('App\ModuleRole');
+    public function globalPrivilege() {
+        return $this->hasOne('App\GlobalPrivilege');
     }
 }
