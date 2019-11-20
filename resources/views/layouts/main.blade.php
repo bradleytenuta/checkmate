@@ -18,84 +18,65 @@
 
 <!-- Navbar -->
 <div class="nav-width-extension bg-light"></div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
 
     <!-- Brand --> 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ route('home') }}">
         <img src="/images/icon/checkmate_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
         CheckMate
     </a>
 
-    <!-- Navbar mobile button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarToggle" aria-controls="navbarToggle"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <!-- Navbar contents -->
-    <div class="collapse navbar-collapse navbar-contents-container" id="navbarToggle">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 navbar-contents">
-        
-            <!-- Navigation -->
-            <li class="nav-item">
-                <a class="nav-link navbar-brand" href="/home"
-                    onmouseover="hover(this);" onmouseout="unhover(this);">
-                    <img src="/images/navbar/home.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Home
-                </a>
-            </li>
+    <ul class="nav justify-content-end">
 
-            <!-- Admin drop down. Shall only be shown if admin -->
+        <!-- Admin drop down. Only shown if the user has the correct permissions -->
+        @if (Auth::user()->hasAdminPrivileges())
             <li class="nav-item dropdown">
                 <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navBarDropDownAdmin"
                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     onmouseover="hover(this);" onmouseout="unhover(this);">
                     <img src="/images/navbar/plus-circle.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Admin
                 </a>
-                <div class="dropdown-menu dropdown-container" aria-labelledby="navBarDropDownAdmin">
-                    <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
-                        <img src="/images/navbar/module.png" width="24" height="24" class="d-inline-block align-top" alt="">
-                        Create Module
-                    </a>
-                    <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
-                        <img src="/images/navbar/coursework.png" width="24" height="24" class="d-inline-block align-top" alt="">
-                        Create Coursework
-                    </a>
+
+                <!-- Loops through each permission and adds it to the drop down -->
+                <div class="dropdown-menu dropdown-menu-right dropdown-container" aria-labelledby="navBarDropDownAdmin">
+                    @foreach ($user->globalPrivilege->globalRole->permissions as $permission)
+
+                        <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
+                            {{ $permission->name }}
+                        </a>
+
+                    @endforeach
                 </div>
             </li>
+        @endif
 
-            <!-- User Related Content -->
-            <li class="nav-item dropdown">
-                <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navBarDropDown"
-                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                onmouseover="hover(this);" onmouseout="unhover(this);">
-                    <img src="/images/navbar/user.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    {{ __('User') }}
+        <!-- User Related Content -->
+        <li class="nav-item dropdown">
+            <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navBarDropDownUser"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            onmouseover="hover(this);" onmouseout="unhover(this);">
+                <img src="/images/navbar/user.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-container" aria-labelledby="navBarDropDownUser">
+                <!-- User account -->
+                <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
+                    <img src="/images/navbar/user-cog.png" width="24" height="24" class="d-inline-block align-top" alt="">
+                    {{ __('Account') }}
                 </a>
-                <div class="dropdown-menu dropdown-container" aria-labelledby="navBarDropDown">
+                <!-- Logout button and form -->
+                <a class="dropdown-item" href="#" onmouseover="hover(this);"
+                    onmouseout="unhover(this);" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <img src="/images/navbar/sign-out.png" width="24" height="24" class="d-inline-block align-top" alt="">
+                    {{ __('Log Off') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </li>
 
-                    <!-- User account -->
-                    <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
-                        <img src="/images/navbar/user-cog.png" width="24" height="24" class="d-inline-block align-top" alt="">
-                        {{ __('Account') }}
-                    </a>
-
-                    <!-- Logout button and form -->
-                    <a class="dropdown-item" href="#" onmouseover="hover(this);"
-                        onmouseout="unhover(this);" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <img src="/images/navbar/sign-out.png" width="24" height="24" class="d-inline-block align-top" alt="">
-                        {{ __('Log Off') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-        </ul>
-    </div>
+      </ul>
 </nav>
 <!-- End Of Navbar -->
 

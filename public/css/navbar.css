@@ -8,8 +8,18 @@
     background-color: #f8f9fa !important;
 }
 
-.navbar-contents > li {
+.navbar-nav {
+    flex-direction: row;
+    margin-top: 0px !important;
+}
+
+.navbar-nav > li {
     padding: 10px 0px;
+}
+
+.checkmate-navbar {
+    display: flex !important;
+    flex-basis: auto;
 }
 
 .navbar {
@@ -22,22 +32,21 @@
     display: none;
 }
 
+.nav-item > a {
+    margin: 0px;
+}
+
 /* Below is the styling for desktop.
 -------------------------------------------------- */
 
 @media screen and (min-width: 992px) {
     .navbar-contents-container {
-        position: absolute;
         width: 100%;
     }
-    .navbar-contents {
-        margin: auto;
-    }
-    .navbar-contents > li {
-        padding: 0px 40px;
+    .navbar-nav > li {
         font-size: 1.10rem;
     }
-    .navbar-contents > li > a {
+    .navbar-nav > li > a {
         margin-right: 0px;
     }
     .dropdown-container {
@@ -58,7 +67,7 @@
         left: 0;
         z-index: 1000;
         width: 100%;
-        height: 56px;
+        height: 76px;
         display: block;
     }
 }

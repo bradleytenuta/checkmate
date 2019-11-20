@@ -65,4 +65,16 @@ class User extends Authenticatable {
     public function globalPrivilege() {
         return $this->hasOne('App\GlobalPrivilege');
     }
+
+    /**
+     * This function checks to see if the user has admin privileges.
+     */
+    public function hasAdminPrivileges() {
+
+        // If its null then return false
+        if ($this->globalPrivilege == null) {
+            return false;
+        }
+        return true;
+    }
 }

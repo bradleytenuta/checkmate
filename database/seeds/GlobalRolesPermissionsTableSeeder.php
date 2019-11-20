@@ -37,21 +37,5 @@ class GlobalRolesPermissionsTableSeeder extends Seeder
             'global_roles_id' => App\GlobalRole::where('name', 'admin')->first()->id,
             'permission_id' => App\Permission::where('name', 'delete_module')->first()->id,
         ]);
-        DB::table('global_roles_permissions')->insert([
-            'global_roles_id' => App\GlobalRole::where('name', 'admin')->first()->id,
-            'permission_id' => App\Permission::where('name', 'create_coursework')->first()->id,
-        ]);
-        DB::table('global_roles_permissions')->insert([
-            'global_roles_id' => App\GlobalRole::where('name', 'admin')->first()->id,
-            'permission_id' => App\Permission::where('name', 'edit_coursework')->first()->id,
-        ]);
-        DB::table('global_roles_permissions')->insert([
-            'global_roles_id' => App\GlobalRole::where('name', 'admin')->first()->id,
-            'permission_id' => App\Permission::where('name', 'delete_coursework')->first()->id,
-        ]);
-        DB::table('global_roles_permissions')->insert([
-            'global_roles_id' => App\GlobalRole::where('name', 'admin')->first()->id,
-            'permission_id' => App\Permission::where('name', 'mark_submission')->first()->id,
-        ]);
     }
 }

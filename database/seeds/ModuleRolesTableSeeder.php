@@ -16,10 +16,10 @@ class ModuleRolesTableSeeder extends Seeder
             'name' => "student",
         ]);
         DB::table('module_roles')->insert([
-            'name' => "professor",
+            'name' => "assessor",
         ]);
         DB::table('module_roles')->insert([
-            'name' => "assessor",
+            'name' => "professor",
         ]);
     }
 }

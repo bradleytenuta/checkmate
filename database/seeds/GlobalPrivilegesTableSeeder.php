@@ -11,6 +11,7 @@ class GlobalPrivilegesTableSeeder extends Seeder
      */
     public function run()
     {
+        // TODO: Remove this.
         // Gives the first user found global admin rights.
         DB::table('global_privileges')->insert([
             'user_id' => App\User::get()->first()->id,

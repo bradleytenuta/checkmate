@@ -18,18 +18,16 @@ class ModuleRolesPermissionsTableSeeder extends Seeder
             'permission_id' => App\Permission::where('name', 'create_submission')->first()->id,
         ]);
 
+        // All assessor permissions
+        DB::table('module_roles_permissions')->insert([
+            'module_roles_id' => App\ModuleRole::where('name', 'assessor')->first()->id,
+            'permission_id' => App\Permission::where('name', 'mark_submission')->first()->id,
+        ]);
+
         // All professor permissions
         DB::table('module_roles_permissions')->insert([
             'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
-            'permission_id' => App\Permission::where('name', 'create_module')->first()->id,
-        ]);
-        DB::table('module_roles_permissions')->insert([
-            'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
             'permission_id' => App\Permission::where('name', 'edit_module')->first()->id,
-        ]);
-        DB::table('module_roles_permissions')->insert([
-            'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
-            'permission_id' => App\Permission::where('name', 'delete_module')->first()->id,
         ]);
         DB::table('module_roles_permissions')->insert([
             'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
@@ -45,12 +43,6 @@ class ModuleRolesPermissionsTableSeeder extends Seeder
         ]);
         DB::table('module_roles_permissions')->insert([
             'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
-            'permission_id' => App\Permission::where('name', 'mark_submission')->first()->id,
-        ]);
-
-        // All assessor permissions
-        DB::table('module_roles_permissions')->insert([
-            'module_roles_id' => App\ModuleRole::where('name', 'assessor')->first()->id,
             'permission_id' => App\Permission::where('name', 'mark_submission')->first()->id,
         ]);
     }
