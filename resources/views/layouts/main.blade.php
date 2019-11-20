@@ -9,6 +9,7 @@
 <!-- Begining of the head css section -->
 @section ('master-head-css')
 <link href="css/navbar.css" rel="stylesheet">
+<link href="css/register.css" rel="stylesheet">
 @endsection
 <!-- End of the head css section -->
 

@@ -5,5 +5,5 @@
 
 <h1>Coursework</h1>
 
-<!-- End of the Section-->
 @endsection
+<!-- End of the Section-->
