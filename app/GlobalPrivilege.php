@@ -10,7 +10,7 @@ class GlobalPrivilege extends Model {
      * Gets the user that owns this global privilege.
      */
     public function user() {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
 
     /**

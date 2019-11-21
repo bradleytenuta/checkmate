@@ -10,7 +10,7 @@ class Permission extends Model {
      * Gets the global roles this permission belongs to.
      */
     public function globalRole() {
-        return $this->belongsTo('App\GlobalRole');
+        return $this->belongsToMany('App\GlobalRole');
     }
 
     /**

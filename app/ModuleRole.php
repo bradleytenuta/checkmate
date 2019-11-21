@@ -12,4 +12,11 @@ class ModuleRole extends Model
     public function permissions() {
         return $this->hasMany('App\Permission');
     }
+
+    /**
+     * Gets the module this role is for.
+     */
+    public function module() {
+        return $this->hasOne('App\Module');
+    }
 }

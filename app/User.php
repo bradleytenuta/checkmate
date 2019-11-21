@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use DB;
+use App\Permission;
+use App\GlobalPrivilege;
 
 class User extends Authenticatable {
 
@@ -52,29 +55,62 @@ class User extends Authenticatable {
     }
 
     /**
-     * Gets all the privileges the user has for each module.
+     * Gets a list of all the roles a user had for their modules.
      */
-    public function ModulePrivileges() {
-        return $this->hasMany('App\ModulePrivilege');
+    public function ModuleRoles() {
+        return $this->hasMany('App\ModuleRole');
     }
 
     /**
-     * Gets the global privilage the user has. This can be null
-     * as its possible a user does not have any global privileges.
+     * Gets the users global role if they have one.
      */
     public function globalPrivilege() {
         return $this->hasOne('App\GlobalPrivilege');
     }
 
     /**
-     * This function checks to see if the user has admin privileges.
+     * This function returns a list of all the global permission objects that this
+     * user has.
      */
-    public function hasAdminPrivileges() {
+    public function globalPermissions() {
 
+        $global_role_id = $this->globalPrivilege->global_role_id;
+        $all_permissions = DB::table('global_roles_permissions')->where('global_role_id', $global_role_id)->get();
+        //dd($all_permissions);
+
+        $all_permission_ids = array();
+        foreach ($all_permissions as $permission) {
+            $all_permission_ids[] = $permission->permission_id;
+        }
+
+        return Permission::findMany($all_permission_ids);
+    }
+
+    /**
+     * This function takes in an id.
+     * It checks to see if the id matches any global permission
+     * id's this user has.
+     */
+    public function hasGlobalPermission($id) {
+
+        foreach ($this->globalPermissions() as $global_permission) {
+            if ($id ==  $global_permission->id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This function checks to see if the user has an admin global role.
+     */
+    public function hasAdminRole() {
+        
         // If its null then return false
-        if ($this->globalPrivilege == null) {
+        if (GlobalPrivilege::where('user_id', $this->id)->get()->isEmpty()) {
             return false;
         }
+
         return true;
     }
 }

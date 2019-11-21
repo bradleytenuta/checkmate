@@ -16,12 +16,12 @@ class CreateGlobalRolesPermissionsTable extends Migration
         Schema::create('global_roles_permissions', function (Blueprint $table) {
 
             // Main Schema
-            $table->unsignedBigInteger('global_roles_id');
+            $table->unsignedBigInteger('global_role_id');
             $table->unsignedBigInteger('permission_id');
 
             // Keys
-            $table->primary(['global_roles_id', 'permission_id']);
-            $table->foreign('global_roles_id')->references('id')->
+            $table->primary(['global_role_id', 'permission_id']);
+            $table->foreign('global_role_id')->references('id')->
                 on('global_roles')->ondelete('cascade')->onUpdate('cascade');
             $table->foreign('permission_id')->references('id')->
                 on('permissions')->ondelete('cascade')->onUpdate('cascade');

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class RegisterController extends Controller
@@ -33,6 +34,31 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/register';
+
+    /**
+     * Requires the user to be authenticated to view the register page.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Overrides the show registration form function.
+     * Before we allow access to the register page, we check to see if
+     * the user is logged in or has admin rights to create a user.
+     * If they don't then we redirect them to the root page.
+     */
+    public function showRegistrationForm()
+    {
+        // Checks to see if the user has the admin role.
+        if (Auth::user()->hasAdminRole()) {
+            return view('auth.register');
+        }
+
+        // Redirects the user.
+        return redirect('/');
+    }
 
     /**
      * Handle a registration request for the application.

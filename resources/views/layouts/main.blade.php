@@ -30,7 +30,7 @@
     <ul class="nav justify-content-end">
 
         <!-- Admin drop down. Only shown if the user has the correct permissions -->
-        @if (Auth::user()->hasAdminPrivileges())
+        @if (Auth::user()->hasAdminRole())
             <li class="nav-item dropdown">
                 <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navBarDropDownAdmin"
                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -40,13 +40,20 @@
 
                 <!-- Loops through each permission and adds it to the drop down -->
                 <div class="dropdown-menu dropdown-menu-right dropdown-container" aria-labelledby="navBarDropDownAdmin">
-                    @foreach ($user->globalPrivilege->globalRole->permissions as $permission)
 
-                        <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
-                            {{ $permission->name }}
+                    @if (Auth::user()->hasGlobalPermission(1))
+                        <a class="dropdown-item" href="{{ route('register') }}" onmouseover="hover(this);" onmouseout="unhover(this);">
+                            {{ __('Create User') }}
                         </a>
+                    @endif
 
-                    @endforeach
+                    @if (Auth::user()->hasGlobalPermission(4))
+                        <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
+                            {{ __('Create Module') }}
+                        </a>
+                    @endif
+
+
                 </div>
             </li>
         @endif
