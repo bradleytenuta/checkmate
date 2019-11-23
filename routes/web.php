@@ -17,3 +17,6 @@ Route::get('modules/{id}', 'ModuleController@show')->name('modules.show')->middl
 
 // Route to show a coursework.
 Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.show')->middleware('auth');
+
+// All the create routes
+Route::get('create/module', 'CreateController@createModule')->name('create.module')->middleware('auth');

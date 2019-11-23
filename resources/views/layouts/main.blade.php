@@ -48,7 +48,7 @@
                     @endif
 
                     @if (Auth::user()->hasGlobalPermission(4))
-                        <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
+                        <a class="dropdown-item" href="{{ route('create.module') }}" onmouseover="hover(this);" onmouseout="unhover(this);">
                             {{ __('Create Module') }}
                         </a>
                     @endif

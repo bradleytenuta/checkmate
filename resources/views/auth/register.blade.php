@@ -14,7 +14,7 @@
     <!-- Email row -->
     <div class="form-group row">
         <div class="col-sm-12">
-                <label for="email">{{ __('Email') }}</label>
+            <label for="email">{{ __('Email') }}</label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" required autofocus>
             @error('email')
             <div class="invalid-feedback" role="alert">

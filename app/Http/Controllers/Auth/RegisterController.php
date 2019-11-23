@@ -53,7 +53,7 @@ class RegisterController extends Controller
     {
         // Checks to see if the user has the admin role.
         if (Auth::user()->hasAdminRole()) {
-            return view('auth.register');
+            return view('auth/register');
         }
 
         // Redirects the user.
