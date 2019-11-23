@@ -44,7 +44,8 @@ class User extends Authenticatable {
      * Gets a list of all the modules the user belongs to.
      */
     public function modules() {
-        return $this->belongsToMany('App\Module');
+        return $this->belongsToMany('App\Module')
+                    ->withPivot('module_role_id');
     }
 
     /**
@@ -55,17 +56,12 @@ class User extends Authenticatable {
     }
 
     /**
-     * Gets a list of all the roles a user had for their modules.
-     */
-    public function ModuleRoles() {
-        return $this->hasMany('App\ModuleRole');
-    }
-
-    /**
      * Gets the users global role if they have one.
      */
-    public function globalPrivilege() {
-        return $this->hasOne('App\GlobalPrivilege');
+    public function globalRole() {
+        // 2nd param is the column name in the GlobalRole table.
+        // 3rd param is the column name in the Users table.
+        return $this->hasOne('App\GlobalRole', 'id', 'global_role_id');
     }
 
     /**
@@ -73,17 +69,7 @@ class User extends Authenticatable {
      * user has.
      */
     public function globalPermissions() {
-
-        $global_role_id = $this->globalPrivilege->global_role_id;
-        $all_permissions = DB::table('global_roles_permissions')->where('global_role_id', $global_role_id)->get();
-        //dd($all_permissions);
-
-        $all_permission_ids = array();
-        foreach ($all_permissions as $permission) {
-            $all_permission_ids[] = $permission->permission_id;
-        }
-
-        return Permission::findMany($all_permission_ids);
+        return $this->globalRole->permissions;
     }
 
     /**
@@ -94,7 +80,7 @@ class User extends Authenticatable {
     public function hasGlobalPermission($id) {
 
         foreach ($this->globalPermissions() as $global_permission) {
-            if ($id ==  $global_permission->id) {
+            if ($global_permission->id == $id) {
                 return true;
             }
         }
@@ -105,12 +91,12 @@ class User extends Authenticatable {
      * This function checks to see if the user has an admin global role.
      */
     public function hasAdminRole() {
-        
-        // If its null then return false
-        if (GlobalPrivilege::where('user_id', $this->id)->get()->isEmpty()) {
-            return false;
+
+        // If the global role is admin then return.
+        if ($this->globalRole->name == "admin") {
+            return true;
         }
 
-        return true;
+        return false;
     }
 }

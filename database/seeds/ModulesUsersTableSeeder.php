@@ -11,14 +11,19 @@ class ModulesUsersTableSeeder extends Seeder {
      */
     public function run() {
 
-        // Gets all the users and all the modules
-        $modules = App\Module::all();
+        $users = App\User::all();
         
-        // Loops through all the users and adds the user to a random number of the modules.
-        App\User::all()->each(function ($user) use ($modules) { 
-            $user->modules()->attach(
-                $modules->random(rand(1, 5))->pluck('id')->toArray()
-            ); 
+        // Loops through all the modules and adds each user to one with a random module role.
+        App\Module::all()->each(function ($module) use ($users) { 
+
+            foreach ($users as $user) {
+
+                DB::table('module_user')->insert([
+                    'module_id' => $module->id,
+                    'user_id' => $user->id,
+                    'module_role_id' => App\ModuleRole::inRandomOrder()->first()->id,
+                ]);
+            }
         });
     }
 }

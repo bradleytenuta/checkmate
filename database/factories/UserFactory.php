@@ -12,6 +12,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'firstname' => $faker->firstName(),
         'surname' => $faker->lastName(),
         'email' => $faker->safeEmail(),
-        'password' => $faker->password()
+        'password' => $faker->password(),
+        'global_role_id' => App\GlobalRole::inRandomOrder()->first()->id
     ];
 });

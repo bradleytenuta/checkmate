@@ -14,7 +14,6 @@ class CreateModuleRolesPermissionsTable extends Migration
     public function up()
     {
         Schema::create('module_roles_permissions', function (Blueprint $table) {
-
             // Main Schema
             $table->unsignedBigInteger('module_roles_id');
             $table->unsignedBigInteger('permission_id');

@@ -90,3 +90,4 @@ Other
 - Don't need to include the id in the factory as it is incremented automatically when that model object is created.
 - `Timestamps` in migration files creates two columns, one for the date of creation and one for the date of last updated.
 - use `php artisan migrate:fresh` instead of `php artisan migrate:reset` also can combine it with seeding to speed things up: `php artisan migrate:fresh --seed`. This also stops problems with removing data occurring which is helpful.
+- use `Schema::dropAllTables();` within tinker to drop all tables, instead of dropping them one by one.

@@ -10,6 +10,13 @@ class GlobalRole extends Model
      * Gets all the permissions for the role.
      */
     public function permissions() {
-        return $this->hasMany('App\Permission');
+        return $this->belongsToMany('App\Permission', 'global_roles_permissions');
+    }
+
+    /**
+     * Gets the user that owns this role.
+     */
+    public function user() {
+        return $this->belongsToMany('App\User');
     }
 }

@@ -101,22 +101,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // Creates the user.
-        $user = User::create([
-            'firstname' => $data['firstname'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['firstname'].$data['surname']),
-        ]);
 
-        // If the user has selected to allow admin rights then,
-        // create the relationship in order to give the user admin rights.
+        // If the admin box was checked, then give the user admin global rights.
+        // Else give the user standard global rights.
         $checkBoxTicked = isset($data['admin']) ? $data['admin'] : null;
         if ($checkBoxTicked != null) {
+            
+            User::create([
+                'firstname' => $data['firstname'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['firstname'].$data['surname']),
+                'global_role_id' => App\GlobalRole::where('name', 'admin')->first()->id,
+            ]);
+        } else {
 
-            DB::table('global_privileges')->insert([
-                'user_id' => $user->id,
-                'global_role_id' => GlobalRole::get()->first()->id
+            User::create([
+                'firstname' => $data['firstname'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['firstname'].$data['surname']),
+                'global_role_id' => App\GlobalRole::where('name', 'standard')->first()->id,
             ]);
         }
     }

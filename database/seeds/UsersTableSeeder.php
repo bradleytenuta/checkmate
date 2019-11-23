@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder {
             'surname' => 'Tenuta',
             'email' => 'bradley@example.com',
             'password' => Hash::make('password'),
+            'global_role_id' => App\GlobalRole::where('name', 'admin')->first()->id,
         ]);
 
         // Creates user without admin rights.
@@ -26,6 +27,7 @@ class UsersTableSeeder extends Seeder {
             'surname' => 'Doe',
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
+            'global_role_id' => App\GlobalRole::where('name', 'standard')->first()->id,
         ]);
 
         factory(App\User::class, 50)->create();

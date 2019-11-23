@@ -15,5 +15,8 @@ class GlobalRolesTableSeeder extends Seeder
         DB::table('global_roles')->insert([
             'name' => "admin",
         ]);
+        DB::table('global_roles')->insert([
+            'name' => "standard",
+        ]);
     }
 }
