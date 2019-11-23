@@ -119,12 +119,32 @@ class User extends Authenticatable {
         return false;
     }
 
+    // TODO: Can merge these 3 methods into one method that returns a file path depending on the role type.
     public function isAssessor($module) {
         $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
         
         if (ModuleRole::where('name', 'assessor')->first()->id == $module_role_id) {
             return true;
         }
+        return false;
+    }
+
+    public function hasModulePermission($id, $module) {
+
+        // Gets the users role within the module.
+        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
+
+        // Gets all the permissions that belong to the module role.
+        $permission_module_role_rows = DB::table('module_roles_permissions')->where('module_roles_id', $module_role_id)->get();
+
+        // Loops through all the permissions and check it matches the ones mentioned in the params.
+        foreach ($permission_module_role_rows as $permission_module_role) {
+
+            if ($permission_module_role->permission_id == $id) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

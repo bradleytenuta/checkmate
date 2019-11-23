@@ -31,6 +31,10 @@ class ModuleRolesPermissionsTableSeeder extends Seeder
         ]);
         DB::table('module_roles_permissions')->insert([
             'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
+            'permission_id' => App\Permission::where('name', 'delete_module')->first()->id,
+        ]);
+        DB::table('module_roles_permissions')->insert([
+            'module_roles_id' => App\ModuleRole::where('name', 'professor')->first()->id,
             'permission_id' => App\Permission::where('name', 'create_coursework')->first()->id,
         ]);
         DB::table('module_roles_permissions')->insert([

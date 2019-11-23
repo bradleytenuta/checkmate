@@ -63,6 +63,12 @@ body {
     bottom: 5px;
 }
 
+.item-title-button {
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
 .item-card-users-list {
     max-height: 200px;
     overflow: auto;
@@ -70,6 +76,41 @@ body {
 
 .item-card-users-list > p {
     margin-bottom: 1px;
+}
+
+/* Button Colours.
+-------------------------------------------------- */
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #1879C0;
+    border-color: #1776BB;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #1B84D1;
+    border-color: #1B84D1;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #1879C0;
+    border-color: #1879C0;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1B84D1;
+    background-color: #1B84D1;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #1879C0;
+    border-color: #1879C0;
 }
 
 /* Below is the styling for desktop.

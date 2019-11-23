@@ -14,13 +14,24 @@
 
         <!-- Icon to show role within module -->
         @if (Auth::user()->isStudent($module))
-            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-student.png') }}" data-toggle="tooltip" data-placement="bottom" title="Student">
+            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-student.png') }}" 
+            data-toggle="tooltip" data-placement="bottom" title="Student">
         @endif
         @if (Auth::user()->isProfessor($module))
-            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-professor.png') }}" data-toggle="tooltip" data-placement="bottom" title="Professor">
+            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-professor.png') }}" 
+            data-toggle="tooltip" data-placement="bottom" title="Professor">
         @endif
         @if (Auth::user()->isAssessor($module))
-            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-assessor.png') }}" data-toggle="tooltip" data-placement="bottom" title="Assessor">
+            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-assessor.png') }}" 
+            data-toggle="tooltip" data-placement="bottom" title="Assessor">
+        @endif
+
+        <!-- Permission required buttons -->
+        @if (Auth::user()->hasModulePermission(5, $module))
+            <button type="button" class="btn btn-primary item-title-button">{{ __('Edit') }}</button>
+        @endif
+        @if (Auth::user()->hasModulePermission(6, $module))
+            <button type="button" class="btn btn-primary item-title-button">{{ __('Delete') }}</button>
         @endif
 
     </div>
