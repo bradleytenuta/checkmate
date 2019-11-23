@@ -112,7 +112,7 @@ class RegisterController extends Controller
                 'surname' => $data['surname'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['firstname'].$data['surname']),
-                'global_role_id' => App\GlobalRole::where('name', 'admin')->first()->id,
+                'global_role_id' => GlobalRole::where('name', 'admin')->first()->id,
             ]);
         } else {
 
@@ -121,7 +121,7 @@ class RegisterController extends Controller
                 'surname' => $data['surname'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['firstname'].$data['surname']),
-                'global_role_id' => App\GlobalRole::where('name', 'standard')->first()->id,
+                'global_role_id' => GlobalRole::where('name', 'standard')->first()->id,
             ]);
         }
     }

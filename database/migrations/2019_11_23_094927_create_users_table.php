@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('firstname');
             $table->string('surname');
-            $table->unsignedBigInteger('global_role_id');
+            $table->unsignedBigInteger('global_role_id')->default(2);
 
             // Meta Data
             $table->timestamps();
