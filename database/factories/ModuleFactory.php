@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
  */
 $factory->define(App\Module::class, function (Faker $faker) {
     return [
-        'name' => $faker->word()
+        'name' => $faker->word(),
+        'description' => $faker->sentence($nbWords = 10, $variableNbWords = true),
     ];
 });

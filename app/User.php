@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use DB;
 use App\Permission;
 use App\GlobalPrivilege;
+use App\ModuleRole;
 
 class User extends Authenticatable {
 
@@ -97,6 +98,33 @@ class User extends Authenticatable {
             return true;
         }
 
+        return false;
+    }
+
+    public function isStudent($module) {
+        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
+        
+        if (ModuleRole::where('name', 'student')->first()->id == $module_role_id) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isProfessor($module) {
+        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
+        
+        if (ModuleRole::where('name', 'professor')->first()->id == $module_role_id) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isAssessor($module) {
+        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
+        
+        if (ModuleRole::where('name', 'assessor')->first()->id == $module_role_id) {
+            return true;
+        }
         return false;
     }
 }

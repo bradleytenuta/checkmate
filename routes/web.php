@@ -9,4 +9,8 @@ Route::get('/', function () {
     return redirect()->route('login'); 
 });
 
+// Route to the home page.
 Route::get('/home', 'HomeController@show')->name('home')->middleware('auth');
+
+// Route to show a moudle.
+Route::get('modules/{id}', 'ModuleController@show')->name('modules.show')->middleware('auth');

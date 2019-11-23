@@ -17,6 +17,7 @@ class CreateModulesTable extends Migration
             // Main Schema
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('description');
 
             // Meta Data
             $table->timestamps();

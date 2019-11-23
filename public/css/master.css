@@ -2,3 +2,32 @@ body {
     max-width: 1920px;
     margin: auto;
 }
+
+.content-container {
+    margin: 35px;
+}
+
+.module-card {
+    display: inline-block;
+    width: 18rem;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.module-card-text {
+    min-height: 75px;
+}
+
+.module-card-icon {
+    width: 32px;
+    float: right;
+}
+
+/* Below is the styling for desktop.
+-------------------------------------------------- */
+
+@media screen and (min-width: 992px) {
+    .content-container {
+        margin: 50px;
+    }
+}

@@ -8,6 +8,9 @@
 
     @csrf
 
+    <!-- Title -->
+    <h2>Register User</h2>
+
     <!-- Email row -->
     <div class="form-group row">
         <div class="col-sm-12">
