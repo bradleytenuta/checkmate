@@ -11,15 +11,15 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- JS Files -->
-        <script src="js/jquery-3.4.1.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/popper.min.js"></script>
+        <script src="{{ URL::asset('js/jquery-3.4.1.js') }}"></script>
+        <script src="{{ URL::asset('js/bootstrap.js') }}"></script>
+        <script src="{{ URL::asset('js/popper.min.js') }}"></script>
         @yield ('master-head-js')
 
         <!-- CSS Files -->
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/master.css" rel="stylesheet">
-        <link href="css/footer.css" rel="stylesheet">
+        <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('css/master.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('css/footer.css') }}" rel="stylesheet">
         @yield ('master-head-css')
 
     </head>
@@ -36,12 +36,12 @@
 
                 <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/bradley-tenuta">
-                    <img src="images/footer/linkedin-icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
+                    <img src="{{ URL::asset('images/footer/linkedin-icon.png')}}" width="40" height="40" class="d-inline-block align-top" alt=""/>
                 </a>
 
                 <!-- Bitbucket -->
                 <a href="https://bitbucket.org/BradBitt">
-                    <img src="images/footer/bitbucket-icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
+                    <img src="{{ URL::asset('images/footer/bitbucket-icon.png')}}" width="40" height="40" class="d-inline-block align-top" alt=""/>
                 </a>
 
             </div>

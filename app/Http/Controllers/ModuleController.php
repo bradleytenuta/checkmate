@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Module;
 
 class ModuleController extends Controller
 {
@@ -11,8 +12,10 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show()
+    public function show($id)
     {
-        return view('auth/module');
+        //TODO: Only allow the user to see the modules they are on. 
+        $module = Module::findOrFail($id);
+        return view('auth/module', ['module' => $module]);
     }
 }

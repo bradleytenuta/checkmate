@@ -7,20 +7,69 @@ body {
     margin: 35px;
 }
 
-.module-card {
+.card-holder-title-container {
+    padding: 0px;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.card-holder-title-container h1 {
+    display: inline-flex;
+    margin: 0px;
+}
+
+.card-holder-title-container h2 {
+    display: inline-flex;
+    margin: 0px;
+}
+
+.card-holder-title-container h3 {
+    display: inline-flex;
+    margin: 0px;
+}
+
+.card-holder-title-container > .btn-group {
+    width: 200px;
+    margin: auto;
+    display: flex;
+    padding-top: 10px;
+}
+
+.item-card {
     display: inline-block;
     width: 18rem;
     margin-right: 20px;
     margin-bottom: 20px;
 }
 
-.module-card-text {
+.item-card-text {
     min-height: 75px;
+    max-height: 75px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.module-card-icon {
+.item-card-icon {
     width: 32px;
     float: right;
+}
+
+.item-title-icon {
+    width: 32px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.item-card-users-list {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.item-card-users-list > p {
+    margin-bottom: 1px;
 }
 
 /* Below is the styling for desktop.
@@ -29,5 +78,17 @@ body {
 @media screen and (min-width: 992px) {
     .content-container {
         margin: 50px;
+    }
+    
+}
+
+@media screen and (min-width: 500px) {
+    .card-holder-title-container > .btn-group {
+        position: absolute;
+        right: 0;
+        margin-top: 5px;
+        margin-left: 20px;
+        display: inline-flex;
+        padding: 0px;
     }
 }

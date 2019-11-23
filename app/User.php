@@ -45,7 +45,7 @@ class User extends Authenticatable {
      * Gets a list of all the modules the user belongs to.
      */
     public function modules() {
-        return $this->belongsToMany('App\Module')
+        return $this->belongsToMany('App\Module', 'module_user')
                     ->withPivot('module_role_id');
     }
 

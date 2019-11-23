@@ -3,7 +3,7 @@
 
 <!-- Begining of the head css section -->
 @section ('master-head-css')
-<link href="css/login.css" rel="stylesheet">
+<link href="{{ URL::asset('css/login.css') }}" rel="stylesheet">
 @endsection
 <!-- End of the head css section -->
 
@@ -15,7 +15,7 @@
 
     <!-- Logo (Only for desktop) -->
     <div class="login-logo-container-desktop navbar-brand">
-        <img src="/images/icon/checkmate_icon.png" width="60" height="60" class="d-inline-block align-top" alt="">
+        <img src="{{ URL::asset('/images/icon/checkmate_icon.png') }}" width="60" height="60" class="d-inline-block align-top" alt="">
         {{ __('CheckMate') }}
     </div>
 
@@ -26,7 +26,7 @@
         @csrf
 
         <!-- Logo (Only used for Mobile) -->
-        <img class="mb-4 login-image" src="/images/icon/checkmate_icon.png" alt="" width="72" height="72">
+        <img class="mb-4 login-image" src="{{ URL::asset('/images/icon/checkmate_icon.png') }}" alt="" width="72" height="72">
 
         <!-- Input email -->
         <label for="inputEmail" class="sr-only">{{ __('E-Mail Address') }}</label>
@@ -71,7 +71,7 @@
     <!-- Three columns of text with images -->
     <div class="row">
         <div class="col-lg-4">
-            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/login/clipboard.png" />
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ URL::asset('images/login/clipboard.png') }}" />
             <h2>Mark Code</h2>
             <p>
                 View submitted work in an easy to read code viewer.
@@ -79,7 +79,7 @@
             </p>
         </div>
         <div class="col-lg-4">
-            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/login/running.png" />
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ URL::asset('images/login/running.png') }}" />
             <h2>Run Tests</h2>
             <p>
                 Create Unit tests to run on submitted coursework.
@@ -88,7 +88,7 @@
             </p>
         </div>
         <div class="col-lg-4">
-            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/login/send.png" />
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ URL::asset('images/login/send.png') }}" />
             <h2>Send Feedback</h2>
             <p>
                 Create comments and reference a line of code.
@@ -115,7 +115,7 @@
             </p>
         </div>
         <div class="col-md-5">
-            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded-circle" src="images/login/bitbucket-logo.png" />
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded-circle" src="{{ URL::asset('images/login/bitbucket-logo.png') }}" />
         </div>
     </div>
     <!-- /END THE FEATURETTES -->

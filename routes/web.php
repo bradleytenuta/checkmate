@@ -14,3 +14,6 @@ Route::get('/home', 'HomeController@show')->name('home')->middleware('auth');
 
 // Route to show a moudle.
 Route::get('modules/{id}', 'ModuleController@show')->name('modules.show')->middleware('auth');
+
+// Route to show a coursework.
+Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.show')->middleware('auth');

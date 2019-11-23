@@ -17,6 +17,7 @@ class Module extends Model {
      * Gets all the users that are within this module.
      */
     public function users() {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User', 'module_user')
+                    ->withPivot('module_role_id');
     }
 }
