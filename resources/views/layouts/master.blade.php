@@ -11,13 +11,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- JS Files -->
-        <script src="{{ URL::asset('js/jquery-3.4.1.js') }}"></script>
-        <script src="{{ URL::asset('js/bootstrap.js') }}"></script>
-        <script src="{{ URL::asset('js/popper.min.js') }}"></script>
+        <script src="{{ URL::asset('js/app.js') }}" defer></script>
         @yield ('master-head-js')
 
         <!-- CSS Files -->
-        <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/master.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/footer.css') }}" rel="stylesheet">
         @yield ('master-head-css')
