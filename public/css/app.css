@@ -11356,3 +11356,397 @@ a.text-dark:focus {
   }
 }
 
+.footer-container {
+  width: 100%;
+  height: 250px;
+  background-image: url(/images/footer.png?746c62fd13ce2fa3c121a3e3133d0e3a);
+}
+
+.footer-container a:hover {
+  text-decoration: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.login-logo-container-desktop {
+  display: none;
+}
+
+/* Below is the styling for the sign in section.
+-------------------------------------------------- */
+
+.login-container {
+  text-align: center !important;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+  height: 100%;
+  position: relative;
+  background-image: url(/images/generic-background-mobile.jpg?e1b2a4b35c4af4e11d98bdafaf2bca50);
+  background-size: cover;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10%;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type=email] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type=password] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.text-muted {
+  display: block;
+}
+
+/* Below is the styling for the information section.
+-------------------------------------------------- */
+
+.info-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.info-container .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.featurette-divider {
+  /* Space out the Bootstrap <hr> more */
+  margin: 5rem 0;
+}
+
+.rounded-circle {
+  margin-bottom: 5px;
+}
+
+.featurette-image {
+  width: 50%;
+  display: block;
+}
+
+/* Thin out the marketing headings */
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.05rem;
+}
+
+/* Below is the styling for desktop.
+-------------------------------------------------- */
+
+@media screen and (min-width: 992px) {
+  html {
+    height: auto;
+  }
+
+  body {
+    height: auto;
+  }
+
+  .form-signin {
+    position: absolute;
+    right: 10%;
+  }
+
+  .login-container {
+    height: 500px;
+    background-image: url(/images/generic-background-desktop.jpg?111dfa8fd3d9eb61e59b67fae573bd1f);
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+
+  .featurette-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .login-image {
+    display: none;
+  }
+
+  .login-logo-container-desktop {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 40px;
+    padding: 0px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+}
+
+body {
+  max-width: 1920px;
+  margin: auto;
+}
+
+.content-container {
+  margin: 35px;
+}
+
+.card-holder-title-container {
+  padding: 0px;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.card-holder-title-container h1 {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  margin: 0px;
+}
+
+.card-holder-title-container h2 {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  margin: 0px;
+}
+
+.card-holder-title-container h3 {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  margin: 0px;
+}
+
+.card-holder-title-container > .btn-group {
+  width: 200px;
+  margin: auto;
+  display: -webkit-box;
+  display: flex;
+  padding-top: 10px;
+}
+
+.item-card {
+  display: inline-block;
+  width: 18rem;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.item-card-text {
+  min-height: 75px;
+  max-height: 75px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-card-icon {
+  width: 32px;
+  float: right;
+}
+
+.item-title-icon {
+  width: 32px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.item-title-button {
+  float: right;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.item-card-users-list {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.item-card-users-list > p {
+  margin-bottom: 1px;
+}
+
+/* Button Colours.
+-------------------------------------------------- */
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #1879C0;
+  border-color: #1776BB;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #1B84D1;
+  border-color: #1B84D1;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #1879C0;
+  border-color: #1879C0;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1B84D1;
+  background-color: #1B84D1;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #1879C0;
+  border-color: #1879C0;
+}
+
+/* Below is the styling for desktop.
+-------------------------------------------------- */
+
+@media screen and (min-width: 992px) {
+  .content-container {
+    margin: 50px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .card-holder-title-container > .btn-group {
+    position: absolute;
+    right: 0;
+    margin-top: 5px;
+    margin-left: 20px;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    padding: 0px;
+  }
+}
+
+/* Navbar login styling.
+-------------------------------------------------- */
+
+.dropdown-container {
+  margin-top: 0px;
+  border-radius: 0px;
+  border: 0pc;
+  background-color: #f8f9fa !important;
+}
+
+.navbar-nav {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  margin-top: 0px !important;
+}
+
+.navbar-nav > li {
+  padding: 10px 0px;
+}
+
+.checkmate-navbar {
+  display: -webkit-box !important;
+  display: flex !important;
+  flex-basis: auto;
+}
+
+.navbar {
+  max-width: 1920px;
+  margin: auto;
+  z-index: 1200;
+}
+
+.nav-width-extension {
+  display: none;
+}
+
+.nav-item > a {
+  margin: 0px;
+}
+
+/* Below is the styling for desktop.
+-------------------------------------------------- */
+
+@media screen and (min-width: 992px) {
+  .navbar-contents-container {
+    width: 100%;
+  }
+
+  .navbar-nav > li {
+    font-size: 1.1rem;
+  }
+
+  .navbar-nav > li > a {
+    margin-right: 0px;
+  }
+
+  .dropdown-container {
+    margin-top: 7px;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: #f5f5f5;
+  }
+}
+
+/* Below is the styling for above 1920 width.
+-------------------------------------------------- */
+
+@media screen and (min-width: 1920px) {
+  .nav-width-extension {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 56px;
+    display: block;
+  }
+}
+
+.checkmate-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+

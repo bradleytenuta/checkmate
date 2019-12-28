@@ -12,13 +12,9 @@
 
         <!-- JS Files -->
         <script src="{{ URL::asset('js/app.js') }}" defer></script>
-        @yield ('master-head-js')
 
         <!-- CSS Files -->
         <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ URL::asset('css/master.css') }}" rel="stylesheet">
-        <link href="{{ URL::asset('css/footer.css') }}" rel="stylesheet">
-        @yield ('master-head-css')
 
     </head>
     <body>
@@ -34,12 +30,12 @@
 
                 <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/bradley-tenuta">
-                    <img src="{{ URL::asset('images/footer/linkedin-icon.png')}}" width="40" height="40" class="d-inline-block align-top" alt=""/>
+                    <img src="{{ Storage::url('images/footer/linkedin-icon.png')}}" width="40" height="40" class="d-inline-block align-top" alt=""/>
                 </a>
 
                 <!-- Bitbucket -->
                 <a href="https://bitbucket.org/BradBitt">
-                    <img src="{{ URL::asset('images/footer/bitbucket-icon.png')}}" width="40" height="40" class="d-inline-block align-top" alt=""/>
+                    <img src="{{ Storage::url('images/footer/bitbucket-icon.png')}}" width="40" height="40" class="d-inline-block align-top" alt=""/>
                 </a>
 
             </div>

@@ -43,13 +43,13 @@
 
                 <!-- Icon to show role within module -->
                 @if (Auth::user()->isStudent($module))
-                    <img class="item-card-icon" src="{{ URL::asset('/images/other/module-icon-student.png') }}" data-toggle="tooltip" data-placement="bottom" title="Student">
+                    <img class="item-card-icon" src="{{ Storage::url('/images/other/module-icon-student.png') }}" data-toggle="tooltip" data-placement="bottom" title="Student">
                 @endif
                 @if (Auth::user()->isProfessor($module))
-                    <img class="item-card-icon" src="{{ URL::asset('/images/other/module-icon-professor.png') }}" data-toggle="tooltip" data-placement="bottom" title="Professor">
+                    <img class="item-card-icon" src="{{ Storage::url('/images/other/module-icon-professor.png') }}" data-toggle="tooltip" data-placement="bottom" title="Professor">
                 @endif
                 @if (Auth::user()->isAssessor($module))
-                    <img class="item-card-icon" src="{{ URL::asset('/images/other/module-icon-assessor.png') }}" data-toggle="tooltip" data-placement="bottom" title="Assessor">
+                    <img class="item-card-icon" src="{{ Storage::url('/images/other/module-icon-assessor.png') }}" data-toggle="tooltip" data-placement="bottom" title="Assessor">
                 @endif
             </div>
         </div>

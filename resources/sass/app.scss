@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Imports all the custom scss files I have made.
+@import 'footer';
+@import 'login';
+@import 'master';
+@import 'navbar';
+@import 'register';

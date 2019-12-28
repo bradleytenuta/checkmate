@@ -49457,6 +49457,11 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+/**
+ * Adds all additonal javascript files
+ */
+
+__webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
 
 /***/ }),
 
@@ -49574,6 +49579,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/navbar.js":
+/*!********************************!*\
+  !*** ./resources/js/navbar.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * This function is called whenever the navbar element is hovered on.
+ * This changes the image of the navbar item to one with colour.
+ * @param {*} element 
+ */
+function hover(element) {
+  // Gets the attribute value
+  var imageTag = $(element).children();
+  var srcValue = $(imageTag).attr('src'); // Replaces '.png' with '-active.png' and updates the attribute.
+
+  if (!srcValue.endsWith("-active.png")) {
+    $(imageTag).attr('src', srcValue.replace('.png', "-active.png"));
+  }
+}
+/**
+ * This function is called whenever the navbar element is no longer hovered on.
+ * This reverts the image changes back to the default image.
+ * @param {*} element 
+ */
+
+
+function unhover(element) {
+  // Gets the attribute value
+  var imageTag = $(element).children();
+  var srcValue = $(imageTag).attr('src'); // Replaces '.png' with '-active.png' and updates the attribute.
+
+  if (srcValue.endsWith("-active.png")) {
+    $(imageTag).attr('src', srcValue.replace("-active.png", '.png'));
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -49592,8 +49637,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\bradl\LaravelProjects\checkmate\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\bradl\LaravelProjects\checkmate\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/LaravelProjects/checkmate/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/LaravelProjects/checkmate/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

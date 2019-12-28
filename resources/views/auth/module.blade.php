@@ -14,15 +14,15 @@
 
         <!-- Icon to show role within module -->
         @if (Auth::user()->isStudent($module))
-            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-student.png') }}" 
+            <img class="item-title-icon" src="{{ Storage::url('/images/other/module-icon-student.png') }}" 
             data-toggle="tooltip" data-placement="bottom" title="Student">
         @endif
         @if (Auth::user()->isProfessor($module))
-            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-professor.png') }}" 
+            <img class="item-title-icon" src="{{ Storage::url('/images/other/module-icon-professor.png') }}" 
             data-toggle="tooltip" data-placement="bottom" title="Professor">
         @endif
         @if (Auth::user()->isAssessor($module))
-            <img class="item-title-icon" src="{{ URL::asset('/images/other/module-icon-assessor.png') }}" 
+            <img class="item-title-icon" src="{{ Storage::url('/images/other/module-icon-assessor.png') }}" 
             data-toggle="tooltip" data-placement="bottom" title="Assessor">
         @endif
 
