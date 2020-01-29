@@ -8,13 +8,14 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Imports all the custom scss files I have made.
-@import 'footer';
+
 @import 'login';
 @import 'master';
-@import 'navbar';
 @import 'register';
 
 @import 'components/list/card';
 @import 'components/list/title';
 @import 'components/work/title';
 @import 'components/work/infobox';
+@import 'components/navbar';
+@import 'components/footer';
