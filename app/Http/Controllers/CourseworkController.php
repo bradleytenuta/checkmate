@@ -14,8 +14,15 @@ class CourseworkController extends Controller
      */
     public function show($id)
     {
-        //TODO: Only allow the user to see the courseworks they are on. 
-        $coursework = Coursework::findOrFail($id);
-        return view('auth/coursework', ['coursework' => $coursework]);
+        // Finds the coursework by the given id. Then gets the module that coursework belongs to.
+        $module = Coursework::findOrFail($id)->module;
+
+        if (Auth::user()->isInModule($module))
+        {
+            return view('auth/coursework', ['coursework' => $coursework]);
+        } else
+        {
+            return Redirect::back();
+        }
     }
 }

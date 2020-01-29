@@ -14,8 +14,15 @@ class ModuleController extends Controller
      */
     public function show($id)
     {
-        //TODO: Only allow the user to see the modules they are on. 
+        // Finds the module by the given id.
         $module = Module::findOrFail($id);
-        return view('auth/module', ['module' => $module]);
+
+        if (Auth::user()->isInModule($module))
+        {
+            return view('auth/module', ['module' => $module]);
+        } else
+        {
+            return Redirect::back();
+        }
     }
 }

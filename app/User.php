@@ -220,4 +220,22 @@ class User extends Authenticatable {
 
         return $module_role_id;
     }
+
+    public function isInModule($givenModule)
+    {
+        // Default is false.
+        $isIn = false;
+
+        // Loops through all the modules the user is in.
+        foreach ($this->modules as $module)
+        {
+            // If the user is in the module provided then set to true.
+            if ($givenModule->id == $module->id)
+            {
+                $isIn = true;
+            }
+        }
+
+        return $isIn;
+    }
 }
