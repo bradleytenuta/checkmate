@@ -16,11 +16,16 @@ class ModulesUsersTableSeeder extends Seeder {
         // Assign each user a random module with a random module permission.
         foreach ($users as $user)
         {
-            DB::table('module_user')->insert([
-                'module_id' => App\Module::inRandomOrder()->first()->id,
-                'user_id' => $user->id,
-                'module_role_id' => App\ModuleRole::inRandomOrder()->first()->id,
-            ]);
+            $randomModules = App\Module::inRandomOrder()->get();
+
+            for ($i=0; $i < 3; $i++) {
+                
+                DB::table('module_user')->insert([
+                    'module_id' => $randomModules[$i]->id,
+                    'user_id' => $user->id,
+                    'module_role_id' => App\ModuleRole::inRandomOrder()->first()->id,
+                ]);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Module;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {

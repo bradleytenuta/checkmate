@@ -10,6 +10,6 @@ class ModulesTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Module::class, 5)->create();
+        factory(App\Module::class, 20)->create();
     }
 }

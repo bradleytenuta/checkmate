@@ -11578,13 +11578,13 @@ body {
 }
 
 .list-card-text {
-  min-height: 75px;
   max-height: 75px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0px;
 }
 
 .list-card-permission-icon {

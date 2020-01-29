@@ -10,6 +10,6 @@ class CourseworksTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Coursework::class, 15)->create();
+        factory(App\Coursework::class, 50)->create();
     }
 }

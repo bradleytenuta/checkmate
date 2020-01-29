@@ -9,19 +9,17 @@
     <!-- Module Title Container -->
     @include('components.list.title', ['title'=>'My Modules'])
 
-    <!-- Bootstrap cards for the Users Modules -->
     <!-- TODO: Add Javascript to filter and sort this list -->
-    @foreach (Auth::user()->modules as $module)
-        @include('components.list.card', ['item'=>$module, 'urlName'=>'module.show'])
-    @endforeach
+    <!-- List of modules -->
+    @include('components.list.card', ['items'=>$modules, 'urlName'=>'module.show'])
 
     <!-- TODO: Add section to show courseworks in deadline order -->
+    <!-- Coursework Title Container -->
     @include('components.list.title', ['title'=>'My Courseworks'])
-    @foreach (Auth::user()->modules as $module)
-        @foreach ($module->courseworks as $coursework)
-            @include('components.list.card', ['item'=>$coursework, 'urlName'=>'coursework.show'])
-        @endforeach
-    @endforeach
+
+    <!-- List of courseworks -->
+    <!-- TODO: Make 2 cards, one for modules and 1 for courseworks. -->
+    @include('components.list.card', ['items'=>$courseworks, 'urlName'=>'coursework.show'])
 
 </div>
 

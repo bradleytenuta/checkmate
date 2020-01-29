@@ -31,3 +31,18 @@ function unhover(element) {
         $(imageTag).attr('src', srcValue.replace("-active.png", '.png'));
     }
 }
+
+$(document).ready(function(){
+
+    // Gets all the grid elements and loops through them all, adding masonry.
+    var grids = document.getElementsByClassName('grid');
+    
+    for (var i = 0; i < grids.length; i++) {
+        new Masonry( grids[i], {
+            // options
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            percentPosition: true
+        });
+    }
+});

@@ -17,9 +17,7 @@
 
     <!-- Bootstrap cards for the Modules courseworks -->
     <!-- TODO: Add Javascript to filter and sort this list -->
-    @foreach ($module->courseworks as $coursework)
-        @include('components.list.card', ['item'=>$coursework, 'urlName'=>'coursework.show'])
-    @endforeach
+    @include('components.list.card', ['items'=>$module->courseworks, 'urlName'=>'coursework.show'])
 </div>
 
 @endsection

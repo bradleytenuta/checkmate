@@ -31,6 +31,8 @@ const app = new Vue({
     el: '#app',
 });
 
+window.Masonry = require('masonry-layout');
+
 /**
  * Adds all additonal javascript files
  */
