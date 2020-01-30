@@ -51826,7 +51826,7 @@ window.Masonry = __webpack_require__(/*! masonry-layout */ "./node_modules/mason
  * Adds all additonal javascript files
  */
 
-__webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
+__webpack_require__(/*! ./components/navbar */ "./resources/js/components/navbar.js");
 
 /***/ }),
 
@@ -51944,43 +51944,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/navbar.js":
-/*!********************************!*\
-  !*** ./resources/js/navbar.js ***!
-  \********************************/
+/***/ "./resources/js/components/navbar.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/navbar.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
-
-/**
- * This function is called whenever the navbar element is hovered on.
- * This changes the image of the navbar item to one with colour.
- * @param {*} element 
- */
-function hover(element) {
-  // Gets the attribute value
-  var imageTag = $(element).children();
-  var srcValue = $(imageTag).attr('src'); // Replaces '.png' with '-active.png' and updates the attribute.
-
-  if (!srcValue.endsWith("-active.png")) {
-    $(imageTag).attr('src', srcValue.replace('.png', "-active.png"));
-  }
-}
-/**
- * This function is called whenever the navbar element is no longer hovered on.
- * This reverts the image changes back to the default image.
- * @param {*} element 
- */
-
-
-function unhover(element) {
-  // Gets the attribute value
-  var imageTag = $(element).children();
-  var srcValue = $(imageTag).attr('src'); // Replaces '.png' with '-active.png' and updates the attribute.
-
-  if (srcValue.endsWith("-active.png")) {
-    $(imageTag).attr('src', srcValue.replace("-active.png", '.png'));
-  }
-}
 
 $(document).ready(function () {
   // Gets all the grid elements and loops through them all, adding masonry.
@@ -51994,7 +51963,33 @@ $(document).ready(function () {
       percentPosition: true
     });
   }
+}); // Creates nav dropdown onclick functions.
+
+var userDropdown = $('#navbar-user-dropdown');
+var adminDropdown = $('#navbar-admin-dropdown');
+$("#navbar-user-button").click(function () {
+  openNavDropDown(userDropdown);
 });
+$("#navbar-admin-button").click(function () {
+  openNavDropDown(adminDropdown);
+});
+
+function openNavDropDown(dropdown) {
+  // Checks to see if the specific dropdown is already open.
+  var isOpen = false;
+
+  if (dropdown.css("display") == "block") {
+    isOpen = true;
+  } // hides all dropdowns.
+
+
+  userDropdown.css("display", "none");
+  adminDropdown.css("display", "none"); // Opens the dropdown if it wasnt open to begin with.
+
+  if (!isOpen) {
+    dropdown.css("display", "block");
+  }
+}
 
 /***/ }),
 
@@ -52009,15 +52004,27 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/sass/login.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/login.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/login.scss ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\bradl\LaravelProjects\checkmate\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\bradl\LaravelProjects\checkmate\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\bradl\LaravelProjects\checkmate\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\bradl\LaravelProjects\checkmate\resources\sass\login.scss */"./resources/sass/login.scss");
 
 
 /***/ })

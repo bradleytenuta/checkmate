@@ -1,70 +1,60 @@
-<!-- TODO: Redo this -->
-<!-- Navbar -->
-<div class="nav-width-extension bg-light"></div>
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar">
+    <div class="navbar-fluid-container">
 
-    <!-- Brand --> 
-    <a class="navbar-brand" href="{{ route('home') }}">
-        <img src="{{ Storage::url('/images/icon/checkmate_icon.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
-        CheckMate
-    </a>
+        <!-- Logo Container -->
+        <a class="navbar-logo navbar-brand" href="{{ route('home') }}">
+            <img src="{{ Storage::url('/images/icon/checkmate_icon.png') }}" alt="Logo">
+        </a>
 
-    <ul class="nav justify-content-end">
+        <!-- Empty Divider Container -->
+        <div class="navbar-divider"></div>
 
-        <!-- Admin drop down. Only shown if the user has the correct permissions -->
-        @if (Auth::user()->hasAdminRole())
-            <li class="nav-item dropdown">
-                <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navBarDropDownAdmin"
-                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                    onmouseover="hover(this);" onmouseout="unhover(this);">
-                    <img src="{{ Storage::url('/images/navbar/plus-circle.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <!-- Navbar Buttons -->
+        <div class="navbar-button-container">
+
+            <!-- Admin button -->
+            @if (Auth::user()->hasAdminRole())
+                <button id="navbar-admin-button" type="button">
+                    <img src="{{ Storage::url('/images/navbar/plus-circle.png') }}" />
+                </button>
+            @endif
+
+            <!-- User button -->
+            <button id="navbar-user-button" type="button">
+                <img src="{{ Storage::url('/images/navbar/user.png') }}" />
+            </button>
+        </div>
+
+        <!-- Navbar dropdowns -->
+        <!-- Admin dropdown -->
+        <div class="navbar-dropdown" id="navbar-admin-dropdown">
+            @if (Auth::user()->hasGlobalPermission(1))
+                <a href="{{ route('register') }}">
+                    <img src="{{ Storage::url('/images/navbar/user-cog.png') }}" />
+                    Create User
                 </a>
+            @endif
 
-                <!-- Loops through each permission and adds it to the drop down -->
-                <div class="dropdown-menu dropdown-menu-right dropdown-container" aria-labelledby="navBarDropDownAdmin">
-
-                    @if (Auth::user()->hasGlobalPermission(1))
-                        <a class="dropdown-item" href="{{ route('register') }}" onmouseover="hover(this);" onmouseout="unhover(this);">
-                            {{ __('Create User') }}
-                        </a>
-                    @endif
-
-                    @if (Auth::user()->hasGlobalPermission(4))
-                        <a class="dropdown-item" href="{{ route('create.module') }}" onmouseover="hover(this);" onmouseout="unhover(this);">
-                            {{ __('Create Module') }}
-                        </a>
-                    @endif
-
-
-                </div>
-            </li>
-        @endif
-
-        <!-- User Related Content -->
-        <li class="nav-item dropdown">
-            <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navBarDropDownUser"
-            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            onmouseover="hover(this);" onmouseout="unhover(this);">
-                <img src="{{ Storage::url('/images/navbar/user.png') }}" width="30" height="30" class="d-inline-block align-top" alt=""
-                data-toggle="tooltip" data-placement="bottom" title="{{ Auth::user()->firstname }} {{ Auth::user()->surname }}">
+            @if (Auth::user()->hasGlobalPermission(4))
+                <a href="{{ route('create.module') }}">
+                    <img src="{{ Storage::url('/images/navbar/module.png') }}" />
+                    Create Module
+                </a>
+            @endif
+        </div>
+        <!-- User dropdown -->
+        <div class="navbar-dropdown" id="navbar-user-dropdown">
+            <a href="{{ route('user.show', ['id' => Auth::user()->id]) }}">
+                <img src="{{ Storage::url('/images/navbar/user-cog.png') }}" />
+                Account
             </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-container" aria-labelledby="navBarDropDownUser">
-                <!-- User account -->
-                <a class="dropdown-item" href="#" onmouseover="hover(this);" onmouseout="unhover(this);">
-                    <img src="{{ Storage::url('/images/navbar/user-cog.png') }}" width="24" height="24" class="d-inline-block align-top" alt="">
-                    {{ __('Account') }}
-                </a>
-                <!-- Logout button and form -->
-                <a class="dropdown-item" href="#" onmouseover="hover(this);"
-                    onmouseout="unhover(this);" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <img src="{{ Storage::url('/images/navbar/sign-out.png') }}" width="24" height="24" class="d-inline-block align-top" alt="">
-                    {{ __('Log Off') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </li>
-      </ul>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <img src="{{ Storage::url('/images/navbar/sign-out.png') }}" />
+                Log Off
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+    </div>
 </nav>

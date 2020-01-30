@@ -11356,168 +11356,9 @@ a.text-dark:focus {
   }
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  max-width: 1920px;
-  margin: auto;
-}
-
-.login-logo-container-desktop {
-  display: none;
-}
-
-/* Below is the styling for the sign in section.
--------------------------------------------------- */
-
-.login-container {
-  text-align: center !important;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-  height: 100%;
-  position: relative;
-  background-image: url(/images/generic-background-mobile.jpg?e1b2a4b35c4af4e11d98bdafaf2bca50);
-  background-size: cover;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10%;
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-
-.form-signin input[type=email] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type=password] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.text-muted {
-  display: block;
-}
-
-/* Below is the styling for the information section.
--------------------------------------------------- */
-
-.info-container {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.info-container .col-lg-4 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.featurette-divider {
-  /* Space out the Bootstrap <hr> more */
-  margin: 5rem 0;
-}
-
-.rounded-circle {
-  margin-bottom: 5px;
-}
-
-.featurette-image {
-  width: 50%;
-  display: block;
-}
-
-/* Thin out the marketing headings */
-
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.05rem;
-}
-
-/* Below is the styling for desktop.
--------------------------------------------------- */
-
-@media screen and (min-width: 992px) {
-  html {
-    height: auto;
-  }
-
-  body {
-    height: auto;
-  }
-
-  .form-signin {
-    position: absolute;
-    right: 10%;
-  }
-
-  .login-container {
-    height: 500px;
-    background-image: url(/images/generic-background-desktop.jpg?111dfa8fd3d9eb61e59b67fae573bd1f);
-  }
-
-  .featurette-heading {
-    font-size: 50px;
-  }
-
-  .featurette-image {
-    width: 300px;
-    height: 300px;
-  }
-
-  .login-image {
-    display: none;
-  }
-
-  .login-logo-container-desktop {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 40px;
-    padding: 0px;
-    font-size: 40px;
-    font-weight: 600;
-  }
-}
-
-body {
-  max-width: 1920px;
-  margin: auto;
-}
-
 .content-container {
-  margin: 35px;
+  margin: auto;
+  max-width: 1920px;
 }
 
 /* Button Colours.
@@ -11555,26 +11396,18 @@ body {
   border-color: #1879C0;
 }
 
-/* Below is the styling for desktop.
--------------------------------------------------- */
-
-@media screen and (min-width: 992px) {
-  .content-container {
-    margin: 50px;
-  }
-}
-
 .checkmate-form {
   max-width: 600px;
   margin: auto;
   padding: 20px;
 }
 
+.list-container {
+  margin-bottom: 10px;
+}
+
 .list-card-container {
-  display: inline-block;
-  width: 18rem;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  box-shadow: 0px 1px 10px #888888;
 }
 
 .list-card-text {
@@ -11593,16 +11426,25 @@ body {
 }
 
 .list-title-container {
-  padding: 0px;
+  margin-bottom: 10px;
+}
+
+.list-title-container h1 {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  margin: 0px;
+}
+
+.list-title-container > div > div {
   margin-bottom: 0.5rem;
-  position: relative;
 }
 
 .list-title-button-group {
   width: 200px;
-  float: right;
-  display: -webkit-box;
-  display: flex;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  vertical-align: top;
+  margin: 3px;
 }
 
 .work-title-container {
@@ -11629,87 +11471,91 @@ body {
   overflow: auto;
 }
 
-/* Navbar styling.
--------------------------------------------------- */
-
-.dropdown-container {
-  margin-top: 0px;
-  border-radius: 0px;
-  border: 0pc;
-  background-color: #f8f9fa !important;
-}
-
-.navbar-nav {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-direction: row;
-  margin-top: 0px !important;
-}
-
-.navbar-nav > li {
-  padding: 10px 0px;
-}
-
-.checkmate-navbar {
-  display: -webkit-box !important;
-  display: flex !important;
-  flex-basis: auto;
-}
-
 .navbar {
+  background-color: white;
+  margin-bottom: 10px;
+  box-shadow: 0px 1px 10px #888888;
+}
+
+.navbar-fluid-container {
+  width: 100%;
   max-width: 1920px;
   margin: auto;
-  z-index: 1200;
+  display: -webkit-box;
+  display: flex;
+  height: 40px;
+  padding: 0px;
+  position: relative;
 }
 
-.nav-width-extension {
-  display: none;
+.navbar-fluid-container > div {
+  height: inherit;
 }
 
-.nav-item > a {
+.navbar-fluid-container > a {
+  height: inherit;
+  padding: 0px;
   margin: 0px;
 }
 
-/* Below is the styling for desktop.
--------------------------------------------------- */
-
-@media screen and (min-width: 992px) {
-  .navbar-contents-container {
-    width: 100%;
-  }
-
-  .navbar-nav > li {
-    font-size: 1.1rem;
-  }
-
-  .navbar-nav > li > a {
-    margin-right: 0px;
-  }
-
-  .dropdown-container {
-    margin-top: 7px;
-  }
-
-  .dropdown-item:hover,
-  .dropdown-item:focus {
-    background-color: #f5f5f5;
-  }
+.navbar-fluid-container > a > img {
+  height: inherit;
 }
 
-/* Below is the styling for above 1920 width.
--------------------------------------------------- */
+.navbar-divider {
+  width: 100%;
+  display: inline-block;
+}
 
-@media screen and (min-width: 1920px) {
-  .nav-width-extension {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 56px;
-    display: block;
-  }
+.navbar-button-container {
+  display: inline-block;
+  min-width: 100px;
+}
+
+.navbar-button-container > button {
+  background-color: transparent;
+  border: 0px;
+  float: right;
+  height: inherit;
+}
+
+.navbar-button-container > button:focus,
+.navbar-button-container > button:hover {
+  outline: 0;
+  border: 0px;
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.navbar-dropdown {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  margin-top: 47px;
+  max-width: 150px;
+  width: 150px;
+  height: auto !important;
+  z-index: 100;
+  box-shadow: 0px 10px 10px #888888;
+}
+
+.navbar-dropdown > a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 2px 10px;
+}
+
+.navbar-dropdown > a > img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.navbar-dropdown > a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 .footer-container {

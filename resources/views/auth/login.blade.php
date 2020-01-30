@@ -1,5 +1,11 @@
 @extends ('layouts.master')
-<!-- TODO: Change so it doesnt tell you which one is wrong -->
+
+<!-- CSS section -->
+@section ('dynamic-css')
+    <link href="{{ URL::asset('css/login.css') }}" rel="stylesheet">
+@endsection
+<!-- End of CSS section -->
+
 
 <!-- Begining of the dynamic Section-->
 @section ('dynamic-master-content')

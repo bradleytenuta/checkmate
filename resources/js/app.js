@@ -36,4 +36,4 @@ window.Masonry = require('masonry-layout');
 /**
  * Adds all additonal javascript files
  */
-require('./navbar');
+require('./components/navbar');

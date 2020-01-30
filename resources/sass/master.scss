@@ -1,10 +1,6 @@
-body {
-    max-width: 1920px;
-    margin: auto;
-}
-
 .content-container {
-    margin: 35px;
+    margin: auto;
+    max-width: 1920px;
 }
 
 /* Button Colours.
@@ -40,14 +36,4 @@ body {
     color: #fff;
     background-color: #1879C0;
     border-color: #1879C0;
-}
-
-/* Below is the styling for desktop.
--------------------------------------------------- */
-
-@media screen and (min-width: 992px) {
-    .content-container {
-        margin: 50px;
-    }
-    
 }

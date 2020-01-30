@@ -5,7 +5,6 @@
 
 <!-- Content Container -->
 <div class="content-container">
-
     <!-- Module Title Container -->
     @include('components.work.title', ['module'=>$module])
 

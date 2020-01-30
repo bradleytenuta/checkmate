@@ -15,6 +15,7 @@
 
         <!-- CSS Files -->
         <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
+        @yield ('dynamic-css')
     </head>
     <body>
         <!-- The Dynamic Content -->

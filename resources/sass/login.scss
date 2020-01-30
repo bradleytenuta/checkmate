@@ -4,8 +4,6 @@ html {
 
 body {
     height: 100%;
-    max-width: 1920px;
-    margin: auto;
 }
 
 .login-logo-container-desktop {
@@ -28,6 +26,8 @@ body {
     position: relative;
     background-image: url("../images/login/generic-background-mobile.jpg");
     background-size: cover;
+    max-width: 1920px;
+    margin: auto;
 }
 
 .form-signin {
