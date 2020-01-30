@@ -17,8 +17,7 @@ class CreateModulesTable extends Migration
             // Main Schema
             $table->bigIncrements('id');
             $table->string('name');
-            // TODO: Fix to allow large strings to be stored. change this for coursework description and submission too.
-            $table->string('description');
+            $table->longText('description');
 
             // Meta Data
             $table->timestamps();

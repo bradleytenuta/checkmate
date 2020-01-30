@@ -19,8 +19,8 @@ class CreateSubmissionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('coursework_id');
             $table->unsignedBigInteger('score')->nullable();
-            $table->string('main_feedback')->nullable();
-            $table->string('json')->nullable();
+            $table->longText('main_feedback')->nullable();
+            $table->longText('json')->nullable();
 
             // Meta Data
             $table->timestamps();

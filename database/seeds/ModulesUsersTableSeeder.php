@@ -18,7 +18,7 @@ class ModulesUsersTableSeeder extends Seeder {
         {
             $randomModules = App\Module::inRandomOrder()->get();
 
-            for ($i=0; $i < 3; $i++) {
+            for ($i=0; $i < 8; $i++) {
                 
                 DB::table('module_user')->insert([
                     'module_id' => $randomModules[$i]->id,

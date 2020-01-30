@@ -19,7 +19,7 @@ class CreateCourseworksTable extends Migration
             $table->unsignedBigInteger('module_id');
             $table->unsignedBigInteger('maximum_score');
             $table->string('name');
-            $table->string('description');
+            $table->longText('description');
 
             // Meta Data
             $table->timestamps();
