@@ -12,6 +12,7 @@ $factory->define(App\Coursework::class, function (Faker $faker) {
         'module_id' => App\Module::inRandomOrder()->first()->id,
         'name' => $faker->word()." ".$faker->word(),
         'description' => $faker->sentence($nbWords = 70, $variableNbWords = true),
-        'maximum_score' => 100
+        'maximum_score' => 100,
+        'deadline' => $faker->dateTimeBetween('now', '+1 week')
     ];
 });

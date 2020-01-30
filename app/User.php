@@ -11,6 +11,7 @@ use App\GlobalPrivilege;
 use App\ModuleRole;
 use App\Module;
 use App\Coursework;
+use DateTime;
 
 class User extends Authenticatable {
 
@@ -196,6 +197,26 @@ class User extends Authenticatable {
         return null;
     }
 
+    public function getItemTypePath($item) {
+        if ($item instanceof Module) {
+            return "/images/navbar/module.png";
+        } else if ($item instanceof Coursework) {
+            return "/images/navbar/coursework.png";
+        } else {
+            return "";
+        }
+    }
+
+    public function getItemTypeText($item) {
+        if ($item instanceof Module) {
+            return "Module";
+        } else if ($item instanceof Coursework) {
+            return "Coursework";
+        } else {
+            return "";
+        }
+    }
+
     private function getUserModuleRole($item) {
 
         $module_role_id = null;
@@ -237,5 +258,38 @@ class User extends Authenticatable {
         }
 
         return $isIn;
+    }
+
+    public function isCoursework($item) {
+        if ($item instanceof Coursework) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isModule($item) {
+        if ($item instanceof Module) {
+            return true;
+        }
+        return false;
+    }
+
+    public function dateIsToday($item) {
+        // Gets the current date
+        $current_date = new DateTime();
+        $deadline = new DateTime($item->deadline);
+        $interval = $current_date->diff($deadline);
+
+        // If the difference is still today
+        if($interval->days == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getOpenCourseworks($item) {
+        // Gets all open courseworks from module
+        return $item->courseworks->where("open", true);
     }
 }
