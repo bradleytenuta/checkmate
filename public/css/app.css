@@ -11513,7 +11513,7 @@ a.text-dark:focus {
 .navbar {
   background-color: white;
   margin-bottom: 10px;
-  box-shadow: 0px 1px 10px #888888;
+  border-bottom: 1px solid #888888;
 }
 
 .navbar-fluid-container {
@@ -11573,12 +11573,13 @@ a.text-dark:focus {
   top: 0;
   right: 0;
   background-color: white;
-  margin-top: 47px;
+  margin-top: 48px;
   max-width: 150px;
   width: 150px;
   height: auto !important;
   z-index: 100;
-  box-shadow: 0px 10px 10px #888888;
+  border: 1px solid #888888;
+  border-radius: 0% 0% 5% 5%;
 }
 
 .navbar-dropdown > a {
