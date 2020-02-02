@@ -27,11 +27,19 @@
     margin-bottom: 0.5rem;
 }
 
+.work-title-badge {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
 @media (min-width: 768px) {
     .work-title-button {
         float: right;
     }
     .work-title-icon {
+        float: right;
+    }
+    .work-title-badge {
         float: right;
     }
     .work-infobox-container h1 {

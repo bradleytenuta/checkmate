@@ -6,7 +6,7 @@
 <!-- Content Container -->
 <div class="content-container">
     <!-- Module Card -->
-    @include('components.work.infobox', ['module'=>$module])
+    @include('components.work.module.infobox', ['module'=>$module])
 
     <!-- Coursework Title Container -->
     @include('components.list.title', ['title'=>'Courseworks'])

@@ -5,6 +5,7 @@
 
 <!-- Module Admin buttons -->
 <div class="col-md-6">
+
     <!-- Icon -->
     <img 
         class="work-title-icon"
@@ -12,6 +13,13 @@
         data-toggle="tooltip"
         data-placement="bottom"
         title="{{ Auth::user()->getModulePermissionText($module) }}">
+
+    <!-- Icon to show if the item is open or closed -->
+    @if ($module->open == true)
+        <div class="work-title-badge card-open badge badge-secondary">Open</div>
+    @else
+        <div class="work-title-badge card-closed badge badge-secondary">Closed</div>
+    @endif
 
     <!-- Buttons -->
     @if (Auth::user()->hasModulePermission(5, $module))
