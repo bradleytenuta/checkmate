@@ -11417,6 +11417,22 @@ a.text-dark:focus {
   padding: 20px;
 }
 
+.list-container {
+  margin-bottom: 10px;
+}
+
+.list-card-container {
+  box-shadow: 0px 1px 10px #888888;
+}
+
+.list-card-container h5 {
+  margin: 0px;
+}
+
+.list-card-container > button {
+  margin: auto;
+}
+
 .list-module-coursework-container {
   padding: 0px 10px;
   background-color: #f7f7f7;
@@ -11445,80 +11461,6 @@ a.text-dark:focus {
   display: inline-flex;
   vertical-align: top;
   margin: 3px;
-}
-
-.list-container {
-  margin-bottom: 10px;
-}
-
-.list-card-container {
-  box-shadow: 0px 1px 10px #888888;
-}
-
-.list-card-container h5 {
-  margin: 0px;
-}
-
-.list-card-container > button {
-  margin: auto;
-}
-
-.list-card-text {
-  max-height: 75px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0px;
-}
-
-.list-card-info-container {
-  margin: 5px 0px;
-}
-
-.list-card-info-container > img {
-  width: 30px;
-  display: inline-block;
-}
-
-.list-card-info-container > p {
-  display: inline-block;
-}
-
-.list-card-info-container > div {
-  display: inline-block;
-}
-
-.list-card-due-today {
-  color: red;
-  font-weight: bolder;
-}
-
-.list-card-info-element {
-  margin-right: 10px;
-}
-
-.list-card-number-of-courseworks {
-  position: relative;
-}
-
-.list-card-number-of-courseworks > p {
-  position: absolute;
-  top: 5px;
-  left: 30px;
-}
-
-.list-card-number-of-courseworks > p:hover {
-  cursor: default;
-}
-
-.list-card-closed {
-  background-color: red;
-}
-
-.list-card-open {
-  background-color: green;
 }
 
 .work-infobox-container {
@@ -11562,6 +11504,54 @@ a.text-dark:focus {
   .work-infobox-container h1 {
     margin-bottom: 0.5rem;
   }
+}
+
+.card-info-container {
+  margin: 5px 0px;
+}
+
+.card-info-container > img {
+  width: 30px;
+  display: inline-block;
+}
+
+.card-info-container > p {
+  display: inline-block;
+}
+
+.card-info-container > div {
+  display: inline-block;
+}
+
+.card-due-today {
+  color: red;
+  font-weight: bolder;
+}
+
+.card-info-element {
+  margin-right: 10px;
+}
+
+.card-number-of-courseworks {
+  position: relative;
+}
+
+.card-number-of-courseworks > p {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+}
+
+.card-number-of-courseworks > p:hover {
+  cursor: default;
+}
+
+.card-closed {
+  background-color: red;
+}
+
+.card-open {
+  background-color: green;
 }
 
 .navbar {

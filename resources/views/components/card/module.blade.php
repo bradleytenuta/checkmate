@@ -4,11 +4,11 @@
     <h5>{{ $module->name }}</h5>
 
     <!-- Card info icons -->
-    <div class="list-card-info-container">
+    <div class="card-info-container">
 
         <!-- Icon to show role within module -->
         <img 
-            class="list-card-info-element"
+            class="card-info-element"
             src="{{ Storage::url(Auth::user()->getModulePermissionIconPath($module)) }}"
             data-toggle="tooltip"
             data-placement="bottom"
@@ -16,15 +16,15 @@
 
         <!-- Icon to show if the item is open or closed -->
         @if ($module->open == true)
-            <div class="list-card-info-element list-card-open badge badge-secondary">Open</div>
+            <div class="card-info-element card-open badge badge-secondary">Open</div>
         @else
-            <div class="list-card-info-element list-card-closed badge badge-secondary">Closed</div>
+            <div class="card-info-element card-closed badge badge-secondary">Closed</div>
         @endif
 
         <!-- Show how many open courseworks -->
         @if (Auth::user()->isModule($module))
             <div
-                class="list-card-info-element list-card-number-of-courseworks"
+                class="card-info-element card-number-of-courseworks"
                 data-toggle="tooltip"
                 data-placement="bottom"
                 title="Open Courseworks">
