@@ -11493,7 +11493,7 @@ a.text-dark:focus {
 }
 
 .work-title-badge {
-  margin-top: 20px;
+  margin-top: 15px;
   margin-left: 10px;
 }
 
@@ -11537,6 +11537,12 @@ a.text-dark:focus {
   font-weight: bolder;
 }
 
+.card-due-passed {
+  color: darkred;
+  font-weight: bolder;
+  opacity: 0.7;
+}
+
 .card-info-element {
   margin-right: 10px;
 }
@@ -11561,6 +11567,10 @@ a.text-dark:focus {
 
 .card-open {
   background-color: green;
+}
+
+.badge {
+  line-height: 1.6;
 }
 
 .navbar {

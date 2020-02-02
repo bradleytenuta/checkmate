@@ -278,10 +278,20 @@ class User extends Authenticatable {
         // Gets the current date
         $current_date = new DateTime();
         $deadline = new DateTime($item->deadline);
-        $interval = $current_date->diff($deadline);
 
-        // If the difference is still today
-        if($interval->days == 0) {
+        if (date_format($current_date, 'Y-m-d') == date_format($deadline, 'Y-m-d')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function dateHasPassed($item) {
+        // Gets the current date
+        $current_date = new DateTime();
+        $deadline = new DateTime($item->deadline);
+
+        if (date_format($current_date, 'Y-m-d') > date_format($deadline, 'Y-m-d')) {
             return true;
         }
 

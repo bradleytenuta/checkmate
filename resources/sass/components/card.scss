@@ -20,6 +20,12 @@
     font-weight: bolder;
 }
 
+.card-due-passed {
+    color: darkred;
+    font-weight: bolder;
+    opacity: 0.7;
+}
+
 .card-info-element {
     margin-right: 10px;
 }
@@ -44,4 +50,8 @@
 
 .card-open {
     background-color: green;
+}
+
+.badge {
+    line-height: 1.6;
 }
