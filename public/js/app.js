@@ -52099,7 +52099,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
+$(window).on('load', function () {
   buildMasonary();
 });
 

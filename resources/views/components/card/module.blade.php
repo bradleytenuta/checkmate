@@ -16,19 +16,9 @@
 
         <!-- Icon to show if the item is open or closed -->
         @if ($module->open == true)
-            <img 
-                class="list-card-info-element"
-                src="{{ Storage::url('/images/other/item-open.png') }}"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Open" />
+            <div class="list-card-info-element list-card-open badge badge-secondary">Open</div>
         @else
-            <img 
-                class="list-card-info-element"
-                src="{{ Storage::url('/images/other/item-closed.png') }}"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Closed" />
+            <div class="list-card-info-element list-card-closed badge badge-secondary">Closed</div>
         @endif
 
         <!-- Show how many open courseworks -->
@@ -50,4 +40,9 @@
 
     <!-- Links to open module -->
     <a href="{{ route('module.show', ['id' => $module->id]) }}" class="card-link">Open</a>
+
+    <!-- If the user has the option to edit the module -->
+    @if (Auth::user()->hasModulePermission(5, $module))
+        <a href="#" class="card-link">Edit</a>
+    @endif
 </div>

@@ -11385,7 +11385,7 @@ a.text-dark:focus {
 }
 
 .btn-primary {
-  color: #fff;
+  color: #fff !important;
   background-color: #1B84D1;
   background-color: #1B84D1;
 }
@@ -11426,6 +11426,7 @@ a.text-dark:focus {
 
 .list-title-container {
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .list-title-container h1 {
@@ -11512,33 +11513,59 @@ a.text-dark:focus {
   cursor: default;
 }
 
+.list-card-closed {
+  background-color: red;
+}
+
+.list-card-open {
+  background-color: green;
+}
+
+.work-infobox-container {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: #fff;
+  padding: 10px;
+}
+
+.work-infobox-container h1 {
+  margin: 0px;
+}
+
 .work-infobox-list {
   max-height: 200px;
   overflow: auto;
 }
 
-.work-title-container {
-  padding: 0px;
-  margin-bottom: 0.5rem;
-  position: relative;
-}
-
 .work-title-icon {
   width: 32px;
-  float: right;
   margin-top: 10px;
   margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0.5rem;
 }
 
 .work-title-button {
-  float: right;
-  margin-top: 10px;
+  margin-top: 7px;
   margin-left: 10px;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .work-title-button {
+    float: right;
+  }
+
+  .work-title-icon {
+    float: right;
+  }
+
+  .work-infobox-container h1 {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .navbar {
   background-color: white;
-  margin-bottom: 10px;
   border-bottom: 1px solid #888888;
 }
 

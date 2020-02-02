@@ -8,19 +8,9 @@
 
         <!-- Icon to show if the coursework is open or closed -->
         @if ($coursework->open == true)
-            <img 
-                class="list-card-info-element"
-                src="{{ Storage::url('/images/other/item-open.png') }}"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Open" />
+            <div class="list-card-info-element list-card-open badge badge-secondary">Open</div>
         @else
-            <img 
-                class="list-card-info-element"
-                src="{{ Storage::url('/images/other/item-closed.png') }}"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Closed" />
+            <div class="list-card-info-element list-card-closed badge badge-secondary">Closed</div>
         @endif
 
         <!-- Shows deadline -->
