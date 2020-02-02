@@ -37,3 +37,17 @@
     background-color: #1879C0;
     border-color: #1879C0;
 }
+
+.checkmate-button {
+    background-color: transparent;
+    border: 0px;
+    width: 40px;
+    height: 40px;
+}
+
+.checkmate-button:focus, .checkmate-button:hover {
+    outline: 0;
+    border: 0px;
+    background-color: $navbar-button-hover;
+    border-radius: 50%;
+}

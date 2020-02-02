@@ -9,6 +9,11 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
+    window.QueryBridget = require('jquery-bridget');
+    window.Masonry = require('masonry-layout');
+
+    // Makes Masonry a jQuery plugin
+    jQueryBridget( 'masonry', Masonry, $ );
 
     require('bootstrap');
 } catch (e) {}

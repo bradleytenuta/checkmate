@@ -39,18 +39,9 @@
 }
 
 .navbar-button-container > button {
-    background-color: transparent;
-    border: 0px;
     float: right;
     height: inherit;
     margin: 0px 2px;
-}
-
-.navbar-button-container > button:focus, .navbar-button-container > button:hover {
-    outline: 0;
-    border: 0px;
-    background-color: $navbar-button-hover;
-    border-radius: 50%;
 }
 
 .navbar-dropdown {

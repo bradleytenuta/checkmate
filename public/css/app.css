@@ -11396,10 +11396,54 @@ a.text-dark:focus {
   border-color: #1879C0;
 }
 
+.checkmate-button {
+  background-color: transparent;
+  border: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+.checkmate-button:focus,
+.checkmate-button:hover {
+  outline: 0;
+  border: 0px;
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
 .checkmate-form {
   max-width: 600px;
   margin: auto;
   padding: 20px;
+}
+
+.list-module-coursework-container {
+  padding: 0px 10px;
+  background-color: #f7f7f7;
+  height: 0px;
+  overflow: hidden;
+}
+
+.list-title-container {
+  margin-bottom: 10px;
+}
+
+.list-title-container h1 {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  margin: 0px;
+}
+
+.list-title-container > div > div {
+  margin-bottom: 0.5rem;
+}
+
+.list-title-button-group {
+  width: 200px;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  vertical-align: top;
+  margin: 3px;
 }
 
 .list-container {
@@ -11412,6 +11456,10 @@ a.text-dark:focus {
 
 .list-card-container h5 {
   margin: 0px;
+}
+
+.list-card-container > button {
+  margin: auto;
 }
 
 .list-card-text {
@@ -11464,26 +11512,9 @@ a.text-dark:focus {
   cursor: default;
 }
 
-.list-title-container {
-  margin-bottom: 10px;
-}
-
-.list-title-container h1 {
-  display: -webkit-inline-box;
-  display: inline-flex;
-  margin: 0px;
-}
-
-.list-title-container > div > div {
-  margin-bottom: 0.5rem;
-}
-
-.list-title-button-group {
-  width: 200px;
-  display: -webkit-inline-box;
-  display: inline-flex;
-  vertical-align: top;
-  margin: 3px;
+.work-infobox-list {
+  max-height: 200px;
+  overflow: auto;
 }
 
 .work-title-container {
@@ -11503,11 +11534,6 @@ a.text-dark:focus {
   float: right;
   margin-top: 10px;
   margin-left: 10px;
-}
-
-.work-infobox-list {
-  max-height: 200px;
-  overflow: auto;
 }
 
 .navbar {
@@ -11552,19 +11578,9 @@ a.text-dark:focus {
 }
 
 .navbar-button-container > button {
-  background-color: transparent;
-  border: 0px;
   float: right;
   height: inherit;
   margin: 0px 2px;
-}
-
-.navbar-button-container > button:focus,
-.navbar-button-container > button:hover {
-  outline: 0;
-  border: 0px;
-  background-color: lightgray;
-  border-radius: 50%;
 }
 
 .navbar-dropdown {

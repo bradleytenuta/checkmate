@@ -7055,6 +7055,149 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
+/***/ "./node_modules/jquery-bridget/jquery-bridget.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/jquery-bridget/jquery-bridget.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Bridget makes jQuery widgets
+ * v2.0.1
+ * MIT license
+ */
+
+/* jshint browser: true, strict: true, undef: true, unused: true */
+
+( function( window, factory ) {
+  // universal module definition
+  /*jshint strict: false */ /* globals define, module, require */
+  if ( true ) {
+    // AMD
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function( jQuery ) {
+      return factory( window, jQuery );
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+
+}( window, function factory( window, jQuery ) {
+'use strict';
+
+// ----- utils ----- //
+
+var arraySlice = Array.prototype.slice;
+
+// helper function for logging errors
+// $.error breaks jQuery chaining
+var console = window.console;
+var logError = typeof console == 'undefined' ? function() {} :
+  function( message ) {
+    console.error( message );
+  };
+
+// ----- jQueryBridget ----- //
+
+function jQueryBridget( namespace, PluginClass, $ ) {
+  $ = $ || jQuery || window.jQuery;
+  if ( !$ ) {
+    return;
+  }
+
+  // add option method -> $().plugin('option', {...})
+  if ( !PluginClass.prototype.option ) {
+    // option setter
+    PluginClass.prototype.option = function( opts ) {
+      // bail out if not an object
+      if ( !$.isPlainObject( opts ) ){
+        return;
+      }
+      this.options = $.extend( true, this.options, opts );
+    };
+  }
+
+  // make jQuery plugin
+  $.fn[ namespace ] = function( arg0 /*, arg1 */ ) {
+    if ( typeof arg0 == 'string' ) {
+      // method call $().plugin( 'methodName', { options } )
+      // shift arguments by 1
+      var args = arraySlice.call( arguments, 1 );
+      return methodCall( this, arg0, args );
+    }
+    // just $().plugin({ options })
+    plainCall( this, arg0 );
+    return this;
+  };
+
+  // $().plugin('methodName')
+  function methodCall( $elems, methodName, args ) {
+    var returnValue;
+    var pluginMethodStr = '$().' + namespace + '("' + methodName + '")';
+
+    $elems.each( function( i, elem ) {
+      // get instance
+      var instance = $.data( elem, namespace );
+      if ( !instance ) {
+        logError( namespace + ' not initialized. Cannot call methods, i.e. ' +
+          pluginMethodStr );
+        return;
+      }
+
+      var method = instance[ methodName ];
+      if ( !method || methodName.charAt(0) == '_' ) {
+        logError( pluginMethodStr + ' is not a valid method' );
+        return;
+      }
+
+      // apply method, get return value
+      var value = method.apply( instance, args );
+      // set return value if value is returned, use only first value
+      returnValue = returnValue === undefined ? value : returnValue;
+    });
+
+    return returnValue !== undefined ? returnValue : $elems;
+  }
+
+  function plainCall( $elems, options ) {
+    $elems.each( function( i, elem ) {
+      var instance = $.data( elem, namespace );
+      if ( instance ) {
+        // set options & init
+        instance.option( options );
+        instance._init();
+      } else {
+        // initialize new instance
+        instance = new PluginClass( elem, options );
+        $.data( elem, namespace, instance );
+      }
+    });
+  }
+
+  updateJQuery( $ );
+
+}
+
+// ----- updateJQuery ----- //
+
+// set $.bridget for v1 backwards compatibility
+function updateJQuery( $ ) {
+  if ( !$ || ( $ && $.bridget ) ) {
+    return;
+  }
+  $.bridget = jQueryBridget;
+}
+
+updateJQuery( jQuery || window.jQuery );
+
+// -----  ----- //
+
+return jQueryBridget;
+
+}));
+
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -51821,12 +51964,13 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
-window.Masonry = __webpack_require__(/*! masonry-layout */ "./node_modules/masonry-layout/masonry.js");
 /**
  * Adds all additonal javascript files
  */
 
 __webpack_require__(/*! ./components/navbar */ "./resources/js/components/navbar.js");
+
+__webpack_require__(/*! ./components/list */ "./resources/js/components/list.js");
 
 /***/ }),
 
@@ -51847,6 +51991,10 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+  window.QueryBridget = __webpack_require__(/*! jquery-bridget */ "./node_modules/jquery-bridget/jquery-bridget.js");
+  window.Masonry = __webpack_require__(/*! masonry-layout */ "./node_modules/masonry-layout/masonry.js"); // Makes Masonry a jQuery plugin
+
+  jQueryBridget('masonry', Masonry, $);
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
@@ -51944,6 +52092,56 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/list.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/list.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  buildMasonary();
+});
+
+window.toggleCourseworkDropdown = function toggleCourseworkDropdown(toggleButton) {
+  // Next sibling to the button
+  var sibling = $(toggleButton).next();
+  var open_time = 250;
+  var close_time = 500; // Gets the current height.
+
+  var curHeight = sibling.height(); // Gets the height for 'auto' then sets the height back to current height.
+
+  var autoHeight = sibling.css('height', 'auto').height();
+  sibling.height(curHeight); // if the height is 0, then extend the height of the container.
+
+  if (sibling.height() == 0) {
+    // Animates the height to auto in miniseconds.
+    sibling.stop().animate({
+      height: autoHeight
+    }, open_time, function () {
+      buildMasonary();
+    });
+  } else {
+    // Animates the height to 0, effectivly closing the container.
+    sibling.stop().animate({
+      height: 0
+    }, close_time, function () {
+      buildMasonary();
+    });
+  }
+};
+
+window.buildMasonary = function buildMasonary() {
+  $('.grid').masonry({
+    // options
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/navbar.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/navbar.js ***!
@@ -51951,45 +52149,21 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-  // Gets all the grid elements and loops through them all, adding masonry.
-  var grids = document.getElementsByClassName('grid');
-
-  for (var i = 0; i < grids.length; i++) {
-    new Masonry(grids[i], {
-      // options
-      itemSelector: '.grid-item',
-      columnWidth: '.grid-sizer',
-      percentPosition: true
-    });
-  }
-}); // Creates nav dropdown onclick functions.
-
-var userDropdown = $('#navbar-user-dropdown');
-var adminDropdown = $('#navbar-admin-dropdown');
-$("#navbar-user-button").click(function () {
-  openNavDropDown(userDropdown);
-});
-$("#navbar-admin-button").click(function () {
-  openNavDropDown(adminDropdown);
-});
-
-function openNavDropDown(dropdown) {
+window.openNavDropDown = function openNavDropDown(dropdownId) {
   // Checks to see if the specific dropdown is already open.
   var isOpen = false;
 
-  if (dropdown.css("display") == "block") {
+  if ($('#' + dropdownId).css("display") == "block") {
     isOpen = true;
   } // hides all dropdowns.
 
 
-  userDropdown.css("display", "none");
-  adminDropdown.css("display", "none"); // Opens the dropdown if it wasnt open to begin with.
+  $('.navbar .navbar-dropdown').css("display", "none"); // Opens the dropdown if it wasnt open to begin with.
 
   if (!isOpen) {
-    dropdown.css("display", "block");
+    $('#' + dropdownId).css("display", "block");
   }
-}
+};
 
 /***/ }),
 

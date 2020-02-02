@@ -14,13 +14,13 @@
 
             <!-- Admin button -->
             @if (Auth::user()->hasAdminRole())
-                <button id="navbar-admin-button" type="button">
+                <button id="navbar-admin-button" type="button" class="checkmate-button" onclick="openNavDropDown('navbar-admin-dropdown')">
                     <img src="{{ Storage::url('/images/navbar/plus-circle.png') }}" />
                 </button>
             @endif
 
             <!-- User button -->
-            <button id="navbar-user-button" type="button">
+            <button id="navbar-user-button" type="button" class="checkmate-button" onclick="openNavDropDown('navbar-user-dropdown')">
                 <img src="{{ Storage::url('/images/navbar/user.png') }}" />
             </button>
         </div>

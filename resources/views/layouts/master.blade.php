@@ -10,7 +10,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- JS Files -->
+        <!-- Custom JS -->
         <script src="{{ URL::asset('js/app.js') }}" defer></script>
 
         <!-- CSS Files -->

@@ -19,14 +19,7 @@ class HomeController extends Controller
         // Gets all modules.
         $modules = Auth::user()->modules;
 
-        // Gets all courseworks.
-        $courseworks = new Collection();
-        foreach ($modules as $module)
-        {
-            $courseworks = $courseworks->merge($module->courseworks);
-        }
-
         // Creates view with given parameters.
-        return view('auth/home', ['modules' => $modules, 'courseworks' => $courseworks]);
+        return view('auth/home', ['modules' => $modules]);
     }
 }
