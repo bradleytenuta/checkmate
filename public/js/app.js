@@ -52140,6 +52140,42 @@ window.buildMasonary = function buildMasonary() {
   });
 };
 
+window.toggleListFilter = function toggleListFilter(filterButton, filterOption) {
+  // Gets all the filter input options and unchecks them.
+  $('#list-filter-container label').removeClass("active"); // Checks the filter input that was clicked.
+
+  $('#' + filterButton.id).parent().addClass("active"); // Gets all the grid items
+
+  var griditems = $('.grid-item'); // Show all
+
+  if (filterOption == 0) {
+    griditems.each(function () {
+      $(this).css('display', 'block');
+    }); // Show open
+  } else if (filterOption == 1) {
+    griditems.each(function () {
+      // If there is no 'card-open' class, then hide.
+      if ($(this).find('.card-open').length == 0) {
+        $(this).css('display', 'none');
+      } else {
+        $(this).css('display', 'block');
+      }
+    }); // Show closed
+  } else if (filterOption == 2) {
+    griditems.each(function () {
+      // If there is no 'card-open' class, then show.
+      if ($(this).find('.card-open').length == 0) {
+        $(this).css('display', 'block');
+      } else {
+        $(this).css('display', 'none');
+      }
+    });
+  } // Rebuilds the masonary.
+
+
+  buildMasonary();
+};
+
 /***/ }),
 
 /***/ "./resources/js/components/navbar.js":

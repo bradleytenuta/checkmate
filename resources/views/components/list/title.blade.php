@@ -7,15 +7,18 @@
             <h1>{{ $title ?? '' }}</h1>
 
             <!-- Filter Buttons -->
-            <div class="list-title-button-group btn-group btn-group-toggle" data-toggle="buttons">
+            <div id="list-filter-container" class="list-title-button-group btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked>{{ __('All') }}
+                    <input type="radio" id="list-filter-all" autocomplete="off" onclick="toggleListFilter(this, 0)">
+                    All
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option2" autocomplete="off">{{ __('Open') }}
+                    <input type="radio" id="list-filter-open" autocomplete="off" onclick="toggleListFilter(this, 1)">
+                    Open
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option3" autocomplete="off">{{ __('Closed') }}
+                    <input type="radio" id="list-filter-closed" autocomplete="off" onclick="toggleListFilter(this, 2)">
+                    Closed
                 </label>
             </div>
         </div>
