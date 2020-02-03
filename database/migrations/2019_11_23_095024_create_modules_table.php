@@ -18,7 +18,6 @@ class CreateModulesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->longText('description');
-            $table->boolean('open')->default(true);
 
             // Meta Data
             $table->timestamps();

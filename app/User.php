@@ -302,4 +302,28 @@ class User extends Authenticatable {
         // Gets all open courseworks from module
         return $item->courseworks->where("open", true);
     }
+
+    public function getOpenCourseworksNumber($module) {
+        $openCount = 0;
+
+        foreach ($module->courseworks as $coursework) {
+            if ($coursework->open) {
+                $openCount++;
+            }
+        }
+
+        return $openCount;
+    }
+
+    public function getClosedCourseworksNumber($module) {
+        $ClosedCount = 0;
+
+        foreach ($module->courseworks as $coursework) {
+            if (!$coursework->open) {
+                $ClosedCount++;
+            }
+        }
+
+        return $ClosedCount;
+    }
 }
