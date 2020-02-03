@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Utility\Time;
 
 class CourseworksTableSeeder extends Seeder {
 
@@ -10,6 +11,10 @@ class CourseworksTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        // Creates all the courseworks.
         factory(App\Coursework::class, 50)->create();
+
+        // Checks to see if any of their deadlines are in the past.
+        Time::checkCourseworkDeadline();
     }
 }

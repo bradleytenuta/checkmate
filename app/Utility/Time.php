@@ -15,9 +15,10 @@ class Time
     {
         foreach (Coursework::all() as $coursework)
         {
-            if ((dateHasPassed($coursework)) && ($coursework->open == true))
+            if ((Time::dateHasPassed($coursework)) && ($coursework->open == true))
             {
                 $coursework->open = false;
+                $coursework->save();
             }
         }
     }

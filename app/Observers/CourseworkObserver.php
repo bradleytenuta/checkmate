@@ -19,6 +19,7 @@ class CourseworkObserver
         if (Time::dateHasPassed($coursework))
         {
             $coursework->open = false;
+            $coursework->save();
         }
     }
 
