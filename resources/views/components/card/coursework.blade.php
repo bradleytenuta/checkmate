@@ -14,9 +14,9 @@
         @endif
 
         <!-- Shows deadline -->
-        @if (Auth::user()->dateIsToday($coursework))
+        @if ( \App\Utility\Time::dateIsToday($coursework) )
             <p class="card-due-today card-info-element">{{ $coursework->deadline }}</p>
-        @elseif (Auth::user()->dateHasPassed($coursework))
+        @elseif ( \App\Utility\Time::dateHasPassed($coursework) )
             <p class="card-due-passed card-info-element">{{ $coursework->deadline }}</p>
         @else
             <p>{{ $coursework->deadline }}</p>

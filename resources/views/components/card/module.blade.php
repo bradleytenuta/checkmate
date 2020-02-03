@@ -7,8 +7,8 @@
     <div class="card-info-container">
 
         <!-- Icon to show all open courseworks and all closed courseworks -->
-        <div class="card-info-element card-open badge badge-secondary">{{ Auth::user()->getOpenCourseworksNumber($module) }}</div>
-        <div class="card-info-element card-closed badge badge-secondary">{{ Auth::user()->getClosedCourseworksNumber($module) }}</div>
+        <div class="card-info-element card-open badge badge-secondary">{{ sizeof($module->openCourseworks()) }}</div>
+        <div class="card-info-element card-closed badge badge-secondary">{{ sizeof($module->closedCourseworks()) }}</div>
 
         <!-- Icon to show role within module -->
         <img 
@@ -18,17 +18,15 @@
             data-placement="bottom"
             title="{{ Auth::user()->getModulePermissionText($module) }}" />
 
-        <!-- Show how many open courseworks -->
-        @if (Auth::user()->isModule($module))
-            <div
-                class="card-info-element card-number-of-courseworks"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Open Courseworks">
-                <img src="{{ Storage::url('/images/navbar/coursework.png') }}"/>
-                <p>{{ sizeof(Auth::user()->getOpenCourseworks($module)) }}</p>
-            </div>
-        @endif
+        <!-- Show how many total courseworks -->
+        <div
+            class="card-info-element card-number-of-courseworks"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Open Courseworks">
+            <img src="{{ Storage::url('/images/navbar/coursework.png') }}"/>
+            <p>{{ sizeof($module->courseworks) }}</p>
+        </div>
     </div>
 
     <!-- Card Description -->

@@ -13,6 +13,6 @@ $factory->define(App\Coursework::class, function (Faker $faker) {
         'name' => $faker->word()." ".$faker->word(),
         'description' => $faker->sentence($nbWords = 70, $variableNbWords = true),
         'maximum_score' => 100,
-        'deadline' => $faker->dateTimeBetween('now', '+1 week')
+        'deadline' => $faker->dateTimeBetween('-1 week', '+1 week')
     ];
 });
