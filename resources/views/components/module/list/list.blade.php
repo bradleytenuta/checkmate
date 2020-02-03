@@ -8,7 +8,7 @@
             <div class="card list-card-container">
 
                 <!-- Module Card -->
-                @include('components.card.module', ['module'=>$module])
+                @include('components.module.card', ['module'=>$module])
 
                 <!-- Only display the below html if there are more than zero courseworks -->
                 @if ( sizeof($module->courseworks) > 0 )
@@ -21,7 +21,7 @@
                     <div class="list-module-coursework-container">
                         @foreach ($module->courseworks as $coursework)
                             <!-- Coursework Card -->
-                            @include('components.card.coursework', ['coursework'=>$coursework])
+                            @include('components.coursework.card', ['coursework'=>$coursework])
                         @endforeach
                     </div>
                 @endif

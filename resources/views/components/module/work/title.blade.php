@@ -14,12 +14,9 @@
         data-placement="bottom"
         title="{{ Auth::user()->getModulePermissionText($module) }}">
 
-    <!-- Icon to show if the item is open or closed -->
-    @if ($module->open == true)
-        <div class="work-title-badge card-open badge badge-secondary">Open</div>
-    @else
-        <div class="work-title-badge card-closed badge badge-secondary">Closed</div>
-    @endif
+    <!-- Icon to show all open courseworks and all closed courseworks -->
+    <div class="work-title-badge card-open badge badge-secondary">{{ sizeof($module->openCourseworks()) }}</div>
+    <div class="work-title-badge card-closed badge badge-secondary">{{ sizeof($module->closedCourseworks()) }}</div>
 
     <!-- Buttons -->
     @if (Auth::user()->hasModulePermission(5, $module))

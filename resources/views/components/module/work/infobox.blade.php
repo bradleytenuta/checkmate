@@ -2,7 +2,7 @@
     <div class="row">
 
         <!-- Module Title Container -->
-        @include('components.work.module.title', ['module'=>$module])
+        @include('components.module.work.title', ['module'=>$module])
 
         <!-- Module Info Container -->
         <div class="col-md-6">

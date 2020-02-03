@@ -9,15 +9,15 @@
             <!-- Filter Buttons -->
             <div id="list-filter-container" class="list-title-button-group btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary active">
-                    <input type="radio" id="list-filter-all" autocomplete="off" onclick="toggleListFilter(this, 0)">
+                    <input type="radio" id="list-filter-all" autocomplete="off" onclick="toggleCourseworkFilter(this, 0)">
                     All
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" id="list-filter-open" autocomplete="off" onclick="toggleListFilter(this, 1)">
+                    <input type="radio" id="list-filter-open" autocomplete="off" onclick="toggleCourseworkFilter(this, 1)">
                     Open
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" id="list-filter-closed" autocomplete="off" onclick="toggleListFilter(this, 2)">
+                    <input type="radio" id="list-filter-closed" autocomplete="off" onclick="toggleCourseworkFilter(this, 2)">
                     Closed
                 </label>
             </div>

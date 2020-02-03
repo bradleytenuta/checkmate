@@ -16,7 +16,8 @@ class CourseworkController extends Controller
     public function show($id)
     {
         // Finds the coursework by the given id. Then gets the module that coursework belongs to.
-        $module = Coursework::findOrFail($id)->module;
+        $coursework = Coursework::findOrFail($id);
+        $module = $coursework->module;
 
         if (Auth::user()->isInModule($module))
         {

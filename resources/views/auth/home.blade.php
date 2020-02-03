@@ -6,11 +6,10 @@
 <!-- Content Container -->
 <div class="content-container">
     <!-- Module Title Container -->
-    @include('components.list.title', ['title'=>'My Modules'])
+    @include('components.module.list.title', ['title'=>'My Modules'])
 
-    <!-- TODO: Add Javascript to filter and sort this list -->
     <!-- List of modules -->
-    @include('components.list.modules', ['modules'=>$modules])
+    @include('components.module.list.list', ['modules'=>$modules])
 </div>
 
 @endsection

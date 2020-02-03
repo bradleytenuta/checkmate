@@ -6,14 +6,13 @@
 <!-- Content Container -->
 <div class="content-container">
     <!-- Module Card -->
-    @include('components.work.module.infobox', ['module'=>$module])
+    @include('components.module.work.infobox', ['module'=>$module])
 
     <!-- Coursework Title Container -->
-    @include('components.list.title', ['title'=>'Courseworks'])
+    @include('components.coursework.list.title', ['title'=>'Courseworks'])
 
     <!-- Bootstrap cards for the Modules courseworks -->
-    <!-- TODO: Add Javascript to filter and sort this list -->
-    @include('components.list.courseworks', ['courseworks'=>$module->courseworks])
+    @include('components.coursework.list.list', ['courseworks'=>$module->courseworks])
 </div>
 
 @endsection

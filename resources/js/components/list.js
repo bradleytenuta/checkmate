@@ -40,12 +40,9 @@ window.buildMasonary = function buildMasonary() {
     });
 }
 
-window.toggleListFilter = function toggleListFilter(filterButton, filterOption) {
-    // Gets all the filter input options and unchecks them.
-    $('#list-filter-container label').removeClass("active");
-
-    // Checks the filter input that was clicked.
-    $('#' + filterButton.id).parent().addClass("active");
+window.toggleModuleFilter = function toggleModuleFilter(filterButton, filterOption) {
+    // Updates the filter buttons
+    updateFilterButtons(filterButton);
 
     // Gets all the grid items
     var griditems = $('.grid-item');
@@ -60,11 +57,11 @@ window.toggleListFilter = function toggleListFilter(filterButton, filterOption) 
     } else if (filterOption == 1) {
         griditems.each(function() {
 
-            // If there is no 'card-open' class, then hide.
-            if ($(this).find('.card-open').length == 0) {
-                $(this).css('display', 'none');
-            } else {
+            // If there is at least one 'card-open' class, inside the list of courseworks, then show the module.
+            if ($(this).find('.list-module-coursework-container .card-open').length > 0) {
                 $(this).css('display', 'block');
+            } else {
+                $(this).css('display', 'none');
             }
         });
 
@@ -72,7 +69,49 @@ window.toggleListFilter = function toggleListFilter(filterButton, filterOption) 
     } else if (filterOption == 2) {
         griditems.each(function() {
 
-            // If there is no 'card-open' class, then show.
+            // If there is no 'card-open' class, inside the list of courseworks, then show the module.
+            if ($(this).find('.list-module-coursework-container .card-open').length == 0) {
+                $(this).css('display', 'block');
+            } else {
+                $(this).css('display', 'none');
+            }
+        });
+    }
+
+    // Rebuilds the masonary.
+    buildMasonary();
+}
+
+window.toggleCourseworkFilter = function toggleCourseworkFilter(filterButton, filterOption) {
+    // Updates the filter buttons
+    updateFilterButtons(filterButton);
+
+    // Gets all the grid items
+    var griditems = $('.grid-item');
+
+    // Show all
+    if (filterOption == 0) {
+        griditems.each(function() {
+            $(this).css('display', 'block');
+        });
+
+    // Show open
+    } else if (filterOption == 1) {
+        griditems.each(function() {
+
+            // If the coursework has the 'card-open' class then show it.
+            if ($(this).find('.card-open').length > 0) {
+                $(this).css('display', 'block');
+            } else {
+                $(this).css('display', 'none');
+            }
+        });
+
+    // Show closed
+    } else if (filterOption == 2) {
+        griditems.each(function() {
+
+            // If the coursework does not have the 'card-open' class then show it.
             if ($(this).find('.card-open').length == 0) {
                 $(this).css('display', 'block');
             } else {
@@ -83,4 +122,12 @@ window.toggleListFilter = function toggleListFilter(filterButton, filterOption) 
 
     // Rebuilds the masonary.
     buildMasonary();
+}
+
+window.updateFilterButtons = function updateFilterButtons(filterButton) {
+    // Gets all the filter input options and unchecks them.
+    $('#list-filter-container label').removeClass("active");
+
+    // Checks the filter input that was clicked.
+    $('#' + filterButton.id).parent().addClass("active");
 }
