@@ -18,8 +18,7 @@ class CourseworkObserver
         // Checks to see if the deadline has passed. If so update the state of coursework.
         if (Time::dateHasPassed($coursework))
         {
-            $coursework->open = false;
-            $coursework->save();
+            $coursework->setState(false);
         }
     }
 

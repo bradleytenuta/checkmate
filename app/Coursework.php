@@ -21,4 +21,13 @@ class Coursework extends Model {
     {
         return $this->hasMany('App\Submission');
     }
+
+    /**
+     * Sets the state of the coursework, either open or closed.
+     */
+    public function setState($boolean)
+    {
+        $this->open = $boolean;
+        $this->save();
+    }
 }

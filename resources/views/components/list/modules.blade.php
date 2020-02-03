@@ -10,18 +10,21 @@
                 <!-- Module Card -->
                 @include('components.card.module', ['module'=>$module])
 
-                <!-- See Coursework button -->
-                <button type="button" class="checkmate-button" onclick="toggleCourseworkDropdown(this)">
-                    <img src="{{ Storage::url('/images/icon/angle-down-solid.png') }}"/>
-                </button>
+                <!-- Only display the below html if there are more than zero courseworks -->
+                @if ( sizeof($module->courseworks) > 0 )
+                    <!-- See Coursework button -->
+                    <button type="button" class="checkmate-button" onclick="toggleCourseworkDropdown(this)">
+                        <img src="{{ Storage::url('/images/icon/angle-down-solid.png') }}"/>
+                    </button>
 
-                <!-- All courseworks container -->
-                <div class="list-module-coursework-container">
-                    @foreach ($module->courseworks as $coursework)
-                        <!-- Coursework Card -->
-                        @include('components.card.coursework', ['coursework'=>$coursework])
-                    @endforeach
-                </div>
+                    <!-- All courseworks container -->
+                    <div class="list-module-coursework-container">
+                        @foreach ($module->courseworks as $coursework)
+                            <!-- Coursework Card -->
+                            @include('components.card.coursework', ['coursework'=>$coursework])
+                        @endforeach
+                    </div>
+                @endif
 
             </div>
         </div>

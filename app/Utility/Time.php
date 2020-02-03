@@ -17,8 +17,7 @@ class Time
         {
             if ((Time::dateHasPassed($coursework)) && ($coursework->open == true))
             {
-                $coursework->open = false;
-                $coursework->save();
+                $coursework->setState(false);
             }
         }
     }
