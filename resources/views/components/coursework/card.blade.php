@@ -28,4 +28,9 @@
 
     <!-- Links to open coursework -->
     <a href="{{ route('coursework.show', ['id' => $coursework->id]) }}" class="card-link">Open</a>
+
+    <!-- If the user has the option to edit the module, then they have the option to edit the coursework -->
+    @if (Auth::user()->hasModulePermission(5, $module))
+        <a href="#" class="card-link">Edit</a>
+    @endif
 </div>
