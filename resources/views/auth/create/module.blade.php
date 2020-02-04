@@ -5,7 +5,7 @@
 @section ('dynamic-main-content')
 
 <!-- Register User form -->
-<form method="POST" class="checkmate-form">
+<form method="POST" class="checkmate-form" action="{{ route('create.module') }}">
 
     @csrf
 
@@ -33,21 +33,9 @@
         </div>
     </div>
 
-    <!-- TODO: Finish -->
-    <!-- All Selections container -->
+    <!-- Assign Users Table -->
     <div class="form-group row">
-            
-        <!-- Select Professors -->
-        <div class="col-sm-4">
-        </div>
-
-        <!-- Select assessors -->
-        <div class="col-sm-4">
-        </div>
-
-        <!-- Select students -->
-        <div class="col-sm-4">
-        </div>
+        @include('components.table.module-assign')
     </div>
 
     <!-- Register Button -->

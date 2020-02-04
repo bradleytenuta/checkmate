@@ -11,3 +11,4 @@ require('./bootstrap');
  */
 require('./components/navbar');
 require('./components/list');
+require('./components/table');
