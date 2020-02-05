@@ -12,13 +12,7 @@
     <h2>Create Module</h2>
 
     <!-- Error messages if there are any -->
-    @if ($errors->any())
-        <div class="alert alert-danger mt-5" role="alert">
-            @foreach ($errors->all() as $error)
-                <p class="mb-0">{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
+    @include('components.form.error')
 
     <!-- Module name box -->
     <div class="form-group row">
@@ -38,7 +32,7 @@
 
     <!-- Assign Users Table -->
     <div class="form-group row">
-        @include('components.table.module-assign')
+        @include('components.form.assign-table')
     </div>
 
     <!-- Register Button -->
