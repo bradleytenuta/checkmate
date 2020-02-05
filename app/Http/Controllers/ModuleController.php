@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use App\ModuleRole;
+use App\User;
 use Redirect;
 
 class ModuleController extends Controller
@@ -81,8 +82,7 @@ class ModuleController extends Controller
         $allroleAssignInputs = array_slice($request->input(), 3);
 
         // If there is no professor assigned.
-        $result = array_search('professor', $allroleAssignInputs);
-        if ($result == false && $result != 0)
+        if (!in_array(ModuleRole::where('name', 'professor')->first()->id, $allroleAssignInputs))
         {
             throw ValidationException::withMessages(['Assign Fail' => 'A Professor must be assigned to the module.']);
         }
@@ -116,6 +116,26 @@ class ModuleController extends Controller
                 ['module_id' => $module->id, 'user_id' => $userId],
                 ['module_role_id' => $moduleRoleId]
             );
+        }
+
+        // Goes through all the users in the database.
+        // If the user is not in the list assigned list
+        // then remove them from the module relationship, 
+        // incase they used to be part of the module.
+        foreach(User::all() as $user)
+        {
+            // If the user is not in the assigned list,
+            // And they are in the relationship, then remove them.
+            if (!in_array($user->id, array_keys($userIdAndRoleIds)) && DB::table('module_user')
+                                ->where('module_id', $module->id)
+                                ->where('user_id', $user->id)
+                                ->exists())
+            {
+                DB::table('module_user')
+                    ->where('module_id', $module->id)
+                    ->where('user_id', $user->id)
+                    ->delete();
+            }
         }
     }
 

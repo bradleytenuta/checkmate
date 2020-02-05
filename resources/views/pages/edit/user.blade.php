@@ -45,7 +45,7 @@
     <!-- Edit Button -->
     <div class="form-group row">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">Edit</button>
+        <button type="submit" class="btn btn-primary">Save</button>
       </div>
     </div>
   </form>
