@@ -20,7 +20,7 @@
 
     <!-- Buttons -->
     @if (Auth::user()->hasModulePermission(5, $module))
-        <a href="#" type="button" class="btn btn-primary work-title-button">Edit</a>
+        <a href="{{ route('module.edit.show', ['id' => $module->id]) }}" type="button" class="btn btn-primary work-title-button">Edit</a>
     @endif
     @if (Auth::user()->hasModulePermission(6, $module))
         <a href="#" type="button" class="btn btn-danger work-title-button">

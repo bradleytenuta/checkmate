@@ -37,6 +37,6 @@
 
     <!-- If the user has the option to edit the module -->
     @if (Auth::user()->hasModulePermission(5, $module))
-        <a href="#" class="card-link">Edit</a>
+        <a href="{{ route('module.edit.show', ['id' => $module->id]) }}" class="card-link">Edit</a>
     @endif
 </div>

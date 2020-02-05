@@ -16,8 +16,10 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@show')->name('home')->middleware('auth');
 
 // Moudle Routes
-Route::get('modules/create', 'ModuleController@showModuleForm')->name('module.create.showModuleForm')->middleware('auth');
+Route::get('modules/create', 'ModuleController@showCreateModule')->name('module.create.show')->middleware('auth');
 Route::post('modules/create', 'ModuleController@createModule')->name('module.create')->middleware('auth');
+Route::post('modules/edit', 'ModuleController@editModule')->name('module.edit')->middleware('auth');
+Route::get('modules/edit/{id}', 'ModuleController@showEditModule')->name('module.edit.show')->middleware('auth');
 Route::get('modules/{id}', 'ModuleController@show')->name('module.show')->middleware('auth');
 
 // Route to show a coursework.

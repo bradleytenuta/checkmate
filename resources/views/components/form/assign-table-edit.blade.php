@@ -1,7 +1,7 @@
 <!-- The assign table container -->
 <div class="col-sm-12">
 
-    <label>Assign<span class="field-required">*</span></label>
+    <label>Assign</label>
 
     <!-- The Assign Header -->
     <div id="create-module-assign-header">
@@ -61,7 +61,10 @@
                                     type="radio"
                                     name="{{ $user->id }}"
                                     id="radio-id-1-{{ $user->id }}"
-                                    value="{{ \App\ModuleRole::where('name', 'professor')->first()->id }}">
+                                    value="{{ \App\ModuleRole::where('name', 'professor')->first()->id }}"
+                                    @if ($user->isProfessor($module))
+                                    checked
+                                    @endif>
                             </div>
                         </td>
                         <td>
@@ -71,7 +74,10 @@
                                     type="radio"
                                     name="{{ $user->id }}"
                                     id="radio-id-2-{{ $user->id }}"
-                                    value="{{ \App\ModuleRole::where('name', 'assessor')->first()->id }}">
+                                    value="{{ \App\ModuleRole::where('name', 'assessor')->first()->id }}"
+                                    @if ($user->isAssessor($module))
+                                    checked
+                                    @endif>
                             </div>
                         </td>
                         <td>
@@ -81,7 +87,10 @@
                                     type="radio"
                                     name="{{ $user->id }}"
                                     id="radio-id-3-{{ $user->id }}"
-                                    value="{{ \App\ModuleRole::where('name', 'student')->first()->id }}">
+                                    value="{{ \App\ModuleRole::where('name', 'student')->first()->id }}"
+                                    @if ($user->isStudent($module))
+                                    checked
+                                    @endif>
                             </div>
                         </td>
                         <!-- Name and ID -->
@@ -101,13 +110,4 @@
         </div>
     </div>
 
-</div>
-
-<!-- Information warning box, reminding people to select at least one Professor -->
-<div class="alert alert-primary mt-5" role="alert">
-    <p>Only a single Professor needs to be assgined right now!</p>
-    <hr>
-    <p>Assign yourself to this module if you wish to be able to see it after creation.</p>
-    <hr>
-    <p class="mb-0">Assigning additonal Students, Assessors and Professors can be done later in the edit menu.</p>
 </div>

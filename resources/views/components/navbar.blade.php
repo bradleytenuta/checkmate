@@ -36,7 +36,7 @@
             @endif
 
             @if (Auth::user()->hasGlobalPermission(4))
-                <a href="{{ route('module.create.showModuleForm') }}">
+                <a href="{{ route('module.create.show') }}">
                     <img src="{{ Storage::url('/images/navbar/module.png') }}" />
                     Create Module
                 </a>

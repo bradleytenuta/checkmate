@@ -11430,12 +11430,6 @@ a.text-dark:focus {
   background: #555;
 }
 
-.checkmate-form {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-}
-
 .list-container {
   margin-bottom: 10px;
 }
@@ -11729,5 +11723,11 @@ a.text-dark:focus {
 
 .field-required {
   color: red;
+}
+
+.checkmate-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
 }
 
