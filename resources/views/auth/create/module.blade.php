@@ -12,6 +12,15 @@
     <!-- Title -->
     <h2>Create Module</h2>
 
+    <!-- Error messages if there are any -->
+    @if ($errors->any())
+        <div class="alert alert-danger mt-5" role="alert">
+            @foreach ($errors->all() as $error)
+                <p class="mb-0">{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
+
     <!-- Module name box -->
     <div class="form-group row">
         <div class="col-sm-12">

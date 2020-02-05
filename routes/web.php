@@ -22,4 +22,5 @@ Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.sh
 Route::get('users/{id}', 'UserController@show')->name('user.show')->middleware('auth');
 
 // All the create routes
-Route::get('create/module', 'CreateController@createModule')->name('create.module')->middleware('auth');
+Route::get('create/module', 'CreateController@showModuleForm')->name('create.showModuleForm')->middleware('auth');
+Route::post('create/module', 'CreateController@createModule')->name('create.module')->middleware('auth');

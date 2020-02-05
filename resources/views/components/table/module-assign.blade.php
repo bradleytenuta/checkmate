@@ -52,17 +52,17 @@
                         <!-- Option Buttons -->
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio-name-{{ $user->id}}" id="radio-id-1-{{ $user->id}}" value="professor">
+                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-1-{{ $user->id }}" value="professor">
                             </div>
                         </td>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio-name-{{ $user->id}}" id="radio-id-2-{{ $user->id}}" value="assessor">
+                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-2-{{ $user->id }}" value="assessor">
                             </div>
                         </td>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio-name-{{ $user->id}}" id="radio-id-3-{{ $user->id}}" value="student">
+                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-3-{{ $user->id }}" value="student">
                             </div>
                         </td>
                         <!-- Name and ID -->
@@ -87,6 +87,8 @@
 <!-- Information warning box, reminding people to select at least one Professor -->
 <div class="alert alert-primary mt-5" role="alert">
     <p>Only a single Professor needs to be assgined right now!</p>
+    <hr>
+    <p>Assign yourself to this module if you wish to be able to see it after creation.</p>
     <hr>
     <p class="mb-0">Assigning additonal Students, Assessors and Professors can be done later in the edit menu.</p>
 </div>
