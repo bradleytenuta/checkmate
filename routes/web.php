@@ -1,10 +1,13 @@
 <?php
+/**
+ * Routes with '{tag}' should appear at the bottom of its list. 
+ * This is because laravel will consider it for any url.
+ */
 
+// Auth Routes
 Auth::routes();
 
-// The login route and controller are already defined by default.
-// If the user is logged in already, then they cannot access the login page and are
-// redirected to the home page.
+// Root url is the login page.
 Route::get('/', function () { 
     return redirect()->route('login'); 
 });
@@ -12,7 +15,9 @@ Route::get('/', function () {
 // Route to the home page.
 Route::get('/home', 'HomeController@show')->name('home')->middleware('auth');
 
-// Route to show a moudle.
+// Moudle Routes
+Route::get('modules/create', 'ModuleController@showModuleForm')->name('module.create.showModuleForm')->middleware('auth');
+Route::post('modules/create', 'ModuleController@createModule')->name('module.create')->middleware('auth');
 Route::get('modules/{id}', 'ModuleController@show')->name('module.show')->middleware('auth');
 
 // Route to show a coursework.
@@ -20,7 +25,3 @@ Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.sh
 
 // Route to show a user.
 Route::get('users/{id}', 'UserController@show')->name('user.show')->middleware('auth');
-
-// All the create routes
-Route::get('create/module', 'CreateController@showModuleForm')->name('create.showModuleForm')->middleware('auth');
-Route::post('create/module', 'CreateController@createModule')->name('create.module')->middleware('auth');

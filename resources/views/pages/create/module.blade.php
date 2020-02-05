@@ -1,11 +1,10 @@
 @extends ('layouts.main')
-<!-- TODO: reformat this file and the register use file -->
 
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')
 
 <!-- Register User form -->
-<form method="POST" class="checkmate-form" action="{{ route('create.module') }}">
+<form method="POST" class="checkmate-form" action="{{ route('module.create') }}">
 
     @csrf
 
@@ -25,12 +24,7 @@
     <div class="form-group row">
         <div class="col-sm-12">
             <label for="name">Name<span class="field-required">*</span></label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Name" required autofocus>
-            @error('name')
-            <div class="invalid-feedback" role="alert">
-                {{ $message }}
-            </div>
-            @enderror
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required autofocus>
         </div>
     </div>
 
