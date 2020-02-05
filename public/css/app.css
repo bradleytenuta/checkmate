@@ -11516,6 +11516,10 @@ a.text-dark:focus {
   margin-left: 10px;
 }
 
+.work-title-button-image {
+  width: 20px;
+}
+
 @media (min-width: 768px) {
   .work-title-button {
     float: right;

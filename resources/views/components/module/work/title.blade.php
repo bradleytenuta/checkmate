@@ -23,6 +23,9 @@
         <a href="#" type="button" class="btn btn-primary work-title-button">Edit</a>
     @endif
     @if (Auth::user()->hasModulePermission(6, $module))
-        <a href="#" type="button" class="btn btn-primary work-title-button">Delete</a>
+        <a href="#" type="button" class="btn btn-danger work-title-button">
+            <img class="work-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
+            Delete
+        </a>
     @endif
 </div>
