@@ -39607,15 +39607,6 @@ $('input[type="radio"]').click(function () {
   }
 });
 /**
- * When the enter button is clicked in the search box, it invokes the search user function.
- */
-
-$("#create-module-search").keypress(function (event) {
-  if (event.which == 13) {
-    searchForUser();
-  }
-});
-/**
  * This function is called whenever the user types in the search box of the table.
  */
 
