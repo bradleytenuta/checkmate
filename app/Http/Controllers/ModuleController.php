@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use App\ModuleRole;
+use Redirect;
 
 class ModuleController extends Controller
 {

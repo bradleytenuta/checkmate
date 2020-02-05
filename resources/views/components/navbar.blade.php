@@ -44,7 +44,7 @@
         </div>
         <!-- User dropdown -->
         <div class="navbar-dropdown" id="navbar-user-dropdown">
-            <a href="{{ route('user.show', ['id' => Auth::user()->id]) }}">
+            <a href="{{ route('user.edit.show') }}">
                 <img src="{{ Storage::url('/images/navbar/user-cog.png') }}" />
                 Account
             </a>

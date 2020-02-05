@@ -3,7 +3,7 @@
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')
 
-<!-- Register User form -->
+<!-- Register Module form -->
 <form method="POST" class="checkmate-form" action="{{ route('module.edit') }}">
 
     @csrf
@@ -38,13 +38,13 @@
         @include('components.form.assign-table-edit', ['module'=>$module])
     </div>
 
-    <!-- Register Button -->
+    <!-- Edit Button -->
     <div class="form-group row">
       <div class="col-sm-12">
         <button type="submit" class="btn btn-primary">Edit</button>
       </div>
     </div>
-  </form>
+</form>
 
 @endsection
 <!-- End of the Section-->

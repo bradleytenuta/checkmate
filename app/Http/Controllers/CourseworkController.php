@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Coursework;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 
 class CourseworkController extends Controller
 {

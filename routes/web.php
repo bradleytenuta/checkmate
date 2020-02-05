@@ -26,4 +26,6 @@ Route::get('modules/{id}', 'ModuleController@show')->name('module.show')->middle
 Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.show')->middleware('auth');
 
 // Route to show a user.
+Route::get('users/edit', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
+Route::post('users/edit', 'UserController@editUser')->name('user.edit')->middleware('auth');
 Route::get('users/{id}', 'UserController@show')->name('user.show')->middleware('auth');
