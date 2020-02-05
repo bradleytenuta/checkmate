@@ -15,13 +15,13 @@
             <!-- Admin button -->
             @if (Auth::user()->hasAdminRole())
                 <button id="navbar-admin-button" type="button" class="checkmate-button" onclick="openNavDropDown('navbar-admin-dropdown')">
-                    <img src="{{ Storage::url('/images/navbar/plus-circle.png') }}" />
+                    <img src="{{ Storage::url('/images/icon/crown-solid.png') }}" />
                 </button>
             @endif
 
             <!-- User button -->
             <button id="navbar-user-button" type="button" class="checkmate-button" onclick="openNavDropDown('navbar-user-dropdown')">
-                <img src="{{ Storage::url('/images/navbar/user.png') }}" />
+                <img src="{{ Storage::url('/images/icon/user.png') }}" />
             </button>
         </div>
 
@@ -30,14 +30,14 @@
         <div class="navbar-dropdown" id="navbar-admin-dropdown">
             @if (Auth::user()->hasGlobalPermission(1))
                 <a href="{{ route('register') }}">
-                    <img src="{{ Storage::url('/images/navbar/user-cog.png') }}" />
+                    <img src="{{ Storage::url('/images/icon/user-cog.png') }}" />
                     Create User
                 </a>
             @endif
 
             @if (Auth::user()->hasGlobalPermission(4))
                 <a href="{{ route('module.create.show') }}">
-                    <img src="{{ Storage::url('/images/navbar/module.png') }}" />
+                    <img src="{{ Storage::url('/images/icon/module.png') }}" />
                     Create Module
                 </a>
             @endif
@@ -45,11 +45,11 @@
         <!-- User dropdown -->
         <div class="navbar-dropdown" id="navbar-user-dropdown">
             <a href="{{ route('user.edit.show') }}">
-                <img src="{{ Storage::url('/images/navbar/user-cog.png') }}" />
+                <img src="{{ Storage::url('/images/icon/user-cog.png') }}" />
                 Account
             </a>
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <img src="{{ Storage::url('/images/navbar/sign-out.png') }}" />
+                <img src="{{ Storage::url('/images/icon/sign-out.png') }}" />
                 Log Off
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

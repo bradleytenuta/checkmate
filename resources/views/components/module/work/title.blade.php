@@ -19,10 +19,12 @@
     <div class="work-title-badge card-closed badge badge-secondary">{{ sizeof($module->closedCourseworks()) }}</div>
 
     <!-- Buttons -->
-    @if (Auth::user()->hasModulePermission(5, $module))
-        <a href="{{ route('module.edit.show', ['id' => $module->id]) }}" type="button" class="btn btn-primary work-title-button">Edit</a>
+    @if (Auth::user()->hasModulePermission(5, $module) || Auth::user()->hasAdminRole())
+        <a href="{{ route('module.edit.show', ['id' => $module->id]) }}" type="button" class="btn btn-primary work-title-button">
+            Edit
+        </a>
     @endif
-    @if (Auth::user()->hasModulePermission(6, $module))
+    @if (Auth::user()->hasModulePermission(6, $module) || Auth::user()->hasAdminRole())
         <a href="#" type="button" class="btn btn-danger work-title-button">
             <img class="work-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
             Delete

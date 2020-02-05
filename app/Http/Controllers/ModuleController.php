@@ -25,7 +25,7 @@ class ModuleController extends Controller
 
         if (Auth::user()->isInModule($module))
         {
-            return view('auth/module', ['module' => $module]);
+            return view('auth.module', ['module' => $module]);
         } else
         {
             return Redirect::back();

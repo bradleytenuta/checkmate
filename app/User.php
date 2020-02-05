@@ -176,17 +176,17 @@ class User extends Authenticatable {
 
         // If the user is a student.
         if (ModuleRole::where('name', 'student')->first()->id == $module_role_id) {
-            return "/images/other/module-icon-student.png";
+            return "/images/icon/module-icon-student.png";
         }
 
         // If the user is a professor.
         if (ModuleRole::where('name', 'professor')->first()->id == $module_role_id) {
-            return "/images/other/module-icon-professor.png";
+            return "/images/icon/module-icon-professor.png";
         }
 
         // If the user is an assessor.
         if (ModuleRole::where('name', 'assessor')->first()->id == $module_role_id) {
-            return "/images/other/module-icon-assessor.png";
+            return "/images/icon/module-icon-assessor.png";
         }
 
         return null;

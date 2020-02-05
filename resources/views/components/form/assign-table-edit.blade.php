@@ -24,17 +24,17 @@
                 <tr>
                     <!-- The Radio Button options and onclick select all feature -->
                     <th><img
-                        src="{{ Storage::url('/images/other/module-icon-professor.png') }}"
+                        src="{{ Storage::url('/images/icon/module-icon-professor.png') }}"
                         title="Select All - Professor"
                         class="form-check form-check-inline"
                         onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'professor')->first()->id }})" /></th>
                     <th><img
-                        src="{{ Storage::url('/images/other/module-icon-assessor.png') }}"
+                        src="{{ Storage::url('/images/icon/module-icon-assessor.png') }}"
                         title="Select All - Assessor"
                         class="form-check form-check-inline"
                         onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'assessor')->first()->id }})" /></th>
                     <th><img
-                        src="{{ Storage::url('/images/other/module-icon-student.png') }}"
+                        src="{{ Storage::url('/images/icon/module-icon-student.png') }}"
                         title="Select All - Student"
                         class="form-check form-check-inline"
                         onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'student')->first()->id }})" /></th>
