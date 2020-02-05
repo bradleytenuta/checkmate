@@ -14,7 +14,7 @@
     <!-- Email row -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="email">{{ __('Email') }}</label>
+            <label for="email">Email<span class="field-required">*</span></label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" required autofocus>
             @error('email')
             <div class="invalid-feedback" role="alert">
@@ -27,7 +27,7 @@
     <!-- First Name and Last Name row -->
     <div class="form-group row">
         <div class="col-md-6">
-            <label for="firstname">{{ __('First Name') }}</label>
+            <label for="firstname">First Name<span class="field-required">*</span></label>
             <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" id="firstname" placeholder="First name" required autofocus>
         
             @error('firstname')
@@ -37,7 +37,7 @@
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="surname">{{ __('Surname') }}</label>
+            <label for="surname">Surname<span class="field-required">*</span></label>
             <input type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" id="surname" placeholder="Surname" required autofocus>
             @error('surname')
             <div class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
       <div class="col-sm-12">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="admin" id="admin" autofocus>
-          <label class="form-check-label" for="admin">{{ __('Admin Privileges') }}</label>
+          <label class="form-check-label" for="admin">Admin Privileges</label>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
     <!-- Register Button -->
     <div class="form-group row">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+        <button type="submit" class="btn btn-primary">Register</button>
       </div>
     </div>
 

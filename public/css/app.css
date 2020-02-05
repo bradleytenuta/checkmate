@@ -11430,6 +11430,13 @@ a.text-dark:focus {
   background: #555;
 }
 
+/* Form
+-------------------------------------------------- */
+
+.field-required {
+  color: red;
+}
+
 .checkmate-form {
   max-width: 600px;
   margin: auto;

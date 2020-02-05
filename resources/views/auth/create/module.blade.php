@@ -15,7 +15,7 @@
     <!-- Module name box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="name">{{ __('Name') }}</label>
+            <label for="name">Name<span class="field-required">*</span></label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Name" required autofocus>
             @error('name')
             <div class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
     <!-- Description text box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="description">{{ __('Description') }}</label>
+            <label for="description">Description<span class="field-required">*</span></label>
             <textarea class="form-control" rows="6" name="description" id="description" placeholder="Description" required autofocus></textarea>
         </div>
     </div>
@@ -41,7 +41,7 @@
     <!-- Register Button -->
     <div class="form-group row">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+        <button type="submit" class="btn btn-primary">Create</button>
       </div>
     </div>
   </form>

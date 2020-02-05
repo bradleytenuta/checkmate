@@ -1,6 +1,7 @@
+<!-- The assign table container -->
 <div class="col-sm-12">
 
-    <label>Assign</label>
+    <label>Assign<span class="field-required">*</span></label>
 
     <!-- The Assign Header -->
     <div id="create-module-assign-header">
@@ -81,4 +82,11 @@
         </div>
     </div>
 
+</div>
+
+<!-- Information warning box, reminding people to select at least one Professor -->
+<div class="alert alert-primary mt-5" role="alert">
+    <p>Only a single Professor needs to be assgined right now!</p>
+    <hr>
+    <p class="mb-0">Assigning additonal Students, Assessors and Professors can be done later in the edit menu.</p>
 </div>

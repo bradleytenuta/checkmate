@@ -39757,32 +39757,34 @@ $('input[type="radio"]').click(function () {
   }
 });
 /**
+ * When the enter button is clicked in the search box, it invokes the search user function.
+ */
+
+$("#create-module-search").keypress(function (event) {
+  if (event.which == 13) {
+    searchForUser();
+  }
+});
+/**
  * This function is called whenever the user types in the search box of the table.
  */
 
 window.searchForUser = function searchForUser() {
   // Searches through the id's for the same text
-  $('.create-module-cell-id-inner').each(function (index) {
-    // TODO: Remove all background colours from here
-    if ($(this).text() == $('#create-module-search').val()) {
+  // Or searches through the names for the same text
+  $('.create-module-cell-id-inner, .create-module-cell-name-inner').each(function (index) {
+    // Clears all rows to transparent backgrounds.
+    $('#create-module-assign-container tr').css('background-color', 'transparent');
+    var iteratingString = $(this).text().toLowerCase().trim();
+    var searchString = $('#create-module-search').val().toLowerCase().trim();
+
+    if (iteratingString == searchString || iteratingString.includes(searchString)) {
       // Gets the height of where the elem would be in the list.
       var heightOfElem = $(this).height() * index + 1;
       $('#create-module-assign-container').animate({
         scrollTop: heightOfElem
-      }, 500); // TODO: Add background color to the row.
-
-      return false;
-    }
-  }); // Searches through the names for the same text
-
-  $('.create-module-cell-name-inner').each(function () {
-    if ($(this).text() == $('#create-module-search').val()) {
-      // Gets the height of where the elem would be in the list.
-      var heightOfElem = $(this).height() * index + 1;
-      $('#create-module-assign-container').animate({
-        scrollTop: heightOfElem
-      }, 500); // TODO: Add background color to the row.
-
+      }, 500);
+      $(this).parent().parent().parent().css('background-color', 'yellow');
       return false;
     }
   });
