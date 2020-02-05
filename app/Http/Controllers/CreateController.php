@@ -28,15 +28,12 @@ class CreateController extends Controller
         // Creates an array of all user ids and their assigned roles.
         $userIdAndRoleIds = array();
 
-        foreach($request->input() as $userId => $value)
+        foreach($request->input() as $userId => $modulePermissionId)
         {
             // If the key is not a user id then skip to next value in loop.
             if (!is_int($userId)) {
                 continue;
             }
-
-            // Gets the permission based on the value entered.
-            $modulePermissionId = ModuleRole::where('name', $value)->first()->id;
 
             // Adds the values to the array
             $userIdAndRoleIds[$userId] = $modulePermissionId;

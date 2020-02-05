@@ -23,17 +23,17 @@
                         src="{{ Storage::url('/images/other/module-icon-professor.png') }}"
                         title="Select All - Professor"
                         class="form-check form-check-inline"
-                        onclick="tableSelectAll('professor')" /></th>
+                        onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'professor')->first()->id }})" /></th>
                     <th><img
                         src="{{ Storage::url('/images/other/module-icon-assessor.png') }}"
                         title="Select All - Assessor"
                         class="form-check form-check-inline"
-                        onclick="tableSelectAll('assessor')" /></th>
+                        onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'assessor')->first()->id }})" /></th>
                     <th><img
                         src="{{ Storage::url('/images/other/module-icon-student.png') }}"
                         title="Select All - Student"
                         class="form-check form-check-inline"
-                        onclick="tableSelectAll('student')" /></th>
+                        onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'student')->first()->id }})" /></th>
                     
                     <!-- Headers to explain the other cells -->
                     <th class="create-module-cell-id"><div class="form-check form-check-inline">Id</div></th>
@@ -52,17 +52,17 @@
                         <!-- Option Buttons -->
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-1-{{ $user->id }}" value="professor">
+                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-1-{{ $user->id }}" value="{{ \App\ModuleRole::where('name', 'professor')->first()->id }}">
                             </div>
                         </td>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-2-{{ $user->id }}" value="assessor">
+                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-2-{{ $user->id }}" value="{{ \App\ModuleRole::where('name', 'assessor')->first()->id }}">
                             </div>
                         </td>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-3-{{ $user->id }}" value="student">
+                                <input class="form-check-input" type="radio" name="{{ $user->id }}" id="radio-id-3-{{ $user->id }}" value="{{ \App\ModuleRole::where('name', 'student')->first()->id }}">
                             </div>
                         </td>
                         <!-- Name and ID -->
