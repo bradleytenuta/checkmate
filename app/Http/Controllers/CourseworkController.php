@@ -50,13 +50,9 @@ class CourseworkController extends Controller
     public function createCoursework(Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        // TODO: Make sure the deadline is in valid order. Make sure not in the past.
+        $this->validate($request);
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'maximum_score' => 'required',
-            'deadline' => 'required',
-            'module_id' => 'required'
+            'module_id' => ['required', 'integer']
         ]);
 
         // Finds the module to add the coursework to.
@@ -97,13 +93,9 @@ class CourseworkController extends Controller
     public function editCoursework(Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        // TODO: Make sure the deadline is in valid order. Make sure not in the past.
+        $this->validate($request);
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'maximum_score' => 'required',
-            'deadline' => 'required',
-            'id' => 'required'
+            'id' => ['required', 'integer']
         ]);
 
         // Edits the coursework
@@ -137,6 +129,17 @@ class CourseworkController extends Controller
 
         // Redirects to the module of the deleted coursework.
         return Redirect::route('module.show', ['id' => $module->id]);
+    }
+
+    // TODO: Make sure the deadline is in valid order. Make sure not in the past.
+    private function validate(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'maximum_score' => ['required', 'integer'],
+            'deadline' => ['required', 'string', 'date']
+        ]);
     }
 
     private function delete($courseworkId)

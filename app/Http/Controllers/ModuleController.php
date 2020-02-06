@@ -78,8 +78,8 @@ class ModuleController extends Controller
 
         // Validates the request. Makes sure the content is valid.
         $request->validate([
-            'name' => 'required',
-            'description' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string']
         ]);
 
         // Removes the first few elements that arnt assigns from the array.
@@ -166,7 +166,7 @@ class ModuleController extends Controller
 
         // Also checks that the module ID was passed through
         $request->validate([
-            'id' => 'required'
+            'id' => ['required', 'integer']
         ]);
 
         // Gets the assigned values from the request.

@@ -38,9 +38,9 @@ class UserController extends Controller
     {
         // Validates all the data is present.
         $request->validate([
-            'email' => 'required',
-            'firstname' => 'required',
-            'surname' => 'required'
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
         ]);
 
         // Updates the users properties.
