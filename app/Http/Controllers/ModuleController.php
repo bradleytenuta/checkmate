@@ -9,6 +9,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use App\ModuleRole;
 use App\User;
+use App\Coursework;
 use Redirect;
 
 class ModuleController extends Controller
@@ -181,5 +182,29 @@ class ModuleController extends Controller
 
         // Redirects the user back to the module page.
         return redirect()->route('module.show', ['id' => $module->id]);
+    }
+
+    public function deleteModule($id)
+    {
+        // Finds the module by the given id.
+        $module = Module::findOrFail($id);
+
+        // Checks the user has permission to delete the module.
+        if (!Auth::user()->hasAdminRole() && !Auth::user()->hasModulePermission(6, $module))
+        {
+            throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
+        }
+
+        // Deletes the module.
+        $this->delete($module->id);
+
+        return Redirect::route('home');
+    }
+
+    private function delete($moduleId)
+    {
+        Coursework::where('module_id', $moduleId)->delete();
+        DB::table('module_user')->where('module_id', $moduleId)->delete();
+        Module::where('id', $moduleId)->delete();
     }
 }

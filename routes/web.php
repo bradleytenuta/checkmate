@@ -20,6 +20,7 @@ Route::get('modules/create', 'ModuleController@showCreateModule')->name('module.
 Route::post('modules/create', 'ModuleController@createModule')->name('module.create')->middleware('auth');
 Route::post('modules/edit', 'ModuleController@editModule')->name('module.edit')->middleware('auth');
 Route::get('modules/edit/{id}', 'ModuleController@showEditModule')->name('module.edit.show')->middleware('auth');
+Route::post('modules/delete/{id}', 'ModuleController@deleteModule')->name('module.delete')->middleware('auth');
 Route::get('modules/{id}', 'ModuleController@show')->name('module.show')->middleware('auth');
 
 // Route to show a coursework.

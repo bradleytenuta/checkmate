@@ -11361,6 +11361,10 @@ a.text-dark:focus {
   max-width: 1920px;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* Button Colours.
 -------------------------------------------------- */
 

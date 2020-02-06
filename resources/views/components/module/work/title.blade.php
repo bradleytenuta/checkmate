@@ -24,10 +24,15 @@
             Edit
         </a>
     @endif
+
+    <!-- TODO: Add are you sure? message -->
     @if (Auth::user()->hasModulePermission(6, $module) || Auth::user()->hasAdminRole())
-        <a href="#" type="button" class="btn btn-danger work-title-button">
+        <a href="#" type="button" class="btn btn-danger work-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
             <img class="work-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
             Delete
         </a>
+        <form id="delete-form" action="{{ route('module.delete', ['id' => $module->id]) }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     @endif
 </div>
