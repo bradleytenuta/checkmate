@@ -25,6 +25,13 @@
         </a>
     @endif
 
+    @if (Auth::user()->hasModulePermission(7, $module) || Auth::user()->hasAdminRole())
+        <a href="{{ route('coursework.create.show', ['id' => $module->id]) }}" type="button" class="btn btn-primary work-title-button">
+            <img class="work-title-button-image" src="{{ Storage::url('/images/icon/coursework-white.png') }}" />
+            Create Coursework
+        </a>
+    @endif
+
     <!-- TODO: Add are you sure? message -->
     @if (Auth::user()->hasModulePermission(6, $module) || Auth::user()->hasAdminRole())
         <a href="#" type="button" class="btn btn-danger work-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">

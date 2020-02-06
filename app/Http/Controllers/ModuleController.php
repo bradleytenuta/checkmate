@@ -39,6 +39,9 @@ class ModuleController extends Controller
         if (Auth::user()->hasAdminRole())
         {
             return view('pages.create.module');
+        } else
+        {
+            return Redirect::back();
         }
     }
 

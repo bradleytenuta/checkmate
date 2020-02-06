@@ -24,6 +24,8 @@ Route::post('modules/delete/{id}', 'ModuleController@deleteModule')->name('modul
 Route::get('modules/{id}', 'ModuleController@show')->name('module.show')->middleware('auth');
 
 // Coursework Routes
+Route::post('courseworks/create', 'CourseworkController@createCoursework')->name('coursework.create')->middleware('auth');
+Route::get('courseworks/create/{id}', 'CourseworkController@showCreateCoursework')->name('coursework.create.show')->middleware('auth');
 Route::post('courseworks/edit', 'CourseworkController@editCoursework')->name('coursework.edit')->middleware('auth');
 Route::get('courseworks/edit/{id}', 'CourseworkController@showEditCoursework')->name('coursework.edit.show')->middleware('auth');
 Route::post('courseworks/delete/{id}', 'CourseworkController@deleteCoursework')->name('coursework.delete')->middleware('auth');
