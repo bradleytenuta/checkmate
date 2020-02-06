@@ -20,6 +20,6 @@ class HomeController extends Controller
         $modules = Auth::user()->modules;
 
         // Creates view with given parameters.
-        return view('auth/home', ['modules' => $modules]);
+        return view('pages.home', ['modules' => $modules]);
     }
 }

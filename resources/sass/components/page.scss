@@ -1,19 +1,19 @@
-.work-infobox-container {
+.page-infobox-container {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     background-color: #fff;
     padding: 10px;
 }
 
-.work-infobox-container h1 {
+.page-infobox-container h1 {
     margin: 0px;
 }
 
-.work-infobox-list {
+.page-infobox-list {
     max-height: 200px;
     overflow: auto;
 }
 
-.work-title-icon {
+.page-title-icon {
     width: 32px;
     margin-top: 10px;
     margin-left: 10px;
@@ -21,41 +21,41 @@
     margin-bottom: 0.5rem;
 }
 
-.work-title-button {
+.page-title-button {
     margin-top: 7px;
     margin-left: 10px;
     margin-bottom: 0.5rem;
 }
 
-.work-title-badge {
+.page-title-badge {
     margin-top: 15px;
     margin-left: 10px;
 }
 
-.work-title-text {
+.page-title-text {
     margin-top: 15px;
     margin-left: 10px;
     display: inline-block;
 }
 
-.work-title-button-image {
+.page-title-button-image {
     width: 20px;
 }
 
 @media (min-width: 768px) {
-    .work-title-button {
+    .page-title-button {
         float: right;
     }
-    .work-title-icon {
+    .page-title-icon {
         float: right;
     }
-    .work-title-badge {
+    .page-title-badge {
         float: right;
     }
-    .work-title-text {
+    .page-title-text {
         float: right;
     }
-    .work-infobox-container h1 {
+    .page-infobox-container h1 {
         margin-bottom: 0.5rem;
     }
 }

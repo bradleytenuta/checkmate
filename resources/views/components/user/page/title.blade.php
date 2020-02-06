@@ -8,6 +8,6 @@
 
     <!-- If the user is the current user -->
     @if ($user->id == Auth::user()->id)
-        <a href="#" type="button" class="btn btn-primary work-title-button">Edit</a>
+        <a href="#" type="button" class="btn btn-primary page-title-button">Edit</a>
     @endif
 </div>

@@ -8,7 +8,7 @@
 
     <!-- Icon -->
     <img 
-        class="work-title-icon"
+        class="page-title-icon"
         src="{{ Storage::url(Auth::user()->getModulePermissionIconPath($module)) }}"
         data-toggle="tooltip"
         data-placement="bottom"
@@ -16,22 +16,22 @@
 
     <!-- Icon to show if the coursework is open or closed -->
     @if ($coursework->open == true)
-        <div class="work-title-badge card-open badge badge-secondary">Open</div>
+        <div class="page-title-badge card-open badge badge-secondary">Open</div>
     @else
-        <div class="work-title-badge card-closed badge badge-secondary">Closed</div>
+        <div class="page-title-badge card-closed badge badge-secondary">Closed</div>
     @endif
 
     <!-- Buttons -->
     @if (Auth::user()->hasModulePermission(5, $module) || Auth::user()->hasAdminRole())
-        <a href="{{ route('coursework.edit.show', ['id' => $coursework->id]) }}" type="button" class="btn btn-primary work-title-button">
+        <a href="{{ route('coursework.edit.show', ['id' => $coursework->id]) }}" type="button" class="btn btn-primary page-title-button">
             Edit
         </a>
     @endif
 
     <!-- TODO: Add are you sure? message -->
     @if (Auth::user()->hasModulePermission(6, $module) || Auth::user()->hasAdminRole())
-        <a href="#" type="button" class="btn btn-danger work-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
-            <img class="work-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
+        <a href="#" type="button" class="btn btn-danger page-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+            <img class="page-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
             Delete
         </a>
         <form id="delete-form" action="{{ route('coursework.delete', ['id' => $coursework->id]) }}" method="POST" style="display: none;">
@@ -41,9 +41,9 @@
 
     <!-- Shows deadline -->
     @if ( \App\Utility\Time::dateIsToday($coursework) )
-        <p class="work-title-text card-due-today card-info-element">{{ $coursework->deadline }}</p>
+        <p class="page-title-text card-due-today card-info-element">{{ $coursework->deadline }}</p>
     @elseif ( \App\Utility\Time::dateHasPassed($coursework) )
-        <p class="work-title-text card-due-passed card-info-element">{{ $coursework->deadline }}</p>
+        <p class="page-title-text card-due-passed card-info-element">{{ $coursework->deadline }}</p>
     @else
         <p>{{ $coursework->deadline }}</p>
     @endif

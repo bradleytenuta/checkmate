@@ -1,8 +1,8 @@
-<div class="work-infobox-container">
+<div class="page-infobox-container">
     <div class="row">
 
         <!-- Module Title Container -->
-        @include('components.module.work.title', ['module'=>$module])
+        @include('components.module.page.title', ['module'=>$module])
 
         <!-- Module Info Container -->
         <div class="col-md-6">
@@ -14,7 +14,7 @@
 
             <!-- Gets all the Professors on the module -->
             <h5>{{ __('Professors') }}</h5>
-            <div class="work-infobox-list">
+            <div class="page-infobox-list">
                 <ul>
                 @foreach ($module->users as $userOnModule)
                     @if ($userOnModule->isProfessor($module))
@@ -30,7 +30,7 @@
 
             <!-- Gets all the Assessors on the module -->
             <h5>{{ __('Assessors') }}</h5>
-            <div class="work-infobox-list">
+            <div class="page-infobox-list">
                 <ul>
                 @foreach ($module->users as $userOnModule)
                     @if ($userOnModule->isAssessor($module))

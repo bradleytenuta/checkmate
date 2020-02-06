@@ -11356,84 +11356,6 @@ a.text-dark:focus {
   }
 }
 
-.content-container {
-  margin: auto;
-  max-width: 1920px;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-/* Button Colours.
--------------------------------------------------- */
-
-.btn-secondary:not(:disabled):not(.disabled):active,
-.btn-secondary:not(:disabled):not(.disabled).active,
-.show > .btn-secondary.dropdown-toggle {
-  color: #fff;
-  background-color: #1879C0;
-  border-color: #1776BB;
-}
-
-.btn-secondary {
-  color: #fff;
-  background-color: #1B84D1;
-  border-color: #1B84D1;
-}
-
-.btn-secondary:hover {
-  color: #fff;
-  background-color: #1879C0;
-  border-color: #1879C0;
-}
-
-.btn-primary {
-  color: #fff !important;
-  background-color: #1B84D1;
-  background-color: #1B84D1;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background-color: #1879C0;
-  border-color: #1879C0;
-}
-
-.checkmate-button {
-  background-color: transparent;
-  border: 0px;
-  width: 40px;
-  height: 40px;
-}
-
-.checkmate-button:focus,
-.checkmate-button:hover {
-  outline: 0;
-  border: 0px;
-  background-color: lightgray;
-  border-radius: 50%;
-}
-
-/* Scroll Bar
--------------------------------------------------- */
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 .list-container {
   margin-bottom: 10px;
 }
@@ -11480,22 +11402,22 @@ body {
   margin: 3px;
 }
 
-.work-infobox-container {
+.page-infobox-container {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   background-color: #fff;
   padding: 10px;
 }
 
-.work-infobox-container h1 {
+.page-infobox-container h1 {
   margin: 0px;
 }
 
-.work-infobox-list {
+.page-infobox-list {
   max-height: 200px;
   overflow: auto;
 }
 
-.work-title-icon {
+.page-title-icon {
   width: 32px;
   margin-top: 10px;
   margin-left: 10px;
@@ -11503,45 +11425,45 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.work-title-button {
+.page-title-button {
   margin-top: 7px;
   margin-left: 10px;
   margin-bottom: 0.5rem;
 }
 
-.work-title-badge {
+.page-title-badge {
   margin-top: 15px;
   margin-left: 10px;
 }
 
-.work-title-text {
+.page-title-text {
   margin-top: 15px;
   margin-left: 10px;
   display: inline-block;
 }
 
-.work-title-button-image {
+.page-title-button-image {
   width: 20px;
 }
 
 @media (min-width: 768px) {
-  .work-title-button {
+  .page-title-button {
     float: right;
   }
 
-  .work-title-icon {
+  .page-title-icon {
     float: right;
   }
 
-  .work-title-badge {
+  .page-title-badge {
     float: right;
   }
 
-  .work-title-text {
+  .page-title-text {
     float: right;
   }
 
-  .work-infobox-container h1 {
+  .page-infobox-container h1 {
     margin-bottom: 0.5rem;
   }
 }
@@ -11743,5 +11665,77 @@ body {
   max-width: 600px;
   margin: auto;
   padding: 20px;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #1879C0;
+  border-color: #1776BB;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #1B84D1;
+  border-color: #1B84D1;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #1879C0;
+  border-color: #1879C0;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #1B84D1;
+  background-color: #1B84D1;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #1879C0;
+  border-color: #1879C0;
+}
+
+.checkmate-button {
+  background-color: transparent;
+  border: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+.checkmate-button:focus,
+.checkmate-button:hover {
+  outline: 0;
+  border: 0px;
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.content-container {
+  margin: auto;
+  max-width: 1920px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 

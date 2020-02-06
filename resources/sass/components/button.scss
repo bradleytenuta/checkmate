@@ -1,15 +1,3 @@
-.content-container {
-    margin: auto;
-    max-width: 1920px;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-/* Button Colours.
--------------------------------------------------- */
-
 .btn-secondary:not(:disabled):not(.disabled):active,
 .btn-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
@@ -54,19 +42,4 @@ body {
     border: 0px;
     background-color: $navbar-button-hover;
     border-radius: 50%;
-}
-
-/* Scroll Bar
--------------------------------------------------- */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-}
-::-webkit-scrollbar-thumb {
-    background: #888; 
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #555; 
 }
