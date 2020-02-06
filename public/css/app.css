@@ -11514,6 +11514,12 @@ body {
   margin-left: 10px;
 }
 
+.work-title-text {
+  margin-top: 15px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
 .work-title-button-image {
   width: 20px;
 }
@@ -11528,6 +11534,10 @@ body {
   }
 
   .work-title-badge {
+    float: right;
+  }
+
+  .work-title-text {
     float: right;
   }
 

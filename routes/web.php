@@ -23,10 +23,13 @@ Route::get('modules/edit/{id}', 'ModuleController@showEditModule')->name('module
 Route::post('modules/delete/{id}', 'ModuleController@deleteModule')->name('module.delete')->middleware('auth');
 Route::get('modules/{id}', 'ModuleController@show')->name('module.show')->middleware('auth');
 
-// Route to show a coursework.
+// Coursework Routes
+Route::post('courseworks/edit', 'CourseworkController@editCoursework')->name('coursework.edit')->middleware('auth');
+Route::get('courseworks/edit/{id}', 'CourseworkController@showEditCoursework')->name('coursework.edit.show')->middleware('auth');
+Route::post('courseworks/delete/{id}', 'CourseworkController@deleteCoursework')->name('coursework.delete')->middleware('auth');
 Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.show')->middleware('auth');
 
-// Route to show a user.
+// User Routes
 Route::get('users/edit', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
 Route::post('users/edit', 'UserController@editUser')->name('user.edit')->middleware('auth');
 Route::get('users/delete', 'UserController@showDeleteUser')->name('user.delete.show')->middleware('auth');

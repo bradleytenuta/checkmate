@@ -32,6 +32,12 @@
     margin-left: 10px;
 }
 
+.work-title-text {
+    margin-top: 15px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
 .work-title-button-image {
     width: 20px;
 }
@@ -44,6 +50,9 @@
         float: right;
     }
     .work-title-badge {
+        float: right;
+    }
+    .work-title-text {
         float: right;
     }
     .work-infobox-container h1 {
