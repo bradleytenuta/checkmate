@@ -28,4 +28,7 @@ Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.sh
 // Route to show a user.
 Route::get('users/edit', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
 Route::post('users/edit', 'UserController@editUser')->name('user.edit')->middleware('auth');
+Route::get('users/delete', 'UserController@showDeleteUser')->name('user.delete.show')->middleware('auth');
+Route::post('users/delete', 'UserController@deleteUser')->name('user.delete')->middleware('auth');
+Route::post('users/current/delete', 'UserController@deleteCurrentUser')->name('user.current.delete')->middleware('auth');
 Route::get('users/{id}', 'UserController@show')->name('user.show')->middleware('auth');

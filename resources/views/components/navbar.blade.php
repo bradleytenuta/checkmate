@@ -35,6 +35,13 @@
                 </a>
             @endif
 
+            @if (Auth::user()->hasGlobalPermission(3))
+                <a href="{{ route('user.delete.show') }}">
+                    <img src="{{ Storage::url('/images/icon/user-minus-solid.png') }}" />
+                    Delete User
+                </a>
+            @endif
+
             @if (Auth::user()->hasGlobalPermission(4))
                 <a href="{{ route('module.create.show') }}">
                     <img src="{{ Storage::url('/images/icon/module.png') }}" />

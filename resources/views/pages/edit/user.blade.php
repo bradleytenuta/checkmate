@@ -35,6 +35,7 @@
     </div>
 
     <!-- Password row -->
+    <!-- TODO: Make this harder to change, ask for old password and new password twice -->
     <div class="form-group row">
         <div class="col-sm-12">
             <label for="email">Password</label>
@@ -42,13 +43,23 @@
         </div>
     </div>
 
-    <!-- Edit Button -->
+    <!-- Save Button -->
     <div class="form-group row">
       <div class="col-sm-12">
         <button type="submit" class="btn btn-primary">Save</button>
+
+        <!-- TODO: Add an are you sure? message -->
+        @if (Auth::user()->hasAdminRole())
+            <a href="#" type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">Delete</a>
+        @endif
       </div>
     </div>
-  </form>
+</form>
+
+<!-- Form to delete current user -->
+<form id="delete-form" action="{{ route('user.current.delete') }}" method="POST" style="display: none;">
+    @csrf
+</form>
 
 @endsection
 <!-- End of the Section-->
