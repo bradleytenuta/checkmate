@@ -30,7 +30,7 @@
     <a href="{{ route('coursework.show', ['id' => $coursework->id]) }}" class="card-link">Open</a>
 
     <!-- If the user has the option to edit the module, then they have the option to edit the coursework -->
-    @if (Auth::user()->hasModulePermission(5, $module) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\ModulePermission::hasPermission(5, $module, Auth::user()) || Auth::user()->hasAdminRole())
         <a href="#" class="card-link">Edit</a>
     @endif
 </div>

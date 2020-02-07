@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Coursework;
 use App\Module;
 use App\Submission;
+use App\Utility\ModulePermission;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
@@ -38,7 +39,7 @@ class CourseworkController extends Controller
         $module = Module::findOrFail($module_id);
 
         // Checks to see if the user has the admin role.
-        if (Auth::user()->hasAdminRole() || Auth::user()->hasModulePermission(5, $module))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
         {
             return view('pages.create.coursework', ['module' => $module]);
         } else
@@ -81,7 +82,7 @@ class CourseworkController extends Controller
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (Auth::user()->hasAdminRole() || Auth::user()->hasModulePermission(8, $module))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(8, $module, Auth::user()))
         {
             return view('pages.edit.coursework', ['coursework' => $coursework]);
         } else
@@ -119,7 +120,7 @@ class CourseworkController extends Controller
         $module = $coursework->module;
 
         // Checks the user has permission to delete the coursework.
-        if (!Auth::user()->hasAdminRole() && !Auth::user()->hasModulePermission(6, $module))
+        if (!Auth::user()->hasAdminRole() && !ModulePermission::hasPermission(6, $module, Auth::user()))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }

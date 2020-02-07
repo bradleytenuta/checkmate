@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Module;
+use App\Utility\ModulePermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
@@ -150,7 +151,7 @@ class ModuleController extends Controller
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (Auth::user()->hasAdminRole() || Auth::user()->hasModulePermission(5, $module))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
         {
             return view('pages.edit.module', ['module' => $module]);
         } else
@@ -193,7 +194,7 @@ class ModuleController extends Controller
         $module = Module::findOrFail($id);
 
         // Checks the user has permission to delete the module.
-        if (!Auth::user()->hasAdminRole() && !Auth::user()->hasModulePermission(6, $module))
+        if (!Auth::user()->hasAdminRole() && !ModulePermission::hasPermission(6, $module, Auth::user()))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }

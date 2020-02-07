@@ -22,14 +22,14 @@
     @endif
 
     <!-- Buttons -->
-    @if (Auth::user()->hasModulePermission(5, $module) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\ModulePermission::hasPermission(5, $module, Auth::user()) || Auth::user()->hasAdminRole())
         <a href="{{ route('coursework.edit.show', ['id' => $coursework->id]) }}" type="button" class="btn btn-primary page-title-button">
             Edit
         </a>
     @endif
 
     <!-- TODO: Add are you sure? message -->
-    @if (Auth::user()->hasModulePermission(6, $module) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\ModulePermission::hasPermission(6, $module, Auth::user()) || Auth::user()->hasAdminRole())
         <a href="#" type="button" class="btn btn-danger page-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
             <img class="page-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
             Delete
