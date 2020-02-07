@@ -46,8 +46,7 @@ class ModulePermission
         $moduleRole = ModuleRole::findOrFail($module_role_id);
 
         // Uses the key to get the icon path from the map.
-        dd($permissionIconPathMap[$moduleRole->name]);
-        return $permissionIconPathMap[$moduleRole->name];
+        return ModulePermission::$permissionIconPathMap[$moduleRole->name];
     }
 
     public static function permissionText($module, $user) {
@@ -57,7 +56,7 @@ class ModulePermission
         $moduleRole = ModuleRole::findOrFail($module_role_id);
 
         // Uses the key to get the icon path from the map.
-        return $permissionTextMap[$moduleRole->name];
+        return ModulePermission::$permissionTextMap[$moduleRole->name];
     }
 
     private static function getModuleRoleId($user, $module)
