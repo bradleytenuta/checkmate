@@ -7,6 +7,9 @@ use App\ModuleRole;
 
 class ModulePermission
 {
+    private static $permissionIconPathMap = array("student" => "/images/icon/module-icon-student.png", "professor" => "/images/icon/module-icon-professor.png", "assessor" => "/images/icon/module-icon-assessor.png");
+    private static $permissionTextMap = array("student" => "Student", "professor" => "Professor", "assessor" => "Assessor");
+
     public static function hasRole($module, $user, $roleName)
     {
         // Checks to see if user is in module.
@@ -34,6 +37,27 @@ class ModulePermission
             ->where('permission_id', $id)
             ->get()
             ->isNotEmpty();
+    }
+
+    public static function permissionIconPath($module, $user)
+    {
+        // Gets the module role.
+        $module_role_id = ModulePermission::getModuleRoleId($user, $module);
+        $moduleRole = ModuleRole::findOrFail($module_role_id);
+
+        // Uses the key to get the icon path from the map.
+        dd($permissionIconPathMap[$moduleRole->name]);
+        return $permissionIconPathMap[$moduleRole->name];
+    }
+
+    public static function permissionText($module, $user) {
+
+        // Gets the module role.
+        $module_role_id = ModulePermission::getModuleRoleId($user, $module);
+        $moduleRole = ModuleRole::findOrFail($module_role_id);
+
+        // Uses the key to get the icon path from the map.
+        return $permissionTextMap[$moduleRole->name];
     }
 
     private static function getModuleRoleId($user, $module)

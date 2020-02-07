@@ -9,10 +9,10 @@
     <!-- Icon -->
     <img 
         class="page-title-icon"
-        src="{{ Storage::url(Auth::user()->getModulePermissionIconPath($module)) }}"
+        src="{{ Storage::url(\App\Utility\ModulePermission::permissionIconPath($module, Auth::user())) }}"
         data-toggle="tooltip"
         data-placement="bottom"
-        title="{{ Auth::user()->getModulePermissionText($module) }}">
+        title="{{ \App\Utility\ModulePermission::permissionText($module, Auth::user()) }}">
 
     <!-- Icon to show if the coursework is open or closed -->
     @if ($coursework->open == true)

@@ -9,10 +9,10 @@
     <!-- Icon -->
     <img 
         class="page-title-icon"
-        src="{{ Storage::url(Auth::user()->getModulePermissionIconPath($module)) }}"
+        src="{{ Storage::url(\App\Utility\ModulePermission::permissionIconPath($module, Auth::user())) }}"
         data-toggle="tooltip"
         data-placement="bottom"
-        title="{{ Auth::user()->getModulePermissionText($module) }}">
+        title="{{ \App\Utility\ModulePermission::permissionText($module, Auth::user()) }}">
 
     <!-- Icon to show all open courseworks and all closed courseworks -->
     <div class="page-title-badge card-open badge badge-secondary">{{ sizeof($module->openCourseworks()) }}</div>

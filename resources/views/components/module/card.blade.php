@@ -13,10 +13,10 @@
         <!-- Icon to show role within module -->
         <img 
             class="card-info-element"
-            src="{{ Storage::url(Auth::user()->getModulePermissionIconPath($module)) }}"
+            src="{{ Storage::url(\App\Utility\ModulePermission::permissionIconPath($module, Auth::user())) }}"
             data-toggle="tooltip"
             data-placement="bottom"
-            title="{{ Auth::user()->getModulePermissionText($module) }}" />
+            title="{{ \App\Utility\ModulePermission::permissionText($module, Auth::user()) }}" />
 
         <!-- Show how many total courseworks -->
         <div
