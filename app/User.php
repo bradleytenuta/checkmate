@@ -104,52 +104,6 @@ class User extends Authenticatable {
         return false;
     }
 
-    public function isStudent($module) {
-        // Checks to see if this user is in the given module.
-        // If not then return false.
-        if (!$this->isInModule($module)) {
-            return false;
-        }
-
-        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
-        
-        if (ModuleRole::where('name', 'student')->first()->id == $module_role_id) {
-            return true;
-        }
-        return false;
-    }
-
-    public function isProfessor($module) {
-        // Checks to see if this user is in the given module.
-        // If not then return false.
-        if (!$this->isInModule($module)) {
-            return false;
-        }
-
-        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
-        
-        if (ModuleRole::where('name', 'professor')->first()->id == $module_role_id) {
-            return true;
-        }
-        return false;
-    }
-
-    // TODO: Can merge these 3 methods into one method that returns a file path depending on the role type.
-    public function isAssessor($module) {
-        // Checks to see if this user is in the given module.
-        // If not then return false.
-        if (!$this->isInModule($module)) {
-            return false;
-        }
-        
-        $module_role_id = DB::table('module_user')->where('user_id', $this->id)->where('module_id', $module->id)->first()->module_role_id;
-        
-        if (ModuleRole::where('name', 'assessor')->first()->id == $module_role_id) {
-            return true;
-        }
-        return false;
-    }
-
     public function hasModulePermission($id, $module) {
 
         // Gets the users role within the module.

@@ -17,7 +17,7 @@
             <div class="page-infobox-list">
                 <ul>
                 @foreach ($module->users as $userOnModule)
-                    @if ($userOnModule->isProfessor($module))
+                    @if (\App\Utility\ModulePermission::hasRole($module, $userOnModule, "professor"))
                         <li><a href="{{ route('user.show', ['id' => $userOnModule->id]) }}">{{ $userOnModule->firstname}} {{ $userOnModule->surname }}</a></li>
                     @endif
                 @endforeach
@@ -33,7 +33,7 @@
             <div class="page-infobox-list">
                 <ul>
                 @foreach ($module->users as $userOnModule)
-                    @if ($userOnModule->isAssessor($module))
+                    @if (\App\Utility\ModulePermission::hasRole($module, $userOnModule, "assessor"))
                         <li><a href="{{ route('user.show', ['id' => $userOnModule->id]) }}">{{ $userOnModule->firstname}} {{ $userOnModule->surname }}</a></li>
                     @endif
                 @endforeach

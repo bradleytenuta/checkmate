@@ -53,7 +53,7 @@
                                     name="{{ $user->id }}"
                                     id="radio-id-1-{{ $user->id }}"
                                     value="{{ \App\ModuleRole::where('name', 'professor')->first()->id }}"
-                                    @if ($user->isProfessor($module))
+                                    @if (\App\Utility\ModulePermission::hasRole($module, $user, "professor"))
                                     checked
                                     @endif>
                             </div>
@@ -66,7 +66,7 @@
                                     name="{{ $user->id }}"
                                     id="radio-id-2-{{ $user->id }}"
                                     value="{{ \App\ModuleRole::where('name', 'assessor')->first()->id }}"
-                                    @if ($user->isAssessor($module))
+                                    @if (\App\Utility\ModulePermission::hasRole($module, $user, 'assessor'))
                                     checked
                                     @endif>
                             </div>
@@ -79,7 +79,7 @@
                                     name="{{ $user->id }}"
                                     id="radio-id-3-{{ $user->id }}"
                                     value="{{ \App\ModuleRole::where('name', 'student')->first()->id }}"
-                                    @if ($user->isStudent($module))
+                                    @if (\App\Utility\ModulePermission::hasRole($module, $user, 'student'))
                                     checked
                                     @endif>
                             </div>

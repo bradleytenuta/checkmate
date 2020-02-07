@@ -50,7 +50,7 @@ class CourseworkController extends Controller
     public function createCoursework(Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        $this->validate($request);
+        $this->validationCheck($request);
         $request->validate([
             'module_id' => ['required', 'integer']
         ]);
@@ -93,7 +93,7 @@ class CourseworkController extends Controller
     public function editCoursework(Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        $this->validate($request);
+        $this->validationCheck($request);
         $request->validate([
             'id' => ['required', 'integer']
         ]);
@@ -132,7 +132,7 @@ class CourseworkController extends Controller
     }
 
     // TODO: Make sure the deadline is in valid order. Make sure not in the past.
-    private function validate(Request $request)
+    private function validationCheck(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
