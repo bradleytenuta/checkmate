@@ -13,8 +13,8 @@ use App\Module;
 use App\Coursework;
 use DateTime;
 
-class User extends Authenticatable {
-
+class User extends Authenticatable
+{
     use Notifiable;
 
     /**
@@ -47,7 +47,8 @@ class User extends Authenticatable {
     /**
      * Gets a list of all the modules the user belongs to.
      */
-    public function modules() {
+    public function modules()
+    {
         return $this->belongsToMany('App\Module', 'module_user')
                     ->withPivot('module_role_id');
     }
@@ -55,14 +56,16 @@ class User extends Authenticatable {
     /**
      * Gets a list of all the submissions the user owns.
      */
-    public function submissions() {
+    public function submissions()
+    {
         return $this->hasMany('App\Submission');
     }
 
     /**
      * Gets the users global role if they have one.
      */
-    public function globalRole() {
+    public function globalRole()
+    {
         // 2nd param is the column name in the GlobalRole table.
         // 3rd param is the column name in the Users table.
         return $this->hasOne('App\GlobalRole', 'id', 'global_role_id');
@@ -77,7 +80,8 @@ class User extends Authenticatable {
      * This function returns a list of all the global permission objects that this
      * user has.
      */
-    public function globalPermissions() {
+    public function globalPermissions()
+    {
         return $this->globalRole->permissions;
     }
 
@@ -86,10 +90,12 @@ class User extends Authenticatable {
      * It checks to see if the id matches any global permission
      * id's this user has.
      */
-    public function hasGlobalPermission($id) {
-
-        foreach ($this->globalPermissions() as $global_permission) {
-            if ($global_permission->id == $id) {
+    public function hasGlobalPermission($id)
+    {
+        foreach ($this->globalPermissions() as $global_permission)
+        {
+            if ($global_permission->id == $id)
+            {
                 return true;
             }
         }
@@ -99,13 +105,13 @@ class User extends Authenticatable {
     /**
      * This function checks to see if the user has an admin global role.
      */
-    public function hasAdminRole() {
-
+    public function hasAdminRole()
+    {
         // If the global role is admin then return.
-        if ($this->globalRole->name == "admin") {
+        if ($this->globalRole->name == "admin")
+        {
             return true;
         }
-
         return false;
     }
 }

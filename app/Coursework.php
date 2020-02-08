@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Coursework extends Model {
-    
+class Coursework extends Model
+{
     /**
      * Gets the module that this coursework belongs to.
      */

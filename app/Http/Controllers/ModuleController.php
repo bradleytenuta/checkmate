@@ -34,6 +34,9 @@ class ModuleController extends Controller
         }
     }
 
+    /**
+     * Shows the create module view.
+     */
     public function showCreateModule()
     {
         // Checks to see if the user has the admin role.
@@ -46,6 +49,9 @@ class ModuleController extends Controller
         }
     }
 
+    /**
+     * The post function used for creating a module.
+     */
     public function createModule(Request $request)
     {
         // Validation check to see if values were entered correctly.
@@ -69,6 +75,10 @@ class ModuleController extends Controller
         return redirect()->route('home');
     }
 
+    /**
+     * This function checks that the user has rights to create a module
+     * and that everything was entered in correctly.
+     */
     private function validationCheck(Request $request)
     {
         // Checks to make sure the user has the admin role.
@@ -93,6 +103,9 @@ class ModuleController extends Controller
         }
     }
 
+    /**
+     * This function gets all the assigned values from the select user table.
+     */
     private function getAssignValues($request)
     {
         // Creates an array of all user ids and their assigned roles.
@@ -112,6 +125,10 @@ class ModuleController extends Controller
         return $userIdAndRoleIds;
     }
 
+    /**
+     * This function applies those users to the module bu adding them
+     * to the relationship table.
+     */
     private function applyAssignedValues($userIdAndRoleIds, $module)
     {
         // Adds the users to the modules by adding them to the modules_users table in the database.
@@ -144,6 +161,9 @@ class ModuleController extends Controller
         }
     }
 
+    /**
+     * Shows the view for editing modules.
+     */
     public function showEditModule($id)
     {
         // Finds the module by the given id.
@@ -160,6 +180,9 @@ class ModuleController extends Controller
         }
     }
 
+    /**
+     * The post function for editing a module.
+     */
     public function editModule(Request $request)
     {
         // Validation check to see if values were entered correctly.
@@ -188,6 +211,9 @@ class ModuleController extends Controller
         return redirect()->route('module.show', ['id' => $module->id]);
     }
 
+    /**
+     * The POST function for deleting a module.
+     */
     public function deleteModule($id)
     {
         // Finds the module by the given id.
@@ -205,6 +231,9 @@ class ModuleController extends Controller
         return Redirect::route('home');
     }
 
+    /**
+     * The function that deletes the module and all traces of it in other database tables.
+     */
     private function delete($moduleId)
     {
         Coursework::where('module_id', $moduleId)->delete();

@@ -29,11 +29,17 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Shows the edit user page.
+     */
     public function showEditUser()
     {
         return view('pages.edit.user');
     }
 
+    /**
+     * The function that is called on the POST request for editing a user.
+     */
     public function editUser(Request $request)
     {
         // Validates all the data is present.
@@ -61,11 +67,17 @@ class UserController extends Controller
         return Redirect::back();
     }
 
+    /**
+     * Shows the delete user page.
+     */
     public function showDeleteUser()
     {
         return view('pages.delete.user');
     }
 
+    /**
+     * The POST function for deleting a user.
+     */
     public function deleteUser(Request $request)
     {
         // Checks the current user has the right to delete users.
@@ -84,7 +96,6 @@ class UserController extends Controller
                 continue;
             }
 
-            // TODO: Is there an easier way than this.
             $this->delete($input);
         }
 
@@ -92,6 +103,9 @@ class UserController extends Controller
         return Redirect::back();
     }
 
+    /**
+     * A POST function to delete the currently logged in user.
+     */
     public function deleteCurrentUser(Request $request)
     {
         // Checks the user has admin rights to delete their account
@@ -111,6 +125,9 @@ class UserController extends Controller
         return Redirect::route('login')->with('global', 'Your account has been deleted!');
     }
 
+    /**
+     * Deletes a given user and everything about them in other database tables.
+     */
     private function delete($userId)
     {
         Submission::where('user_id', $userId)->delete();

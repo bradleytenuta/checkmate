@@ -7,9 +7,15 @@ use App\ModuleRole;
 
 class ModulePermission
 {
+    /**
+     * These maps contain information depending on what role the user has within a module.
+     */
     private static $permissionIconPathMap = array("student" => "/images/icon/module-icon-student.png", "professor" => "/images/icon/module-icon-professor.png", "assessor" => "/images/icon/module-icon-assessor.png");
     private static $permissionTextMap = array("student" => "Student", "professor" => "Professor", "assessor" => "Assessor");
 
+    /**
+     * Checks whether a user has a given role within a module.
+     */
     public static function hasRole($module, $user, $roleName)
     {
         // Checks to see if user is in module.
@@ -26,6 +32,9 @@ class ModulePermission
         return false;
     }
 
+    /**
+     * When given a permission id, whether the user has that permission within the module.
+     */
     public static function hasPermission($id, $module, $user)
     {
         // Gets the users role within the module.
@@ -39,6 +48,9 @@ class ModulePermission
             ->isNotEmpty();
     }
 
+    /**
+     * Returns the path for the given permission icon.
+     */
     public static function permissionIconPath($module, $user)
     {
         // Gets the module role.
@@ -49,8 +61,11 @@ class ModulePermission
         return ModulePermission::$permissionIconPathMap[$moduleRole->name];
     }
 
-    public static function permissionText($module, $user) {
-
+    /**
+     * Returns the given text for the module permission the user has within the module.
+     */
+    public static function permissionText($module, $user)
+    {
         // Gets the module role.
         $module_role_id = ModulePermission::getModuleRoleId($user, $module);
         $moduleRole = ModuleRole::findOrFail($module_role_id);
@@ -59,6 +74,10 @@ class ModulePermission
         return ModulePermission::$permissionTextMap[$moduleRole->name];
     }
 
+    /**
+     * This function is used by the other functions in this class.
+     * It gets a users role within a module.
+     */
     private static function getModuleRoleId($user, $module)
     {
         return DB::table('module_user')

@@ -33,6 +33,9 @@ class CourseworkController extends Controller
         }
     }
 
+    /**
+     * Shows the create coursework view.
+     */
     public function showCreateCoursework($module_id)
     {
         // Gets the module to add the coursework to.
@@ -48,6 +51,9 @@ class CourseworkController extends Controller
         }
     }
 
+    /**
+     * The POST function for creating a coursework.
+     */
     public function createCoursework(Request $request)
     {
         // Validates the request. Makes sure the content is valid.
@@ -74,6 +80,9 @@ class CourseworkController extends Controller
         return redirect()->route('module.show', ['id' => $module->id]);
     }
 
+    /**
+     * Shows the edit coursework view.
+     */
     public function showEditCoursework($id)
     {
         // Finds the coursework and the module.
@@ -91,6 +100,9 @@ class CourseworkController extends Controller
         }
     }
 
+    /**
+     * The post function for editing a piece of coursework.
+     */
     public function editCoursework(Request $request)
     {
         // Validates the request. Makes sure the content is valid.
@@ -113,6 +125,9 @@ class CourseworkController extends Controller
         return redirect()->route('coursework.show', ['id' => $coursework->id]);
     }
 
+    /**
+     * The POST function for deleting a coursework.
+     */
     public function deleteCoursework($id)
     {
         // Finds the coursework and the coursework.
@@ -133,6 +148,9 @@ class CourseworkController extends Controller
     }
 
     // TODO: Make sure the deadline is in valid order. Make sure not in the past.
+    /**
+     * Checks that all the infromation entered for creating or editing a coursework is valid.
+     */
     private function validationCheck(Request $request)
     {
         $request->validate([
@@ -143,6 +161,9 @@ class CourseworkController extends Controller
         ]);
     }
 
+    /**
+     * The function that deletes a coursework and all traces of it from other database tables.
+     */
     private function delete($courseworkId)
     {
         Submission::where('coursework_id', $courseworkId)->delete();
