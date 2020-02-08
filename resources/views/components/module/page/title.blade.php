@@ -19,13 +19,13 @@
     <div class="page-title-badge card-closed badge badge-secondary">{{ sizeof($module->closedCourseworks()) }}</div>
 
     <!-- Buttons -->
-    @if (\App\Utility\ModulePermission::hasPermission(5, $module, Auth::user()) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\ModulePermission::hasPermission(3, $module, Auth::user()) || Auth::user()->hasAdminRole())
         <a href="{{ route('module.edit.show', ['id' => $module->id]) }}" type="button" class="btn btn-primary page-title-button">
             Edit
         </a>
     @endif
 
-    @if (\App\Utility\ModulePermission::hasPermission(7, $module, Auth::user()) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\ModulePermission::hasPermission(5, $module, Auth::user()) || Auth::user()->hasAdminRole())
         <a href="{{ route('coursework.create.show', ['id' => $module->id]) }}" type="button" class="btn btn-primary page-title-button">
             <img class="page-title-button-image" src="{{ Storage::url('/images/icon/coursework-white.png') }}" />
             Create Coursework
@@ -33,7 +33,7 @@
     @endif
 
     <!-- TODO: Add are you sure? message -->
-    @if (\App\Utility\ModulePermission::hasPermission(6, $module, Auth::user()) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\ModulePermission::hasPermission(7, $module, Auth::user()) || Auth::user()->hasAdminRole())
         <a href="#" type="button" class="btn btn-danger page-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
             <img class="page-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
             Delete
