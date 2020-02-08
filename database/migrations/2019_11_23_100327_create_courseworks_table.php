@@ -28,7 +28,7 @@ class CreateCourseworksTable extends Migration
 
             // Keys
             $table->foreign('module_id')->references('id')->
-                on('modules')->ondelete('cascade')->onUpdate('cascade');
+                on('modules')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

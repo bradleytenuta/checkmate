@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
 
             // Keys
             $table->foreign('global_role_id')->references('id')->
-                on('global_roles')->ondelete('cascade')->onUpdate('cascade');
+                on('global_roles')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -21,9 +21,9 @@ class CreateGlobalRolesPermissionsTable extends Migration
             // Keys
             $table->primary(['global_role_id', 'permission_id']);
             $table->foreign('global_role_id')->references('id')->
-                on('global_roles')->ondelete('cascade')->onUpdate('cascade');
+                on('global_roles')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('permission_id')->references('id')->
-                on('permissions')->ondelete('cascade')->onUpdate('cascade');
+                on('permissions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

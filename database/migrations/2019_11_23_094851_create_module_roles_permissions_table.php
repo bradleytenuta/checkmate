@@ -21,9 +21,9 @@ class CreateModuleRolesPermissionsTable extends Migration
             // Keys
             $table->primary(['module_roles_id', 'permission_id']);
             $table->foreign('module_roles_id')->references('id')->
-                on('module_roles')->ondelete('cascade')->onUpdate('cascade');
+                on('module_roles')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('permission_id')->references('id')->
-                on('permissions')->ondelete('cascade')->onUpdate('cascade');
+                on('permissions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

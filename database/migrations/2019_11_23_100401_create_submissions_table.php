@@ -27,9 +27,9 @@ class CreateSubmissionsTable extends Migration
 
             // Keys
             $table->foreign('user_id')->references('id')->
-                on('users')->ondelete('cascade')->onUpdate('cascade');
+                on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('coursework_id')->references('id')->
-                on('courseworks')->ondelete('cascade')->onUpdate('cascade');
+                on('courseworks')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
