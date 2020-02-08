@@ -3,6 +3,13 @@ $(document).ready(function(){
     // Gets the width of the table id cell and sets the width of its header to match it.
     var cellWidth = $('#create-module-assign-container .create-module-cell-id').width();
     $('#create-module-assign-header .create-module-cell-id').width(cellWidth);
+
+    // Finds a element with the given ID and adds the JQueryUI calendar to it.
+    // This is so users can select a date rather than typing it.
+    $("#deadline").datepicker({
+        minDate: 0,
+        dateFormat: "yy-mm-dd"
+    });
 });
 
 /**

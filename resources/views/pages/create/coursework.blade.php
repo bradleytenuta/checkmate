@@ -44,7 +44,7 @@
     <!-- Deadline text box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="description">Deadline (YYYY-MM-DD)<span class="field-required">*</span></label>
+            <label for="description">Deadline<span class="field-required">*</span></label>
             <input type="text" class="form-control" name="deadline" id="deadline" placeholder="Deadline">
         </div>
     </div>

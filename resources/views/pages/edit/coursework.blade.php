@@ -44,7 +44,7 @@
     <!-- Deadline text box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="description">Deadline (YYYY-MM-DD)</label>
+            <label for="description">Deadline</label>
             <input type="text" class="form-control" name="deadline" id="deadline" value="{{ $coursework->deadline }}">
         </div>
     </div>

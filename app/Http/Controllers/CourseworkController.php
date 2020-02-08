@@ -147,7 +147,6 @@ class CourseworkController extends Controller
         return Redirect::route('module.show', ['id' => $module->id]);
     }
 
-    // TODO: Make sure the deadline is in valid order. Make sure not in the past.
     /**
      * Checks that all the infromation entered for creating or editing a coursework is valid.
      */

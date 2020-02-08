@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 
+// Imports the calendar
+import 'jquery-ui/ui/widgets/datepicker.js';
+
 /**
  * Adds all additonal javascript files
  */

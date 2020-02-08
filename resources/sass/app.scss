@@ -7,6 +7,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Import JQuery Calendar
+@import '~jquery-ui/themes/base/all.css';
+
 // Imports all the custom scss files I have made.
 @import 'components/list';
 @import 'components/page';
