@@ -20,8 +20,9 @@ class CreateCourseworksTable extends Migration
             $table->unsignedBigInteger('maximum_score');
             $table->string('name');
             $table->longText('description');
-            $table->boolean('open')->default(true);
+            $table->boolean('open')->default(false);
             $table->date('deadline');
+            $table->date('start_date');
 
             // Meta Data
             $table->timestamps();

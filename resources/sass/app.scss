@@ -10,6 +10,9 @@
 // Import JQuery Calendar
 @import '~jquery-ui/themes/base/all.css';
 
+// Dropzone Scss
+@import '~dropzone/dist/dropzone.css';
+
 // Imports all the custom scss files I have made.
 @import 'components/list';
 @import 'components/page';
@@ -20,3 +23,4 @@
 @import 'components/button';
 @import 'components/general';
 @import 'components/scrollbar';
+@import 'components/submission';

@@ -17,6 +17,8 @@
     <!-- Icon to show if the coursework is open or closed -->
     @if ($coursework->open == true)
         <div class="page-title-badge card-open badge badge-secondary">Open</div>
+    @elseif (\App\Utility\Time::dateInFuture($coursework))
+        <div class="card-info-element card-pending badge badge-secondary">Pending</div>
     @else
         <div class="page-title-badge card-closed badge badge-secondary">Closed</div>
     @endif
@@ -41,10 +43,10 @@
 
     <!-- Shows deadline -->
     @if ( \App\Utility\Time::dateIsToday($coursework) )
-        <p class="page-title-text card-due-today card-info-element">{{ $coursework->deadline }}</p>
+        <p class="page-title-text card-due-today card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
     @elseif ( \App\Utility\Time::dateHasPassed($coursework) )
-        <p class="page-title-text card-due-passed card-info-element">{{ $coursework->deadline }}</p>
+        <p class="page-title-text card-due-passed card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
     @else
-        <p>{{ $coursework->deadline }}</p>
+        <p class="page-title-text card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
     @endif
 </div>

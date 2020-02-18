@@ -31,6 +31,10 @@ Route::get('courseworks/edit/{id}', 'CourseworkController@showEditCoursework')->
 Route::post('courseworks/delete/{id}', 'CourseworkController@deleteCoursework')->name('coursework.delete')->middleware('auth');
 Route::get('courseworks/{id}', 'CourseworkController@show')->name('coursework.show')->middleware('auth');
 
+// Submission Routes
+Route::post('courseworks/submission/upload', 'CourseworkController@storeSubmission')->name('coursework.submission.upload')->middleware('auth');
+Route::post('courseworks/submission/delete', 'CourseworkController@deleteSubmission')->name('coursework.submission.delete')->middleware('auth');
+
 // User Routes
 Route::get('users/edit', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
 Route::post('users/edit', 'UserController@editUser')->name('user.edit')->middleware('auth');

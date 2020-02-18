@@ -9,6 +9,18 @@ require('./bootstrap');
 // Imports the calendar
 import 'jquery-ui/ui/widgets/datepicker.js';
 
+// Imports dropzone
+window.Dropzone = require('dropzone');
+Dropzone.options.courseworkDropzone = {
+    maxFilesize: 10, // MB
+    renameFile: function(file) {
+        return "hello";
+    },
+    acceptedFiles: ".zip",
+    addRemoveLinks: true,
+    timeout: 50000
+};
+
 /**
  * Adds all additonal javascript files
  */

@@ -168,4 +168,14 @@ class CourseworkController extends Controller
         Submission::where('coursework_id', $courseworkId)->delete();
         Coursework::where('id', $courseworkId)->delete();
     }
+
+    public function storeSubmission(Request $request)
+    {
+
+    }
+
+    public function deleteSubmission(Request $request)
+    {
+
+    }
 }
