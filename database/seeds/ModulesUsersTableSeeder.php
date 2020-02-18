@@ -13,6 +13,20 @@ class ModulesUsersTableSeeder extends Seeder {
 
         $users = App\User::all();
 
+        // Assigns the test admin account to module 1.
+        DB::table('module_user')->insert([
+            'module_id' => 1,
+            'user_id' => App\User::where('id', 1)->first()->id,
+            'module_role_id' => App\ModuleRole::where('id', 1)->first()->id,
+        ]);
+
+        // Assigns the test non admin account to module 1.
+        DB::table('module_user')->insert([
+            'module_id' => 1,
+            'user_id' => App\User::where('id', 2)->first()->id,
+            'module_role_id' => App\ModuleRole::where('id', 1)->first()->id,
+        ]);
+
         // Assign each user a random module with a random module permission.
         foreach ($users as $user)
         {

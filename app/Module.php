@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Utility\Time;
 
 class Module extends Model
 {
@@ -36,6 +37,34 @@ class Module extends Model
      */
     public function closedCourseworks()
     {
-        return $this->courseworks->where("open", false);
+        $closed_courseworks = $this->courseworks->where("open", false);
+
+        // Removes the pending courseworks.
+        foreach ($closed_courseworks as $key => $coursework)
+        {
+            if (Time::dateInFuture($coursework)) {
+                $closed_courseworks->forget($key);
+            }
+        }
+
+        return $closed_courseworks;
+    }
+
+    /**
+     * Returns all the closed courseworks.
+     */
+    public function pendingCourseworks()
+    {
+        $pending_courseworks = $this->courseworks->where("open", false);
+
+        // Keeps the pending courseworks.
+        foreach ($pending_courseworks as $key => $coursework)
+        {
+            if (!Time::dateInFuture($coursework)) {
+                $pending_courseworks->forget($key);
+            }
+        }
+
+        return $pending_courseworks;
     }
 }

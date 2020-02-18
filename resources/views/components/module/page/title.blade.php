@@ -15,8 +15,9 @@
         title="{{ \App\Utility\ModulePermission::permissionText($module, Auth::user()) }}">
 
     <!-- Icon to show all open courseworks and all closed courseworks -->
-    <div class="page-title-badge card-open badge badge-secondary">{{ sizeof($module->openCourseworks()) }}</div>
-    <div class="page-title-badge card-closed badge badge-secondary">{{ sizeof($module->closedCourseworks()) }}</div>
+    <div class="page-title-badge card-open badge badge-secondary" title="Open Courseworks">{{ sizeof($module->openCourseworks()) }}</div>
+    <div class="page-title-badge card-closed badge badge-secondary" title="Closed Courseworks">{{ sizeof($module->closedCourseworks()) }}</div>
+    <div class="page-title-badge card-pending badge badge-secondary" title="Pending Courseworks">{{ sizeof($module->pendingCourseworks()) }}</div>
 
     <!-- Buttons -->
     @if (\App\Utility\ModulePermission::hasPermission(3, $module, Auth::user()) || Auth::user()->hasAdminRole())

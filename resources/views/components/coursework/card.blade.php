@@ -16,9 +16,9 @@
         @endif
 
         <!-- Shows deadline -->
-        @if ( \App\Utility\Time::dateIsToday($coursework) )
+        @if (\App\Utility\Time::dateIsToday($coursework))
             <p class="card-due-today card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
-        @elseif ( \App\Utility\Time::dateHasPassed($coursework) )
+        @elseif (\App\Utility\Time::dateHasPassed($coursework))
             <p class="card-due-passed card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
         @else
             <p>{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
@@ -29,10 +29,14 @@
     <p class="card-text">{{ $coursework->description }}</p>
 
     <!-- Links to open coursework -->
-    <a href="{{ route('coursework.show', ['id' => $coursework->id]) }}" class="card-link">Open</a>
+    @if (\App\Utility\Time::dateInFuture($coursework) && \App\Utility\ModulePermission::hasRole($module, Auth::user(), 'student'))
+        <a class="card-link" style="opacity: 50%;">Open</a>
+    @else
+        <a href="{{ route('coursework.show', ['id' => $coursework->id]) }}" class="card-link">Open</a>
+    @endif
 
     <!-- If the user has the option to edit the module, then they have the option to edit the coursework -->
     @if (\App\Utility\ModulePermission::hasPermission(5, $module, Auth::user()) || Auth::user()->hasAdminRole())
-        <a href="#" class="card-link">Edit</a>
+        <a href="{{ route('coursework.edit.show', ['id' => $coursework->id]) }}" class="card-link">Edit</a>
     @endif
 </div>

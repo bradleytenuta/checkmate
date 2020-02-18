@@ -41,6 +41,14 @@
         </div>
     </div>
 
+    <!-- Start Date text box -->
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label for="description">Start Date<span class="field-required">*</span></label>
+            <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Start Date">
+        </div>
+    </div>
+
     <!-- Deadline text box -->
     <div class="form-group row">
         <div class="col-sm-12">

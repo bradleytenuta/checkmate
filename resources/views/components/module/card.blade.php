@@ -7,8 +7,9 @@
     <div class="card-info-container">
 
         <!-- Icon to show all open courseworks and all closed courseworks -->
-        <div class="card-info-element card-open badge badge-secondary">{{ sizeof($module->openCourseworks()) }}</div>
-        <div class="card-info-element card-closed badge badge-secondary">{{ sizeof($module->closedCourseworks()) }}</div>
+        <div class="card-info-element card-open badge badge-secondary" title="Open Courseworks">{{ sizeof($module->openCourseworks()) }}</div>
+        <div class="card-info-element card-closed badge badge-secondary" title="Closed Courseworks">{{ sizeof($module->closedCourseworks()) }}</div>
+        <div class="card-info-element card-pending badge badge-secondary" title="Pending Courseworks">{{ sizeof($module->pendingCourseworks()) }}</div>
 
         <!-- Icon to show role within module -->
         <img 

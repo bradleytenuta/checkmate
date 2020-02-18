@@ -18,7 +18,7 @@
     @if ($coursework->open == true)
         <div class="page-title-badge card-open badge badge-secondary">Open</div>
     @elseif (\App\Utility\Time::dateInFuture($coursework))
-        <div class="card-info-element card-pending badge badge-secondary">Pending</div>
+        <div class="page-title-badge card-pending badge badge-secondary">Pending</div>
     @else
         <div class="page-title-badge card-closed badge badge-secondary">Closed</div>
     @endif

@@ -9,6 +9,7 @@ use App\Submission;
 use App\Utility\ModulePermission;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use App\Utility\Time;
 use Redirect;
 
 class CourseworkController extends Controller
@@ -24,13 +25,21 @@ class CourseworkController extends Controller
         $coursework = Coursework::findOrFail($id);
         $module = $coursework->module;
 
-        if (Auth::user()->isInModule($module))
-        {
-            return view('pages.coursework', ['coursework' => $coursework]);
-        } else
+        // If the coursework hasnt started yet 
+        // and the user is a student
+        if(Time::dateInFuture($coursework) &&
+            ModulePermission::hasRole($module, Auth::user(), 'student'))
         {
             return Redirect::back();
         }
+
+        // If the user is not in the module.
+        if (!Auth::user()->isInModule($module))
+        {
+            return Redirect::back();
+        }
+
+        return view('pages.coursework', ['coursework' => $coursework]);
     }
 
     /**
@@ -71,6 +80,7 @@ class CourseworkController extends Controller
         $coursework->description = $request['description'];
         $coursework->maximum_score = $request['maximum_score'];
         $coursework->deadline = $request['deadline'];
+        $coursework->start_date = $request['start_date'];
         $coursework->module_id = $module->id;
         
         // Saves the coursework to the database.
@@ -117,6 +127,7 @@ class CourseworkController extends Controller
         $coursework->description = $request['description'];
         $coursework->maximum_score = $request['maximum_score'];
         $coursework->deadline = $request['deadline'];
+        $coursework->start_date = $request['start_date'];
 
         // Saves the coursework to the database.
         $coursework->save();
@@ -156,8 +167,25 @@ class CourseworkController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'maximum_score' => ['required', 'integer'],
-            'deadline' => ['required', 'string', 'date']
+            'deadline' => ['required', 'string', 'date'],
+            'start_date' => ['required', 'string', 'date']
         ]);
+
+        $current_date = new DateTime();
+        $start_date = new DateTime($coursework->start_date);
+        $deadline = new DateTime($coursework->deadline);
+
+        // Checks both dates are not in the past.
+        if ($start_date < $current_date || $deadline < $current_date)
+        {
+            throw ValidationException::withMessages(['Invalid Date' => 'Date is in the past.']);
+        }
+
+        // Checks that the start date is before the deadline.
+        if ($start_date > $deadline)
+        {
+            throw ValidationException::withMessages(['Invalid Date' => 'Start Date should be before deadline.']);
+        }
     }
 
     /**
