@@ -1,0 +1,22 @@
+image: php:7.3.10
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - composer
+        script:
+          - apt-get update && apt-get install -y unzip
+          - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          - composer install
+          - vendor/bin/phpunit
+          - pipe: microsoft/azure-web-apps-deploy:1.0.2
+            variables:
+              AZURE_APP_ID: $AZURE_APP_ID
+              AZURE_PASSWORD: $AZURE_PASSWORD
+              AZURE_TENANT_ID: $AZURE_TENANT_ID
+              AZURE_RESOURCE_GROUP: 'checkmate'
+              AZURE_APP_NAME: 'checkmate'
+              ZIP_FILE: 'package.zip'
+              # SLOT: '<string>' # Optional.
+              # DEBUG: '<boolean>' # Optional.
