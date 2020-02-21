@@ -18,6 +18,7 @@ class CreateSubmissionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('coursework_id');
+            $table->string('file_path')->default("");
             $table->unsignedBigInteger('score')->nullable();
             $table->longText('main_feedback')->nullable();
             $table->longText('json')->nullable();

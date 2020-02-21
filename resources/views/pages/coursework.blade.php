@@ -12,11 +12,16 @@
     <div id="submission-container">
         <h1>Submission</h1>
         <div class="checkmate-form">
-            <!-- Form for if the user is a student in coursework -->
-            @if (\App\Utility\ModulePermission::hasRole($coursework->module, Auth::user(), 'student'))
-                <form method="post" action="{{ route('coursework.submission.upload') }}" class="dropzone" id="courseworkDropzone">
-                    @csrf
-                </form>
+            <!-- Error messages if there are any -->
+            @include('components.form.error')
+
+            <!-- Student view -->
+            @if (\App\Utility\ModulePermission::hasRole($coursework->module, Auth::user(), 'student') && $coursework->open == true)
+                <!-- If the user has already submitted before, then show submission -->
+                @include('components.form.current-submission')
+
+                <!-- Form for if the user is a student in coursework -->
+                @include('components.form.upload-submission')
             @endif
         </div>
     </div>

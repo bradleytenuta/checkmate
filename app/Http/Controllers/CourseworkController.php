@@ -9,6 +9,7 @@ use App\Submission;
 use App\Utility\ModulePermission;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Utility\Time;
 use Redirect;
 
@@ -197,13 +198,32 @@ class CourseworkController extends Controller
         Coursework::where('id', $courseworkId)->delete();
     }
 
+    /**
+     * This function is called when a submission is uploaded.
+     */
     public function storeSubmission(Request $request)
     {
+        $request->validate([
+              'file' => 'required|mimes:zip',
+              'coursework_id' => 'required',
+        ]);
 
-    }
+        // Finds the coursework this submission will be associated with.
+        $coursework = Coursework::findOrFail($request['coursework_id']);
 
-    public function deleteSubmission(Request $request)
-    {
+        // Gets the first submission found or creates a new one.
+        $submission = Submission::firstOrNew(['coursework_id' => $coursework->id, 'user_id' => Auth::user()->id]);
+        $submission->save();
 
+        // Deletes old file before uploading new one.
+        Storage::delete($submission->file_path);
+
+        // Adds the file to the submission
+        $submission->file_path = $request->file->store(
+            'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  Auth::user()->id);
+        $submission->save();
+
+        // Redirects the user back to the coursework page.
+        return redirect()->route('coursework.show', ['id' => $coursework->id]);
     }
 }

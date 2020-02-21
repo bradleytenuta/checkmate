@@ -15,7 +15,7 @@
     @include('components.form.error')
 
     <!-- Include Module ID so we know which module to add the coursework to. This is hidden from the user -->
-    <input type="text" class="form-control" name="module_id" id="module_id" value="{{ $module->id }}" style="display: none;">
+    <input type="text" readonly="readonly" class="form-control" name="module_id" id="module_id" value="{{ $module->id }}" style="display: none;">
 
     <!-- Module name box -->
     <div class="form-group row">
@@ -59,9 +59,9 @@
 
     <!-- Register Button -->
     <div class="form-group row">
-      <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
     </div>
   </form>
 

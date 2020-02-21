@@ -37,9 +37,9 @@
 
     <!-- Register Button -->
     <div class="form-group row">
-      <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
     </div>
   </form>
 

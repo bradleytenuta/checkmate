@@ -33,6 +33,5 @@ class DatabaseSeeder extends Seeder {
 
         // Populates coursework and submissions tables.
         $this->call(CourseworksTableSeeder::class);
-        $this->call(SubmissionsTableSeeder::class);
     }
 }
