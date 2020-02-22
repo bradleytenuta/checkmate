@@ -34,10 +34,12 @@
     <p class="card-text">{{ $module->description }}</p>
 
     <!-- Links to open module -->
-    <a href="{{ route('module.show', ['id' => $module->id]) }}" class="card-link">Open</a>
+    @if (\App\Utility\ModulePermission::canShow($module))
+        <a href="{{ route('module.show', ['module_id' => $module->id]) }}" class="card-link">Open</a>
+    @endif
 
     <!-- If the user has the option to edit the module -->
-    @if (\App\Utility\ModulePermission::hasPermission(5, $module, Auth::user()) || Auth::user()->hasAdminRole())
-        <a href="{{ route('module.edit.show', ['id' => $module->id]) }}" class="card-link">Edit</a>
+    @if (\App\Utility\ModulePermission::canEdit($module))
+        <a href="{{ route('module.edit.show', ['module_id' => $module->id]) }}" class="card-link">Edit</a>
     @endif
 </div>

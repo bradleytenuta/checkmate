@@ -4,7 +4,7 @@
 @section ('dynamic-main-content')
 
 <!-- Register Coursework form -->
-<form method="POST" class="checkmate-form" action="{{ route('coursework.edit') }}">
+<form method="POST" class="checkmate-form" action="{{ route('coursework.edit', ['module_id' => $coursework->module->id]) }}">
 
     @csrf
 

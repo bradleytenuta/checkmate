@@ -6,7 +6,7 @@
 <!-- Content Container -->
 <div class="content-container">
     <!-- Coursework Card -->
-    @include('components.coursework.page.infobox', ['module'=>$coursework->module])
+    @include('components.coursework.page.infobox', ['module' => $coursework->module])
 
     <!-- Submission Container -->
     <div id="submission-container">
@@ -18,10 +18,10 @@
             <!-- Student view -->
             @if (\App\Utility\ModulePermission::hasRole($coursework->module, Auth::user(), 'student') && $coursework->open == true)
                 <!-- If the user has already submitted before, then show submission -->
-                @include('components.form.current-submission')
+                @include('components.form.current-submission', ['coursework' => $coursework])
 
                 <!-- Form for if the user is a student in coursework -->
-                @include('components.form.upload-submission')
+                @include('components.form.upload-submission', ['module' => $coursework->module, 'coursework' => $coursework])
             @endif
         </div>
     </div>

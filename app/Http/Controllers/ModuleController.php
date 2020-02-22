@@ -20,13 +20,13 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show($id)
+    public function show($module_id)
     {
         // Finds the module by the given id.
-        $module = Module::findOrFail($id);
+        $module = Module::findOrFail($module_id);
 
         // Shows the module page if the user is assigned to that module or is an admin.
-        if (Auth::user()->isInModule($module) || Auth::user()->hasAdminRole())
+        if (ModulePermission::canShow($module))
         {
             return view('pages.module', ['module' => $module]);
         } else
@@ -41,7 +41,7 @@ class ModuleController extends Controller
     public function showCreateModule()
     {
         // Checks to see if the user has the admin role.
-        if (Auth::user()->hasAdminRole())
+        if (ModulePermission::canCreate())
         {
             return view('pages.create.module');
         } else
@@ -56,7 +56,7 @@ class ModuleController extends Controller
     public function showAll()
     {
         // Checks to see if the user has the admin role.
-        if (Auth::user()->hasAdminRole())
+        if (ModulePermission::canCreate())
         {
             // Gets all the modules in the database and returns them.
             $modules = Module::all();
@@ -79,7 +79,7 @@ class ModuleController extends Controller
         $userIdAndRoleIds = $this->getAssignValues($request);
 
         // Checks the user has permission to create a module
-        if (!Auth::user()->hasAdminRole())
+        if (!ModulePermission::canCreate())
         {
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to create a module.']);
         }
@@ -188,14 +188,14 @@ class ModuleController extends Controller
     /**
      * Shows the view for editing modules.
      */
-    public function showEditModule($id)
+    public function showEditModule($module_id)
     {
         // Finds the module by the given id.
-        $module = Module::findOrFail($id);
+        $module = Module::findOrFail($module_id);
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (canEdit($moudle))
+        if (ModulePermission::canEdit($module))
         {
             return view('pages.edit.module', ['module' => $module]);
         } else
@@ -222,7 +222,7 @@ class ModuleController extends Controller
 
         // Checks the user has permission to edit a module
         $module = Module::findOrFail($request['id']);
-        if (!canEdit($module))
+        if (!ModulePermission::canEdit($module))
         {
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to edit the module.']);
         }
@@ -244,13 +244,13 @@ class ModuleController extends Controller
     /**
      * The POST function for deleting a module.
      */
-    public function deleteModule($id)
+    public function deleteModule($module_id)
     {
         // Finds the module by the given id.
-        $module = Module::findOrFail($id);
+        $module = Module::findOrFail($module_id);
 
         // Checks the user has permission to delete the module.
-        if (!Auth::user()->hasAdminRole() && !ModulePermission::hasPermission(6, $module, Auth::user()))
+        if (!ModulePermission::canDelete($module))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }
@@ -269,17 +269,5 @@ class ModuleController extends Controller
         Coursework::where('module_id', $moduleId)->delete();
         DB::table('module_user')->where('module_id', $moduleId)->delete();
         Module::where('id', $moduleId)->delete();
-    }
-
-    /**
-     * Checks that the current user can edit a moudle.
-     */
-    private function canEdit($module)
-    {
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
-        {
-            return true;
-        }
-        return false;
     }
 }

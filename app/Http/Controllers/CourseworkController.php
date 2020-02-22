@@ -11,6 +11,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Utility\Time;
+use App\Utility\CourseworkPermission;
 use Redirect;
 
 class CourseworkController extends Controller
@@ -20,28 +21,24 @@ class CourseworkController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show($id)
+    public function show($module_id, $coursework_id)
     {
         // Finds the coursework by the given id. Then gets the module that coursework belongs to.
-        $coursework = Coursework::findOrFail($id);
-        $module = $coursework->module;
-
-        // If the coursework hasnt started yet 
-        // and the user is a student
-        if(Time::dateInFuture($coursework) &&
-            ModulePermission::hasRole($module, Auth::user(), 'student'))
+        $coursework = Coursework::findOrFail($coursework_id);
+        $module = Module::findOrFail($module_id);
+        if ($module->id != $coursework->module->id)
         {
+            throw ValidationException::withMessages(['Moudle ID error' => 'The provided module ID does not match the coursework module.']);
             return Redirect::back();
         }
 
-        // If the user is not in the module.
-        // or doesnt have admin role.
-        if (!Auth::user()->isInModule($module) && !Auth::user()->hasAdminRole())
+        if (CourseworkPermission::canShow($coursework))
+        {
+            return view('pages.coursework', ['coursework' => $coursework]);
+        } else 
         {
             return Redirect::back();
         }
-
-        return view('pages.coursework', ['coursework' => $coursework]);
     }
 
     /**
@@ -53,7 +50,7 @@ class CourseworkController extends Controller
         $module = Module::findOrFail($module_id);
 
         // Checks to see if the user has the admin role.
-        if (canCreate($module))
+        if (CourseworkPermission::canCreate($module))
         {
             return view('pages.create.coursework', ['module' => $module]);
         } else
@@ -65,7 +62,7 @@ class CourseworkController extends Controller
     /**
      * The POST function for creating a coursework.
      */
-    public function createCoursework(Request $request)
+    public function createCoursework($module_id, Request $request)
     {
         // Validates the request. Makes sure the content is valid.
         $this->validationCheck($request);
@@ -77,7 +74,7 @@ class CourseworkController extends Controller
         $module = Module::findOrFail($request['module_id']);
 
         // Checks the user can create coursework.
-        if (!canCreate($module))
+        if (!CourseworkPermission::canCreate($module))
         {
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to create coursework.']);
         }
@@ -101,15 +98,20 @@ class CourseworkController extends Controller
     /**
      * Shows the edit coursework view.
      */
-    public function showEditCoursework($id)
+    public function showEditCoursework($module_id, $coursework_id)
     {
         // Finds the coursework and the module.
-        $coursework = Coursework::findOrFail($id);
-        $module = $coursework->module;
+        $coursework = Coursework::findOrFail($coursework_id);
+        $module = Module::findOrFail($module_id);
+        if ($module->id != $coursework->module->id)
+        {
+            throw ValidationException::withMessages(['Moudle ID error' => 'The provided module ID does not match the coursework module.']);
+            return Redirect::back();
+        }
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (canEdit($module))
+        if (CourseworkPermission::canEdit($module))
         {
             return view('pages.edit.coursework', ['coursework' => $coursework]);
         } else
@@ -121,7 +123,7 @@ class CourseworkController extends Controller
     /**
      * The post function for editing a piece of coursework.
      */
-    public function editCoursework(Request $request)
+    public function editCoursework($module_id, Request $request)
     {
         // Validates the request. Makes sure the content is valid.
         $this->validationCheck($request);
@@ -129,8 +131,16 @@ class CourseworkController extends Controller
             'id' => ['required', 'integer']
         ]);
 
+        // Finds the module the editing coursework belongs to.
+        $module = Module::findOrFail($module_id);
+        if ($module->id != $coursework->module->id)
+        {
+            throw ValidationException::withMessages(['Moudle ID error' => 'The provided module ID does not match the coursework module.']);
+            return Redirect::back();
+        }
+
         // Checks the user has permission to edit the coursework.
-        if (!canEdit($module))
+        if (!CourseworkPermission::canEdit($module))
         {
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to edit this coursework.']);
         }
@@ -147,20 +157,25 @@ class CourseworkController extends Controller
         $coursework->save();
 
         // Redirects the user back to the coursework page.
-        return redirect()->route('coursework.show', ['id' => $coursework->id]);
+        return redirect()->route('coursework.show', ['module_id' => $module->id, 'coursework_id' => $coursework->id]);
     }
 
     /**
      * The POST function for deleting a coursework.
      */
-    public function deleteCoursework($id)
+    public function deleteCoursework($module_id, $coursework_id)
     {
         // Finds the coursework and the coursework.
-        $coursework = Coursework::findOrFail($id);
-        $module = $coursework->module;
+        $coursework = Coursework::findOrFail($coursework_id);
+        $module = Module::findOrFail($module_id);
+        if ($module->id != $coursework->module->id)
+        {
+            throw ValidationException::withMessages(['Moudle ID error' => 'The provided module ID does not match the coursework module.']);
+            return Redirect::back();
+        }
 
         // Checks the user has permission to delete the coursework.
-        if (!Auth::user()->hasAdminRole() && !ModulePermission::hasPermission(6, $module, Auth::user()))
+        if (!CourseworkPermission::canDelete($module))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }
@@ -214,7 +229,7 @@ class CourseworkController extends Controller
     /**
      * This function is called when a submission is uploaded.
      */
-    public function storeSubmission(Request $request)
+    public function storeSubmission($module_id, Request $request)
     {
         $request->validate([
               'file' => 'required|mimes:zip',
@@ -237,30 +252,6 @@ class CourseworkController extends Controller
         $submission->save();
 
         // Redirects the user back to the coursework page.
-        return redirect()->route('coursework.show', ['id' => $coursework->id]);
-    }
-
-    /**
-     * Checks that the user can edit coursework in the given module.
-     */
-    private function canEdit($module)
-    {
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(8, $module, Auth::user()))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Checks the current user can create coursework.
-     */
-    private function canCreate($module)
-    {
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
-        {
-            return true;
-        }
-        return false;
+        return redirect()->route('coursework.show', ['module_id' => $module_id, 'coursework_id' => $coursework->id]);
     }
 }

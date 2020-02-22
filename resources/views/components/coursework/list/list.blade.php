@@ -8,7 +8,7 @@
             <div class="card list-card-container">
 
                 <!-- Coursework Card -->
-                @include('components.coursework.card', ['coursework'=>$coursework])
+                @include('components.coursework.card', ['module' => $module, 'coursework' => $coursework])
             </div>
         </div>
     @endforeach

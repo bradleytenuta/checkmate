@@ -18,7 +18,7 @@
                 <ul>
                 @foreach ($module->users as $userOnModule)
                     @if (\App\Utility\ModulePermission::hasRole($module, $userOnModule, "professor"))
-                        <li><a href="{{ route('user.show', ['id' => $userOnModule->id]) }}">{{ $userOnModule->firstname}} {{ $userOnModule->surname }}</a></li>
+                        <li><a href="{{ route('user.show', ['user_id' => $userOnModule->id]) }}">{{ $userOnModule->firstname}} {{ $userOnModule->surname }}</a></li>
                     @endif
                 @endforeach
                 </ul>
@@ -34,7 +34,7 @@
                 <ul>
                 @foreach ($module->users as $userOnModule)
                     @if (\App\Utility\ModulePermission::hasRole($module, $userOnModule, "assessor"))
-                        <li><a href="{{ route('user.show', ['id' => $userOnModule->id]) }}">{{ $userOnModule->firstname}} {{ $userOnModule->surname }}</a></li>
+                        <li><a href="{{ route('user.show', ['user_id' => $userOnModule->id]) }}">{{ $userOnModule->firstname}} {{ $userOnModule->surname }}</a></li>
                     @endif
                 @endforeach
                 </ul>

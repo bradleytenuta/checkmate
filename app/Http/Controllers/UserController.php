@@ -17,12 +17,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show($id)
+    public function show($user_id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($user_id);
 
         // If the current user, then show edit user page.
-        if (Auth::user()->id == $id) {
+        if (Auth::user()->id == $user_id) {
             return redirect()->route('user.edit.show');
         } else {
             return view('pages.user', ['user' => $user]);
@@ -128,10 +128,10 @@ class UserController extends Controller
     /**
      * Deletes a given user and everything about them in other database tables.
      */
-    private function delete($userId)
+    private function delete($user_id)
     {
-        Submission::where('user_id', $userId)->delete();
-        DB::table('module_user')->where('user_id', $userId)->delete();
-        User::where('id', $userId)->delete();
+        Submission::where('user_id', $user_id)->delete();
+        DB::table('module_user')->where('user_id', $user_id)->delete();
+        User::where('id', $user_id)->delete();
     }
 }

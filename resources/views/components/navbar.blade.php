@@ -28,28 +28,19 @@
         <!-- Navbar dropdowns -->
         <!-- Admin dropdown -->
         <div class="navbar-dropdown" id="navbar-admin-dropdown">
-            @if (Auth::user()->hasGlobalPermission(1))
+            @if (Auth::user()->hasAdminRole())
                 <a href="{{ route('register') }}">
                     <img src="{{ Storage::url('/images/icon/user-cog.png') }}" />
                     Create User
                 </a>
-            @endif
-
-            @if (Auth::user()->hasGlobalPermission(3))
                 <a href="{{ route('user.delete.show') }}">
                     <img src="{{ Storage::url('/images/icon/user-minus-solid.png') }}" />
                     Delete User
                 </a>
-            @endif
-
-            @if (Auth::user()->hasGlobalPermission(4))
                 <a href="{{ route('module.create.show') }}">
                     <img src="{{ Storage::url('/images/icon/module.png') }}" />
                     Create Module
                 </a>
-            @endif
-
-            @if (Auth::user()->hasAdminRole())
                 <a href="{{ route('module.show.all') }}">
                     <img src="{{ Storage::url('/images/icon/module.png') }}" />
                     View All

@@ -24,19 +24,19 @@
     @endif
 
     <!-- Buttons -->
-    @if (\App\Utility\ModulePermission::hasPermission(6, $module, Auth::user()) || Auth::user()->hasAdminRole())
-        <a href="{{ route('coursework.edit.show', ['id' => $coursework->id]) }}" type="button" class="btn btn-primary page-title-button">
+    @if (\App\Utility\CourseworkPermission::canEdit($module))
+        <a href="{{ route('coursework.edit.show', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}" type="button" class="btn btn-primary page-title-button">
             Edit
         </a>
     @endif
 
     <!-- TODO: Add are you sure? message -->
-    @if (\App\Utility\ModulePermission::hasPermission(7, $module, Auth::user()) || Auth::user()->hasAdminRole())
+    @if (\App\Utility\CourseworkPermission::canDelete($module))
         <a href="#" type="button" class="btn btn-danger page-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
             <img class="page-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
             Delete
         </a>
-        <form id="delete-form" action="{{ route('coursework.delete', ['id' => $coursework->id]) }}" method="POST" style="display: none;">
+        <form id="delete-form" action="{{ route('coursework.delete', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}" method="POST" style="display: none;">
             @csrf
         </form>
     @endif

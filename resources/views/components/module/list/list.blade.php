@@ -8,10 +8,10 @@
             <div class="card list-card-container">
 
                 <!-- Module Card -->
-                @include('components.module.card', ['module'=>$module])
+                @include('components.module.card', ['module' => $module])
 
                 <!-- Only display the below html if there are more than zero courseworks -->
-                @if ( sizeof($module->courseworks) > 0 )
+                @if (sizeof($module->courseworks) > 0)
                     <!-- See Coursework button -->
                     <button type="button" class="checkmate-button" onclick="toggleCourseworkDropdown(this)">
                         <img src="{{ Storage::url('/images/icon/angle-down-solid.png') }}"/>
@@ -21,11 +21,10 @@
                     <div class="list-module-coursework-container">
                         @foreach ($module->courseworks as $coursework)
                             <!-- Coursework Card -->
-                            @include('components.coursework.card', ['coursework'=>$coursework])
+                            @include('components.coursework.card', ['module' => $module, 'coursework' => $coursework])
                         @endforeach
                     </div>
                 @endif
-
             </div>
         </div>
     @endforeach

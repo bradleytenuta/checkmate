@@ -3,6 +3,7 @@
 namespace App\Utility;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\ModuleRole;
 
 class ModulePermission
@@ -117,5 +118,52 @@ class ModulePermission
         }
 
         return $module->module_role_id;
+    }
+
+    /**
+     * Checks that the current user can edit a module.
+     */
+    public static function canEdit($module)
+    {
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks to see if the user can delete the module.
+     */
+    public static function canDelete($module)
+    {
+        if (!Auth::user()->hasAdminRole() && !ModulePermission::hasPermission(6, $module, Auth::user()))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks to see if the user can create a module.
+     */
+    public static function canCreate()
+    {
+        if (Auth::user()->hasAdminRole()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks to see if the user can view the module.
+     */
+    public static function canShow($module)
+    {
+        if (Auth::user()->isInModule($module) || Auth::user()->hasAdminRole())
+        {
+            return true;
+        }
+        return false;
     }
 }
