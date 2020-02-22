@@ -25,7 +25,8 @@ class ModuleController extends Controller
         // Finds the module by the given id.
         $module = Module::findOrFail($id);
 
-        if (Auth::user()->isInModule($module))
+        // Shows the module page if the user is assigned to that module or is an admin.
+        if (Auth::user()->isInModule($module) || Auth::user()->hasAdminRole())
         {
             return view('pages.module', ['module' => $module]);
         } else
@@ -50,6 +51,23 @@ class ModuleController extends Controller
     }
 
     /**
+     * Returns an admin view that allows them to view all modules and courseworks.
+     */
+    public function showAll()
+    {
+        // Checks to see if the user has the admin role.
+        if (Auth::user()->hasAdminRole())
+        {
+            // Gets all the modules in the database and returns them.
+            $modules = Module::all();
+            return view('pages.admin.modules-all', ['modules' => $modules]);
+        } else
+        {
+            return Redirect::back();
+        }
+    }
+
+    /**
      * The post function used for creating a module.
      */
     public function createModule(Request $request)
@@ -59,6 +77,12 @@ class ModuleController extends Controller
 
         // Gets the assigned values from the request.
         $userIdAndRoleIds = $this->getAssignValues($request);
+
+        // Checks the user has permission to create a module
+        if (!Auth::user()->hasAdminRole())
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to create a module.']);
+        }
         
         // Creates the module
         $module = new Module;
@@ -171,7 +195,7 @@ class ModuleController extends Controller
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        if (canEdit($moudle))
         {
             return view('pages.edit.module', ['module' => $module]);
         } else
@@ -196,8 +220,14 @@ class ModuleController extends Controller
         // Gets the assigned values from the request.
         $userIdAndRoleIds = $this->getAssignValues($request);
 
-        // Edits the module
+        // Checks the user has permission to edit a module
         $module = Module::findOrFail($request['id']);
+        if (!canEdit($module))
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to edit the module.']);
+        }
+        
+        // Edits the module
         $module->name = $request['name'];
         $module->description = $request['description'];
 
@@ -239,5 +269,17 @@ class ModuleController extends Controller
         Coursework::where('module_id', $moduleId)->delete();
         DB::table('module_user')->where('module_id', $moduleId)->delete();
         Module::where('id', $moduleId)->delete();
+    }
+
+    /**
+     * Checks that the current user can edit a moudle.
+     */
+    private function canEdit($module)
+    {
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        {
+            return true;
+        }
+        return false;
     }
 }

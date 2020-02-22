@@ -48,6 +48,13 @@
                     Create Module
                 </a>
             @endif
+
+            @if (Auth::user()->hasAdminRole())
+                <a href="{{ route('module.show.all') }}">
+                    <img src="{{ Storage::url('/images/icon/module.png') }}" />
+                    View All
+                </a>
+            @endif
         </div>
         <!-- User dropdown -->
         <div class="navbar-dropdown" id="navbar-user-dropdown">

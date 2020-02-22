@@ -24,7 +24,7 @@
             class="card-info-element card-number-of-courseworks"
             data-toggle="tooltip"
             data-placement="bottom"
-            title="Open Courseworks">
+            title="Number of Courseworks">
             <img src="{{ Storage::url('/images/icon/coursework.png') }}"/>
             <p>{{ sizeof($module->courseworks) }}</p>
         </div>

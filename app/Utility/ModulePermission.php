@@ -10,8 +10,8 @@ class ModulePermission
     /**
      * These maps contain information depending on what role the user has within a module.
      */
-    private static $permissionIconPathMap = array("student" => "/images/icon/module-icon-student.png", "professor" => "/images/icon/module-icon-professor.png", "assessor" => "/images/icon/module-icon-assessor.png");
-    private static $permissionTextMap = array("student" => "Student", "professor" => "Professor", "assessor" => "Assessor");
+    private static $permissionIconPathMap = array("student" => "/images/icon/module-icon-student.png", "professor" => "/images/icon/module-icon-professor.png", "assessor" => "/images/icon/module-icon-assessor.png", "null" => "/images/icon/no-permission.png");
+    private static $permissionTextMap = array("student" => "Student", "professor" => "Professor", "assessor" => "Assessor", "null" => "No Role");
 
     /**
      * Checks whether a user has a given role within a module.
@@ -23,6 +23,12 @@ class ModulePermission
         {
             // Checks if the user has the given role.
             $module_role_id = ModulePermission::getModuleRoleId($user, $module);
+
+            // if null then user does not have any role in the module
+            if ($module_role_id == null)
+            {
+                return false;
+            }
 
             if (ModuleRole::where('name', $roleName)->first()->id == $module_role_id)
             {
@@ -40,6 +46,12 @@ class ModulePermission
         // Gets the users role within the module.
         $module_role_id = ModulePermission::getModuleRoleId($user, $module);
 
+        // If null then return false.
+        if ($module_role_id == null)
+        {
+            return false;
+        }
+
         // Gets all the permissions that belong to the module role.
         return $permission_module_role_rows = DB::table('module_roles_permissions')
             ->where('module_roles_id', $module_role_id)
@@ -55,6 +67,13 @@ class ModulePermission
     {
         // Gets the module role.
         $module_role_id = ModulePermission::getModuleRoleId($user, $module);
+
+        // If null then return no permission icon path.
+        if ($module_role_id == null)
+        {
+            return ModulePermission::$permissionIconPathMap["null"];
+        }
+
         $moduleRole = ModuleRole::findOrFail($module_role_id);
 
         // Uses the key to get the icon path from the map.
@@ -68,6 +87,13 @@ class ModulePermission
     {
         // Gets the module role.
         $module_role_id = ModulePermission::getModuleRoleId($user, $module);
+
+        // If null then return no permission text.
+        if ($module_role_id == null)
+        {
+            return ModulePermission::$permissionTextMap["null"];
+        }
+
         $moduleRole = ModuleRole::findOrFail($module_role_id);
 
         // Uses the key to get the icon path from the map.
@@ -80,10 +106,16 @@ class ModulePermission
      */
     private static function getModuleRoleId($user, $module)
     {
-        return DB::table('module_user')
-            ->where('user_id', $user->id)
-            ->where('module_id', $module->id)
-            ->first()
-            ->module_role_id;
+        $module = DB::table('module_user')
+                    ->where('user_id', $user->id)
+                    ->where('module_id', $module->id)
+                    ->first();
+
+        if ($module == null)
+        {
+            return null;
+        }
+
+        return $module->module_role_id;
     }
 }

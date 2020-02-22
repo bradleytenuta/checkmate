@@ -35,7 +35,8 @@ class CourseworkController extends Controller
         }
 
         // If the user is not in the module.
-        if (!Auth::user()->isInModule($module))
+        // or doesnt have admin role.
+        if (!Auth::user()->isInModule($module) && !Auth::user()->hasAdminRole())
         {
             return Redirect::back();
         }
@@ -52,7 +53,7 @@ class CourseworkController extends Controller
         $module = Module::findOrFail($module_id);
 
         // Checks to see if the user has the admin role.
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        if (canCreate($module))
         {
             return view('pages.create.coursework', ['module' => $module]);
         } else
@@ -74,6 +75,12 @@ class CourseworkController extends Controller
 
         // Finds the module to add the coursework to.
         $module = Module::findOrFail($request['module_id']);
+
+        // Checks the user can create coursework.
+        if (!canCreate($module))
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to create coursework.']);
+        }
         
         // Creates the coursework
         $coursework = new Coursework;
@@ -102,7 +109,7 @@ class CourseworkController extends Controller
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(8, $module, Auth::user()))
+        if (canEdit($module))
         {
             return view('pages.edit.coursework', ['coursework' => $coursework]);
         } else
@@ -121,6 +128,12 @@ class CourseworkController extends Controller
         $request->validate([
             'id' => ['required', 'integer']
         ]);
+
+        // Checks the user has permission to edit the coursework.
+        if (!canEdit($module))
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to edit this coursework.']);
+        }
 
         // Edits the coursework
         $coursework = Coursework::findOrFail($request['id']);
@@ -225,5 +238,29 @@ class CourseworkController extends Controller
 
         // Redirects the user back to the coursework page.
         return redirect()->route('coursework.show', ['id' => $coursework->id]);
+    }
+
+    /**
+     * Checks that the user can edit coursework in the given module.
+     */
+    private function canEdit($module)
+    {
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(8, $module, Auth::user()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks the current user can create coursework.
+     */
+    private function canCreate($module)
+    {
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        {
+            return true;
+        }
+        return false;
     }
 }
