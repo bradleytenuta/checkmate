@@ -5,6 +5,11 @@
 
 <!-- Content Container -->
 <div class="content-container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-container">
+        <a href="{{ route('home') }}">Home</a>
+    </div>
+
     <!-- Module Card -->
     @include('components.module.page.infobox', ['module'=>$module])
 
