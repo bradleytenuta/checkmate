@@ -12965,10 +12965,6 @@ a.text-dark:focus {
   width: 20px;
 }
 
-.breadcrumb-container {
-  padding: 10px;
-}
-
 @media (min-width: 768px) {
   .page-title-button {
     float: right;
@@ -13283,6 +13279,27 @@ body {
         max-width: 700px;
     }
 }*/
+
+.top-menu-button {
+  float: right;
+  margin-right: 10px;
+}
+
+.breadcrumb-container {
+  padding: 10px;
+  display: inline-block;
+}
+
+.top-menu-container {
+  position: relative;
+}
+
+.top-menu-dropdown {
+  max-width: 200px;
+  width: 200px;
+  border-radius: 0%;
+  margin-top: 42px;
+}
 
 .no-margin {
   margin: 0px;

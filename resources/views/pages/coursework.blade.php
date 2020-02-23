@@ -5,12 +5,8 @@
 
 <!-- Content Container -->
 <div class="content-container">
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-container">
-        <a href="{{ route('home') }}">Home</a>
-        >
-        <a href="{{ route('module.show', ['module_id' => $coursework->module->id]) }}">{{ $coursework->module->name }}</a>
-    </div>
+    <!-- Top Menu -->
+    @include('components.coursework.top-menu', ['module' => $coursework->module, 'coursework' => $coursework])
 
     <!-- Coursework Card -->
     @include('components.coursework.page.infobox', ['module' => $coursework->module])
@@ -23,12 +19,14 @@
             @include('components.form.error')
 
             <!-- Student view -->
-            @if (\App\Utility\ModulePermission::hasRole($coursework->module, Auth::user(), 'student') && $coursework->open == true)
+            @if (\App\Utility\ModulePermission::hasRole($coursework->module, Auth::user(), 'student'))
                 <!-- If the user has already submitted before, then show submission -->
                 @include('components.form.current-submission', ['coursework' => $coursework])
 
-                <!-- Form for if the user is a student in coursework -->
-                @include('components.form.upload-submission', ['module' => $coursework->module, 'coursework' => $coursework])
+                <!-- Form for if the user is a student in coursework, and the coursework is still open -->
+                @if ($coursework->open == true)
+                    @include('components.form.upload-submission', ['module' => $coursework->module, 'coursework' => $coursework])
+                @endif
             @endif
         </div>
     </div>

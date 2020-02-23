@@ -23,32 +23,6 @@
         <div class="page-title-badge card-closed badge badge-secondary">Closed</div>
     @endif
 
-    <!-- Buttons -->
-    @if (\App\Utility\CourseworkPermission::canEdit($module))
-        <a href="{{ route('coursework.edit.show', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}" type="button" class="btn btn-primary page-title-button">
-            Edit
-        </a>
-    @endif
-
-    @if (\App\Utility\CourseworkPermission::canEdit($module))
-        <!-- TODO: add functionality -->
-        <a href="#" type="button" class="btn btn-primary page-title-button">
-            <img class="page-title-button-image" src="{{ Storage::url('/images/icon/unit-test.png') }}" />
-            Unit Tests
-        </a>
-    @endif
-
-    <!-- TODO: Add are you sure? message -->
-    @if (\App\Utility\CourseworkPermission::canDelete($module))
-        <a href="#" type="button" class="btn btn-danger page-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
-            <img class="page-title-button-image" src="{{ Storage::url('/images/icon/trash-solid.png') }}" />
-            Delete
-        </a>
-        <form id="delete-form" action="{{ route('coursework.delete', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    @endif
-
     <!-- Shows deadline -->
     @if ( \App\Utility\Time::dateIsToday($coursework) )
         <p class="page-title-text card-due-today card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>

@@ -41746,6 +41746,8 @@ __webpack_require__(/*! ./components/list */ "./resources/js/components/list.js"
 
 __webpack_require__(/*! ./components/form */ "./resources/js/components/form.js");
 
+__webpack_require__(/*! ./components/page */ "./resources/js/components/page.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -42042,6 +42044,24 @@ window.openNavDropDown = function openNavDropDown(dropdownId) {
   $('.navbar .navbar-dropdown').css("display", "none"); // Opens the dropdown if it wasnt open to begin with.
 
   if (!isOpen) {
+    $('#' + dropdownId).css("display", "block");
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/page.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/page.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+window.openDropDown = function openDropDown(dropdownId) {
+  // If the dropdown is open, then close it.
+  if ($('#' + dropdownId).css("display") == "block") {
+    $('#' + dropdownId).css("display", "none");
+  } else {
     $('#' + dropdownId).css("display", "block");
   }
 };
