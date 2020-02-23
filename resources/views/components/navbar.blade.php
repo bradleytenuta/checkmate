@@ -43,7 +43,7 @@
                 </a>
                 <a href="{{ route('module.show.all') }}">
                     <img src="{{ Storage::url('/images/icon/module.png') }}" />
-                    View All
+                    All Modules
                 </a>
             @endif
         </div>

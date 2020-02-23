@@ -30,6 +30,14 @@
         </a>
     @endif
 
+    @if (\App\Utility\CourseworkPermission::canEdit($module))
+        <!-- TODO: add functionality -->
+        <a href="#" type="button" class="btn btn-primary page-title-button">
+            <img class="page-title-button-image" src="{{ Storage::url('/images/icon/unit-test.png') }}" />
+            Unit Tests
+        </a>
+    @endif
+
     <!-- TODO: Add are you sure? message -->
     @if (\App\Utility\CourseworkPermission::canDelete($module))
         <a href="#" type="button" class="btn btn-danger page-title-button" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
