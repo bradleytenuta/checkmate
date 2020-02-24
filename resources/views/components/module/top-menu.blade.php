@@ -3,7 +3,7 @@
     @include('components.breadcrumb.module-breadcrumb')
 
     <!-- DropDown button -->
-    @if (\App\Utility\ModulePermission::hasRole($module, Auth::user(), 'assessor') || \App\Utility\ModulePermission::hasRole($module, Auth::user(), 'professor'))
+    @if (!\App\Utility\ModulePermission::isStudentAdmin($module))
         <button id="top-menu-module-button" type="button" class="checkmate-button top-menu-button" onclick="openDropDown('top-menu-module-dropdown')">
             <img src="{{ Storage::url('/images/icon/dropdown-menu.png') }}" />
         </button>

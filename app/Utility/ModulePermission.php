@@ -125,13 +125,14 @@ class ModulePermission
      */
     public static function canEdit($module)
     {
-        if (ModulePermission::hasRole($module, Auth::user(), 'assessor') ||
-            ModulePermission::hasRole($module, Auth::user(), 'professor'))
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($module)) {
+            return false;
+        }
+
+        if (ModulePermission::hasPermission(5, $module, Auth::user()))
         {
-            if (ModulePermission::hasPermission(5, $module, Auth::user()))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
@@ -141,13 +142,14 @@ class ModulePermission
      */
     public static function canDelete($module)
     {
-        if (ModulePermission::hasRole($module, Auth::user(), 'assessor') ||
-            ModulePermission::hasRole($module, Auth::user(), 'professor'))
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($module)) {
+            return false;
+        }
+
+        if (ModulePermission::hasPermission(6, $module, Auth::user()))
         {
-            if (ModulePermission::hasPermission(6, $module, Auth::user()))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
@@ -169,6 +171,18 @@ class ModulePermission
     public static function canShow($module)
     {
         if (Auth::user()->isInModule($module) || Auth::user()->hasAdminRole())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks to see if the user is an admin and a student.
+     */
+    public static function isStudentAdmin($module)
+    {
+        if (Auth::user()->hasAdminRole() && ModulePermission::hasRole($module, Auth::user(), 'student'))
         {
             return true;
         }

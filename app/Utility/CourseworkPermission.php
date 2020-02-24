@@ -25,13 +25,14 @@ class CourseworkPermission
      */
     public static function canCreate($module)
     {
-        if (ModulePermission::hasRole($module, Auth::user(), 'assessor') ||
-            ModulePermission::hasRole($module, Auth::user(), 'professor'))
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($module)) {
+            return false;
+        }
+
+        if (ModulePermission::hasPermission(5, $module, Auth::user()))
         {
-            if (ModulePermission::hasPermission(5, $module, Auth::user()))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
@@ -69,13 +70,14 @@ class CourseworkPermission
      */
     public static function canDelete($module)
     {
-        if (ModulePermission::hasRole($module, Auth::user(), 'assessor') ||
-            ModulePermission::hasRole($module, Auth::user(), 'professor'))
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($module)) {
+            return false;
+        }
+
+        if (ModulePermission::hasPermission(6, $module, Auth::user()))
         {
-            if (ModulePermission::hasPermission(6, $module, Auth::user()))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
