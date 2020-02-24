@@ -3,9 +3,11 @@
     @include('components.breadcrumb.coursework-breadcrumb', ['coursework' => $coursework])
 
     <!-- DropDown button -->
-    <button id="top-menu-coursework-button" type="button" class="checkmate-button top-menu-button" onclick="openDropDown('top-menu-coursework-dropdown')">
-        <img src="{{ Storage::url('/images/icon/dropdown-menu.png') }}" />
-    </button>
+    @if (\App\Utility\ModulePermission::hasRole($module, Auth::user(), 'assessor') || \App\Utility\ModulePermission::hasRole($module, Auth::user(), 'professor'))
+        <button id="top-menu-coursework-button" type="button" class="checkmate-button top-menu-button" onclick="openDropDown('top-menu-coursework-dropdown')">
+            <img src="{{ Storage::url('/images/icon/dropdown-menu.png') }}" />
+        </button>
+    @endif
 
     <!-- Coursework Action dropdown items -->
     <div class="navbar-dropdown top-menu-dropdown" id="top-menu-coursework-dropdown">
