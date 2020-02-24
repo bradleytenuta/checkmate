@@ -130,7 +130,7 @@ class ModulePermission
             return false;
         }
 
-        if (ModulePermission::hasPermission(5, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
         {
             return true;
         }
@@ -147,7 +147,7 @@ class ModulePermission
             return false;
         }
 
-        if (ModulePermission::hasPermission(6, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(6, $module, Auth::user()))
         {
             return true;
         }
