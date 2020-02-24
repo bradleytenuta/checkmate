@@ -13,6 +13,11 @@ class CourseworkPermission
      */
     public static function canEdit($module)
     {
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($module)) {
+            return false;
+        }
+
         if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(8, $module, Auth::user()))
         {
             return true;
