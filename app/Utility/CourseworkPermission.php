@@ -86,4 +86,24 @@ class CourseworkPermission
         }
         return false;
     }
+
+    /**
+     * Checks to see if the current user can mark coursework within a module.
+     */
+    public static function canMark($module)
+    {
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($module)) {
+            return false;
+        }
+
+        // If the user has permission to mark submissions.
+        if (Auth::user()->hasAdminRole() ||
+            ModulePermission::hasPermission(7, $module, Auth::user()) ||
+            ModulePermission::hasPermission(1, $module, Auth::user()))
+        {
+            return true;
+        }
+        return false;
+    }
 }

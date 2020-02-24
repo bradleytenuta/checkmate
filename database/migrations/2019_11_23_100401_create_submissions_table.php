@@ -22,6 +22,7 @@ class CreateSubmissionsTable extends Migration
             $table->unsignedBigInteger('score')->nullable();
             $table->longText('main_feedback')->nullable();
             $table->longText('json')->nullable();
+            $table->unsignedBigInteger('marker_id')->nullable();
 
             // Meta Data
             $table->timestamps();
@@ -31,6 +32,8 @@ class CreateSubmissionsTable extends Migration
                 on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('coursework_id')->references('id')->
                 on('courseworks')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('marker_id')->references('id')->
+                on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

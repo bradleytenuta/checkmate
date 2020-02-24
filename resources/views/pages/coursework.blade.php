@@ -29,7 +29,10 @@
                 @endif
             @endif
 
-            <!-- TODO: Assessor and Professor View -->
+            <!-- Assessor and Professor View -->
+            @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
+                @include('components.submission.submission-table', ['coursework' => $coursework])
+            @endif
         </div>
     </div>
 </div>

@@ -1,16 +1,21 @@
-.dropzone {
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    min-height: 200px;
-}
-
 #submission-container > h1 {
     padding: 10px;
 }
-/*
-@media (min-width: 768px) {
-    .dropzone {
-        margin: auto;
-        max-width: 700px;
-    }
-}*/
+
+#submission-container table {
+    margin: auto;
+}
+
+#submission-container table .btn-primary {
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.submission-container > td {
+    padding: 5px;
+}
+
+/*  Define the background color for all the ODD background rows  */
+#submission-container table tr:nth-child(odd) { 
+    background: #EBEBEB;
+}
