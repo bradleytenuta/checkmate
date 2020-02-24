@@ -18,6 +18,7 @@ class CreateCourseworksTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('module_id');
             $table->unsignedBigInteger('maximum_score');
+            $table->unsignedBigInteger('coursework_type_id')->default(1);
             $table->string('name');
             $table->longText('description');
             $table->boolean('open')->default(false);
@@ -30,6 +31,8 @@ class CreateCourseworksTable extends Migration
             // Keys
             $table->foreign('module_id')->references('id')->
                 on('modules')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('coursework_type_id')->references('id')->
+                on('coursework_types')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

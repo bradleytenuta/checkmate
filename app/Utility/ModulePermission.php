@@ -11,6 +11,7 @@ class ModulePermission
     /**
      * These maps contain information depending on what role the user has within a module.
      */
+    // TODO should find a dynamic way to do this, so dont have to edit it twice, only once. Compare with coursework type.
     private static $permissionIconPathMap = array("student" => "/images/icon/module-icon-student.png", "professor" => "/images/icon/module-icon-professor.png", "assessor" => "/images/icon/module-icon-assessor.png", "null" => "/images/icon/no-permission.png");
     private static $permissionTextMap = array("student" => "Student", "professor" => "Professor", "assessor" => "Assessor", "null" => "No Role");
 

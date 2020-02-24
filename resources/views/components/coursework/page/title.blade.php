@@ -14,6 +14,14 @@
         data-placement="bottom"
         title="{{ \App\Utility\ModulePermission::permissionText($module, Auth::user()) }}">
 
+    <!-- Shows coursework type -->
+    <img 
+        class="page-title-icon"
+        src="{{ Storage::url(\App\Utility\CourseworkType::getIconPath($coursework->coursework_type_id)) }}"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="{{ \App\Utility\CourseworkType::getName($coursework->coursework_type_id) }}" />
+
     <!-- Icon to show if the coursework is open or closed -->
     @if ($coursework->open == true)
         <div class="page-title-badge card-open badge badge-secondary">Open</div>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Utility\Time;
 use App\Utility\CourseworkPermission;
 use Redirect;
+use DateTime;
 
 class CourseworkController extends Controller
 {
@@ -87,12 +88,13 @@ class CourseworkController extends Controller
         $coursework->deadline = $request['deadline'];
         $coursework->start_date = $request['start_date'];
         $coursework->module_id = $module->id;
+        $coursework->coursework_type_id = $request['coursework_type_id'];
         
         // Saves the coursework to the database.
         $coursework->save();
 
         // Redirects the user back to the module.
-        return redirect()->route('module.show', ['id' => $module->id]);
+        return redirect()->route('module.show', ['module_id' => $module->id]);
     }
 
     /**
@@ -152,6 +154,7 @@ class CourseworkController extends Controller
         $coursework->maximum_score = $request['maximum_score'];
         $coursework->deadline = $request['deadline'];
         $coursework->start_date = $request['start_date'];
+        $coursework->coursework_type_id = $request['coursework_type_id'];
 
         // Saves the coursework to the database.
         $coursework->save();
@@ -184,7 +187,7 @@ class CourseworkController extends Controller
         $this->delete($coursework->id);
 
         // Redirects to the module of the deleted coursework.
-        return Redirect::route('module.show', ['id' => $module->id]);
+        return Redirect::route('module.show', ['module_id' => $module->id]);
     }
 
     /**
@@ -197,12 +200,13 @@ class CourseworkController extends Controller
             'description' => ['required', 'string'],
             'maximum_score' => ['required', 'integer'],
             'deadline' => ['required', 'string', 'date'],
-            'start_date' => ['required', 'string', 'date']
+            'start_date' => ['required', 'string', 'date'],
+            'coursework_type_id' => ['required', 'integer']
         ]);
 
         $current_date = new DateTime();
-        $start_date = new DateTime($coursework->start_date);
-        $deadline = new DateTime($coursework->deadline);
+        $start_date = new DateTime($request['start_date']);
+        $deadline = new DateTime($request['deadline']);
 
         // Checks both dates are not in the past.
         if ($start_date < $current_date || $deadline < $current_date)

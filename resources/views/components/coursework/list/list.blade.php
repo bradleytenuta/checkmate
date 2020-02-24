@@ -13,3 +13,6 @@
         </div>
     @endforeach
 </div>
+
+<!-- Display empty message if no cards shown -->
+@include('components.alert.empty-card', ['cards' => $courseworks, 'name' => 'Courseworks'])

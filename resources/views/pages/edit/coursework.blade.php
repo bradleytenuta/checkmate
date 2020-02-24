@@ -36,15 +36,29 @@
     <!-- Max Score text box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="description">Max Score</label>
+            <label for="maximum_score">Max Score</label>
             <input type="text" class="form-control" name="maximum_score" id="maximum_score" value="{{ $coursework->maximum_score }}">
+        </div>
+    </div>
+
+    <!-- Coursework Type box -->
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label for="coursework_type_id">Coursework Type</label>
+            <select class="form-control" id="type" name="coursework_type_id">
+                @foreach (DB::table('coursework_types')->get() as $courseworkType)
+                    <option value="{{ $courseworkType->id }}">
+                        {{ $courseworkType->name }}
+                    </option>
+                @endforeach
+              </select>
         </div>
     </div>
 
     <!-- Start Date text box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="description">Start Date<span class="field-required">*</span></label>
+            <label for="start_date">Start Date</label>
             <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Start Date">
         </div>
     </div>
@@ -52,7 +66,7 @@
     <!-- Deadline text box -->
     <div class="form-group row">
         <div class="col-sm-12">
-            <label for="description">Deadline</label>
+            <label for="deadline">Deadline</label>
             <input type="text" class="form-control" name="deadline" id="deadline" value="{{ $coursework->deadline }}">
         </div>
     </div>

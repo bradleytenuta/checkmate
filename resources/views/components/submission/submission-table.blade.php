@@ -16,7 +16,7 @@
                 <!-- Shows if the submission has been marked -->
                 <!-- TODO: make mark submission page -->
                 @if ($submission->marker_id != null)
-                    @php $markerUser = User::where('id', $submission->marker_id)->first(); @endphp
+                    @php $markerUser = \App\User::where('id', $submission->marker_id)->first(); @endphp
                     <td>Marker: {{ $markerUser->firstname }} {{ $markerUser->surname }}</td>
                     <!-- Button to mark submission -->
                     <td><a href="#" type="button" class="btn btn-primary">
@@ -35,3 +35,6 @@
         @endforeach
     </table>
 </div>
+
+<!-- Display empty message if no cards shown -->
+@include('components.alert.empty-submission', ['cards' => $coursework->submissions, 'name' => 'Submissions'])

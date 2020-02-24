@@ -23,6 +23,14 @@ class Coursework extends Model
     }
 
     /**
+     * Gets a list of all the tests within this coursework.
+     */
+    public function tests()
+    {
+        return $this->hasMany('App\Test');
+    }
+
+    /**
      * Sets the state of the coursework, either open or closed.
      */
     public function setState($boolean)

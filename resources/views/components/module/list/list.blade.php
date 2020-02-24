@@ -29,3 +29,6 @@
         </div>
     @endforeach
 </div>
+
+<!-- Display empty message if no cards shown -->
+@include('components.alert.empty-card', ['cards' => $modules, 'name' => 'Modules'])

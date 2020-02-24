@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder {
         // Populates the modules and users table, a many-to-many table.
         $this->call(ModulesUsersTableSeeder::class);
 
+        // Populates the test type table with all possible test types.
+        $this->call(CourseworkTypesSeeder::class);
+
         // Populates coursework and submissions tables.
         $this->call(CourseworksTableSeeder::class);
         $this->call(SubmissionSeeder::class);

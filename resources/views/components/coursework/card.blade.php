@@ -15,6 +15,14 @@
             <div class="card-info-element card-closed badge badge-secondary">Closed</div>
         @endif
 
+        <!-- Shows coursework type -->
+        <img 
+            class="card-info-element"
+            src="{{ Storage::url(\App\Utility\CourseworkType::getIconPath($coursework->coursework_type_id)) }}"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="{{ \App\Utility\CourseworkType::getName($coursework->coursework_type_id) }}" />
+
         <!-- Shows deadline -->
         @if (\App\Utility\Time::dateIsToday($coursework))
             <p class="card-due-today card-info-element">{{ $coursework->start_date }} - {{ $coursework->deadline }}</p>
