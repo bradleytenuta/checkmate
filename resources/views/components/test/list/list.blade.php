@@ -7,7 +7,7 @@
         <div class="grid-item col-lg-4 mb-2">
             <div class="card list-card-container">
                 <!-- Test Card -->
-                @include('components.test.card', ['test' => $test, 'coursework' => $test->coursework])
+                @include('components.test.card', ['test' => $test])
             </div>
         </div>
     @endforeach
