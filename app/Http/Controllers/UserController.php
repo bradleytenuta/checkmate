@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Submission;
+use App\GlobalRole;
 use Illuminate\Support\Facades\DB;
 use Redirect;
 
@@ -23,7 +24,7 @@ class UserController extends Controller
 
         // If the current user, then show edit user page.
         if (Auth::user()->id == $user_id) {
-            return redirect()->route('user.edit.show');
+            return redirect()->route('user.edit.show', ['user_id' => $user_id]);
         } else {
             return view('pages.user', ['user' => $user]);
         }
@@ -32,81 +33,98 @@ class UserController extends Controller
     /**
      * Shows the edit user page.
      */
-    public function showEditUser()
+    public function showEditUser($user_id)
     {
-        return view('pages.edit.user');
+        $user = User::findOrFail($user_id);
+
+        return view('pages.edit.user', ['user' => $user]);
     }
 
     /**
      * The function that is called on the POST request for editing a user.
      */
-    public function editUser(Request $request)
+    public function editUser($user_id, Request $request)
     {
         // Validates all the data is present.
         $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'firstname' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
         ]);
 
+        $user = User::findOrFail($user_id);
+
+        // Checks if the email has been updated
+        if ($user->email != $request['email'])
+        {
+            $request->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ]);
+            $user->email = $request['email'];
+        }
+
         // Updates the users properties.
-        Auth::user()->email = $request['email'];
-        Auth::user()->firstname = $request['firstname'];
-        Auth::user()->surname = $request['surname'];
+        $user->firstname = $request['firstname'];
+        $user->surname = $request['surname'];
+
+        // Adds admin rights if set.
+        if ($request['admin'] == 'on')
+        {
+            $user->global_role_id = GlobalRole::where('name', 'admin')->first()->id;
+        } else {
+            $user->global_role_id = GlobalRole::where('name', 'standard')->first()->id;
+        }
 
         // Updates the password, only if the property isn't empty.
         if (!empty($request['password']))
         {
-            Auth::user()->password = Hash::make($request['password']);
+            $user->password = Hash::make($request['password']);
         }
 
         // Saves the user to the database.
-        Auth::user()->save();
+        $user->save();
 
         // Goes back to previous page.
         return Redirect::back();
     }
 
     /**
-     * Shows the delete user page.
+     * Shows the all users page.
      */
-    public function showDeleteUser()
+    public function showAll()
     {
-        return view('pages.delete.user');
+        if (!Auth::user()->hasAdminRole())
+        {
+            throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to view all users.']);
+        }
+        return view('pages.admin.users-all');
     }
 
     /**
      * The POST function for deleting a user.
      */
-    public function deleteUser(Request $request)
+    public function deleteUser($user_id, Request $request)
     {
+        // Checks if the current user is the user that is being deleted.
+        if (Auth::user()->id == $user_id)
+        {
+            $this->deleteCurrentUser($request);
+        }
+
         // Checks the current user has the right to delete users.
         if (!Auth::user()->hasGlobalPermission(3)) {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete users.']);
         }
 
-        // Gets all the users to delete.
-        $allInputs = array_keys($request->input());
+        // Deletes the user.
+        $this->delete($user_id);
 
-        // Deletes the users from the database.
-        foreach($allInputs as $input)
-        {
-            // If the key is not a user id then skip to next value in loop.
-            if (!is_int($input)) {
-                continue;
-            }
-
-            $this->delete($input);
-        }
-
-        // Goes back to previous page.
-        return Redirect::back();
+        return redirect()->route('home');
     }
 
     /**
      * A POST function to delete the currently logged in user.
      */
-    public function deleteCurrentUser(Request $request)
+    private function deleteCurrentUser(Request $request)
     {
         // Checks the user has admin rights to delete their account
         if (!Auth::user()->hasAdminRole()) {

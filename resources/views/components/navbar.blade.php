@@ -33,9 +33,9 @@
                     <img src="{{ Storage::url('/images/icon/user-cog.png') }}" />
                     Create User
                 </a>
-                <a href="{{ route('user.delete.show') }}">
-                    <img src="{{ Storage::url('/images/icon/user-minus-solid.png') }}" />
-                    Delete User
+                <a href="{{ route('user.show.all') }}">
+                    <img src="{{ Storage::url('/images/icon/all-users.png') }}" />
+                    All Users
                 </a>
                 <a href="{{ route('module.create.show') }}">
                     <img src="{{ Storage::url('/images/icon/module.png') }}" />
@@ -49,7 +49,7 @@
         </div>
         <!-- User dropdown -->
         <div class="navbar-dropdown" id="navbar-user-dropdown">
-            <a href="{{ route('user.edit.show') }}">
+            <a href="{{ route('user.edit.show', ['user_id' => Auth::user()->id]) }}">
                 <img src="{{ Storage::url('/images/icon/user-cog.png') }}" />
                 Account
             </a>

@@ -43,9 +43,8 @@ Route::post('modules/{module_id}/courseworks/{coursework_id}/test/delete/{test_i
 Route::post('modules/{module_id}/courseworks/submission/upload', 'CourseworkController@storeSubmission')->name('coursework.submission.upload')->middleware('auth');
 
 // User Routes
-Route::get('users/edit', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
-Route::post('users/edit', 'UserController@editUser')->name('user.edit')->middleware('auth');
-Route::get('users/delete', 'UserController@showDeleteUser')->name('user.delete.show')->middleware('auth');
-Route::post('users/delete', 'UserController@deleteUser')->name('user.delete')->middleware('auth');
-Route::post('users/current/delete', 'UserController@deleteCurrentUser')->name('user.current.delete')->middleware('auth');
+Route::get('users/edit/{user_id}', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
+Route::post('users/edit/{user_id}', 'UserController@editUser')->name('user.edit')->middleware('auth');
+Route::get('users/all', 'UserController@showAll')->name('user.show.all')->middleware('auth'); // TODO: Change to view all users.
+Route::post('users/delete/{user_id}', 'UserController@deleteUser')->name('user.delete')->middleware('auth');
 Route::get('users/{user_id}', 'UserController@show')->name('user.show')->middleware('auth');

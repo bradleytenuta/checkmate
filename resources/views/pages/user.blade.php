@@ -18,6 +18,13 @@
             <input type="text" class="form-control" value="{{ $user->surname }}" disabled>
         </div>
     </div>
+
+    <!-- If the user is admin, provide option to delete and edit user -->
+    <div class="form-group row">
+        <div class="col-sm-12">
+           <a href="{{ route('user.edit', ['user_id' => $user->id]) }}" type="button" class="btn btn-primary">Edit</a>
+        </div>
+   </div>
 </div>
 
 @endsection
