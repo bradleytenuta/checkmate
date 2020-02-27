@@ -1,0 +1,77 @@
+.navbar {
+    background-color: $navbar-background;
+    border-bottom: 1px solid $navbar-border-color;
+}
+
+.navbar-fluid-container {
+    width: 100%;
+    max-width: 1920px;
+    margin: auto;
+    display: flex;
+    height: 40px;
+    padding: 0px;
+    position: relative;
+}
+
+.navbar-fluid-container > div {
+    height: inherit;
+}
+
+.navbar-fluid-container > a {
+    height: inherit;
+    padding: 0px;
+    margin: 0px;
+}
+
+.navbar-fluid-container > a > img {
+    height: inherit;
+}
+
+.navbar-divider {
+    width: 100%;
+    display: inline-block;
+}
+
+.navbar-button-container {
+    display: inline-block;
+    min-width: 100px;
+}
+
+.navbar-button-container > button {
+    float: right;
+    height: inherit;
+    margin: 0px 2px;
+}
+
+.navbar-dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $navbar-background;
+    margin-top: 48px;
+    max-width: 150px;
+    width: 150px;
+    height: auto !important;
+    z-index: 100;
+    border: 1px solid $navbar-border-color;
+    border-radius: 0% 0% 5% 5%;
+}
+
+.navbar-dropdown > a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 2px 10px;
+}
+
+.navbar-dropdown > a > img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.navbar-dropdown > a:hover {
+    color: black;
+    text-decoration: none;
+    background-color: lightgray;
+}

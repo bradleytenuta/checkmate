@@ -1,0 +1,61 @@
+.card-info-container {
+    margin: 5px 0px;
+}
+
+.card-info-container > img {
+    width: 30px;
+    display: inline-block;
+}
+
+.card-info-container > p {
+    display: inline-block;
+}
+
+.card-info-container > div {
+    display: inline-block;
+}
+
+.card-due-today {
+    color: red;
+    font-weight: bolder;
+}
+
+.card-due-passed {
+    color: darkred;
+    font-weight: bolder;
+    opacity: 0.7;
+}
+
+.card-info-element {
+    margin-right: 10px;
+}
+
+.card-number-of-courseworks {
+    position: relative;
+}
+
+.card-number-of-courseworks > p {
+    position: absolute;
+    top: 5px;
+    left: 30px;
+}
+
+.card-number-of-courseworks > p:hover {
+    cursor: default;
+}
+
+.card-closed {
+    background-color: red;
+}
+
+.card-open {
+    background-color: green;
+}
+
+.card-pending {
+    background-color: orange;
+}
+
+.badge {
+    line-height: 1.6;
+}

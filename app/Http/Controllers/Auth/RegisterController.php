@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\GlobalRole;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -28,16 +33,49 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/register';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Requires the user to be authenticated to view the register page.
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+    }
+
+    /**
+     * Overrides the show registration form function.
+     * Before we allow access to the register page, we check to see if
+     * the user is logged in or has admin rights to create a user.
+     * If they don't then we redirect them to the root page.
+     */
+    public function showRegistrationForm()
+    {
+        // Checks to see if the user has the admin role.
+        if (Auth::user()->hasAdminRole()) {
+            return view('auth/register');
+        }
+
+        // Redirects the user.
+        return redirect('/');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     * This overrides the orignal register funtion. Now when a user is registered,
+     * it doesnt automatically log that user in.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 
     /**
@@ -49,9 +87,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
         ]);
     }
 
@@ -63,10 +101,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        // If the admin box was checked, then give the user admin global rights.
+        // Else give the user standard global rights.
+        $checkBoxTicked = isset($data['admin']) ? $data['admin'] : null;
+        if ($checkBoxTicked != null) {
+            
+            User::create([
+                'firstname' => $data['firstname'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['firstname'].$data['surname']),
+                'global_role_id' => GlobalRole::where('name', 'admin')->first()->id,
+            ]);
+        } else {
+
+            User::create([
+                'firstname' => $data['firstname'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['firstname'].$data['surname']),
+                'global_role_id' => GlobalRole::where('name', 'standard')->first()->id,
+            ]);
+        }
     }
 }

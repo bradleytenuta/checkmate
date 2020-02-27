@@ -1,1 +1,32 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Import JQuery Calendar
+@import '~jquery-ui/themes/base/all.css';
+
+// Imports all the custom scss files I have made.
+@import 'components/list';
+@import 'components/page';
+@import 'components/card';
+@import 'components/navbar';
+@import 'components/footer';
+@import 'components/form';
+@import 'components/button';
+@import 'components/general';
+@import 'components/scrollbar';
+@import 'components/submission';
+@import 'components/top-menu';
+
+// Main CSS
+.no-margin {
+    margin: 0px;
+}
+.text-centre {
+    text-align: center;
+}
