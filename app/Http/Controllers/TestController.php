@@ -8,6 +8,7 @@ use App\Coursework;
 use App\Test;
 use App\Utility\CourseworkPermission;
 use App\Utility\CourseworkType;
+use Illuminate\Support\Facades\Storage;
 use Redirect;
 
 class TestController extends Controller
@@ -85,6 +86,7 @@ class TestController extends Controller
         // Finds the coursework and the coursework.
         $coursework = Coursework::findOrFail($coursework_id);
         $module = Module::findOrFail($module_id);
+        $test = Test::findOrFail($test_id);
         if ($module->id != $coursework->module->id)
         {
             throw ValidationException::withMessages(['Moudle ID error' => 'The provided module ID does not match the coursework module.']);
@@ -97,8 +99,12 @@ class TestController extends Controller
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }
 
+        // Deletes the file
+        Storage::delete($test->file_path);
+
         // Deletes the test
-        Test::where('id', $test_id)->delete();
+        $test->delete();
+
         return Redirect::back();
     }
 }
