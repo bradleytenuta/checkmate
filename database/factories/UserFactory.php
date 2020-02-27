@@ -9,6 +9,7 @@ use App\GlobalRole;
 /**
  * Creates a user item.
  */
+// TODO: Sometimes faker we reuse the same email. Fix this bug as it leads to duplication.
 $factory->define(User::class, function (Faker $faker) {
     return [
         'firstname' => $faker->firstName(),

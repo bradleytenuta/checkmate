@@ -16,8 +16,10 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             // Main Schema
             $table->bigIncrements('id');
+            $table->boolean('public')->default(true);
             $table->unsignedBigInteger('coursework_id');
             $table->string('file_path')->default("");
+            $table->string('file_name')->default("");
 
             // Meta Data
             $table->timestamps();

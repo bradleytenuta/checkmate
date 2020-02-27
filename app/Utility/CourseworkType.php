@@ -22,4 +22,12 @@ class CourseworkType
     {
         return DB::table('coursework_types')->where('id', $courseworkTypeId)->first()->name;
     }
+
+    /**
+     * This function finds the coursework type with the given id and returns its test file extension.
+     */
+    public static function getTestFileExtension($courseworkTypeId)
+    {
+        return DB::table('coursework_types')->where('id', $courseworkTypeId)->first()->test_file_extenstion;
+    }
 }

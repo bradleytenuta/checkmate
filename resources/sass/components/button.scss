@@ -37,6 +37,10 @@
     height: 40px;
 }
 
+.button-with-image > img {
+    height: 20px;
+}
+
 .checkmate-button:focus, .checkmate-button:hover {
     outline: 0;
     border: 0px;

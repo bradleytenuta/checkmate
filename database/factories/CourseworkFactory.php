@@ -14,6 +14,7 @@ $factory->define(App\Coursework::class, function (Faker $faker) {
         'description' => $faker->sentence($nbWords = 70, $variableNbWords = true),
         'maximum_score' => 100,
         'deadline' => $faker->dateTimeBetween('-1 week', '+1 week'),
-        'start_date' => $faker->dateTimeBetween('-3 week', '-2 week')
+        'start_date' => $faker->dateTimeBetween('-3 week', '-2 week'),
+        'coursework_type_id' => 1,
     ];
 });

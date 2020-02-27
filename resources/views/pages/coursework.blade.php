@@ -11,6 +11,14 @@
     <!-- Coursework Card -->
     @include('components.coursework.page.infobox', ['module' => $coursework->module])
 
+    <!-- Assessor and Professor View -->
+    @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
+        <!-- All Tests Cards -->
+        @include('components.test.list.title', ['title'=>'Unit Tests'])
+        <!-- List of tests -->
+        @include('components.test.list.list', ['tests'=>$coursework->tests])
+    @endif
+
     <!-- Submission Container -->
     <div id="submission-container">
         <h1>Submission</h1>
@@ -31,6 +39,7 @@
 
             <!-- Assessor and Professor View -->
             @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
+                <!-- All Submissions table -->
                 @include('components.submission.submission-table', ['coursework' => $coursework])
             @endif
         </div>

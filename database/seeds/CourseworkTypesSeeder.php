@@ -13,7 +13,8 @@ class CourseworkTypesSeeder extends Seeder
     public function run()
     {
         DB::table('coursework_types')->insert([
-            'name' => "java",
+            'name' => "Java",
+            'test_file_extenstion' => 'java'
         ]);
     }
 }

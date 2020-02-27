@@ -17,6 +17,7 @@ class CreateCourseworkTypesTable extends Migration
             // Main Schema
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('test_file_extenstion');
         });
     }
 

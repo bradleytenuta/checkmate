@@ -19,22 +19,6 @@
             </a>
         @endif
 
-        @if (\App\Utility\CourseworkPermission::canEdit($module))
-            <!-- TODO: add functionality -->
-            <a href="#">
-                <img src="{{ Storage::url('/images/icon/dropdown-unit-test.png') }}" />
-                Add Unit Test
-            </a>
-        @endif
-
-        @if (\App\Utility\CourseworkPermission::canEdit($module))
-            <!-- TODO: add functionality -->
-            <a href="#">
-                <img src="{{ Storage::url('/images/icon/dropdown-unit-test-delete.png') }}" />
-                Delete Unit Test
-            </a>
-        @endif
-
         <!-- TODO: Add are you sure? message -->
         @if (\App\Utility\CourseworkPermission::canDelete($module))
             <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
