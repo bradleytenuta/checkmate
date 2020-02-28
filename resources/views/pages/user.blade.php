@@ -20,11 +20,13 @@
     </div>
 
     <!-- If the user is admin, provide option to delete and edit user -->
-    <div class="form-group row">
-        <div class="col-sm-12">
-           <a href="{{ route('user.edit', ['user_id' => $user->id]) }}" type="button" class="btn btn-primary">Edit</a>
+    @if (Auth::User()->hasAdminRole())
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <a href="{{ route('user.edit', ['user_id' => $user->id]) }}" type="button" class="btn btn-primary">Edit</a>
+            </div>
         </div>
-   </div>
+    @endif
 </div>
 
 @endsection
