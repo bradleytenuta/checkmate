@@ -2,8 +2,9 @@
 image: lorisleiva/laravel-docker
 
 pipelines:
-  branches:
-    master:
+  pull-requests:
+    # Runs these steps on any pull request.
+    '**':
       - step:
           # Caches composer so it doesnt need to be installed every time we run the pipeline.
           caches:
