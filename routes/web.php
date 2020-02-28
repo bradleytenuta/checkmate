@@ -38,9 +38,7 @@ Route::get('modules/{module_id}/courseworks/{coursework_id}/test/upload', 'TestC
 Route::post('modules/{module_id}/courseworks/{coursework_id}/test/{test_id}/delete', 'TestController@deleteTest')->name('test.delete')->middleware('auth');
 
 // Submission Routes
-// TODO: Update to include coursework id.
-// TOOD: move to submission controller.
-Route::post('modules/{module_id}/courseworks/submission/upload', 'CourseworkController@storeSubmission')->name('coursework.submission.upload')->middleware('auth');
+Route::post('modules/{module_id}/courseworks/{coursework_id}/submission/upload', 'SubmissionController@createSubmission')->name('submission.create')->middleware('auth');
 
 // User Routes
 Route::get('users/all', 'UserController@showAll')->name('user.show.all')->middleware('auth');

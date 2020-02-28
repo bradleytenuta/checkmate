@@ -229,33 +229,4 @@ class CourseworkController extends Controller
         Submission::where('coursework_id', $courseworkId)->delete();
         Coursework::where('id', $courseworkId)->delete();
     }
-
-    /**
-     * This function is called when a submission is uploaded.
-     */
-    public function storeSubmission($module_id, Request $request)
-    {
-        $request->validate([
-              'file' => 'required|mimes:zip',
-              'coursework_id' => 'required',
-        ]);
-
-        // Finds the coursework this submission will be associated with.
-        $coursework = Coursework::findOrFail($request['coursework_id']);
-
-        // Gets the first submission found or creates a new one.
-        $submission = Submission::firstOrNew(['coursework_id' => $coursework->id, 'user_id' => Auth::user()->id]);
-        $submission->save();
-
-        // Deletes old file before uploading new one.
-        Storage::delete($submission->file_path);
-
-        // Adds the file to the submission
-        $submission->file_path = $request->file->store(
-            'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  Auth::user()->id);
-        $submission->save();
-
-        // Redirects the user back to the coursework page.
-        return redirect()->route('coursework.show', ['module_id' => $module_id, 'coursework_id' => $coursework->id]);
-    }
 }
