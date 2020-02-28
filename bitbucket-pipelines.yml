@@ -2,6 +2,21 @@
 image: lorisleiva/laravel-docker
 
 pipelines:
+  branches:
+    master:
+      - step:
+          # Caches composer so it doesnt need to be installed every time we run the pipeline.
+          caches:
+            - composer
+          script:
+            - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+            - cp .env.example .env
+            - php artisan key:generate
+            - php artisan migrate
+            - vendor/bin/phpunit
+          services:
+            - mysql
+
   pull-requests:
     # Runs these steps on any pull request.
     '**':
