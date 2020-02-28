@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data" method="post" action="{{ route('coursework.submission.upload', ['module_id' => $module->id]) }}">
+<form enctype="multipart/form-data" method="post" action="{{ route('submission.create', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}">
     @csrf
 
     <!-- Include Coursework ID so we know which coursework the submission belongs to. This is hidden from the user -->

@@ -43,11 +43,10 @@
                 @else
                     <input class="form-check-input" type="checkbox" name="admin" id="admin" autofocus>
                 @endif
-                
                 <label class="form-check-label" for="admin">Admin Privileges</label>
             </div>
         </div>
-      </div>
+    </div>
 
     <!-- Password row -->
     <!-- TODO: Make this harder to change, ask for old password and new password twice -->

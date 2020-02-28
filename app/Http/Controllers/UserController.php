@@ -37,6 +37,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($user_id);
 
+        // Checks if the user has permission to edit a user.
+        if (!Auth::user()->hasAdminRole()) {
+            return Redirect::back();
+        }
+
         return view('pages.edit.user', ['user' => $user]);
     }
 
@@ -45,6 +50,11 @@ class UserController extends Controller
      */
     public function editUser($user_id, Request $request)
     {
+        // Checks if the user has permission to edit a user.
+        if (!Auth::user()->hasAdminRole()) {
+            throw ValidationException::withMessages(['Edit Fail' => 'The current user does not have permission to edit user.']);
+        }
+
         // Validates all the data is present.
         $request->validate([
             'firstname' => ['required', 'string', 'max:255'],
@@ -104,15 +114,15 @@ class UserController extends Controller
      */
     public function deleteUser($user_id, Request $request)
     {
+        // Checks the current user has the right to delete users.
+        if (!Auth::user()->hasAdminRole()) {
+            throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete users.']);
+        }
+
         // Checks if the current user is the user that is being deleted.
         if (Auth::user()->id == $user_id)
         {
             $this->deleteCurrentUser($request);
-        }
-
-        // Checks the current user has the right to delete users.
-        if (!Auth::user()->hasGlobalPermission(3)) {
-            throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete users.']);
         }
 
         // Deletes the user.
@@ -126,11 +136,6 @@ class UserController extends Controller
      */
     private function deleteCurrentUser(Request $request)
     {
-        // Checks the user has admin rights to delete their account
-        if (!Auth::user()->hasAdminRole()) {
-            throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete themself.']);
-        }
-
         // Gets the user id so the user can be deleted while logged out.
         $user_id = Auth::user()->id;
 
