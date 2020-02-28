@@ -41851,7 +41851,9 @@ window.searchForUser = function searchForUser() {
 
     if (iteratingString == searchString || iteratingString.includes(searchString)) {
       // Gets the height of where the elem would be in the list.
-      var heightOfElem = $(this).height() * index + 1;
+      // We add one to the index so it doesnt start at 0 then 
+      // divide it by 2 as it goes through the name and id on each row.
+      var heightOfElem = $(this).height() * ((index + 1) / 2);
       $('#create-module-assign-container').animate({
         scrollTop: heightOfElem
       }, 500);
