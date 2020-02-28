@@ -38,7 +38,7 @@ class UserController extends Controller
         $user = User::findOrFail($user_id);
 
         // Checks if the user has permission to edit a user.
-        if (!Auth::user()->hasGlobalPermission(2)) {
+        if (!Auth::user()->hasAdminRole()) {
             return Redirect::back();
         }
 
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function editUser($user_id, Request $request)
     {
         // Checks if the user has permission to edit a user.
-        if (!Auth::user()->hasGlobalPermission(2)) {
+        if (!Auth::user()->hasAdminRole()) {
             throw ValidationException::withMessages(['Edit Fail' => 'The current user does not have permission to edit user.']);
         }
 
@@ -115,7 +115,7 @@ class UserController extends Controller
     public function deleteUser($user_id, Request $request)
     {
         // Checks the current user has the right to delete users.
-        if (!Auth::user()->hasGlobalPermission(3)) {
+        if (!Auth::user()->hasAdminRole()) {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete users.']);
         }
 

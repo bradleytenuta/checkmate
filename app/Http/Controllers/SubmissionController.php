@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Coursework;
 use App\Submission;
+use App\Utility\ModulePermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,6 +23,19 @@ class SubmissionController extends Controller
 
         // Finds the coursework this submission will be associated with.
         $coursework = Coursework::findOrFail($request['coursework_id']);
+        $module = Module::findOrFail($module_id);
+
+        // Checks that the person making the submission is a student in the module
+        if (!ModulePermission::hasRole($module, Auth::user(), 'student'))
+        {
+            throw ValidationException::withMessages(['Submission Fail' => 'The current user does not have permission to submit work.']);
+        }
+
+        // Checks that the coursework is still open.
+        if (!$coursework->open)
+        {
+            throw ValidationException::withMessages(['Submission Fail' => 'The coursework is not open and so the user cannot submit work.']);
+        }
 
         // Gets the first submission found or creates a new one.
         $submission = Submission::firstOrNew(['coursework_id' => $coursework->id, 'user_id' => Auth::user()->id]);

@@ -45,6 +45,12 @@ class TestController extends Controller
         // Gets the coursework.
         $coursework = Coursework::findOrFail($coursework_id);
 
+        // Checks that the user is admin before creating a test
+        if (!CourseworkPermission::canCreate($module))
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The user does not have permission to create a test.']);
+        }
+
         // Checks to see if the file contains the .java extension.
         $filename = $request->file->getClientOriginalName();
         $correct_file_type = CourseworkType::getTestFileExtension($coursework->coursework_type_id);
