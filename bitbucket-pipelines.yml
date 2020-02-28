@@ -1,0 +1,27 @@
+# https://github.com/lorisleiva/laravel-docker
+image: lorisleiva/laravel-docker
+
+pipelines:
+  branches:
+    master:
+      - step:
+          # Caches composer so it doesnt need to be installed every time we run the pipeline.
+          caches:
+            - composer
+          script:
+            - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+            - cp .env.example .env
+            - php artisan key:generate
+            - php artisan migrate
+            - vendor/bin/phpunit
+          services:
+            - mysql
+
+definitions:
+  services:
+    mysql:
+      image: mysql:5.7
+      # Username is not needed as root user is being used.
+      environment:
+        MYSQL_DATABASE: 'laravel'
+        MYSQL_ROOT_PASSWORD: 'secret'
