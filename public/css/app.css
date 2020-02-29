@@ -13310,6 +13310,16 @@ body {
   margin-top: 42px;
 }
 
+.viewer-menu-bar {
+  padding: 10px 0px;
+  background-color: white;
+  border-bottom: 1px solid #888888;
+}
+
+.viewer-menu-bar p {
+  margin: 0px;
+}
+
 .no-margin {
   margin: 0px;
 }

@@ -40,6 +40,10 @@ Route::post('modules/{module_id}/courseworks/{coursework_id}/test/{test_id}/dele
 // Submission Routes
 Route::post('modules/{module_id}/courseworks/{coursework_id}/submission/upload', 'SubmissionController@createSubmission')->name('submission.create')->middleware('auth');
 
+// Viewer Routes
+Route::get('modules/{module_id}/courseworks/{coursework_id}/submission/{submission_id}', 'ViewerController@showMark')->name('viewer.mark')->middleware('auth');
+Route::post('modules/{module_id}/courseworks/{coursework_id}/submission/{submission_id}/save', 'ViewerController@saveMark')->name('viewer.mark.save')->middleware('auth');
+
 // User Routes
 Route::get('users/all', 'UserController@showAll')->name('user.show.all')->middleware('auth');
 Route::get('users/{user_id}/edit', 'UserController@showEditUser')->name('user.edit.show')->middleware('auth');
