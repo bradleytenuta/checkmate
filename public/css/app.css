@@ -13312,6 +13312,7 @@ body {
 
 .viewer-menu-bar {
   padding: 10px 0px;
+  padding-left: 10px;
   background-color: white;
   border-bottom: 1px solid #888888;
 }
@@ -13362,30 +13363,45 @@ body {
   height: auto !important;
 }
 
-.viewer-right-container pre {
-  margin: 0px;
+.viewer-row {
+  display: -webkit-box;
+  display: flex;
+  white-space: nowrap;
 }
 
-.viewer-right-container table tr:nth-child(odd) {
+.viewer-row:nth-child(odd) {
   background: #f8f8f8;
+}
+
+.viewer-row:hover .viewer-number-container img {
+  opacity: 0.5;
+}
+
+.viewer-row:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.viewer-row pre {
+  margin: 0px;
 }
 
 .viewer-number-container {
   padding: 0px 10px 0px 5px;
 }
 
-.viewer-comment-container img {
+.viewer-number-container img {
   height: 15px;
   opacity: 0;
+  padding-left: 5px;
 }
 
-.viewer-right-container table tr:hover {
-  opacity: 0.5;
-  cursor: pointer;
+.viewer-right-container {
+  overflow: auto;
 }
 
-.viewer-right-container table tr:hover .viewer-comment-container img {
-  opacity: 0.5;
+.viewer-line-container {
+  padding-right: 50px;
 }
 
 .no-margin {

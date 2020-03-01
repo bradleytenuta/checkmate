@@ -41796,6 +41796,8 @@ __webpack_require__(/*! ./components/form */ "./resources/js/components/form.js"
 
 __webpack_require__(/*! ./components/page */ "./resources/js/components/page.js");
 
+__webpack_require__(/*! ./pages/viewer */ "./resources/js/pages/viewer.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -42114,6 +42116,30 @@ window.openDropDown = function openDropDown(dropdownId) {
   } else {
     $('#' + dropdownId).css("display", "block");
   }
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/viewer.js":
+/*!**************************************!*\
+  !*** ./resources/js/pages/viewer.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  adjustNumberContainerWidth();
+});
+/**
+ * Adjusts the width of the number containers to match the width of the
+ * last container.
+ */
+
+window.adjustNumberContainerWidth = function adjustNumberContainerWidth() {
+  // Loops through all the number containers and
+  var maxWidth = $('.viewer-number-container').last().width(); // Sets the width of all the number containers
+
+  $('.viewer-number-container').width(maxWidth);
 };
 
 /***/ }),

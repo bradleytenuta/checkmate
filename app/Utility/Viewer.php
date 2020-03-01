@@ -10,7 +10,7 @@ class Viewer
         $line = str_replace("\t","    ",$line);
 
         // Replaces the windows new line character.
-        $line = str_replace("\r\n","\n",$line);
+        $line = str_replace("\r\n","",$line);
 
         // Returns the new formatted line.
         return $line;

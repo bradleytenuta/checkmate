@@ -1,5 +1,6 @@
 .viewer-menu-bar {
     padding: 10px 0px;
+    padding-left: 10px;
     background-color: white;
     border-bottom: 1px solid #888888;
 }
@@ -49,29 +50,46 @@
     height: auto!important;
 }
 
-.viewer-right-container pre {
-    margin: 0px;
+// Viewer Row
+// -------------------
+.viewer-row {
+    display: flex;
+    white-space: nowrap;
 }
-
-.viewer-right-container table tr:nth-child(odd) { 
+.viewer-row:nth-child(odd) { 
     background: #f8f8f8;
 }
-
-.viewer-number-container {
-    padding: 0px 10px 0px 5px;
+// On row hover, show comment icon.
+.viewer-row:hover .viewer-number-container img {
+    opacity: 0.5;
 }
-
-.viewer-comment-container img {
-    height: 15px;
-    opacity: 0;
-}
-
-.viewer-right-container table tr:hover {
+.viewer-row:hover {
     opacity: 0.5;
     cursor: pointer;
 }
+.viewer-row pre {
+    margin: 0px;
+}
+// -------------------
+// End Of Viewer Row
 
-// On row hover, show comment icon.
-.viewer-right-container table tr:hover .viewer-comment-container img {
-    opacity: 0.5;
+
+// Viewer Number container
+// -------------------
+.viewer-number-container {
+    padding: 0px 10px 0px 5px;
+}
+.viewer-number-container img {
+    height: 15px;
+    opacity: 0;
+    padding-left: 5px;
+}
+// -------------------
+// End Of Viewer Number container
+
+.viewer-right-container {
+    overflow: auto;
+}
+.viewer-line-container {
+    padding-right: 50px;
 }

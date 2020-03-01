@@ -9,7 +9,7 @@
 <form method="POST" @if ($isMarkable) action="{{ route('viewer.mark.save', ['module_id' => $submission->coursework->module->id, 'coursework_id' => $submission->coursework->id, 'submission_id' => $submission->id]) }}" @endif>
 
     <!-- Viewer menu bar -->
-    <ul class="viewer-menu-bar nav nav-pills justify-content-end">
+    <ul class="viewer-menu-bar nav nav-pills">
         <!-- Button to save Submission marking changes -->
         <li class="nav-item">
             <!-- TODO: button to update submission properties -->
@@ -77,21 +77,17 @@
         <div class="viewer-right-container tab-content" id="v-pills-tabContent">
             
             @foreach ($files as $index => $file)
-                <table @if ($index == 0) class="tab-pane fade show active" @else class="tab-pane fade" @endif id="v-pills-{{$index}}" role="tabpanel" aria-labelledby="v-pills-{{$index}}-tab">
+                <div @if ($index == 0) class="viewer-code-container tab-pane fade show active" @else class="tab-pane fade" @endif id="v-pills-{{$index}}" role="tabpanel" aria-labelledby="v-pills-{{$index}}-tab">
                     @foreach (explode(PHP_EOL, $file->getContents()) as $lineIndex => $line)
-                        <tr>
-                            <td class="viewer-number-container">
-                                {{$lineIndex}}
-                            </td>
-                            <td>
+                        <div class="viewer-row">
+                            <div class="viewer-number-container">{{$lineIndex}}<img src="{{  Storage::url('/images/icon/comment.png') }}" />
+                            </div>
+                            <div class="viewer-line-container">
                                 <pre>{{ \App\Utility\Viewer::formatLine($line) }}</pre>
-                            </td>
-                            <td class="viewer-comment-container">
-                                <img src="{{  Storage::url('/images/icon/comment.png') }}" />
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
                     @endforeach
-                </table>
+                    </div>
             @endforeach
 
         </div>
