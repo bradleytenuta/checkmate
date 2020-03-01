@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use App\Submission;
 use App\Coursework;
+use VIPSoft\Unzip\Unzip;
 
 class SubmissionSeeder extends Seeder
 {
@@ -39,9 +40,14 @@ class SubmissionSeeder extends Seeder
                 $submission->coursework_id = $coursework->id;
 
                 // Adds the file to the submission
-                $newFilePath = 'public/coursework/' . $submission->coursework->id . '/' .
-                    'submissions' . '/' .  $submission->user->id . '/ExampleSubmission.zip';
-                Storage::copy('public/seeding/ExampleSubmission.zip', $newFilePath);
+                $newFilePath = 'app/public/coursework/' . $submission->coursework->id . '/' .
+                    'submissions' . '/' .  $submission->user->id;
+
+                // Extracts the files and stores them.
+                $unzipper  = new Unzip();
+                $unzipper->extract(storage_path('app/public/seeding/ExampleSubmission.zip'), storage_path($newFilePath));
+
+                // Saves the folder path where all the files were extracted to.
                 $submission->file_path = $newFilePath;
 
                 // Saves the submission.

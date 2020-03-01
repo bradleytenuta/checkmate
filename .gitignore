@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage/app/public/coursework
+/storage/app/public/tmp
 /storage/*.key
 /vendor
 .env
