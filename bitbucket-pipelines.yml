@@ -9,8 +9,8 @@ pipelines:
           caches:
             - composer
           script:
-            - chmod +x ./scripts/run-tests.sh
             - cd scripts
+            - chmod +x ./run-tests.sh
             - ./run-tests.sh
           services:
             - mysql
@@ -23,8 +23,8 @@ pipelines:
           caches:
             - composer
           script:
-            - chmod +x ./scripts/run-tests.sh
             - cd scripts
+            - chmod +x ./run-tests.sh
             - ./run-tests.sh
           services:
             - mysql
