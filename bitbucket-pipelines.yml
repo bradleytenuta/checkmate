@@ -9,6 +9,7 @@ pipelines:
           caches:
             - composer
           script:
+            - php -v
             - cd scripts
             - chmod +x ./run-tests.sh
             - ./run-tests.sh
@@ -23,6 +24,7 @@ pipelines:
           caches:
             - composer
           script:
+            - php -v
             - cd scripts
             - chmod +x ./run-tests.sh
             - ./run-tests.sh
