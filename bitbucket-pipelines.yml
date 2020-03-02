@@ -9,12 +9,8 @@ pipelines:
           caches:
             - composer
           script:
-            - cd src
-            - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-            - cp .env.example .env
-            - php artisan key:generate
-            - php artisan migrate
-            - vendor/bin/phpunit
+            - chmod +x ./scripts/run-tests.sh
+            - ./scripts/run-tests.sh
           services:
             - mysql
 
@@ -26,12 +22,8 @@ pipelines:
           caches:
             - composer
           script:
-            - cd src
-            - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-            - cp .env.example .env
-            - php artisan key:generate
-            - php artisan migrate
-            - vendor/bin/phpunit
+            - chmod +x ./scripts/run-tests.sh
+            - ./scripts/run-tests.sh
           services:
             - mysql
 
