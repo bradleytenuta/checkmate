@@ -4,5 +4,5 @@
 cd ..
 cd src
 cp .env.example .env
-ls
+ls -a
 php artisan key:generate
