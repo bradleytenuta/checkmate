@@ -9,6 +9,7 @@ pipelines:
           caches:
             - composer
           script:
+            - cd src
             - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
             - cp .env.example .env
             - php artisan key:generate
@@ -25,6 +26,7 @@ pipelines:
           caches:
             - composer
           script:
+            - cd src
             - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
             - cp .env.example .env
             - php artisan key:generate
@@ -39,5 +41,5 @@ definitions:
       image: mysql:5.7
       # Username is not needed as root user is being used.
       environment:
-        MYSQL_DATABASE: 'laravel'
+        MYSQL_DATABASE: 'checkmate'
         MYSQL_ROOT_PASSWORD: 'secret'
