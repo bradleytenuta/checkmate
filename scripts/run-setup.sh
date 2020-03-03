@@ -17,8 +17,8 @@ chmod +x ./make-env.sh
 ./make-env.sh
 
 # Runs docker
-chmod +x ./run.sh
-./run.sh
+chmod +x ./run-docker.sh
+./run-docker.sh
 
 # Installs and updates everything on the server.
 chmod +x ./run-update.sh
