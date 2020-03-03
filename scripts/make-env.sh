@@ -9,3 +9,6 @@ composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scr
 # Creates the '.env' file and generates a key.
 cp .env.example .env
 php artisan key:generate
+
+# Creates the symbolic link.
+php artisan storage:link
