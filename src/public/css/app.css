@@ -13326,10 +13326,17 @@ body {
   display: flex;
 }
 
-.viewer-left-container {
+#viewer-left-container {
   width: 360px;
   background-color: white;
   border-right: 1px solid #888888;
+  display: -webkit-box;
+  display: flex;
+}
+
+#viewer-left-container-main {
+  display: block;
+  width: 100%;
 }
 
 .viewer-right-container {
@@ -13337,15 +13344,13 @@ body {
   background-color: white;
 }
 
-.padding-10 {
-  padding: 10px;
+.main-feedback-container {
+  min-height: 100px;
+  max-height: 250px;
 }
 
-.left-container-heading {
-  padding-left: 10px;
-  border-top: 1px solid #888888;
-  border-bottom: 1px solid #888888;
-  background-color: #f8f8f8;
+.padding-10 {
+  padding: 10px;
 }
 
 .left-container-files {
@@ -13353,14 +13358,38 @@ body {
   overflow: auto;
 }
 
-.left-container-menu img {
+.viewer-left-container-menu img {
   width: 15px;
   cursor: pointer;
 }
 
-.left-container-menu button {
+.viewer-left-container-menu button {
   width: auto !important;
   height: auto !important;
+  margin: 5px 2px;
+}
+
+.commment-container {
+  display: -webkit-box;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.commment-container > p {
+  margin: 6px;
+}
+
+.commment-container > button {
+  height: 28px;
+  min-height: 28px;
+  width: 28px;
+  min-width: 28px;
+  margin: 4px;
+  padding: 0px;
+}
+
+.commment-container > button > img {
+  height: 20px;
 }
 
 .viewer-row {
