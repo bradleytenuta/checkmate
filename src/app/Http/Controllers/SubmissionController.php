@@ -9,7 +9,6 @@ use App\Module;
 use App\Utility\ModulePermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use VIPSoft\Unzip\Unzip;
 
 class SubmissionController extends Controller
 {
@@ -49,11 +48,17 @@ class SubmissionController extends Controller
         // Adds the file to the temp directory.
         $tmpZipPath = $request->file->store('public/tmp');
 
-        // Extracts the file and stores the contents in the submission folder.
+        // Saves the folder path where the submission files can be found.
         $submission->file_path = 'app/public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  Auth::user()->id;
-        $unzipper  = new Unzip();
-        $unzipper->extract(storage_path('app/' . $tmpZipPath), storage_path($submission->file_path));
         $submission->save();
+
+        // Extracts the file and stores the contents in the submission folder.
+        $zip = new ZipArchive;
+        if ($zip->open(storage_path('app/' . $tmpZipPath)) === true)
+        {
+            $zip->extractTo(storage_path($submission->file_path));
+            $zip->close();
+        }
 
         // Deletes temp folder.
         Storage::delete($tmpZipPath);
