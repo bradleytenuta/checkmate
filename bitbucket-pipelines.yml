@@ -9,7 +9,6 @@ pipelines:
           caches:
             - composer
           script:
-            - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
             - chmod +x ./scripts/run-tests.sh
             - ./scripts/run-tests.sh
           services:
@@ -23,7 +22,6 @@ pipelines:
           caches:
             - composer
           script:
-            - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
             - chmod +x ./scripts/run-tests.sh
             - ./scripts/run-tests.sh
           services:
