@@ -3,10 +3,15 @@
 # Updates installed packages.
 sudo apt-get update
 sudo dpkg --configure -a
+sudo apt install curl
 
 # Installs PHP
 chmod +x ./make-php.sh
 ./make-php.sh
+
+# Installs Composer
+chmod +x ./make-composer.sh
+./make-composer.sh
 
 # Installs Docker
 chmod +x ./make-docker.sh
