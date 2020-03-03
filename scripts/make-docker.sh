@@ -28,5 +28,13 @@ sudo apt-get update
 # Installs the latest version of Docker Engine.
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-# Verifies the installation.
-sudo docker run hello-world
+# Installs docker compose.
+# Downloads stable release of docker compose.
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Apply executable permissions to the binary.
+sudo chmod +x /usr/local/bin/docker-compose
+source ~/.bashrc
+
+# Tests the installation of docker compose.
+docker-compose --version

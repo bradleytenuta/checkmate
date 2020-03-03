@@ -14,6 +14,3 @@ source ~/.bashrc
 
 # Checks Composer is installed correctly.
 composer -v
-
-# Makes sure composer modules are up to date.
-composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts

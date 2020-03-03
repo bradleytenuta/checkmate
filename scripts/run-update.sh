@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ..
+
 # Updates compose, npm and refreshes the database.
 docker-compose run --rm composer update
 docker-compose run --rm npm install
