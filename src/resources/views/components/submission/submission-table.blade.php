@@ -14,19 +14,18 @@
                 @endif
 
                 <!-- Shows if the submission has been marked -->
-                <!-- TODO: make mark submission page -->
                 @if ($submission->marker_id != null)
                     @php $markerUser = \App\User::where('id', $submission->marker_id)->first(); @endphp
                     <td>Marker: {{ $markerUser->firstname }} {{ $markerUser->surname }}</td>
                     <!-- Button to mark submission -->
-                    <td><a href="#" type="button" class="btn btn-primary">
+                    <td><a href="{{ route('viewer.mark', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id, 'submission_id' => $submission->id]) }}" type="button" class="btn btn-primary">
                         <img class="page-title-button-image" src="{{ Storage::url('/images/icon/mark-submission.png') }}" />
                         Remark
                     </a></td>
                 @else
                     <td>Marker: N/A</td>
                     <!-- Button to mark submission -->
-                    <td><a href="#" type="button" class="btn btn-primary">
+                    <td><a href="{{ route('viewer.mark', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id, 'submission_id' => $submission->id]) }}" type="button" class="btn btn-primary">
                         <img class="page-title-button-image" src="{{ Storage::url('/images/icon/mark-submission.png') }}" />
                         Mark
                     </a></td>

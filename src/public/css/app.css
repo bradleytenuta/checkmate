@@ -13310,6 +13310,100 @@ body {
   margin-top: 42px;
 }
 
+.viewer-menu-bar {
+  padding: 10px 0px;
+  padding-left: 10px;
+  background-color: white;
+  border-bottom: 1px solid #888888;
+}
+
+.viewer-menu-bar p {
+  margin: 0px;
+}
+
+.viewer-main-container {
+  display: -webkit-box;
+  display: flex;
+}
+
+.viewer-left-container {
+  width: 360px;
+  background-color: white;
+  border-right: 1px solid #888888;
+}
+
+.viewer-right-container {
+  width: 100%;
+  background-color: white;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+.left-container-heading {
+  padding-left: 10px;
+  border-top: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  background-color: #f8f8f8;
+}
+
+.left-container-files {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.left-container-menu img {
+  width: 15px;
+  cursor: pointer;
+}
+
+.left-container-menu button {
+  width: auto !important;
+  height: auto !important;
+}
+
+.viewer-row {
+  display: -webkit-box;
+  display: flex;
+  white-space: nowrap;
+}
+
+.viewer-row:nth-child(odd) {
+  background: #f8f8f8;
+}
+
+.viewer-row:hover .viewer-number-container img {
+  opacity: 0.5;
+}
+
+.viewer-row:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.viewer-row pre {
+  margin: 0px;
+}
+
+.viewer-number-container {
+  padding: 0px 10px 0px 5px;
+}
+
+.viewer-number-container img {
+  height: 15px;
+  opacity: 0;
+  padding-left: 5px;
+}
+
+.viewer-right-container {
+  overflow: auto;
+}
+
+.viewer-line-container {
+  padding-right: 50px;
+}
+
 .no-margin {
   margin: 0px;
 }

@@ -16,3 +16,4 @@ require('./components/navbar');
 require('./components/list');
 require('./components/form');
 require('./components/page');
+require('./pages/viewer');

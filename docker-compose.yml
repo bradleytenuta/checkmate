@@ -20,7 +20,7 @@ services:
       - laravel
 
   mysql:
-    image: mysql:5.7.22
+    image: mysql:5.7
     container_name: mysql
     restart: unless-stopped # Retart container if not manually stopped.
     tty: true # Allows the use of a shell like interface if needed.
@@ -61,7 +61,7 @@ services:
       - laravel
 
   npm:
-    image: node:13.7
+    image: node:12.13
     container_name: npm
     volumes:
       - ./src:/var/www/html
