@@ -1,9 +1,11 @@
 <ul class="viewer-menu-bar nav nav-pills">
-    <!-- Button to save Submission marking changes -->
-    <li class="nav-item">
-        <!-- TODO: button to update submission properties -->
-        <a type="button" class="btn btn-primary" href="#">Save</a>
-    </li>
+    @if ($isMarkable)
+        <!-- Button to save Submission marking changes -->
+        <li class="nav-item">
+            <!-- TODO: button to update submission properties -->
+            <a type="button" class="btn btn-primary" href="#">Save</a>
+        </li>
+    @endif
     <!-- Name of the current module -->
     <li class="nav-item">
         <p class="nav-link disabled">Module: {{ $submission->coursework->module->name }}</p>

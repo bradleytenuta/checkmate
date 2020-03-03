@@ -12,15 +12,15 @@
 <form method="POST" @if ($isMarkable) action="{{ route('viewer.mark.save', ['module_id' => $submission->coursework->module->id, 'coursework_id' => $submission->coursework->id, 'submission_id' => $submission->id]) }}" @endif>
 
     <!-- Viewer menu bar -->
-    @include('components.viewer.menubar', ['submission' => $submission])
+    @include('components.viewer.menubar', ['submission' => $submission, 'isMarkable' => $isMarkable])
 
     <!-- Main container -->
     <div class="viewer-main-container">
         <!-- Left Side Container -->
-        @include('components.viewer.left-container', ['submission' => $submission, 'files' => $files])
+        @include('components.viewer.left-container', ['submission' => $submission, 'files' => $files, 'isMarkable' => $isMarkable])
 
         <!-- Source code container -->
-        @include('components.viewer.right-container', ['submission' => $submission, 'files' => $files])
+        @include('components.viewer.right-container', ['submission' => $submission, 'files' => $files, 'isMarkable' => $isMarkable])
     </div>
 
 </form>

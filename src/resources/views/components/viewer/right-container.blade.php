@@ -4,9 +4,10 @@
         <div @if ($index == 0) class="viewer-code-container tab-pane fade show active" @else class="tab-pane fade" @endif id="v-pills-{{$index}}" role="tabpanel" aria-labelledby="v-pills-{{$index}}-tab">
             @foreach (explode(PHP_EOL, $file->getContents()) as $lineIndex => $line)
                 <div class="viewer-row">
-                    <div class="viewer-number-container">{{$lineIndex}}<img src="{{  Storage::url('/images/icon/comment.png') }}" />
-                    </div>
-                    <div class="viewer-line-container" onclick="makeLineComment({{$lineIndex}})">
+                    @if($isMarkable)
+                        <div class="viewer-number-container">{{$lineIndex}}<img src="{{  Storage::url('/images/icon/comment.png') }}" /></div>
+                    @endif
+                    <div class="viewer-line-container" @if($isMarkable) onclick="makeLineComment({{$lineIndex}})" @endif>
                         <pre>{{ \App\Utility\Viewer::formatLine($line) }}</pre>
                     </div>
                 </div>

@@ -11,7 +11,7 @@
         <!-- Description Container -->
         <div class="padding-10">
             <label for="main_feedback">Main Feedback</label>
-            <textarea class="form-control main-feedback-container" rows="6" name="main_feedback" id="main_feedback">
+            <textarea class="form-control main-feedback-container" rows="6" name="main_feedback" id="main_feedback" @if (!$isMarkable) disabled @endif>
                 @if ($submission->main_feedback != null)
                     {{ $submission->main_feedback }}
                 @endif
@@ -22,7 +22,7 @@
         <div class="padding-10">
             <label>Line Comments</label>
             <table id="line-comments-container-table">
-                
+                <!-- TODO Load in all in line comments from submission JSON -->
             </table>
         </div>
     </div>
