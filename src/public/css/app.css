@@ -13310,6 +13310,20 @@ body {
   margin-top: 42px;
 }
 
+.viewer-main-container {
+  display: -webkit-box;
+  display: flex;
+}
+
+.viewer-right-container {
+  width: 100%;
+  background-color: white;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
 .viewer-menu-bar {
   padding: 10px 0px;
   padding-left: 10px;
@@ -13321,27 +13335,27 @@ body {
   margin: 0px;
 }
 
-.viewer-main-container {
+#viewer-left-container {
   display: -webkit-box;
   display: flex;
-}
-
-#viewer-left-container {
-  width: 360px;
   background-color: white;
   border-right: 1px solid #888888;
-  display: -webkit-box;
-  display: flex;
 }
 
 #viewer-left-container-main {
-  display: block;
+  display: none;
   width: 100%;
 }
 
-.viewer-right-container {
-  width: 100%;
-  background-color: white;
+#viewer-left-container-menu img {
+  width: 15px;
+  cursor: pointer;
+}
+
+#viewer-left-container-menu button {
+  width: auto !important;
+  height: auto !important;
+  margin: 5px 2px;
 }
 
 .main-feedback-container {
@@ -13349,24 +13363,9 @@ body {
   max-height: 250px;
 }
 
-.padding-10 {
-  padding: 10px;
-}
-
-.left-container-files {
+.left-files-container {
   max-height: 400px;
   overflow: auto;
-}
-
-.viewer-left-container-menu img {
-  width: 15px;
-  cursor: pointer;
-}
-
-.viewer-left-container-menu button {
-  width: auto !important;
-  height: auto !important;
-  margin: 5px 2px;
 }
 
 .commment-container {
@@ -13390,6 +13389,21 @@ body {
 
 .commment-container > button > img {
   height: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  #viewer-left-container {
+    width: 360px !important;
+    min-width: 360px !important;
+  }
+
+  #viewer-left-container-main {
+    display: block !important;
+  }
+
+  #viewer-left-container-menu {
+    display: none;
+  }
 }
 
 .viewer-row {

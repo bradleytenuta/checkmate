@@ -21,41 +21,23 @@ $('#viewer-left-container-menu-button').click(function(){
     var leftContainer = $('#viewer-left-container');
     var leftContainerMain = $('#viewer-left-container-main')
 
-    // Opens or closes the container based on
-    if ($(leftContainer).hasClass("closed")) {
-        // Removes the class.
-        $(leftContainer).removeClass("closed");
-
-        // Gets the image src.
-        var imageSrc = $(button).children().first().attr("src");
-
+    // Check what image is currently displayed. This tells us if its open or closed.
+    var imageSrc = $(button).children().first().attr("src");
+    // Returns '-1' if sub string not found.
+    if (imageSrc.toLowerCase().indexOf("right") >= 0) {
         // Replace with new sub string.
         imageSrc = imageSrc.replace("right", "left");
-
-        // Sets the attribute.
-        $(button).children().first().attr("src", imageSrc);
-
         // Opens the left main container
-        $(leftContainer).css("width", "360px");
         $(leftContainerMain).css("display", "block");
-
+        $(leftContainer).css("min-width", "100%");
     } else {
-        // Adds the class.
-        $(leftContainer).addClass("closed");
-
-        // Gets the image src.
-        var imageSrc = $(button).children().first().attr("src");
-
         // Replace with new sub string.
         imageSrc = imageSrc.replace("left", "right");
-
-        // Sets the attribute.
-        $(button).children().first().attr("src", imageSrc);
-
-        // closes the left main container
-        $(leftContainer).css("width", "auto");
+        // Opens the left main container
         $(leftContainerMain).css("display", "none");
+        $(leftContainer).css("min-width", "auto");
     }
-    
 
+    // Sets the attribute.
+    $(button).children().first().attr("src", imageSrc);
 });

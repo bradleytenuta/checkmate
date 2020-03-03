@@ -1,28 +1,5 @@
-.viewer-menu-bar {
-    padding: 10px 0px;
-    padding-left: 10px;
-    background-color: white;
-    border-bottom: 1px solid #888888;
-}
-
-.viewer-menu-bar p {
-    margin: 0px;
-}
-
 .viewer-main-container {
     display: flex;
-}
-
-#viewer-left-container {
-    width: 360px;
-    background-color: white;
-    border-right: 1px solid #888888;
-    display: flex;
-}
-
-#viewer-left-container-main {
-    display: block;
-    width: 100%;
 }
 
 .viewer-right-container {
@@ -30,40 +7,60 @@
     background-color: white;
 }
 
-.main-feedback-container {
-    min-height: 100px;
-    max-height: 250px;
-}
-
 .padding-10 {
     padding: 10px;
 }
 
-.left-container-files {
-    max-height: 400px;
-    overflow: auto;
+// Viewer Menu Bar
+// -------------------
+.viewer-menu-bar {
+    padding: 10px 0px;
+    padding-left: 10px;
+    background-color: white;
+    border-bottom: 1px solid #888888;
 }
+.viewer-menu-bar p {
+    margin: 0px;
+}
+// -------------------
+// End Of Viewer Menu Bar
 
-.viewer-left-container-menu img {
+
+// Viewer Left Container
+// -------------------
+#viewer-left-container {
+    display: flex;
+    background-color: white;
+    border-right: 1px solid #888888;
+}
+#viewer-left-container-main {
+    display: none;
+    width: 100%;
+}
+#viewer-left-container-menu img {
     width: 15px;
     cursor: pointer;
 }
-
-.viewer-left-container-menu button {
+#viewer-left-container-menu button {
     width: auto!important;
     height: auto!important;
     margin: 5px 2px;
 }
-
+.main-feedback-container {
+    min-height: 100px;
+    max-height: 250px;
+}
+.left-files-container {
+    max-height: 400px;
+    overflow: auto;
+}
 .commment-container {
     display: flex;
     margin-bottom: 10px;
 }
-
 .commment-container > p {
     margin: 6px;
 }
-
 .commment-container > button {
     height: 28px;
     min-height: 28px;
@@ -72,10 +69,24 @@
     margin: 4px;
     padding: 0px;
 }
-
 .commment-container > button > img {
     height: 20px;
 }
+@media screen and (min-width: 600px) {
+    #viewer-left-container {
+        width: 360px!important;
+        min-width: 360px!important;
+    }
+    #viewer-left-container-main {
+        display: block!important;
+    }
+    #viewer-left-container-menu {
+        display: none;
+    }
+}
+// -------------------
+// End Of Viewer Left Container
+
 
 // Viewer Row
 // -------------------

@@ -27,6 +27,7 @@ Docker compose can preserve data by looking for volumes when the docker is creat
 ###### Useful Commands
 
 - `docker-compose up` - Create and start containers
+    - `up d` - `d` is a subcommand for `up` that runs the containers in detached mode and runs containers in the background.
 - `docker-compose start` - Start services
 - `docker-compose stop` - Stop services
 - `docker-compose down` - Stop and remove containers, networks, images, and volumes.
