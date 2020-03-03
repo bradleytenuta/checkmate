@@ -46,22 +46,24 @@
     height: auto!important;
     margin: 5px 2px;
 }
-.main-feedback-container {
-    min-height: 100px;
-    max-height: 250px;
-}
 .left-files-container {
     max-height: 400px;
     overflow: auto;
 }
-.commment-container {
-    display: flex;
-    margin-bottom: 10px;
+.main-feedback-container {
+    min-height: 100px;
+    max-height: 250px;
 }
-.commment-container > p {
+.commment-container > td {
+    padding-bottom: 10px;
+}
+.comment-input-container {
+    width: 100%;
+}
+.commment-container p {
     margin: 6px;
 }
-.commment-container > button {
+.commment-container button {
     height: 28px;
     min-height: 28px;
     width: 28px;
@@ -69,7 +71,7 @@
     margin: 4px;
     padding: 0px;
 }
-.commment-container > button > img {
+.commment-container img {
     height: 20px;
 }
 @media screen and (min-width: 600px) {

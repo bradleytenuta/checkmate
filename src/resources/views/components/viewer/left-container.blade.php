@@ -21,15 +21,9 @@
         <!-- Line Comments Container -->
         <div class="padding-10">
             <label>Line Comments</label>
-            <!-- Template -->
-            <!-- <input type="text" class="form-control" name="line-comment-1" id="line-comment-1"> -->
-            <div class="commment-container">
-                <p>1</p>
-                <input type="text" class="form-control" name="line-comment-1" id="line-comment-1">
-                <button type="button" class="checkmate-button">
-                    <img src="{{  Storage::url('images/icon/dropdown-trash.png') }}" />
-                </button>
-            </div>
+            <table id="line-comments-container-table">
+                
+            </table>
         </div>
     </div>
 

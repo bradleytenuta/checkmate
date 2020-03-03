@@ -6,7 +6,7 @@
                 <div class="viewer-row">
                     <div class="viewer-number-container">{{$lineIndex}}<img src="{{  Storage::url('/images/icon/comment.png') }}" />
                     </div>
-                    <div class="viewer-line-container">
+                    <div class="viewer-line-container" onclick="makeLineComment({{$lineIndex}})">
                         <pre>{{ \App\Utility\Viewer::formatLine($line) }}</pre>
                     </div>
                 </div>

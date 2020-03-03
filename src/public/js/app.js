@@ -42168,6 +42168,24 @@ $('#viewer-left-container-menu-button').click(function () {
   $(button).children().first().attr("src", imageSrc);
 });
 
+window.makeLineComment = function makeLineComment($lineContainerId) {
+  // Gets the line comments container
+  var lineCommentContainer = $('#line-comments-container-table'); // Create a HTML element.
+
+  var htmlElementString = "<tr class=\"commment-container\" id=\"commment-container-" + $lineContainerId + "\"><td><p>" + $lineContainerId + "</p></td><td class=\"comment-input-container\"><input type=\"text\" class=\"form-control\" name=\"line-comment-" + $lineContainerId + "\" id=\"line-comment-" + $lineContainerId + "\"></td><td><button type=\"button\" class=\"checkmate-button\" onclick=\"deleteLineComment(" + $lineContainerId + ")\"><img src=\"/storage/images/icon/dropdown-trash.png\" /></button></td></tr>"; // Appends the new element to the end of the line comments container.
+
+  $(lineCommentContainer).append(htmlElementString); // Give the text box focus.
+
+  $("#line-comment-" + $lineContainerId).focus();
+};
+
+window.deleteLineComment = function deleteLineComment($lineContainerId) {
+  // Finds the comment container with the given id.
+  var commentContainer = $('#commment-container-' + $lineContainerId); // Deletes the comment container.
+
+  commentContainer.remove();
+};
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":

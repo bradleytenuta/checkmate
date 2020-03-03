@@ -5,6 +5,9 @@
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')
 
+<!-- Includes Breadcrumb -->
+@include('components.breadcrumb.submission-breadcrumb', ['coursework' => $submission->coursework])
+
 <!-- The form used to mark the coursework. Only contains an action if the user has permission to mark it -->
 <form method="POST" @if ($isMarkable) action="{{ route('viewer.mark.save', ['module_id' => $submission->coursework->module->id, 'coursework_id' => $submission->coursework->id, 'submission_id' => $submission->id]) }}" @endif>
 
