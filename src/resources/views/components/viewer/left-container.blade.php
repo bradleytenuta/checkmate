@@ -18,6 +18,12 @@
             </textarea>
         </div>
 
+        <!-- Score Container -->
+        <div class="padding-10">
+            <label for="score">Score (0 - {{ $submission->coursework->maximum_score }})</label>
+            <input type="text" class="form-control" name="score" id="score">
+        </div>
+
         <!-- Line Comments Container -->
         <div class="padding-10">
             <label>Line Comments</label>

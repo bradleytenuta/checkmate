@@ -5,9 +5,9 @@
             @foreach (explode(PHP_EOL, $file->getContents()) as $lineIndex => $line)
                 <div class="viewer-row">
                     @if($isMarkable)
-                        <div class="viewer-number-container">{{$lineIndex}}<img src="{{  Storage::url('/images/icon/comment.png') }}" /></div>
+                        <div class="viewer-number-container">{{$lineIndex + 1}}<img src="{{  Storage::url('/images/icon/comment.png') }}" /></div>
                     @endif
-                    <div class="viewer-line-container" @if($isMarkable) onclick="makeLineComment({{$lineIndex}})" @endif>
+                    <div class="viewer-line-container" @if($isMarkable) onclick="makeLineComment({{$lineIndex + 1}})" @endif>
                         <pre>{{ \App\Utility\Viewer::formatLine($line) }}</pre>
                     </div>
                 </div>
