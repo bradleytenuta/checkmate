@@ -13190,6 +13190,16 @@ a.text-dark:focus {
   padding: 20px;
 }
 
+.checkmate-submission-form {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.submission-button {
+  width: 90px;
+}
+
 .btn-secondary:not(:disabled):not(.disabled):active,
 .btn-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
