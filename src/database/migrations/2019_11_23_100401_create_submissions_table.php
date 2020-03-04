@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Json\SubmissionJson;
 
 class CreateSubmissionsTable extends Migration
 {
@@ -19,9 +20,9 @@ class CreateSubmissionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('coursework_id');
             $table->string('file_path')->default("");
+            $table->json('json')->nullable();
             $table->unsignedBigInteger('score')->nullable();
             $table->longText('main_feedback')->nullable();
-            $table->longText('json')->nullable();
             $table->unsignedBigInteger('marker_id')->nullable();
 
             // Meta Data

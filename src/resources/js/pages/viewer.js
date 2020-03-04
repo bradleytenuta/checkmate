@@ -49,8 +49,7 @@ window.makeLineComment = function makeLineComment($lineContainerId) {
     // Create a HTML element.
     var htmlElementString = "<tr class=\"commment-container\" id=\"commment-container-" + $lineContainerId
         + "\"><td><p>" + $lineContainerId
-        + "</p></td><td class=\"comment-input-container\"><input type=\"text\" class=\"form-control\" name=\"line-comment-" + $lineContainerId
-        + "\" id=\"line-comment-" + $lineContainerId
+        + "</p></td><td class=\"comment-input-container\"><input type=\"text\" class=\"form-control\" name=\"" + $lineContainerId
         + "\"></td><td><button type=\"button\" class=\"checkmate-button\" onclick=\"deleteLineComment(" + $lineContainerId
         + ")\"><img src=\"/storage/images/icon/dropdown-trash.png\" /></button></td></tr>"
 

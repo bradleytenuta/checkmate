@@ -3,7 +3,7 @@
         <!-- Button to save Submission marking changes -->
         <li class="nav-item">
             <!-- TODO: button to update submission properties -->
-            <a type="button" class="btn btn-primary" href="#">Save</a>
+            <button type="submit" class="btn btn-primary" href="#">Save</button>
         </li>
     @endif
     <!-- Name of the current module -->

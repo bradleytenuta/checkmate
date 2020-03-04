@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use App\Json\SubmissionJson;
 use App\Submission;
 use App\Coursework;
 
@@ -37,6 +38,7 @@ class SubmissionSeeder extends Seeder
                 $submission = new Submission;
                 $submission->user_id = $user->id;
                 $submission->coursework_id = $coursework->id;
+                $submission->json = json_encode(new SubmissionJson);
 
                 // Adds the file to the submission
                 $newFilePath = 'app/public/coursework/' . $submission->coursework->id . '/' .
