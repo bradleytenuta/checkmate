@@ -15,8 +15,20 @@ class SubmissionSeeder extends Seeder
      *
      * @return void
      */
-    // TODO: Create submissions that have already been marked and completed.
     public function run()
+    {
+        // Creates the submissions.
+        $this->createSubmissions();
+
+        // Marks some of the submissions.
+        $this->markSubmissions();
+    }
+
+    /**
+     * This function creates a submission for a random number of students
+     * within a coursework.
+     */
+    private function createSubmissions()
     {
         // Creates a faker object. Its used for random booleans.
         $faker = Faker::create();
@@ -40,16 +52,67 @@ class SubmissionSeeder extends Seeder
                     $submission->json = json_encode(new SubmissionJson);
 
                     // Creates the folder path
-                    $submission->file_path = 'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  $user->id;
+                    $submission->file_path = 'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  $user->id . "/";
                     $submission->save();
 
                     // Copies over a random number of the example seed files into the submission folder.
                     $filesToCopy = $faker->numberBetween($min = 1, $max = sizeof($files));
                     for ($x = 0; $x < $filesToCopy; $x++)
                     {
-                        Storage::copy(str_replace("var/www/html/storage/app/", "", $files[$x]), $submission->file_path);
+                        $filepath = $files[$x];
+                        $filename = basename($filepath);
+                        Storage::copy(str_replace("var/www/html/storage/app/", "", $filepath), $submission->file_path . $filename);
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * This function goes through a random number of submissions within a coursework
+     * and marks them.
+     */
+    private function markSubmissions()
+    {
+        // Creates a faker object. Its used for random booleans.
+        $faker = Faker::create();
+
+        foreach (Coursework::all() as $coursework)
+        {
+            foreach ($coursework->submissions as $submission)
+            {
+                // Only marks a random number of submissions.
+                if ($faker->boolean)
+                {
+                    continue;
+                }
+
+                // Finds a user who is an assessor or professor in module
+                // and uses them as the marker.
+                foreach ($coursework->module->users->shuffle() as $user)
+                {
+                    if (ModulePermission::hasRole($coursework->module, $user, 'professor') ||
+                        ModulePermission::hasRole($coursework->module, $user, 'assessor'))
+                    {
+                        $submission->marker_id = $user->id;
+                        break;
+                    }
+                }
+
+                // Uses a random sentence as main feedback.
+                $submission->main_feedback = $faker->sentence($nbWords = 12, $variableNbWords = true);
+
+                // Gets a random number as a score.
+                $submission->score = $faker->numberBetween($min = 0, $max = $coursework->maximum_score);
+
+                // Decodes the json object in the submission.
+                $jsonObj = json_decode($submission->json);
+                $lineComments = array(); // Creates an array of all line comments
+                $lineComments[0] = $faker->sentence($nbWords = 4, $variableNbWords = true); // Creates a random comment for line 1.
+                $jsonObj->comments = $lineComments; // Saves the comments to the object.
+                $submission->json = json_encode($jsonObj);
+
+                $submission->save();
             }
         }
     }
