@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use App\Utility\ModulePermission;
 use App\Json\SubmissionJson;
+use Faker\Factory as Faker;
 use App\Submission;
 use App\Coursework;
 
@@ -13,51 +15,41 @@ class SubmissionSeeder extends Seeder
      *
      * @return void
      */
-    // TODO: Clean up to users only create submissions if they have correct permissions.
     // TODO: Create submissions that have already been marked and completed.
     public function run()
     {
-        // Loops through all the courseworks, gathers some of its users and adds submissions for them.
+        // Creates a faker object. Its used for random booleans.
+        $faker = Faker::create();
+        // Loads the files.
+        $files = File::files(storage_path('app/seeding/submissions'));
+
         foreach (Coursework::all() as $coursework)
         {
-            // Gets half of the users on the module.
-            $allUsers = $coursework->module->users;
-            $usersLength = $allUsers->count();
-            $halfUserLength = (int) $usersLength / 2;
-
-            // Loops through all the users that are left and create submissions for them.
-            foreach ($allUsers as $key => $user)
+            // Gathers a list of users from the coursework.
+            foreach ($coursework->module->users as $user)
             {
-                // If the half way point is reached then break.
-                if ($halfUserLength == $key)
+                // Only creates a submission for those that are students within the module.
+                // Also a random boolean is used so only a random number of submissions is created
+                // for all the valid users.
+                if (ModulePermission::hasRole($coursework->module, $user, 'student') && $faker->boolean)
                 {
-                    break;
+                    // Creates submission.
+                    $submission = new Submission;
+                    $submission->user_id = $user->id;
+                    $submission->coursework_id = $coursework->id;
+                    $submission->json = json_encode(new SubmissionJson);
+
+                    // Creates the folder path
+                    $submission->file_path = 'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  $user->id;
+                    $submission->save();
+
+                    // Copies over a random number of the example seed files into the submission folder.
+                    $filesToCopy = $faker->numberBetween($min = 1, $max = sizeof($files));
+                    for ($x = 0; $x < $filesToCopy; $x++)
+                    {
+                        Storage::copy(str_replace("var/www/html/storage/app/", "", $files[$x]), $submission->file_path);
+                    }
                 }
-
-                // Creates submission.
-                $submission = new Submission;
-                $submission->user_id = $user->id;
-                $submission->coursework_id = $coursework->id;
-                $submission->json = json_encode(new SubmissionJson);
-
-                // Adds the file to the submission
-                $newFilePath = 'app/public/coursework/' . $submission->coursework->id . '/' .
-                    'submissions' . '/' .  $submission->user->id;
-
-                // Extracts the files and stores them.
-                $exampleSubmissionFile = storage_path('app/public/seeding/ExampleSubmission.zip');
-                $zip = new ZipArchive;
-                if ($zip->open($exampleSubmissionFile) === true)
-                {
-                    $zip->extractTo(storage_path($newFilePath));
-                    $zip->close();
-                }
-
-                // Saves the folder path where all the files were extracted to.
-                $submission->file_path = $newFilePath;
-
-                // Saves the submission.
-                $submission->save();
             }
         }
     }

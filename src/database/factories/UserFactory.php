@@ -13,7 +13,7 @@ $factory->define(User::class, function (Faker $faker) {
     // A custom fake email to insure faker doesnt reuse the same email address.
     $domain = "example.com";
     $randomWord = $faker->word;
-    $email = $faker->randomDigit . $randomWord . $faker->randomDigit . "@" . $domain;
+    $email = $faker->numberBetween($min = 1, $max = 9000) . $randomWord . $faker->numberBetween($min = 1, $max = 9000) . "@" . $domain;
 
     return [
         'firstname' => $faker->firstName(),
