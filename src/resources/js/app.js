@@ -8,12 +8,3 @@ require('./bootstrap');
 
 // Imports the calendar
 import 'jquery-ui/ui/widgets/datepicker.js';
-
-/**
- * Adds all additonal javascript files
- */
-require('./components/navbar');
-require('./components/list');
-require('./components/form');
-require('./components/page');
-require('./pages/viewer');
