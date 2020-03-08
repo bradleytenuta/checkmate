@@ -120,16 +120,16 @@ body {
 .viewer-row:nth-child(odd) { 
     background: #f8f8f8;
 }
-// On row hover, show comment icon.
-.viewer-row:hover .viewer-number-container img {
-    opacity: 0.5;
-}
-.viewer-row:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
 .viewer-row pre {
     margin: 0px;
+}
+// On row hover, show comment icon.
+.viewer-row-hover:hover .viewer-number-container img {
+    opacity: 0.5;
+}
+.viewer-row-hover:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 // -------------------
 // End Of Viewer Row
@@ -156,7 +156,6 @@ body {
 }
 .viewer-code-container {
     height: 100%;
-    width: max-content;
 }
 .viewer-right-container {
     width: 100%;

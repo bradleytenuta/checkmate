@@ -10,15 +10,15 @@
 @section ('dynamic-main-content')
 
 <!-- Includes Breadcrumb -->
-@include('components.breadcrumb.submission-breadcrumb', ['coursework' => $submission->coursework])
+@include('components.breadcrumb.submission-breadcrumb', ['coursework' => $coursework])
 
 <!-- The form used to mark the coursework. Only contains an action if the user has permission to mark it -->
-<form method="POST" id="viewer-form" @if ($isMarkable) action="{{ route('viewer.mark.save', ['module_id' => $submission->coursework->module->id, 'coursework_id' => $submission->coursework->id, 'submission_id' => $submission->id]) }}" @endif>
+<form method="POST" id="viewer-form" @if ($isMarkable && $submission != null) action="{{ route('viewer.mark.save', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id, 'submission_id' => $submission->id]) }}" @endif>
 
     @csrf
 
     <!-- Viewer menu bar -->
-    @include('components.viewer.menubar', ['submission' => $submission, 'isMarkable' => $isMarkable])
+    @include('components.viewer.menubar', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => $isMarkable])
 
     <!-- Main container -->
     <div class="viewer-main-container">
@@ -26,7 +26,7 @@
         @include('components.viewer.left-container', ['submission' => $submission, 'files' => $files, 'isMarkable' => $isMarkable])
 
         <!-- Source code container -->
-        @include('components.viewer.right-container', ['submission' => $submission, 'files' => $files, 'isMarkable' => $isMarkable])
+        @include('components.viewer.right-container', ['files' => $files, 'isMarkable' => $isMarkable])
     </div>
 
 </form>

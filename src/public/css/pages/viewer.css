@@ -133,17 +133,17 @@ body {
   background: #f8f8f8;
 }
 
-.viewer-row:hover .viewer-number-container img {
-  opacity: 0.5;
-}
-
-.viewer-row:hover {
-  opacity: 0.5;
-  cursor: pointer;
-}
-
 .viewer-row pre {
   margin: 0px;
+}
+
+.viewer-row-hover:hover .viewer-number-container img {
+  opacity: 0.5;
+}
+
+.viewer-row-hover:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .viewer-number-container {
@@ -162,9 +162,6 @@ body {
 
 .viewer-code-container {
   height: 100%;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
 }
 
 .viewer-right-container {
