@@ -32,7 +32,7 @@ class ViewerController extends Controller
         }
 
         // Gets all the files from the submission.
-        $files = File::files(storage_path($submission->file_path));
+        $files = File::files(storage_path('app/' . $submission->file_path));
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => true, 'files' => $files]);
@@ -60,7 +60,7 @@ class ViewerController extends Controller
         }
 
         // Gets all the files from the submission.
-        $files = File::files(storage_path($submission->file_path));
+        $files = File::files(storage_path('app/' . $submission->file_path));
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => false, 'files' => $files]);

@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use App\Utility\ModulePermission;
 use App\Json\SubmissionJson;
+use Faker\Factory as Faker;
 use App\Submission;
 use App\Coursework;
 
@@ -13,50 +15,103 @@ class SubmissionSeeder extends Seeder
      *
      * @return void
      */
-    // TODO: Clean up to users only create submissions if they have correct permissions.
-    // TODO: Create submissions that have already been marked and completed.
     public function run()
     {
-        // Loops through all the courseworks, gathers some of its users and adds submissions for them.
+        // Creates the submissions.
+        $this->createSubmissions();
+
+        // Marks some of the submissions.
+        $this->markSubmissions();
+    }
+
+    /**
+     * This function creates a submission for a random number of students
+     * within a coursework.
+     */
+    private function createSubmissions()
+    {
+        // Creates a faker object. Its used for random booleans.
+        $faker = Faker::create();
+        // Loads the files.
+        $files = File::files(storage_path('app/seeding/submissions'));
+
         foreach (Coursework::all() as $coursework)
         {
-            // Gets half of the users on the module.
-            $allUsers = $coursework->module->users;
-            $usersLength = $allUsers->count();
-            $halfUserLength = (int) $usersLength / 2;
-
-            // Loops through all the users that are left and create submissions for them.
-            foreach ($allUsers as $key => $user)
+            // Gathers a list of users from the coursework.
+            foreach ($coursework->module->users as $user)
             {
-                // If the half way point is reached then break.
-                if ($halfUserLength == $key)
+                // Only creates a submission for those that are students within the module.
+                // Also a random boolean is used so only a random number of submissions is created
+                // for all the valid users.
+                if (ModulePermission::hasRole($coursework->module, $user, 'student') && $faker->boolean)
                 {
-                    break;
+                    // Creates submission.
+                    $submission = new Submission;
+                    $submission->user_id = $user->id;
+                    $submission->coursework_id = $coursework->id;
+                    $submission->json = json_encode(new SubmissionJson);
+
+                    // Creates the folder path
+                    $submission->file_path = 'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  $user->id . "/";
+                    $submission->save();
+
+                    // Copies over a random number of the example seed files into the submission folder.
+                    $filesToCopy = $faker->numberBetween($min = 1, $max = sizeof($files));
+                    for ($x = 0; $x < $filesToCopy; $x++)
+                    {
+                        $filepath = $files[$x];
+                        $filename = basename($filepath);
+                        Storage::copy(str_replace("var/www/html/storage/app/", "", $filepath), $submission->file_path . $filename);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * This function goes through a random number of submissions within a coursework
+     * and marks them.
+     */
+    private function markSubmissions()
+    {
+        // Creates a faker object. Its used for random booleans.
+        $faker = Faker::create();
+
+        foreach (Coursework::all() as $coursework)
+        {
+            foreach ($coursework->submissions as $submission)
+            {
+                // Only marks a random number of submissions.
+                if ($faker->boolean)
+                {
+                    continue;
                 }
 
-                // Creates submission.
-                $submission = new Submission;
-                $submission->user_id = $user->id;
-                $submission->coursework_id = $coursework->id;
-                $submission->json = json_encode(new SubmissionJson);
-
-                // Adds the file to the submission
-                $newFilePath = 'app/public/coursework/' . $submission->coursework->id . '/' .
-                    'submissions' . '/' .  $submission->user->id;
-
-                // Extracts the files and stores them.
-                $exampleSubmissionFile = storage_path('app/public/seeding/ExampleSubmission.zip');
-                $zip = new ZipArchive;
-                if ($zip->open($exampleSubmissionFile) === true)
+                // Finds a user who is an assessor or professor in module
+                // and uses them as the marker.
+                foreach ($coursework->module->users->shuffle() as $user)
                 {
-                    $zip->extractTo(storage_path($newFilePath));
-                    $zip->close();
+                    if (ModulePermission::hasRole($coursework->module, $user, 'professor') ||
+                        ModulePermission::hasRole($coursework->module, $user, 'assessor'))
+                    {
+                        $submission->marker_id = $user->id;
+                        break;
+                    }
                 }
 
-                // Saves the folder path where all the files were extracted to.
-                $submission->file_path = $newFilePath;
+                // Uses a random sentence as main feedback.
+                $submission->main_feedback = $faker->sentence($nbWords = 12, $variableNbWords = true);
 
-                // Saves the submission.
+                // Gets a random number as a score.
+                $submission->score = $faker->numberBetween($min = 0, $max = $coursework->maximum_score);
+
+                // Decodes the json object in the submission.
+                $jsonObj = json_decode($submission->json);
+                $lineComments = array(); // Creates an array of all line comments
+                $lineComments[0] = $faker->sentence($nbWords = 4, $variableNbWords = true); // Creates a random comment for line 1.
+                $jsonObj->comments = $lineComments; // Saves the comments to the object.
+                $submission->json = json_encode($jsonObj);
+
                 $submission->save();
             }
         }
