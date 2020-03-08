@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Utility\CourseworkPermission;
+use App\Utility\ModulePermission;
 use App\Module;
 use App\Coursework;
 use App\Submission;
@@ -35,6 +36,34 @@ class ViewerController extends Controller
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => true, 'files' => $files]);
+    }
+
+    /**
+     * This function allows the user to view a given submission in student view.
+     */
+    public function showStudent($module_id, $coursework_id, $submission_id)
+    {
+        $module = Module::findOrFail($module_id);
+        $coursework = Coursework::findOrFail($coursework_id);
+        $submission = Submission::findOrFail($submission_id);
+
+        // Checks the user has permission to use the student view.
+        if (!ModulePermission::hasRole($module, Auth::user(), 'student'))
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to mark this coursework.']);
+        }
+
+        // Checks the student is viewing their own submission.
+        if ($submission->user->id != Auth::user()->id)
+        {
+            throw ValidationException::withMessages(['Permission Fail' => 'The current user can only view their own submission.']);
+        }
+
+        // Gets all the files from the submission.
+        $files = File::files(storage_path($submission->file_path));
+
+        // Shows the view.
+        return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => false, 'files' => $files]);
     }
 
     /**

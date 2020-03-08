@@ -28,8 +28,7 @@
                 <p>{{ $previousSubmission->main_feedback }}</p>
 
                 <!-- Button to view additonal feedback -->
-                <!-- TODO: Create view all feedback page -->
-                <a class="btn btn-primary" href="#">View All Feedback</a>
+                <a class="btn btn-primary" href="{{ route('viewer.student', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id, 'submission_id' => $previousSubmission->id]) }}">View All Feedback</a>
             @endif
         </div>
     </div>
