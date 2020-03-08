@@ -13280,23 +13280,22 @@ body {
   padding: 10px;
 }
 
-#submission-container table {
-  margin: auto;
+#submission-header-row {
+  display: none;
 }
 
-#submission-container table .btn-primary {
-  padding: 5px;
-  margin-left: 5px;
+#submission-header-row-mobile {
+  display: table-row;
 }
 
-.submission-container > td {
-  padding: 5px;
-}
+@media screen and (min-width: 600px) {
+  #submission-header-row {
+    display: table-row;
+  }
 
-/*  Define the background color for all the ODD background rows  */
-
-#submission-container table tr:nth-child(odd) {
-  background: #EBEBEB;
+  #submission-header-row-mobile {
+    display: none;
+  }
 }
 
 .top-menu-button {

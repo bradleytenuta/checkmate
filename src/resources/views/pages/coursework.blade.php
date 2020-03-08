@@ -41,7 +41,6 @@
             <!-- Assessor and Professor View -->
             @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
                 <!-- All Submissions table -->
-                <!-- TODO: Redo to use user table. -->
                 @include('components.submission.submission-table', ['coursework' => $coursework])
             @endif
         </div>
