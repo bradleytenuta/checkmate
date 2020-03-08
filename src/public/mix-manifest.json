@@ -2,5 +2,10 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/pages/login.css": "/css/pages/login.css",
-    "/css/pages/viewer.css": "/css/pages/viewer.css"
+    "/css/pages/viewer.css": "/css/pages/viewer.css",
+    "/js/components/form.js": "/js/components/form.js",
+    "/js/components/list.js": "/js/components/list.js",
+    "/js/components/navbar.js": "/js/components/navbar.js",
+    "/js/components/page.js": "/js/components/page.js",
+    "/js/pages/viewer.js": "/js/pages/viewer.js"
 }

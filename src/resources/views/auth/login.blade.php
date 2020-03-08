@@ -1,4 +1,4 @@
-@extends ('layouts.master')
+@extends ('layouts.footer-only')
 
 <!-- CSS section -->
 @section ('dynamic-css')
@@ -6,9 +6,8 @@
 @endsection
 <!-- End of CSS section -->
 
-
 <!-- Begining of the dynamic Section-->
-@section ('dynamic-master-content')
+@section ('dynamic-main-content')
 
 <!-- Login Section -->
 <div class="login-container">
@@ -120,9 +119,6 @@
     </div>
     <!-- /END THE FEATURETTES -->
 </div>
-
-<!-- Footer -->
-@include('components.footer')
 
 @endsection
 <!-- End of the dynamic Section-->

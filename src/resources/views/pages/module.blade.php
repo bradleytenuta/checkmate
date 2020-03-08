@@ -1,5 +1,12 @@
 @extends ('layouts.full')
 
+<!-- JS section -->
+@section ('dynamic-js')
+    <script src="{{ URL::asset('js/components/list.js') }}" defer></script>
+    <script src="{{ URL::asset('js/components/page.js') }}" defer></script>
+@endsection
+<!-- End of JS section -->
+
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')
 
