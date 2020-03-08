@@ -24,6 +24,5 @@
     <body>
         <!-- The Dynamic Content -->
         @yield ('dynamic-master-content')
-        @include('components.footer')
     </body>
 </html>

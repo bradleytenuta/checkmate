@@ -12,7 +12,7 @@
 
             <!-- Table header -->
             <table>
-                <tr>
+                <tr class="header-table-row">
                     <!-- The Radio Button options and onclick select all feature -->
                     <th><img
                         src="{{ Storage::url('/images/icon/module-icon-professor.png') }}"
@@ -31,7 +31,7 @@
                         onclick="tableSelectAll({{ \App\ModuleRole::where('name', 'student')->first()->id }})" /></th>
                     
                     <!-- Headers to explain the other cells -->
-                    <th class="create-module-cell-id"><div class="form-check form-check-inline">Id</div></th>
+                    <th><div class="form-check form-check-inline">Id</div></th>
                     <th><div class="form-check form-check-inline">Name</div></th>
                 </tr>
             </table>
@@ -43,7 +43,7 @@
         <div class="col-sm-12">
             <table>
                 @foreach (\App\User::all() as $user)
-                    <tr>
+                    <tr class="content-table-row">
                         <!-- Option Buttons -->
                         <td>
                             <div class="form-check form-check-inline">
@@ -85,7 +85,7 @@
                             </div>
                         </td>
                         <!-- Name and ID -->
-                        <td class="create-module-cell-id">
+                        <td>
                             <div class="form-check form-check-inline">
                                 <div class="form-check-input create-module-cell-id-inner">{{ $user->id }}</div>
                             </div>

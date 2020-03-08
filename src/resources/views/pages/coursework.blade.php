@@ -1,4 +1,4 @@
-@extends ('layouts.main')
+@extends ('layouts.full')
 
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')
@@ -23,7 +23,7 @@
     <!-- Submission Container -->
     <div id="submission-container">
         <h1>Submission</h1>
-        <div class="checkmate-form">
+        <div class="checkmate-submission-form">
             <!-- Error messages if there are any -->
             @include('components.form.error')
 

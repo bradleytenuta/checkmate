@@ -1,8 +1,6 @@
-$(document).ready(function(){
-
-    // Gets the width of the table id cell and sets the width of its header to match it.
-    var cellWidth = $('#create-module-assign-container .create-module-cell-id').width();
-    $('#create-module-assign-header .create-module-cell-id').width(cellWidth);
+$(document).ready(function() {
+    // Aligns the width of the table header cells to match the width of the content header cells.
+    alignHeaderCells();
 
     // Finds a element with the given ID and adds the JQueryUI calendar to it.
     // This is so users can select a date rather than typing it.
@@ -33,6 +31,21 @@ $('input[type="radio"]').click(function() {
         $(this).addClass(checkedClass);
     }
 });
+
+/**
+ * This function goes through all the header cells and adjusts their cell width
+ * to match the content cells in the other table. This is so they line up correctly.
+ */
+window.alignHeaderCells = function alignHeaderCells() {
+    // Gets all the cells from a header row and a content row.
+    var headerCells = $('.header-table-row').first().children("th");
+    var contentCells = $('.content-table-row').first().children("td");
+
+    // Loops through all the content cells, gets their widths and assigns it to the header cells.
+    $(contentCells).each(function(index) {
+        $(headerCells[index]).outerWidth($(this).outerWidth());
+    });
+}
 
 /**
  * This function is called whenever the user types in the search box of the table.

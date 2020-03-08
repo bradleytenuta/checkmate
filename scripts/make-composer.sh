@@ -2,7 +2,7 @@
 
 # Installs dependencies.
 sudo apt update
-sudo apt install php libapache2-mod-php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip
+sudo apt install libapache2-mod-php
 
 # Installs Composer
 curl -sS https://getcomposer.org/installer | php

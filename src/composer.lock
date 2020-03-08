@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9addd407167edcfbf02a37acda8f8803",
+    "content-hash": "1b03462bcc3ae498d4580c115e843d04",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -872,16 +872,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.30.0",
+            "version": "2.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4"
+                "reference": "bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/912dff66d2690ca66abddb9b291a1df5f371d3b4",
-                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d",
+                "reference": "bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d",
                 "shasum": ""
             },
             "require": {
@@ -938,7 +938,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-02-07T15:25:46+00:00"
+            "time": "2020-03-01T11:11:58+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2938,51 +2938,6 @@
             "time": "2019-10-24T08:53:34+00:00"
         },
         {
-            "name": "vipsoft/unzip",
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vipsoft/Unzip.git",
-                "reference": "657cda91648db84b8882e6ac881e2fd439bbe82c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vipsoft/Unzip/zipball/657cda91648db84b8882e6ac881e2fd439bbe82c",
-                "reference": "657cda91648db84b8882e6ac881e2fd439bbe82c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-zip": "*",
-                "php": ">=5.3.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "VIPSoft\\Unzip": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anthon Pang",
-                    "email": "apang@softwaredevelopment.ca",
-                    "role": "developer"
-                }
-            ],
-            "description": "Unzip library - a ZipArchive wrapper",
-            "homepage": "http://github.com/vipsoft/",
-            "keywords": [
-                "pclzip",
-                "unzip",
-                "zip",
-                "ziparchive"
-            ],
-            "time": "2016-02-16T04:29:22+00:00"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v3.6.0",
             "source": {
@@ -3038,65 +2993,6 @@
                 "environment"
             ],
             "time": "2019-09-10T21:37:39+00:00"
-        },
-        {
-            "name": "zanysoft/laravel-zip",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zanysoft/laravel-zip.git",
-                "reference": "466663746c92154c48a2d490efc6724f9f6e9652"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zanysoft/laravel-zip/zipball/466663746c92154c48a2d490efc6724f9f6e9652",
-                "reference": "466663746c92154c48a2d490efc6724f9f6e9652",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0",
-                "scrutinizer/ocular": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "ZanySoft\\Zip\\ZipServiceProvider"
-                    ],
-                    "aliases": {
-                        "Zip": "ZanySoft\\Zip\\ZipFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "ZanySoft\\Zip\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Zany Soft",
-                    "email": "info@zanysoft.co",
-                    "homepage": "http://www.zanysoft.co"
-                }
-            ],
-            "description": "ZipArchive toolbox",
-            "homepage": "http://www.zanysoft.co",
-            "keywords": [
-                "merge",
-                "multiple",
-                "unzip",
-                "zip",
-                "ziparchive"
-            ],
-            "time": "2017-10-10T03:22:41+00:00"
         }
     ],
     "packages-dev": [
@@ -3158,23 +3054,23 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "24444ea0e1556f0a4b5fc8e61802caf72ae9a408"
+                "reference": "db1e03426e7f9472c9ecd1092aff00f56aa6c004"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/24444ea0e1556f0a4b5fc8e61802caf72ae9a408",
-                "reference": "24444ea0e1556f0a4b5fc8e61802caf72ae9a408",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/db1e03426e7f9472c9ecd1092aff00f56aa6c004",
+                "reference": "db1e03426e7f9472c9ecd1092aff00f56aa6c004",
                 "shasum": ""
             },
             "require": {
                 "facade/ignition-contracts": "~1.0",
-                "illuminate/pipeline": "~5.5|~5.6|~5.7|~5.8|^6.0",
+                "illuminate/pipeline": "^5.5|^6.0|^7.0",
                 "php": "^7.1",
-                "symfony/http-foundation": "~3.3|~4.1",
+                "symfony/http-foundation": "^3.3|^4.1|^5.0",
                 "symfony/var-dumper": "^3.4|^4.0|^5.0"
             },
             "require-dev": {
@@ -3208,7 +3104,7 @@
                 "flare",
                 "reporting"
             ],
-            "time": "2019-12-15T18:28:38+00:00"
+            "time": "2020-03-02T15:52:04+00:00"
         },
         {
             "name": "facade/ignition",

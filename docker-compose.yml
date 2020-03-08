@@ -26,6 +26,8 @@ services:
     tty: true # Allows the use of a shell like interface if needed.
     ports:
       - "3306:3306"
+    volumes: # Prevents the database from getting destroyed when the docker is destroyed.
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: checkmate
       MYSQL_USER: root

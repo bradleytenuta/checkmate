@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use App\Json\SubmissionJson;
 use App\Submission;
 use App\Coursework;
-use VIPSoft\Unzip\Unzip;
 
 class SubmissionSeeder extends Seeder
 {
@@ -38,14 +38,20 @@ class SubmissionSeeder extends Seeder
                 $submission = new Submission;
                 $submission->user_id = $user->id;
                 $submission->coursework_id = $coursework->id;
+                $submission->json = json_encode(new SubmissionJson);
 
                 // Adds the file to the submission
                 $newFilePath = 'app/public/coursework/' . $submission->coursework->id . '/' .
                     'submissions' . '/' .  $submission->user->id;
 
                 // Extracts the files and stores them.
-                $unzipper  = new Unzip();
-                $unzipper->extract(storage_path('app/public/seeding/ExampleSubmission.zip'), storage_path($newFilePath));
+                $exampleSubmissionFile = storage_path('app/public/seeding/ExampleSubmission.zip');
+                $zip = new ZipArchive;
+                if ($zip->open($exampleSubmissionFile) === true)
+                {
+                    $zip->extractTo(storage_path($newFilePath));
+                    $zip->close();
+                }
 
                 // Saves the folder path where all the files were extracted to.
                 $submission->file_path = $newFilePath;

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-// TODO: Convert this to read in an xml file.
 class PermissionsTableSeeder extends Seeder {
 
     /**

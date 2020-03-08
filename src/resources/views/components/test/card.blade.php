@@ -12,8 +12,7 @@
     </p>
 
     <!-- View Test -->
-    <!-- TODO: Create view code page -->
-    <a href="#" class="card-link">Open</a>
+    <a href="{{ route('viewer.test', ['module_id' => $test->coursework->module->id, 'coursework_id' => $test->coursework->id, 'test_id' => $test->id]) }}" class="card-link">Open</a>
 
     <!-- Delete Test -->
     @if ($test->coursework->open)

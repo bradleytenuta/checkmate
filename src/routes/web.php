@@ -41,8 +41,10 @@ Route::post('modules/{module_id}/courseworks/{coursework_id}/test/{test_id}/dele
 Route::post('modules/{module_id}/courseworks/{coursework_id}/submission/upload', 'SubmissionController@createSubmission')->name('submission.create')->middleware('auth');
 
 // Viewer Routes
-Route::get('modules/{module_id}/courseworks/{coursework_id}/submission/{submission_id}', 'ViewerController@showMark')->name('viewer.mark')->middleware('auth');
 Route::post('modules/{module_id}/courseworks/{coursework_id}/submission/{submission_id}/save', 'ViewerController@saveMark')->name('viewer.mark.save')->middleware('auth');
+Route::get('modules/{module_id}/courseworks/{coursework_id}/submission/{submission_id}/mark', 'ViewerController@showMark')->name('viewer.mark')->middleware('auth');
+Route::get('modules/{module_id}/courseworks/{coursework_id}/submission/{submission_id}/studentview', 'ViewerController@showStudent')->name('viewer.student')->middleware('auth');
+Route::get('modules/{module_id}/courseworks/{coursework_id}/test/{test_id}', 'ViewerController@showTest')->name('viewer.test')->middleware('auth');
 
 // User Routes
 Route::get('users/all', 'UserController@showAll')->name('user.show.all')->middleware('auth');

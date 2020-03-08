@@ -16,16 +16,19 @@
             <h4 class="no-margin">Submitted: {{ $previousSubmission->updated_at }}</h4>
 
             <!-- Only show submission details if its been marked -->
-            <!-- TODO: Also include JUnit score -->
             @if ($previousSubmission->score != null)
                 <h6>Score</h6>
                 <p>{{ $previousSubmission->score }}</p>
 
+                <!-- TODO: Display Unit test results -->
+                <h6>Test Score</h6>
+                <p>N/A</p>
+
+                <h6>Main Feedback</h6>
                 <p>{{ $previousSubmission->main_feedback }}</p>
 
                 <!-- Button to view additonal feedback -->
-                <!-- TODO: Create view all feedback page -->
-                <a class="btn btn-primary" href="#">View All Feedback</a>
+                <a class="btn btn-primary" href="{{ route('viewer.student', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id, 'submission_id' => $previousSubmission->id]) }}">View All Feedback</a>
             @endif
         </div>
     </div>

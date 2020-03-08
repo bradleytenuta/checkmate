@@ -1,4 +1,4 @@
-@extends ('layouts.main')
+@extends ('layouts.full')
 
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')

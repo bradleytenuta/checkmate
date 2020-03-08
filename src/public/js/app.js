@@ -41857,9 +41857,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  // Gets the width of the table id cell and sets the width of its header to match it.
-  var cellWidth = $('#create-module-assign-container .create-module-cell-id').width();
-  $('#create-module-assign-header .create-module-cell-id').width(cellWidth); // Finds a element with the given ID and adds the JQueryUI calendar to it.
+  // Aligns the width of the table header cells to match the width of the content header cells.
+  alignHeaderCells(); // Finds a element with the given ID and adds the JQueryUI calendar to it.
   // This is so users can select a date rather than typing it.
 
   $("#deadline").datepicker({
@@ -41887,8 +41886,23 @@ $('input[type="radio"]').click(function () {
   }
 });
 /**
+ * This function goes through all the header cells and adjusts their cell width
+ * to match the content cells in the other table. This is so they line up correctly.
+ */
+
+window.alignHeaderCells = function alignHeaderCells() {
+  // Gets all the cells from a header row and a content row.
+  var headerCells = $('.header-table-row').first().children("th");
+  var contentCells = $('.content-table-row').first().children("td"); // Loops through all the content cells, gets their widths and assigns it to the header cells.
+
+  $(contentCells).each(function (index) {
+    $(headerCells[index]).outerWidth($(this).outerWidth());
+  });
+};
+/**
  * This function is called whenever the user types in the search box of the table.
  */
+
 
 window.searchForUser = function searchForUser() {
   // Searches through the id's for the same text
@@ -42142,6 +42156,50 @@ window.adjustNumberContainerWidth = function adjustNumberContainerWidth() {
   $('.viewer-number-container').width(maxWidth);
 };
 
+$('#viewer-left-container-menu-button').click(function () {
+  // Gets the button.
+  var button = $('#viewer-left-container-menu-button');
+  var leftContainer = $('#viewer-left-container');
+  var leftContainerMain = $('#viewer-left-container-main'); // Check what image is currently displayed. This tells us if its open or closed.
+
+  var imageSrc = $(button).children().first().attr("src"); // Returns '-1' if sub string not found.
+
+  if (imageSrc.toLowerCase().indexOf("right") >= 0) {
+    // Replace with new sub string.
+    imageSrc = imageSrc.replace("right", "left"); // Opens the left main container
+
+    $(leftContainerMain).css("display", "block");
+    $(leftContainer).css("min-width", "100%");
+  } else {
+    // Replace with new sub string.
+    imageSrc = imageSrc.replace("left", "right"); // Opens the left main container
+
+    $(leftContainerMain).css("display", "none");
+    $(leftContainer).css("min-width", "auto");
+  } // Sets the attribute.
+
+
+  $(button).children().first().attr("src", imageSrc);
+});
+
+window.makeLineComment = function makeLineComment($lineContainerId) {
+  // Gets the line comments container
+  var lineCommentContainer = $('#line-comments-container-table'); // Create a HTML element.
+
+  var htmlElementString = "<tr class=\"commment-container\" id=\"commment-container-" + $lineContainerId + "\"><td><p>" + $lineContainerId + "</p></td><td class=\"comment-input-container\"><input type=\"text\" class=\"form-control\" name=\"" + $lineContainerId + "\"></td><td><button type=\"button\" class=\"checkmate-button\" onclick=\"deleteLineComment(" + $lineContainerId + ")\"><img src=\"/storage/images/icon/dropdown-trash.png\" /></button></td></tr>"; // Appends the new element to the end of the line comments container.
+
+  $(lineCommentContainer).append(htmlElementString); // Give the text box focus.
+
+  $("#line-comment-" + $lineContainerId).focus();
+};
+
+window.deleteLineComment = function deleteLineComment($lineContainerId) {
+  // Finds the comment container with the given id.
+  var commentContainer = $('#commment-container-' + $lineContainerId); // Deletes the comment container.
+
+  commentContainer.remove();
+};
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":
@@ -42155,10 +42213,21 @@ window.adjustNumberContainerWidth = function adjustNumberContainerWidth() {
 
 /***/ }),
 
-/***/ "./resources/sass/login.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/login.scss ***!
-  \***********************************/
+/***/ "./resources/sass/pages/login.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/pages/login.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/pages/viewer.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/pages/viewer.scss ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -42167,15 +42236,16 @@ window.adjustNumberContainerWidth = function adjustNumberContainerWidth() {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/login.scss ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/pages/login.scss ./resources/sass/pages/viewer.scss ***!
+  \**********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /var/www/html/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /var/www/html/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/html/resources/sass/login.scss */"./resources/sass/login.scss");
+__webpack_require__(/*! /var/www/html/resources/sass/pages/login.scss */"./resources/sass/pages/login.scss");
+module.exports = __webpack_require__(/*! /var/www/html/resources/sass/pages/viewer.scss */"./resources/sass/pages/viewer.scss");
 
 
 /***/ })
