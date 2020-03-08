@@ -2,7 +2,7 @@
 
 <!-- CSS section -->
 @section ('dynamic-css')
-    <link href="{{ URL::asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/pages/login.css') }}" rel="stylesheet">
 @endsection
 <!-- End of CSS section -->
 
@@ -120,6 +120,9 @@
     </div>
     <!-- /END THE FEATURETTES -->
 </div>
+
+<!-- Footer -->
+@include('components.footer')
 
 @endsection
 <!-- End of the dynamic Section-->

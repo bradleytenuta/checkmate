@@ -42199,10 +42199,21 @@ window.deleteLineComment = function deleteLineComment($lineContainerId) {
 
 /***/ }),
 
-/***/ "./resources/sass/login.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/login.scss ***!
-  \***********************************/
+/***/ "./resources/sass/pages/login.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/pages/login.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/pages/viewer.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/pages/viewer.scss ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -42211,15 +42222,16 @@ window.deleteLineComment = function deleteLineComment($lineContainerId) {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/login.scss ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/pages/login.scss ./resources/sass/pages/viewer.scss ***!
+  \**********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /var/www/html/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /var/www/html/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/html/resources/sass/login.scss */"./resources/sass/login.scss");
+__webpack_require__(/*! /var/www/html/resources/sass/pages/login.scss */"./resources/sass/pages/login.scss");
+module.exports = __webpack_require__(/*! /var/www/html/resources/sass/pages/viewer.scss */"./resources/sass/pages/viewer.scss");
 
 
 /***/ })

@@ -1,6 +1,10 @@
-@extends ('layouts.main')
-<!-- TODO: remove footer -->
-<!-- TODO: make page 100% height -->
+@extends ('layouts.navbar-only')
+
+<!-- CSS section -->
+@section ('dynamic-css')
+    <link href="{{ URL::asset('css/pages/viewer.css') }}" rel="stylesheet">
+@endsection
+<!-- End of CSS section -->
 
 <!-- Begining of the Section-->
 @section ('dynamic-main-content')
@@ -9,7 +13,7 @@
 @include('components.breadcrumb.submission-breadcrumb', ['coursework' => $submission->coursework])
 
 <!-- The form used to mark the coursework. Only contains an action if the user has permission to mark it -->
-<form method="POST" @if ($isMarkable) action="{{ route('viewer.mark.save', ['module_id' => $submission->coursework->module->id, 'coursework_id' => $submission->coursework->id, 'submission_id' => $submission->id]) }}" @endif>
+<form method="POST" id="viewer-form" @if ($isMarkable) action="{{ route('viewer.mark.save', ['module_id' => $submission->coursework->module->id, 'coursework_id' => $submission->coursework->id, 'submission_id' => $submission->id]) }}" @endif>
 
     @csrf
 
