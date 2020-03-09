@@ -38,11 +38,19 @@
                 </tr>
 
                 @foreach ($coursework->module->users as $user)
+                    <!-- Skips the user if they are not a student. -->
+                    @if (!\App\Utility\ModulePermission::hasRole($coursework->module, $user, 'student'))
+                        @continue
+                    @endif
                     <!-- Gets the submission that belongs to the user -->
                     @php
                         $submission = $coursework->submissions->firstWhere('user_id', $user->id);
                         $submitted = $submission != null;
-                        $userMarker = $coursework->module->users->firstWhere('id', $submission->marker_id);
+                        $userMarker = null;
+                        if ($submitted)
+                        {
+                            $userMarker = $coursework->module->users->firstWhere('id', $submission->marker_id);
+                        }
                     @endphp
                     <tr class="content-table-row">
                         <!-- ID -->
@@ -95,7 +103,7 @@
                                         href="{{ route('viewer.mark', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id, 'submission_id' => $submission->id]) }}"
                                         type="button" class="form-check-input">Mark</a>
                                 @else
-                                    <p>N/A</p>
+                                    <div>N/A</div>
                                 @endif
                             </div>
                         </td>
