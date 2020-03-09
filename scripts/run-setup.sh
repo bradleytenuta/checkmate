@@ -28,3 +28,6 @@ chmod +x ./run-docker.sh
 # Installs and updates everything on the server.
 chmod +x ./run-update.sh
 ./run-update.sh
+
+# Prepares the shutdown shell script.
+chmod +x ./run-docker-shutdown.sh

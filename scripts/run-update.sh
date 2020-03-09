@@ -6,6 +6,6 @@ cd ..
 sudo docker-compose run --rm composer install
 sudo docker-compose run --rm npm install
 sudo docker-compose run --rm npm run dev
-sudo docker-compose exec php php /var/www/html/artisan migrate:fresh --seed
+sudo docker-compose exec php php /var/www/html/artisan migrate:refresh --seed
 # Below is not working, problem with docker accessing artisan.
-#sudo docker-compose run --rm artisan migrate:fresh --seed
+#sudo docker-compose run --rm artisan migrate:refresh --seed
