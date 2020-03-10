@@ -2,6 +2,9 @@
 
 cd ..
 
+# Deletes everything from the crontab. (From the current user)
+crontab -r
+
 # Writes the current crontab to a file. 
 crontab -l > tempfile
 
