@@ -13,10 +13,6 @@ chmod +x ./make-composer.sh
 chmod +x ./make-docker.sh
 ./make-docker.sh
 
-# Prepares the server.
-chmod +x ./make-env.sh
-./make-env.sh
-
 # Runs docker
 chmod +x ./run-docker.sh
 ./run-docker.sh
