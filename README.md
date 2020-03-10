@@ -27,7 +27,7 @@ Make sure that the symbolic link between the `public/storage` and `storage/app` 
 
 ##### Commands
 
-- `docker-compose up -d --build` - This will run the docker container. You can view the website at `http://localhost:8080`. The `d` command insures that the containers will keep running untill told otherwise.
+- `docker-compose up -d --build` - This will run the docker container. You can view the website at `http://localhost:8080`. The `d` command insures that the containers will keep running until told otherwise.
 
 Below you can run commands for composer, npm or artisan. Just add your desired command to the end.
 
@@ -71,17 +71,17 @@ OS: `Ubuntu 18.04`
 
 ##### How to SSH into Virtual Machine
 
-Install and setup Linux subsystem for Windows if you are developing on a windows machine.
+Install and set-up Linux subsystem for Windows if you are developing on a windows machine.
 
-Use the following commmand to ssh into the machine: `sudo ssh {USERNAME}@{IP}`.
+Use the following command to ssh into the machine: `sudo ssh {USERNAME}@{IP}`.
 
 ##### Setting up the Server.
 
 1. Install git with the following command: `sudo apt install git-all`.
 2. From within the root of the home directory checkout the master of the repo: `git clone https://BradBitt@bitbucket.org/BradBitt/checkmate.git`.
-3. CD into the repo just checked out and then cd into the `scripts/` folder.
-4. Next to setup the server and install all its dependencies, make the setup shell script runnable with the following command: `chmod +x ./run-setup.sh`.
-5. Run the setup script with the following command: `./run-setup.sh`.
+3. CD into the repo just checked out and then `cd` into the `scripts/` folder.
+4. Next to set-up the server and install all its dependencies, make the set-up shell script runnable with the following command: `chmod +x ./run-setup.sh`.
+5. Run the set-up script with the following command: `./run-setup.sh`.
 
 **NOTE** Don't run this command with `sudo`, we don't want the files it creates to belong to the root user.
 
@@ -89,10 +89,10 @@ Use the following commmand to ssh into the machine: `sudo ssh {USERNAME}@{IP}`.
 
 The website run in the docker container can then be access by using the following URL in your browser: `http://137.44.11.211:80/` or `ma-902559.swansea.ac.uk`.
 
-Below are some additonal commands that should also be run. This will help protect the computer by turning on the firewall and allowing ssh (but limited). They should be run in the order provided below and only run the second command if the first command does not return any errors:
+Below are some additional commands that should also be run. This will help protect the computer by turning on the firewall and allowing ssh (but limited). They should be run in the order provided below and only run the second command if the first command does not return any errors:
 
-- sudo ufw allow OpenSSH
-- sudo ufw enable
+- `sudo ufw allow OpenSSH`
+- `sudo ufw enable`
 
 ##### Ports
 
@@ -136,7 +136,7 @@ All tests run on bitbucket are run within a docker container.
 
 ##### Testing Submissions
 
-Docker is used to run the provided coursework unit tests on the user submissions. This is done by using a Maven image docker container. Then the unit tests and submission code are added to the container and then maven is used to run the tests. A report is produced which is then returned to the main docker container which contains the website.
+Docker is used to run the provided coursework unit tests on the user submissions. This is done by using a Maven image docker container. Then the unit tests and submission code are added to the container and then Maven is used to run the tests. A report is produced which is then returned to the main docker container which contains the website.
 
 <br>
 <br>
@@ -147,7 +147,7 @@ Docker is used to run the provided coursework unit tests on the user submissions
 
 ##### Other Notes
 
-- `composer dump-autoload` can be used inside the 'vagrant ssh' to refresh your seeder files. If when seeding or migrating, php can't find your classes, then run the command and try again.
+- `composer dump-autoload` can be used to refresh your seeder files. If when seeding or migrating, php can't find your classes, then run the command and try again.
 - Migration files that only have a single primary key that is an incrementing integer will get automatically claimed as a PK when migrating, this means you do not have to specify it in the migration file, if you do, it will break it.
 - `$table->unique('[val]')` is used when you want to specify something as unique but not used as a primary key, just like an email.
 - Don't need to include the id in the factory as it is incremented automatically when that model object is created.
@@ -164,7 +164,7 @@ Docker is used to run the provided coursework unit tests on the user submissions
 
 ##### Users
 
-Everyone who has an account is a user. The backend will automatically check for an uploaded icon, if one can't be found then the default is used. Student and staff is only used to help filter out the users when assigning coursework. A student can still be a marker or an admin. A member of staff can be an admin, a student on a module or a marker.
+Everyone who has an account is a user. The back-end will automatically check for an uploaded icon, if one can't be found then the default is used. Student and staff is only used to help filter out the users when assigning coursework. A student can still be a marker or an admin. A member of staff can be an admin, a student on a module or a marker.
 
 ##### Modules
 
@@ -215,11 +215,10 @@ Global permissions for users.
 ## [Moss](#moss)
 
 ##### Instructions
-When you compare two or more files, the results are uploaded to the moss server. The resul#### Docker setup
 
-Used guide provided by [aschmelyun](https://github.com/aschmelyun/docker-compose-laravel) to set up laravel and docker.ts can be web scrapped from there. Here is a link to where the results will be [stored](http://moss.stanford.edu/results/). The exact URL will be printed out at the end of the command.
+When you compare two or more files, the results are uploaded to the moss server. The results can be web scrapped from there. Here is a link to where the results will be [stored](http://moss.stanford.edu/results/). The exact URL will be printed out at the end of the command.
 
-Here is an example of the one i used to compare two Java files:
+Here is an example of the one I used to compare two Java files:
 
 `perl moss.pl -l java C:\Users\bradl\Desktop\test\test1.java C:\Users\bradl\Desktop\test\test2.java`
 
@@ -227,7 +226,7 @@ More instructions can be found within the `moss.pl` file you copied over.
 
 ##### Installing Moss
 
-1. In order to install moss you will need `cygwin` installed. Link to download can be found [here](https://www.cygwin.com/). Make sure to also install the whole perl package when you install cygwun.
+1. In order to install moss you will need `cygwin` installed. Link to download can be found [here](https://www.cygwin.com/). Make sure to also install the whole perl package when you install `cygwin`.
 1. Add `cygwin` folder and its `bin` folder to your environment variables.
 1. Create a folder called 'moss'. 
 1. Copy the below perl file called `moss.pl`, into the 'moss' directory.
