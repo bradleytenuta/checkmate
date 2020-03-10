@@ -38,3 +38,6 @@ source ~/.bashrc
 
 # Tests the installation of docker compose.
 docker-compose --version
+
+# Replaces the development port with the new port to be used on the VM, for the nginx machine.
+sed -i 's/8080:80/80:80/' ./../docker-compose.yml
