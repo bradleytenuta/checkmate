@@ -243,7 +243,7 @@ More instructions can be found within the `moss.pl` file you copied over.
 
 You can download MySQL Workbench from [here](https://www.mysql.com/products/workbench/). In order to connect to the database from within docker, you just need to provide the standard IP of `127.0.0.1` with the port provided from the ports section. The username and password of the databse can also be found within the `docker-compose.yml` file. 
 
-**NOTE** MySql Workbench has only been tried and tested in development mode, not in production on a seperate VM.
+**NOTE** MySql Workbench has only been tried and tested in development mode, not in production on a separate VM.
 
 <br>
 <br>
