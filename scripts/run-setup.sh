@@ -5,6 +5,7 @@ sudo apt-get update
 sudo dpkg --configure -a
 sudo apt install curl
 sudo apt install vim # For editing on the server.
+sudo chmod +x ./run-docker-shutdown.sh # Prepares the shutdown shell script (which is never used).
 
 # Installs Composer
 chmod +x ./make-composer.sh
@@ -26,5 +27,6 @@ chmod +x ./run-docker.sh
 chmod +x ./run-update.sh
 ./run-update.sh
 
-# Prepares the shutdown shell script.
-chmod +x ./run-docker-shutdown.sh
+# Creates and Runs the Linux Cron Job on the server.
+chmod +x ./make-cron.sh
+./make-cron.sh

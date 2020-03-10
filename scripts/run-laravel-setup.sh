@@ -8,4 +8,7 @@ cd src
 cp .env.example .env
 
 # Gives permissions to execute artisan file.
-chmod +x artisan
+sudo chmod +x artisan
+
+# Gives permission to everyone to use the storage folder. Only way to get around this.
+sudo chmod -R a+rwx storage
