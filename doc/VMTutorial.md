@@ -21,7 +21,7 @@ Use the following commmand to ssh into the machine: `sudo ssh {USERNAME}@{IP}`.
 
 **NOTE** Don't run this command with `sudo`, we don't want the files it creates to belong to the root user.
 
-The website run in the docker container can then be access by using the following URL in your browser: `http://137.44.11.211:8080/` or `ma-902559.swansea.ac.uk`.
+The website run in the docker container can then be access by using the following URL in your browser: `http://137.44.11.211:80/` or `ma-902559.swansea.ac.uk`.
 
 Below are some additonal commands that should also be run. This will help protect the computer by turning on the firewall and allowing ssh (but limited). They should be run in the order provided below and only run the second command if the first command does not return any errors:
 
