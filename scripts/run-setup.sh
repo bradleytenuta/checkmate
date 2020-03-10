@@ -4,6 +4,7 @@
 sudo apt-get update
 sudo dpkg --configure -a
 sudo apt install curl
+sudo apt install vim # For editing on the server.
 
 # Installs Composer
 chmod +x ./make-composer.sh
