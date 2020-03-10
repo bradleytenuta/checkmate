@@ -10,6 +10,10 @@ sudo apt install vim # For editing on the server.
 chmod +x ./make-composer.sh
 ./make-composer.sh
 
+# Prepares Laravel project
+chmod +x ./run-laravel-setup.sh
+./run-laravel-setup.sh
+
 # Installs Docker
 chmod +x ./make-docker.sh
 ./make-docker.sh
