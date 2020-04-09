@@ -1,21 +1,4 @@
-## Table Of Contents
-
-Below is a list of internal links to the different sections of the document.
-
-1. <a href="#setup">Set-up</a>
-1. <a href="#docker">Docker</a>
-1. <a href="#laravel">Laravel</a>
-1. <a href="#database">Database</a>
-1. <a href="#moss">Moss</a>
-1. <a href="#tpt">Third Party Tools - Development</a>
-1. <a href="#mvp">Minimal Viable Product</a>
-
-<br>
-<br>
-<br>
-<br>
-
-## [Set-up](#setup)
+## Set-up
 
 ### Development
 
@@ -105,12 +88,7 @@ Below are the used containers and their ports:
 - composer
 - artisan
 
-<br>
-<br>
-<br>
-<br>
-
-## [Docker](#docker)
+## Docker
 
 Docker is a platform for developers and sysadmins to build, run, and share applications with containers. The use of containers to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.
 
@@ -138,12 +116,11 @@ All tests run on bitbucket are run within a docker container.
 
 Docker is used to run the provided coursework unit tests on the user submissions. This is done by using a Maven image docker container. Then the unit tests and submission code are added to the container and then Maven is used to run the tests. A report is produced which is then returned to the main docker container which contains the website.
 
-<br>
-<br>
-<br>
-<br>
+##### Running Tests In Development
 
-## [Laravel](#laravel)
+In order to run tests in development you must run a command within the php docker container. This command will invoke the phpunit framework which will run all the tests. From the root of the repository, run this command: `docker-compose run --rm php vendor/bin/phpunit`.
+
+## Laravel
 
 ##### Other Notes
 
@@ -155,12 +132,7 @@ Docker is used to run the provided coursework unit tests on the user submissions
 - use `php artisan migrate:fresh` instead of `php artisan migrate:reset` also can combine it with seeding to speed things up: `php artisan migrate:fresh --seed`. This also stops problems with removing data occurring which is helpful.
 - use `Schema::dropAllTables();` within tinker to drop all tables, instead of dropping them one by one.
 
-<br>
-<br>
-<br>
-<br>
-
-## [Database](#database)
+## Database
 
 ##### Users
 
@@ -207,12 +179,7 @@ This table contains a list of all the users and the modules they are signed up t
 
 Global permissions for users.
 
-<br>
-<br>
-<br>
-<br>
-
-## [Moss](#moss)
+## Moss
 
 ##### Instructions
 
@@ -232,12 +199,7 @@ More instructions can be found within the `moss.pl` file you copied over.
 1. Copy the below perl file called `moss.pl`, into the 'moss' directory.
 1. Then from the directory above run this command: `chmod ug+x moss`.
 
-<br>
-<br>
-<br>
-<br>
-
-## [Third Party Tools - Development](#tptd)
+## Third Party Tools - Development
 
 ##### MySQL Workbench
 
@@ -245,12 +207,7 @@ You can download MySQL Workbench from [here](https://www.mysql.com/products/work
 
 **NOTE** MySql Workbench has only been tried and tested in development mode, not in production on a separate VM.
 
-<br>
-<br>
-<br>
-<br>
-
-## [Minimal Viable Product](#mvp)
+## Minimal Viable Product
 
 The contents of the minimal viable product for the 'checkmate' web application. The requirements below should be completed first before attempting any additional requirements.
 
@@ -321,15 +278,10 @@ The contents of the minimal viable product for the 'checkmate' web application. 
 	- create coursework.
 	- create modules.
 
-#### Additional Requirements - Function Requirements
+###### Additional Requirements - Function Requirements
 
 These shall only be completed once all the minimal requirements have been completed
 
 - An admin user can upgrade another user who is not admin, to admin.
 - A coursework owner shall be able to create Java unit tests and use these to automatically mark coursework.
 - A coursework shall have the ability to hid or show unit tests so users can view some of the unit tests that the coursework will be marked with.
-
-<br>
-<br>
-<br>
-<br>
