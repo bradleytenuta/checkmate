@@ -61,7 +61,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Gets the users global role if they have one.
+     * Gets the users global role.
      */
     public function globalRole()
     {
@@ -76,41 +76,11 @@ class User extends Authenticatable
     }
 
     /**
-     * This function returns a list of all the global permission objects that this
-     * user has.
-     */
-    public function globalPermissions()
-    {
-        return $this->globalRole->permissions;
-    }
-
-    /**
-     * This function takes in an id.
-     * It checks to see if the id matches any global permission
-     * id's this user has.
-     */
-    public function hasGlobalPermission($id)
-    {
-        foreach ($this->globalPermissions() as $global_permission)
-        {
-            if ($global_permission->id == $id)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * This function checks to see if the user has an admin global role.
      */
     public function hasAdminRole()
     {
         // If the global role is admin then return.
-        if ($this->globalRole->name == "admin")
-        {
-            return true;
-        }
-        return false;
+        return $this->globalRole->name == "admin";
     }
 }
