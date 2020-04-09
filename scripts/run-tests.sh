@@ -14,5 +14,8 @@ php artisan key:generate
 # Creates the symbolic link.
 php artisan storage:link
 
-php artisan migrate
+# Migrates and seeds the database.
+php artisan migrate:fresh --seed
+
+# Runs the tests.
 vendor/bin/phpunit
