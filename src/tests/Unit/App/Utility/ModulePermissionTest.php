@@ -181,22 +181,6 @@ class ModulePermissionTest extends TestCase
         $this->assertTrue(ModulePermission::permissionText($module, $user) == "Student");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Tests that an admin who is not a student can edit.
      *
