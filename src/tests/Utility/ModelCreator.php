@@ -37,12 +37,12 @@ class ModelCreator
         // Deadline, tomorrow.
         $deadline = new DateTime();
         $deadline->add(new DateInterval('P1D'));
-        $coursework->deadline = $deadline;
+        $coursework->deadline = date_format($deadline, "Y-m-d");
         
         // Start date, yesterday.
         $startdate = new DateTime();
         $startdate->sub(new DateInterval('P1D'));
-        $coursework->start_date = $startdate;
+        $coursework->start_date = date_format($startdate, "Y-m-d");
 
         $coursework->open = true;
 
@@ -59,12 +59,12 @@ class ModelCreator
         // Deadline, yesterday.
         $deadline = new DateTime();
         $deadline->sub(new DateInterval('P1D'));
-        $coursework->deadline = $deadline;
+        $coursework->deadline = date_format($deadline, "Y-m-d");
         
         // Start date, two days ago.
         $startdate = new DateTime();
         $startdate->sub(new DateInterval('P1D'))->sub(new DateInterval('P1D'));
-        $coursework->start_date = $startdate;
+        $coursework->start_date = date_format($startdate, "Y-m-d");
 
         $coursework->open = false;
 
@@ -81,12 +81,12 @@ class ModelCreator
         // Deadline, two days from now.
         $deadline = new DateTime();
         $deadline->add(new DateInterval('P1D'))->add(new DateInterval('P1D'));
-        $coursework->deadline = $deadline;
+        $coursework->deadline = date_format($deadline, "Y-m-d");
         
         // Start date, tomorrow.
         $startdate = new DateTime();
         $startdate->add(new DateInterval('P1D'));
-        $coursework->start_date = $startdate;
+        $coursework->start_date = date_format($startdate, "Y-m-d");
 
         $coursework->open = false;
 
@@ -109,8 +109,8 @@ class ModelCreator
         $coursework->coursework_type_id = 1; // java coursework type id.
 
         // Default dates to now.
-        $coursework->deadline = new DateTime();
-        $coursework->start_date = new DateTime();
+        $coursework->deadline = date("Y-m-d");
+        $coursework->start_date = date("Y-m-d");
 
         // Saves to the database.
         $coursework->save();

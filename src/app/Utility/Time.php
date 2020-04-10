@@ -3,7 +3,6 @@
 namespace App\Utility;
 
 use App\Coursework;
-use DateTime;
 
 class Time
 {
@@ -45,15 +44,7 @@ class Time
      */
     public static function dateHasPassed($coursework)
     {
-        // Gets the current date
-        $current_date = new DateTime();
-        $deadline = new DateTime($coursework->deadline);
-
-        if (date_format($current_date, 'Y-m-d') > date_format($deadline, 'Y-m-d'))
-        {
-            return true;
-        }
-        return false;
+        return date("Y-m-d") > $coursework->deadline;
     }
 
     /**
@@ -61,15 +52,7 @@ class Time
      */
     public static function dateIsToday($coursework)
     {
-        // Gets the current date
-        $current_date = new DateTime();
-        $deadline = new DateTime($coursework->deadline);
-
-        if (date_format($current_date, 'Y-m-d') == date_format($deadline, 'Y-m-d'))
-        {
-            return true;
-        }
-        return false;
+        return date("Y-m-d") == $coursework->deadline;
     }
 
     /**
@@ -78,14 +61,6 @@ class Time
      */
     public static function dateInFuture($coursework)
     {
-        // Gets the current date
-        $current_date = new DateTime();
-        $start_date = new DateTime($coursework->start_date);
-        
-        if ($start_date > $current_date)
-        {
-          return true;
-        }
-        return false;
+        return $coursework->start_date > date("Y-m-d");
     }
 }

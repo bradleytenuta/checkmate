@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Utility\Time;
 use App\Coursework;
-use DateTime;
 
 class TimeTest extends TestCase
 {
@@ -17,7 +16,7 @@ class TimeTest extends TestCase
      */
     public function testDateInFuture()
     {
-        $coursework = Coursework::where("start_date", ">", new DateTime())->first();
+        $coursework = Coursework::where("start_date", ">", date("Y-m-d"))->first();
         $this->assertTrue(Time::dateInFuture($coursework));
     }
 
@@ -28,7 +27,7 @@ class TimeTest extends TestCase
      */
     public function testDateNotInFuture()
     {
-        $coursework = Coursework::where("start_date", "<", new DateTime())->first();
+        $coursework = Coursework::where("start_date", "<", date("Y-m-d"))->first();
         $this->assertFalse(Time::dateInFuture($coursework));
     }
 
@@ -39,7 +38,7 @@ class TimeTest extends TestCase
      */
     public function testDateIsNotToday()
     {
-        $coursework = Coursework::where("start_date", ">", new DateTime())->first();
+        $coursework = Coursework::where("start_date", ">", date("Y-m-d"))->first();
         $this->assertFalse(Time::dateIsToday($coursework));
     }
 
@@ -50,7 +49,7 @@ class TimeTest extends TestCase
      */
     public function testDateHasPassed()
     {
-        $coursework = Coursework::where("deadline", "<", new DateTime())->first();
+        $coursework = Coursework::where("deadline", "<", date("Y-m-d"))->first();
         $this->assertTrue(Time::dateHasPassed($coursework));
     }
 
@@ -61,7 +60,7 @@ class TimeTest extends TestCase
      */
     public function testDateHasNotPassed()
     {
-        $coursework = Coursework::where("deadline", ">", new DateTime())->first();
+        $coursework = Coursework::where("deadline", ">", date("Y-m-d"))->first();
         $this->assertFalse(Time::dateHasPassed($coursework));
     }
 }

@@ -9,7 +9,6 @@ use App\Utility\CourseworkPermission;
 use App\User;
 use App\Module;
 use App\Coursework;
-use DateTime;
 
 class CourseworkPermissionTest extends TestCase
 {
@@ -350,7 +349,7 @@ class CourseworkPermissionTest extends TestCase
     public function testNotAdminCourseworkNotStarted()
     {
         // Gets the first coursework that starts in the future.
-        $coursework = Coursework::where("start_date", ">", new DateTime())->first();
+        $coursework = Coursework::where("start_date", ">", date("Y-m-d"))->first();
 
         // Finds user in coursework
         $user = User::findOrFail(

@@ -10,7 +10,6 @@ use App\GlobalPrivilege;
 use App\ModuleRole;
 use App\Module;
 use App\Coursework;
-use DateTime;
 
 class User extends Authenticatable
 {

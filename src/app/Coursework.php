@@ -35,7 +35,11 @@ class Coursework extends Model
      */
     public function setState($boolean)
     {
-        $this->open = $boolean;
-        $this->save();
+        // Only updates the state if the state is different.
+        if ($this->open != $boolean)
+        {
+            $this->open = $boolean;
+            $this->save();
+        }
     }
 }

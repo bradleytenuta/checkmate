@@ -15,10 +15,12 @@ class CourseworkObserver
      */
     public function created(Coursework $coursework)
     {
-        // Checks to see if the deadline has passed. If so update the state of coursework.
-        if (Time::dateHasPassed($coursework))
+        // If deadline is in the past or start date is in the future, then state of coursework is closed.
+        if (Time::dateHasPassed($coursework) || Time::dateInFuture($coursework))
         {
             $coursework->setState(false);
+        } else {
+            $coursework->setState(true);
         }
     }
 
@@ -30,43 +32,12 @@ class CourseworkObserver
      */
     public function updated(Coursework $coursework)
     {
-        // Checks to see if the deadline has passed. If so update the state of coursework.
-        if (Time::dateHasPassed($coursework))
+        // If deadline is in the past or start date is in the future, then state of coursework is closed.
+        if (Time::dateHasPassed($coursework) || Time::dateInFuture($coursework))
         {
             $coursework->setState(false);
+        } else {
+            $coursework->setState(true);
         }
-    }
-
-    /**
-     * Handle the coursework "deleted" event.
-     *
-     * @param  \App\Coursework  $coursework
-     * @return void
-     */
-    public function deleted(Coursework $coursework)
-    {
-        //
-    }
-
-    /**
-     * Handle the coursework "restored" event.
-     *
-     * @param  \App\Coursework  $coursework
-     * @return void
-     */
-    public function restored(Coursework $coursework)
-    {
-        //
-    }
-
-    /**
-     * Handle the coursework "force deleted" event.
-     *
-     * @param  \App\Coursework  $coursework
-     * @return void
-     */
-    public function forceDeleted(Coursework $coursework)
-    {
-        //
     }
 }

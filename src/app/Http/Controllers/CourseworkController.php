@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Utility\Time;
 use App\Utility\CourseworkPermission;
 use Redirect;
-use DateTime;
 
 class CourseworkController extends Controller
 {
@@ -204,9 +203,9 @@ class CourseworkController extends Controller
             'coursework_type_id' => ['required', 'integer']
         ]);
 
-        $current_date = new DateTime();
-        $start_date = new DateTime($request['start_date']);
-        $deadline = new DateTime($request['deadline']);
+        $current_date = date("Y-m-d");
+        $start_date = $request['start_date'];
+        $deadline = $request['deadline'];
 
         // Checks both dates are not in the past.
         if ($start_date < $current_date || $deadline < $current_date)
