@@ -18,7 +18,7 @@ class CourseworkPermission
             return false;
         }
 
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(8, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
         {
             return true;
         }
@@ -35,7 +35,7 @@ class CourseworkPermission
             return false;
         }
 
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
         {
             return true;
         }
@@ -47,6 +47,11 @@ class CourseworkPermission
      */
     public static function canShow($coursework)
     {
+        // If the user is admin and a student in the module then module 
+        if (ModulePermission::isStudentAdmin($coursework->module)) {
+            return false;
+        }
+
         // If the user has admin role.
         if (Auth::user()->hasAdminRole())
         {
@@ -80,7 +85,7 @@ class CourseworkPermission
             return false;
         }
 
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(6, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
         {
             return true;
         }
@@ -99,8 +104,8 @@ class CourseworkPermission
 
         // If the user has permission to mark submissions.
         if (Auth::user()->hasAdminRole() ||
-            ModulePermission::hasPermission(7, $module, Auth::user()) ||
-            ModulePermission::hasPermission(1, $module, Auth::user()))
+            ModulePermission::hasRole($module, Auth::user(), "professor") ||
+            ModulePermission::hasRole($module, Auth::user(), "assessor"))
         {
             return true;
         }
