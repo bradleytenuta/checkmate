@@ -40,28 +40,6 @@ class ModulePermission
     }
 
     /**
-     * When given a permission id, whether the user has that permission within the module.
-     */
-    public static function hasPermission($id, $module, $user)
-    {
-        // Gets the users role within the module.
-        $module_role_id = ModulePermission::getModuleRoleId($user, $module);
-
-        // If null then return false.
-        if ($module_role_id == null)
-        {
-            return false;
-        }
-
-        // Gets all the permissions that belong to the module role.
-        return $permission_module_role_rows = DB::table('module_roles_permissions')
-            ->where('module_roles_id', $module_role_id)
-            ->where('permission_id', $id)
-            ->get()
-            ->isNotEmpty();
-    }
-
-    /**
      * Returns the path for the given permission icon.
      */
     public static function permissionIconPath($module, $user)
@@ -130,7 +108,7 @@ class ModulePermission
             return false;
         }
 
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(5, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
         {
             return true;
         }
@@ -147,7 +125,7 @@ class ModulePermission
             return false;
         }
 
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasPermission(6, $module, Auth::user()))
+        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
         {
             return true;
         }
@@ -159,10 +137,7 @@ class ModulePermission
      */
     public static function canCreate()
     {
-        if (Auth::user()->hasAdminRole()) {
-            return true;
-        }
-        return false;
+        return Auth::user()->hasAdminRole();
     }
 
     /**
@@ -170,11 +145,7 @@ class ModulePermission
      */
     public static function canShow($module)
     {
-        if (Auth::user()->isInModule($module) || Auth::user()->hasAdminRole())
-        {
-            return true;
-        }
-        return false;
+        return Auth::user()->isInModule($module) || Auth::user()->hasAdminRole();
     }
 
     /**
@@ -182,10 +153,6 @@ class ModulePermission
      */
     public static function isStudentAdmin($module)
     {
-        if (Auth::user()->hasAdminRole() && ModulePermission::hasRole($module, Auth::user(), 'student'))
-        {
-            return true;
-        }
-        return false;
+        return Auth::user()->hasAdminRole() && ModulePermission::hasRole($module, Auth::user(), 'student');
     }
 }
