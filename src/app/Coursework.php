@@ -35,6 +35,14 @@ class Coursework extends Model
      */
     public function setState($boolean)
     {
+        // If the state is null then set the state and leave the function.
+        if (is_null($this->open))
+        {
+            $this->open = $boolean;
+            $this->save();
+            return;
+        }
+        
         // Only updates the state if the state is different.
         if ($this->open != $boolean)
         {
