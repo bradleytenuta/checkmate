@@ -15,13 +15,7 @@ class CourseworkObserver
      */
     public function created(Coursework $coursework)
     {
-        // If deadline is in the past or start date is in the future, then state of coursework is closed.
-        if (Time::dateHasPassed($coursework) || Time::dateInFuture($coursework))
-        {
-            $coursework->setState(false);
-        } else {
-            $coursework->setState(true);
-        }
+        Time::checkCourseworkState($coursework);
     }
 
     /**
@@ -32,12 +26,6 @@ class CourseworkObserver
      */
     public function updated(Coursework $coursework)
     {
-        // If deadline is in the past or start date is in the future, then state of coursework is closed.
-        if (Time::dateHasPassed($coursework) || Time::dateInFuture($coursework))
-        {
-            $coursework->setState(false);
-        } else {
-            $coursework->setState(true);
-        }
+        Time::checkCourseworkState($coursework);
     }
 }

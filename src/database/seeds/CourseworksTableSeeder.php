@@ -28,12 +28,6 @@ class CourseworksTableSeeder extends Seeder {
             'start_date' => "2020-12-10",
         ]);
 
-        // Checks to see if any of their deadlines are in the past.
-        Time::checkCourseworkDeadline();
-
-        // Checks to see if the start dates are in the past too.
-        Time::checkCourseworkStartDate();
-
         // Loads all the test files.
         $files = File::files(storage_path('app/seeding/tests'));
         $faker = Faker::create();
