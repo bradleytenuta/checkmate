@@ -322,7 +322,9 @@ class CourseworkPermissionTest extends TestCase
         $user = User::findOrFail("1"); // Gets root admin user.
         $this->be($user); // Mocks Auth::user with this user.
 
-        $coursework = Coursework::all()->first();
+        $exceptModules = Module::all()->except($user->modules->pluck('id')->toArray());
+        $coursework = Coursework::whereIn('module_id', $exceptModules->pluck('id')->toArray())->first();
+
         $this->assertTrue(CourseworkPermission::canShow($coursework));
     }
 
