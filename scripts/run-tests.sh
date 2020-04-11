@@ -18,4 +18,4 @@ php artisan storage:link
 php artisan migrate:fresh --seed
 
 # Runs the tests.
-#vendor/bin/phpunit
+vendor/bin/phpunit
