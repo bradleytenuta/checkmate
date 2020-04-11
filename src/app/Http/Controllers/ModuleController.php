@@ -117,11 +117,8 @@ class ModuleController extends Controller
             'description' => ['required', 'string']
         ]);
 
-        // Removes the first few elements that arnt assigns from the array.
-        $allroleAssignInputs = array_slice($request->input(), 3);
-
         // If there is no professor assigned.
-        if (!in_array(ModuleRole::where('name', 'professor')->first()->id, $allroleAssignInputs))
+        if (!in_array(ModuleRole::where('name', 'professor')->first()->id, $request->input()))
         {
             throw ValidationException::withMessages(['Assign Fail' => 'A Professor must be assigned to the module.']);
         }
