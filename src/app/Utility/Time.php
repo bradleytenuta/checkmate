@@ -3,40 +3,33 @@
 namespace App\Utility;
 
 use App\Coursework;
-use DateTime;
 
 class Time
 {
     /**
-     * This function checks to see if any courseworks deadlines are in the past.
-     * If they are in the past then update the state of the coursework to be closed.
+     * This function checks all the courseworks in the database and updates their state if the
+     * deadlines have been passed or their start dates are in the future.
      */
-    public static function checkCourseworkDeadline()
+    public static function checkAllCourseworkStates()
     {
         foreach (Coursework::all() as $coursework)
         {
-            if ((Time::dateHasPassed($coursework)) && ($coursework->open == true))
-            {
-                $coursework->setState(false);
-            }
+            Time::checkCourseworkState($coursework);
         }
     }
 
     /**
-     * This function checks all the courseworks and makes sure that if the current time
-     * has gone passed the start date of a coursework then it updates the state of the coursework
-     * to open.
+     * This fucntion updates the state of a coursework if the
+     * deadline have passed or the start date is in the future.
      */
-    public static function checkCourseworkStartDate()
+    public static function checkCourseworkState($coursework)
     {
-        foreach (Coursework::all() as $coursework)
+        // If deadline is in the past or start date is in the future, then state of coursework is closed.
+        if (Time::dateHasPassed($coursework) || Time::dateInFuture($coursework))
         {
-            // If the start date is in the past and the deadline is in the future.
-            // And the coursework is not already open, then open it.
-            if (!(Time::dateInFuture($coursework)) && !(Time::dateHasPassed($coursework)) && ($coursework->open == false))
-            {
-                $coursework->setState(true);
-            }
+            $coursework->setState(false);
+        } else {
+            $coursework->setState(true);
         }
     }
 
@@ -45,15 +38,7 @@ class Time
      */
     public static function dateHasPassed($coursework)
     {
-        // Gets the current date
-        $current_date = new DateTime();
-        $deadline = new DateTime($coursework->deadline);
-
-        if (date_format($current_date, 'Y-m-d') > date_format($deadline, 'Y-m-d'))
-        {
-            return true;
-        }
-        return false;
+        return date("Y-m-d") > $coursework->deadline;
     }
 
     /**
@@ -61,15 +46,7 @@ class Time
      */
     public static function dateIsToday($coursework)
     {
-        // Gets the current date
-        $current_date = new DateTime();
-        $deadline = new DateTime($coursework->deadline);
-
-        if (date_format($current_date, 'Y-m-d') == date_format($deadline, 'Y-m-d'))
-        {
-            return true;
-        }
-        return false;
+        return date("Y-m-d") == $coursework->deadline;
     }
 
     /**
@@ -78,14 +55,6 @@ class Time
      */
     public static function dateInFuture($coursework)
     {
-        // Gets the current date
-        $current_date = new DateTime();
-        $start_date = new DateTime($coursework->start_date);
-        
-        if ($start_date > $current_date)
-        {
-          return true;
-        }
-        return false;
+        return $coursework->start_date > date("Y-m-d");
     }
 }

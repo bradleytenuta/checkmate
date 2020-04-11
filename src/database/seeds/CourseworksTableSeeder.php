@@ -28,11 +28,8 @@ class CourseworksTableSeeder extends Seeder {
             'start_date' => "2020-12-10",
         ]);
 
-        // Checks to see if any of their deadlines are in the past.
-        Time::checkCourseworkDeadline();
-
-        // Checks to see if the start dates are in the past too.
-        Time::checkCourseworkStartDate();
+        // Checks the states of all the created courseworks.
+        Time::checkAllCourseworkStates();
 
         // Loads all the test files.
         $files = File::files(storage_path('app/seeding/tests'));
@@ -60,7 +57,9 @@ class CourseworksTableSeeder extends Seeder {
                 $test->save();
 
                 // Copies the file over
-                Storage::copy(str_replace("var/www/html/storage/app/", "", $file), $test->file_path);
+                $file = str_replace("var/www/html/storage/app/", "", $file); // For Nginx server.
+                $file = str_replace("opt/atlassian/pipelines/agent/build/src/storage/app/", "", $file); // For bitbucket pipelines server.
+                Storage::copy($file, $test->file_path);
             }
         }
     }

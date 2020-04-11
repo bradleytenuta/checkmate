@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Utility\Time;
 use App\Utility\CourseworkPermission;
 use Redirect;
-use DateTime;
 
 class CourseworkController extends Controller
 {
@@ -128,10 +127,18 @@ class CourseworkController extends Controller
     public function editCoursework($module_id, Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        $this->validationCheck($request);
         $request->validate([
-            'id' => ['required', 'integer']
+            'id' => ['required', 'integer'],
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'maximum_score' => ['required', 'integer'],
+            'deadline' => ['required', 'string', 'date'],
+            'start_date' => ['required', 'string', 'date'],
+            'coursework_type_id' => ['required', 'integer']
         ]);
+
+        // Gets the coursework to edit.
+        $coursework = Coursework::findOrFail($request['id']);
 
         // Finds the module the editing coursework belongs to.
         $module = Module::findOrFail($module_id);
@@ -148,7 +155,6 @@ class CourseworkController extends Controller
         }
 
         // Edits the coursework
-        $coursework = Coursework::findOrFail($request['id']);
         $coursework->name = $request['name'];
         $coursework->description = $request['description'];
         $coursework->maximum_score = $request['maximum_score'];
@@ -204,9 +210,9 @@ class CourseworkController extends Controller
             'coursework_type_id' => ['required', 'integer']
         ]);
 
-        $current_date = new DateTime();
-        $start_date = new DateTime($request['start_date']);
-        $deadline = new DateTime($request['deadline']);
+        $current_date = date("Y-m-d");
+        $start_date = $request['start_date'];
+        $deadline = $request['deadline'];
 
         // Checks both dates are not in the past.
         if ($start_date < $current_date || $deadline < $current_date)

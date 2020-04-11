@@ -33,7 +33,7 @@ class Module extends Model
     }
 
     /**
-     * Returns all the closed courseworks.
+     * Returns all the closed courseworks, that have a start and end date in the past.
      */
     public function closedCourseworks()
     {
@@ -51,7 +51,8 @@ class Module extends Model
     }
 
     /**
-     * Returns all the closed courseworks.
+     * Returns all the pending courseworks, 
+     * which are closed and their start dates are in the future, so havnt started yet.
      */
     public function pendingCourseworks()
     {

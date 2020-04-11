@@ -10,9 +10,6 @@ class ModulesUsersTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-
-        $users = App\User::all();
-
         // Assigns the test admin account to module 1.
         DB::table('module_user')->insertOrIgnore([
             'module_id' => 1,
@@ -27,19 +24,53 @@ class ModulesUsersTableSeeder extends Seeder {
             'module_role_id' => App\ModuleRole::where('id', 1)->first()->id,
         ]);
 
-        // Assign each user a random module with a random module permission.
-        foreach ($users as $user)
+        $modules = App\Module::all();
+        foreach ($modules as $module)
         {
-            $randomModules = App\Module::inRandomOrder()->get();
+            // Adds inital users.
+            $this->addInitalUsers($module);
 
-            for ($i=0; $i < 8; $i++) {
-                
+            // Gets all users and randomly adds a number of them to the module.
+            $users = App\User::all()->shuffle();
+            for ($i = 0; $i < rand(10, $users->count()); $i++)
+            {
                 DB::table('module_user')->insertOrIgnore([
-                    'module_id' => $randomModules[$i]->id,
-                    'user_id' => $user->id,
+                    'module_id' => $module->id,
+                    'user_id' => $users[$i]->id,
                     'module_role_id' => App\ModuleRole::inRandomOrder()->first()->id,
                 ]);
             }
         }
+    }
+
+    /**
+     * This fucntion adds 3 random users to a module, each user having one
+     * of the different roles.
+     */
+    private function addInitalUsers($module)
+    {
+        // Gets the three users that are not admins.
+        $users = App\User::inRandomOrder()->where("global_role_id", 2)->get()->splice(0, 3);
+
+        // Makes sure there is at least 1 student in a module.
+        DB::table('module_user')->insertOrIgnore([
+            'module_id' => $module->id,
+            'user_id' => $users[0]->id,
+            'module_role_id' => App\ModuleRole::findOrFail(1)->id,
+        ]);
+
+        // Makes sure there is at least 1 assessor in a module.
+        DB::table('module_user')->insertOrIgnore([
+            'module_id' => $module->id,
+            'user_id' => $users[1]->id,
+            'module_role_id' => App\ModuleRole::findOrFail(2)->id,
+        ]);
+
+        // Makes sure there is at least 1 professor in a module.
+        DB::table('module_user')->insertOrIgnore([
+            'module_id' => $module->id,
+            'user_id' => $users[2]->id,
+            'module_role_id' => App\ModuleRole::findOrFail(3)->id,
+        ]);
     }
 }

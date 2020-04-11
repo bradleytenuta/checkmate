@@ -27,8 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // At midnight everyday, check coursework deadlines.
         $schedule->call(function () {
-            Time::checkCourseworkDeadline();
-            Time::checkCourseworkStartDate();
+            Time::checkAllCourseworkStates();
         })->daily();
     }
 
