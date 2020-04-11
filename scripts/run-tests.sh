@@ -15,7 +15,9 @@ php artisan key:generate
 php artisan storage:link
 
 # Migrates and seeds the database.
-php artisan migrate:fresh --seed
+php artisan migrate
+composer dump-autoload
+php artisan db:seed
 
 # Runs the tests.
 vendor/bin/phpunit
