@@ -61,7 +61,10 @@ class SubmissionSeeder extends Seeder
                     {
                         $filepath = $files[$x];
                         $filename = basename($filepath);
-                        Storage::copy(str_replace("var/www/html/storage/app/", "", $filepath), $submission->file_path . $filename);
+
+                        $filepath = str_replace("var/www/html/storage/app/", "", $filepath); // For Nginx server.
+                        $filepath = str_replace("opt/atlassian/pipelines/agent/build/src/storage/app/", "", $filepath); // For bitbucket pipelines server.
+                        Storage::copy($filepath, $submission->file_path . $filename);
                     }
                 }
             }
