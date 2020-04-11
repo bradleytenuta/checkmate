@@ -18,12 +18,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testHasRoleProfessor()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::hasRole($module, $user, "professor"));
     }
@@ -35,12 +33,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testHasRoleAssessor()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::hasRole($module, $user, "assessor"));
     }
@@ -52,12 +48,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testHasRoleStudent()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::hasRole($module, $user, "student"));
     }
@@ -69,12 +63,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testHasRoleWrong()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
 
         $this->assertFalse(ModulePermission::hasRole($module, $user, "assessor"));
     }
@@ -86,12 +78,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testPermissionIconProfessor()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::permissionIconPath($module, $user) == "/images/icon/module-icon-professor.png");
     }
@@ -103,12 +93,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testPermissionIconAssessor()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::permissionIconPath($module, $user) == "/images/icon/module-icon-assessor.png");
     }
@@ -120,12 +108,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testPermissionIconStudent()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::permissionIconPath($module, $user) == "/images/icon/module-icon-student.png");
     }
@@ -137,12 +123,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testPermissionTextProfessor()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::permissionText($module, $user) == "Professor");
     }
@@ -154,12 +138,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testPermissionTextAssessor()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::permissionText($module, $user) == "Assessor");
     }
@@ -171,12 +153,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testPermissionTextStudent()
     {
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
         $this->be($user); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
 
         $this->assertTrue(ModulePermission::permissionText($module, $user) == "Student");
     }
@@ -204,12 +184,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testProfessorCanEdit()
     {
-        $professor = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
-        $this->be($professor); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertTrue(ModulePermission::canEdit($module));
     }
@@ -221,20 +199,21 @@ class ModulePermissionTest extends TestCase
      */
     public function testAssessorCantEdit()
     {
+        $user = null;
+        $module = null;
+
         // Gets an assessor who is not an admin.
-        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id')->get();
+        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get();
         foreach($assessors as $assessor)
         {
             $user = User::findOrFail($assessor->user_id);
             if (!$user->hasAdminRole())
             {
+                $module = Module::findOrFail($assessor->module_id);
                 $this->be($user);
                 break;
             }
         }
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertFalse(ModulePermission::canEdit($module));
     }
@@ -246,12 +225,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testStudentCantEdit()
     {
-        $student = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
-        $this->be($student); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(ModulePermission::canEdit($module));
     }
@@ -306,12 +283,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testProfessorCanDelete()
     {
-        $professor = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
-        $this->be($professor); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertTrue(ModulePermission::canDelete($module));
     }
@@ -323,20 +298,21 @@ class ModulePermissionTest extends TestCase
      */
     public function testAssessorCantDelete()
     {
+        $user = null;
+        $module = null;
+
         // Gets an assessor who is not an admin.
-        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id')->get();
+        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get();
         foreach($assessors as $assessor)
         {
             $user = User::findOrFail($assessor->user_id);
             if (!$user->hasAdminRole())
             {
+                $module = Module::findOrFail($assessor->module_id);
                 $this->be($user);
                 break;
             }
         }
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertFalse(ModulePermission::canDelete($module));
     }
@@ -348,12 +324,10 @@ class ModulePermissionTest extends TestCase
      */
     public function testStudentCantDelete()
     {
-        $student = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
-        $this->be($student); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(ModulePermission::canDelete($module));
     }

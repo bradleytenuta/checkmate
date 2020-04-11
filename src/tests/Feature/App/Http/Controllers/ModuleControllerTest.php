@@ -45,7 +45,7 @@ class ModuleControllerTest extends TestCase
         $newName = $module->name . $num;
 
         // Adds 3 users to the module with 3 different roles.
-        $usersToAdd = User::inRandomOrder()->get()->splice(0, 3);
+        $usersToAdd = User::inRandomOrder()->where("global_role_id", 2)->get()->splice(0, 3);
 
         $response = $this->actingAs($user)
             ->post("modules/edit", 
@@ -73,7 +73,7 @@ class ModuleControllerTest extends TestCase
         $name = "testModule" . $num;
 
         // Adds 3 users to the module with 3 different roles.
-        $usersToAdd = User::inRandomOrder()->get()->splice(0, 3);
+        $usersToAdd = User::inRandomOrder()->where("global_role_id", 2)->get()->splice(0, 3);
 
         $response = $this->actingAs($user)
             ->post("modules/create", 

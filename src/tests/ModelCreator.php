@@ -26,7 +26,7 @@ class ModelCreator
         $module->save();
 
         // Adds 3 users to the module with 3 different roles.
-        $usersToAdd = User::inRandomOrder()->get()->splice(0, 3);
+        $usersToAdd = User::inRandomOrder()->where("global_role_id", 2)->get()->splice(0, 3);
 
         // Adds people to the module created.
         DB::table('module_user')->insertOrIgnore([

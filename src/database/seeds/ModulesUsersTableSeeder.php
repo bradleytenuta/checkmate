@@ -32,7 +32,7 @@ class ModulesUsersTableSeeder extends Seeder {
 
             // Gets all users and randomly adds a number of them to the module.
             $users = App\User::all()->shuffle();
-            for ($i = 0; $i < rand(5, $users->count()); $i++)
+            for ($i = 0; $i < rand(10, $users->count()); $i++)
             {
                 DB::table('module_user')->insertOrIgnore([
                     'module_id' => $module->id,
@@ -49,8 +49,8 @@ class ModulesUsersTableSeeder extends Seeder {
      */
     private function addInitalUsers($module)
     {
-        // Gets the three users to add.
-        $users = App\User::inRandomOrder()->get()->splice(0, 3);
+        // Gets the three users that are not admins.
+        $users = App\User::inRandomOrder()->where("global_role_id", 2)->get()->splice(0, 3);
 
         // Makes sure there is at least 1 student in a module.
         DB::table('module_user')->insertOrIgnore([

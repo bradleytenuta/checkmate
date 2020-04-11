@@ -35,12 +35,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testProfessorCanEdit()
     {
-        $professor = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
-        $this->be($professor); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertTrue(CourseworkPermission::canEdit($module));
     }
@@ -52,20 +50,21 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testAssessorCantEdit()
     {
+        $user = null;
+        $module = null;
+
         // Gets an assessor who is not an admin.
-        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id')->get();
+        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get();
         foreach($assessors as $assessor)
         {
             $user = User::findOrFail($assessor->user_id);
             if (!$user->hasAdminRole())
             {
+                $module = Module::findOrFail($assessor->module_id);
                 $this->be($user);
                 break;
             }
         }
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertFalse(CourseworkPermission::canEdit($module));
     }
@@ -77,12 +76,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testStudentCantEdit()
     {
-        $student = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
-        $this->be($student); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(CourseworkPermission::canEdit($module));
     }
@@ -110,12 +107,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testProfessorCanCreate()
     {
-        $professor = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
-        $this->be($professor); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertTrue(CourseworkPermission::canCreate($module));
     }
@@ -127,20 +122,21 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testAssessorCantCreate()
     {
+        $user = null;
+        $module = null;
+
         // Gets an assessor who is not an admin.
-        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id')->get();
+        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get();
         foreach($assessors as $assessor)
         {
             $user = User::findOrFail($assessor->user_id);
             if (!$user->hasAdminRole())
             {
+                $module = Module::findOrFail($assessor->module_id);
                 $this->be($user);
                 break;
             }
         }
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertFalse(CourseworkPermission::canCreate($module));
     }
@@ -152,12 +148,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testStudentCantCreate()
     {
-        $student = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
-        $this->be($student); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(CourseworkPermission::canCreate($module));
     }
@@ -185,12 +179,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testProfessorCanMark()
     {
-        $professor = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
-        $this->be($professor); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertTrue(CourseworkPermission::canMark($module));
     }
@@ -228,12 +220,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testStudentCantMark()
     {
-        $student = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
-        $this->be($student); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(CourseworkPermission::canMark($module));
     }
@@ -261,12 +251,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testProfessorCanDelete()
     {
-        $professor = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('user_id')->first()->user_id);
-        $this->be($professor); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '3')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '3')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertTrue(CourseworkPermission::canDelete($module));
     }
@@ -278,20 +266,21 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testAssessorCantDelete()
     {
+        $user = null;
+        $module = null;
+
         // Gets an assessor who is not an admin.
-        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id')->get();
+        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get();
         foreach($assessors as $assessor)
         {
             $user = User::findOrFail($assessor->user_id);
             if (!$user->hasAdminRole())
             {
+                $module = Module::findOrFail($assessor->module_id);
                 $this->be($user);
                 break;
             }
         }
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertFalse(CourseworkPermission::canDelete($module));
     }
@@ -303,12 +292,10 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testStudentCantDelete()
     {
-        $student = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('user_id')->first()->user_id);
-        $this->be($student); // Mocks Auth::user with this user.
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->select('module_id')->first()->module_id);
+        $moduleRoleRow = DB::table('module_user')->where('module_role_id', '1')->select('user_id', 'module_id')->get()->first();
+        $user = User::findOrFail($moduleRoleRow->user_id);
+        $module = Module::findOrFail($moduleRoleRow->module_id);
+        $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(CourseworkPermission::canDelete($module));
     }
