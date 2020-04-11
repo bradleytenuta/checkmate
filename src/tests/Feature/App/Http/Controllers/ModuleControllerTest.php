@@ -44,12 +44,17 @@ class ModuleControllerTest extends TestCase
         $num = rand(1,10000);
         $newName = $module->name . $num;
 
+        // Adds 3 users to the module with 3 different roles.
+        $usersToAdd = User::inRandomOrder()->get()->splice(0, 3);
+
         $response = $this->actingAs($user)
             ->post("modules/edit", 
                 ['id' => $module->id,
                 'name' => $newName,
                 'description' => $module->description,
-                $user->id => "3"]);
+                $usersToAdd[0]->id => "1",
+                $usersToAdd[1]->id => "2",
+                $usersToAdd[2]->id => "3"]);
 
         $this->assertTrue(Module::findOrFail($module->id)->name == $newName);
     }
@@ -67,11 +72,16 @@ class ModuleControllerTest extends TestCase
         $num = rand(1,10000);
         $name = "testModule" . $num;
 
+        // Adds 3 users to the module with 3 different roles.
+        $usersToAdd = User::inRandomOrder()->get()->splice(0, 3);
+
         $response = $this->actingAs($user)
             ->post("modules/create", 
                 ['name' => $name,
                 'description' => "test description",
-                $user->id => 3]);
+                $usersToAdd[0]->id => "1",
+                $usersToAdd[1]->id => "2",
+                $usersToAdd[2]->id => "3"]);
 
         $response->assertStatus(302); // Response is redirected.
         $this->assertTrue(Module::all()->contains('name', $name));

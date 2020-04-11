@@ -3,8 +3,11 @@
 namespace Tests;
 
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 use App\Module;
 use App\Coursework;
+use App\User;
+use App\ModuleRole;
 use DateTime;
 use DateInterval;
 
@@ -21,6 +24,26 @@ class ModelCreator
         
         // Saves to the database.
         $module->save();
+
+        // Adds 3 users to the module with 3 different roles.
+        $usersToAdd = User::inRandomOrder()->get()->splice(0, 3);
+
+        // Adds people to the module created.
+        DB::table('module_user')->insertOrIgnore([
+            'module_id' => $module->id,
+            'user_id' => $usersToAdd[0]->id,
+            'module_role_id' => ModuleRole::findOrFail(1)->id,
+        ]);
+        DB::table('module_user')->insertOrIgnore([
+            'module_id' => $module->id,
+            'user_id' => $usersToAdd[1]->id,
+            'module_role_id' => ModuleRole::findOrFail(2)->id,
+        ]);
+        DB::table('module_user')->insertOrIgnore([
+            'module_id' => $module->id,
+            'user_id' => $usersToAdd[2]->id,
+            'module_role_id' => ModuleRole::findOrFail(3)->id,
+        ]);
 
         // Adds the courseworks to the module.
         for ($x = 0; $x < $numberOfOpen; $x++) ModelCreator::createOpenCoursework($module);

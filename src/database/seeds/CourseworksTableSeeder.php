@@ -28,6 +28,9 @@ class CourseworksTableSeeder extends Seeder {
             'start_date' => "2020-12-10",
         ]);
 
+        // Checks the states of all the created courseworks.
+        Time::checkAllCourseworkStates();
+
         // Loads all the test files.
         $files = File::files(storage_path('app/seeding/tests'));
         $faker = Faker::create();

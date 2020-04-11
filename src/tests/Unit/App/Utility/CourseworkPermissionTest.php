@@ -202,20 +202,21 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testAssessorCanMark()
     {
+        $user = null;
+        $module = null;
+
         // Gets an assessor who is not an admin.
-        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id')->get();
+        $assessors = DB::table('module_user')->where('module_role_id', '2')->select('user_id', 'module_id')->get();
         foreach($assessors as $assessor)
         {
             $user = User::findOrFail($assessor->user_id);
             if (!$user->hasAdminRole())
             {
+                $module = Module::findOrFail($assessor->module_id);
                 $this->be($user);
                 break;
             }
         }
-
-        $module = Module::findOrFail(
-            DB::table('module_user')->where('module_role_id', '2')->select('module_id')->first()->module_id);
 
         $this->assertTrue(CourseworkPermission::canMark($module));
     }
