@@ -30,11 +30,6 @@ class CourseworkPermission
      */
     public static function canShow($coursework)
     {
-        // If the user is admin and a student in the module then module 
-        if (ModulePermission::isStudentAdmin($coursework->module)) {
-            return false;
-        }
-
         // If the user has admin role.
         if (Auth::user()->hasAdminRole())
         {

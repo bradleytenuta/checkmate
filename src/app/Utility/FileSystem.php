@@ -46,6 +46,33 @@ class FileSystem
         // Loads Files.
         $files = File::files($tmp_folder_path);
         // TODO: Files should be deleted when user leaves window, as they are needed on return.
+        // TODO: Should be a job, which runs in its own time and deletes the files and folder.
+
+        return $files;
+    }
+
+    /**
+     * This function takes a submisison, it then extracts the zip file it contains and reads
+     * in each file in the zip and returns a list of those files.
+     */
+    public static function extractSubmission($submission)
+    {
+        // Gets zip file.
+        $zipFiles = File::files(storage_path('app/' . $submission->file_path));
+        $zip = new ZipArchive;
+        if ($zip->open($zipFiles[0]) === false) {
+            throw ValidationException::withMessages(['Open Zip Failure' => 'Failed to open the zip file to display the tests!']);
+        }
+
+        // Extracts to temp folder.
+        $tmp_folder_path = storage_path('tmp/' . $submission->coursework->id . $submission->id . rand(0, 1000));
+        $zip->extractTo($tmp_folder_path);
+        $zip->close();
+
+        // Loads Files.
+        $files = File::files($tmp_folder_path);
+        // TODO: Files should be deleted when user leaves window, as they are needed on return.
+        // TODO: Should be a job, which runs in its own time and deletes the files and folder.
 
         return $files;
     }
