@@ -2,6 +2,10 @@
 
 namespace App\Utility;
 
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
+use File;
+
 class FileSystem
 {
     /**
@@ -18,5 +22,31 @@ class FileSystem
             "opt/atlassian/pipelines/agent/build/src/storage/app/", "", $file_path);
 
         return $file_path;
+    }
+
+    /**
+     * Takes in a coursework and test id.
+     * It then extracts the zip file that belongs to this test and returns the
+     * contents.
+     */
+    public static function extractTest($coursework_id, $test_id)
+    {
+        // Gets zip file.
+        $zipFiles = File::files(storage_path('app/public/coursework/' . $coursework_id . '/tests' . '/' . $test_id));
+        $zip = new ZipArchive;
+        if ($zip->open($zipFiles[0]) === false) {
+            throw ValidationException::withMessages(['Open Zip Failure' => 'Failed to open the zip file to display the tests!']);
+        }
+
+        // Extracts to temp folder.
+        $tmp_folder_path = storage_path('tmp/' . $coursework_id . $test_id . rand(0, 1000));
+        $zip->extractTo($tmp_folder_path);
+        $zip->close();
+
+        // Loads Files.
+        $files = File::files($tmp_folder_path);
+        // TODO: Files should be deleted when user leaves window, as they are needed on return.
+
+        return $files;
     }
 }

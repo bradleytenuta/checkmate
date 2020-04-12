@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Utility\CourseworkPermission;
 use App\Utility\ModulePermission;
+use App\Utility\FileSystem;
 use App\Module;
 use App\Coursework;
 use App\Submission;
@@ -81,7 +82,8 @@ class ViewerController extends Controller
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to mark this coursework.']);
         }
 
-        $files = File::files(storage_path('app/public/coursework/' . $coursework_id . '/tests' . '/' . $test_id));
+        // Gets zip file and extracts those tests into a list of files.
+        $files = FileSystem::extractTest($coursework_id, $test_id);
 
         // Shows the view.
         return view('pages.viewer', ['submission' => null, 'coursework' => $coursework, 'isMarkable' => false, 'files' => $files]);
