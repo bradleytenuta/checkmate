@@ -10,4 +10,8 @@ public class ExampleUnitTest {
 	public void exampleFalseTest() {
 		assertEquals(false, Example.exampleFalse());
 	}
+	@Test
+	public void example2TrueTest() {
+		assertEquals(true, Example2.example2True());
+	}
 }

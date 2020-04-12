@@ -32,8 +32,6 @@ class SubmissionSeeder extends Seeder
     {
         // Creates a faker object. Its used for random booleans.
         $faker = Faker::create();
-        // Loads the files.
-        $files = File::files(storage_path('app/seeding/submissions'));
 
         foreach (Coursework::all() as $coursework)
         {
@@ -55,17 +53,18 @@ class SubmissionSeeder extends Seeder
                     $submission->file_path = 'public/coursework/' . $coursework->id . '/' . 'submissions' . '/' .  $user->id . "/";
                     $submission->save();
 
-                    // Copies over a random number of the example seed files into the submission folder.
-                    $filesToCopy = $faker->numberBetween($min = 1, $max = sizeof($files));
-                    for ($x = 0; $x < $filesToCopy; $x++)
-                    {
-                        $filepath = $files[$x];
-                        $filename = basename($filepath);
+                    // Gets path variables.
+                    $example_file_path = storage_path("app/seeding/submissions/example_submission.zip");
+                    $save_file_path = $submission->file_path . "example_submission.zip";
 
-                        $filepath = str_replace("var/www/html/storage/app/", "", $filepath); // For Nginx server.
-                        $filepath = str_replace("opt/atlassian/pipelines/agent/build/src/storage/app/", "", $filepath); // For bitbucket pipelines server.
-                        Storage::copy($filepath, $submission->file_path . $filename);
-                    }
+                    // Clean example file path
+                    $example_file_path = str_replace(
+                        "var/www/html/storage/app/", "", $example_file_path); // For Nginx server.
+                    $example_file_path = str_replace(
+                        "opt/atlassian/pipelines/agent/build/src/storage/app/", "", $example_file_path); // For bitbucket pipelines server.
+
+                    // Copies over xip file.
+                    Storage::copy($example_file_path, $save_file_path);
                 }
             }
         }
