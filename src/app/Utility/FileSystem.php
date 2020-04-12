@@ -3,6 +3,7 @@
 namespace App\Utility;
 
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\TempCleaner;
 use ZipArchive;
 use File;
 
@@ -45,8 +46,10 @@ class FileSystem
 
         // Loads Files.
         $files = File::files($tmp_folder_path);
-        // TODO: Files should be deleted when user leaves window, as they are needed on return.
-        // TODO: Should be a job, which runs in its own time and deletes the files and folder.
+
+        // Queues a job to delete the temp files created.
+        // Adds a 1 min delay to executing the job.
+        TempCleaner::dispatch($tmp_folder_path);
 
         return $files;
     }
@@ -71,8 +74,10 @@ class FileSystem
 
         // Loads Files.
         $files = File::files($tmp_folder_path);
-        // TODO: Files should be deleted when user leaves window, as they are needed on return.
-        // TODO: Should be a job, which runs in its own time and deletes the files and folder.
+
+        // Queues a job to delete the temp files created.
+        // Adds a 1 min delay to executing the job.
+        TempCleaner::dispatch($tmp_folder_path);
 
         return $files;
     }
