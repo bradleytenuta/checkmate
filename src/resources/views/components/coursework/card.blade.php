@@ -44,7 +44,7 @@
     @endif
 
     <!-- If the user has the option to edit the module, then they have the option to edit the coursework -->
-    @if (\App\Utility\CourseworkPermission::canEdit($module))
+    @if (\App\Utility\ModulePermission::canEdit($module))
         <a href="{{ route('coursework.edit.show', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}" class="card-link">Edit</a>
     @endif
 </div>

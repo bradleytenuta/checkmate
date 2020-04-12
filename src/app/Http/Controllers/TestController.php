@@ -7,6 +7,7 @@ use App\Module;
 use App\Coursework;
 use App\Test;
 use App\Utility\CourseworkPermission;
+use App\Utility\ModulePermission;
 use App\Utility\CourseworkType;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
@@ -100,7 +101,7 @@ class TestController extends Controller
         }
 
         // Checks the user has permission to delete the coursework.
-        if (!CourseworkPermission::canDelete($module))
+        if (!ModulePermission::canDelete($module))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }
