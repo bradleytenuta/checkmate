@@ -32,7 +32,7 @@ class ModulesUsersTableSeeder extends Seeder {
 
             // Gets all users and randomly adds a number of them to the module.
             $users = App\User::all()->shuffle();
-            for ($i = 0; $i < rand(10, $users->count()); $i++)
+            for ($i = 0; $i < rand(25, $users->count()); $i++)
             {
                 DB::table('module_user')->insertOrIgnore([
                     'module_id' => $module->id,

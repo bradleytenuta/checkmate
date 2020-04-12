@@ -65,7 +65,12 @@ class CourseworkController extends Controller
     public function createCoursework($module_id, Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        $this->validationCheck($request);
+        try {
+            $this->validationCheck($request);
+        } catch(ValidationException $exception) {
+            return Redirect::back()->withErrors(['msg', 'Validation check failed!']);
+        }
+
         $request->validate([
             'module_id' => ['required', 'integer']
         ]);

@@ -73,8 +73,11 @@ class ModuleController extends Controller
     public function createModule(Request $request)
     {
         // Validation check to see if values were entered correctly.
-        $this->validationCheck($request);
-
+        try {
+            $this->validationCheck($request);
+        } catch(ValidationException $exception) {
+            return Redirect::back()->withErrors(['msg', 'Validation check failed!']);
+        }
         // Gets the assigned values from the request.
         $userIdAndRoleIds = $this->getAssignValues($request);
 
@@ -207,7 +210,11 @@ class ModuleController extends Controller
     public function editModule(Request $request)
     {
         // Validation check to see if values were entered correctly.
-        $this->validationCheck($request);
+        try {
+            $this->validationCheck($request);
+        } catch(ValidationException $exception) {
+            return Redirect::back()->withErrors(['msg', 'Validation check failed!']);
+        }
 
         // Also checks that the module ID was passed through
         $request->validate([

@@ -179,12 +179,20 @@ class CourseworkPermissionTest extends TestCase
      */
     public function testNotAdminNotEnrolledCantShow()
     {
-        $user = User::findOrFail("2"); // User with id 2, doesnt have admin rights.
+        // Finds an open coursework.
+        $coursework = Coursework::where("open", true)->first();
+
+        // Gets a list of all the users in this module.
+        $allUsersEnrolled = DB::table('module_user')->where('module_id', $coursework->module->id)->select('user_id')->get();
+
+        // Gets all users that are not enrolled on that module.
+        $notEnrolledUsers = User::all()->except($allUsersEnrolled->pluck('user_id')->toArray());
+
+        // Gets a user from this list who is not an admin.
+        $user = $notEnrolledUsers->where("global_role_id", 2)->first();
         $this->be($user); // Mocks Auth::user with this user.
 
-        $modules = Module::all();
-        $exceptModules = $modules->except($user->modules->pluck('id')->toArray());
-        $this->assertFalse(CourseworkPermission::canShow($exceptModules->first()->courseworks->first()));
+        $this->assertFalse(CourseworkPermission::canShow($coursework));
     }
 
     /**
