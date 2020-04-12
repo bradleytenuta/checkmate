@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use App\Utility\ModulePermission;
+use App\Utility\FileSystem;
 use App\Json\SubmissionJson;
 use Faker\Factory as Faker;
 use App\Submission;
@@ -58,10 +59,7 @@ class SubmissionSeeder extends Seeder
                     $save_file_path = $submission->file_path . "example_submission.zip";
 
                     // Clean example file path
-                    $example_file_path = str_replace(
-                        "var/www/html/storage/app/", "", $example_file_path); // For Nginx server.
-                    $example_file_path = str_replace(
-                        "opt/atlassian/pipelines/agent/build/src/storage/app/", "", $example_file_path); // For bitbucket pipelines server.
+                    $example_file_path = FileSystem::cleanFilePath($example_file_path);
 
                     // Copies over xip file.
                     Storage::copy($example_file_path, $save_file_path);
