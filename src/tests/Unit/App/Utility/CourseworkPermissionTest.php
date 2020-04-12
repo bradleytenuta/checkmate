@@ -205,9 +205,13 @@ class CourseworkPermissionTest extends TestCase
         // Gets the first coursework that starts in the future.
         $coursework = Coursework::where("start_date", ">", date("Y-m-d"))->first();
 
-        // Finds user in coursework
-        $user = User::findOrFail(
-            DB::table('module_user')->where('module_role_id', '1')->where('module_id', $coursework->module->id)->select('user_id')->first()->user_id);
+        // Gets users in a module who are students..
+        $allUsersEnrolled = DB::table('module_user')->where('module_role_id', '1')
+            ->where('module_id', $coursework->module->id)->select('user_id')->get();
+
+        // Gets a user who is not an admin.
+        $userIds = $allUsersEnrolled->pluck('user_id')->toArray();
+        $user = User::whereIn("id", $userIds)->where("global_role_id", 2)->first();
         $this->be($user); // Mocks Auth::user with this user.
 
         $this->assertFalse(CourseworkPermission::canShow($coursework));
