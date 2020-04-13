@@ -23,6 +23,7 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
   height: 100%;
+  min-height: 500px;
   position: relative;
   background-image: url(/images/generic-background-mobile.jpg?e1b2a4b35c4af4e11d98bdafaf2bca50);
   background-size: cover;
@@ -125,6 +126,7 @@ body {
 
   .login-container {
     height: 500px;
+    min-height: auto;
     background-image: url(/images/generic-background-desktop.jpg?111dfa8fd3d9eb61e59b67fae573bd1f);
   }
 
