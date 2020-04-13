@@ -7,11 +7,13 @@
     @endif
     <!-- Name of the current module -->
     <li class="nav-item">
-        <p class="nav-link disabled">Module: {{ $coursework->module->name }}</p>
+        <a href="{{ route('module.show', ['module_id' => $coursework->module->id]) }}"
+            class="nav-link">Module: {{ $coursework->module->name }}</a>
     </li>
     <!-- Name of the current coursework -->
     <li class="nav-item">
-        <p class="nav-link disabled">Coursework: {{ $coursework->name }}</p>
+        <a href="{{ route('coursework.show', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id]) }}"
+            class="nav-link">Coursework: {{ $coursework->name }}</a>
     </li>
 
     @if ($submission != null)
@@ -19,7 +21,8 @@
         <li class="nav-item">
             @if ($submission->marker_id != null)
                 @php $userMarker = $coursework->module->users->firstWhere('id', $submission->marker_id); @endphp
-                <p class="nav-link disabled">Marker: {{ $userMarker->firstname }} {{ $userMarker->surname }}</p>
+                <a href="{{ route('user.show', ['user_id' => $userMarker->id]) }}"
+                    class="nav-link">Marker: {{ $userMarker->firstname }} {{ $userMarker->surname }}</a>
             @else
                 <p class="nav-link disabled">Marker: N/A</p>
             @endif
