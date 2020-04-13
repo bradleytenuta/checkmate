@@ -122,13 +122,9 @@ class ViewerController extends Controller
         $jsonObj = json_decode($submission->json);
         // Creates an array of all line comments
         $lineComments = array();
-        foreach($request->input() as $lineNumber => $comment)
+        $request_input = array_slice($request->input(), 3); // removes the first 3 elements from request input.
+        foreach($request_input as $lineNumber => $comment)
         {
-            // If the key is not a user id then skip to next value in loop.
-            if (!is_int($lineNumber)) {
-                continue;
-            }
-
             // Adds the values to the array
             $lineComments[$lineNumber] = $comment;
         }

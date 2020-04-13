@@ -47,9 +47,9 @@ window.makeLineComment = function makeLineComment($lineContainerId) {
     var lineCommentContainer = $('#line-comments-container-table');
 
     // Create a HTML element.
-    var htmlElementString = "<tr class=\"commment-container\" id=\"commment-container-" + $lineContainerId
-        + "\"><td><p>" + $lineContainerId
-        + "</p></td><td class=\"comment-input-container\"><input type=\"text\" class=\"form-control\" name=\"" + $lineContainerId
+    var htmlElementString = "<tr class=\"comment-container\" id=\"comment-container-" + $lineContainerId
+        + "\"><td class=\"comment-input-container\"><p>" + $lineContainerId
+        + "</p><input type=\"text\" class=\"form-control\" name=\"" + $lineContainerId
         + "\"></td><td><button type=\"button\" class=\"checkmate-button\" onclick=\"deleteLineComment(" + $lineContainerId
         + ")\"><img src=\"/storage/images/icon/dropdown-trash.png\" /></button></td></tr>"
 
@@ -62,7 +62,7 @@ window.makeLineComment = function makeLineComment($lineContainerId) {
 
 window.deleteLineComment = function deleteLineComment($lineContainerId) {
     // Finds the comment container with the given id.
-    var commentContainer = $('#commment-container-' + $lineContainerId);
+    var commentContainer = $('#comment-container-' + $lineContainerId);
 
     // Deletes the comment container.
     commentContainer.remove();

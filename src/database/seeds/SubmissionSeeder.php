@@ -108,7 +108,8 @@ class SubmissionSeeder extends Seeder
                 // Decodes the json object in the submission.
                 $jsonObj = json_decode($submission->json);
                 $lineComments = array(); // Creates an array of all line comments
-                $lineComments[0] = $faker->sentence($nbWords = 4, $variableNbWords = true); // Creates a random comment for line 1.
+                $lineComments["Example.java_-_1"] =
+                    $faker->sentence($nbWords = 4, $variableNbWords = true); // Creates a random comment for line 1.
                 $jsonObj->comments = $lineComments; // Saves the comments to the object.
                 $submission->json = json_encode($jsonObj);
 

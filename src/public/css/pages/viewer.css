@@ -83,7 +83,7 @@ body {
   max-height: 250px;
 }
 
-.commment-container > td {
+.comment-container > td {
   padding-bottom: 10px;
 }
 
@@ -91,20 +91,21 @@ body {
   width: 100%;
 }
 
-.commment-container p {
+.comment-container p {
   margin: 6px;
 }
 
-.commment-container button {
+.comment-container button {
   height: 28px;
   min-height: 28px;
   width: 28px;
   min-width: 28px;
   margin: 4px;
   padding: 0px;
+  margin-top: 35px;
 }
 
-.commment-container img {
+.comment-container img {
   height: 20px;
 }
 
