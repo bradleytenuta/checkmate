@@ -107,6 +107,9 @@ body {
     #viewer-left-container-menu {
         display: none;
     }
+    .viewer-row:nth-child(odd) { 
+        background: #f8f8f8;
+    }
 }
 // -------------------
 // End Of Viewer Left Container
@@ -117,9 +120,6 @@ body {
 .viewer-row {
     display: flex;
     white-space: nowrap;
-}
-.viewer-row:nth-child(odd) { 
-    background: #f8f8f8;
 }
 .viewer-row pre {
     margin: 0px;

@@ -122,16 +122,16 @@ body {
   #viewer-left-container-menu {
     display: none;
   }
+
+  .viewer-row:nth-child(odd) {
+    background: #f8f8f8;
+  }
 }
 
 .viewer-row {
   display: -webkit-box;
   display: flex;
   white-space: nowrap;
-}
-
-.viewer-row:nth-child(odd) {
-  background: #f8f8f8;
 }
 
 .viewer-row pre {
