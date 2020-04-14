@@ -19,13 +19,10 @@ class SubmissionController extends Controller
      */
     public function createSubmission($module_id, $coursework_id, Request $request)
     {
-        $request->validate([
-              'file' => 'required|mimes:zip',
-              'coursework_id' => 'required',
-        ]);
+        $request->validate(['file' => 'required|mimes:zip']);
 
         // Finds the coursework this submission will be associated with.
-        $coursework = Coursework::findOrFail($request['coursework_id']);
+        $coursework = Coursework::findOrFail($coursework_id);
         $module = Module::findOrFail($module_id);
 
         // Checks that the person making the submission is a student in the module
