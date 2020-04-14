@@ -39,12 +39,9 @@
                 <table id="line-comments-container-table">
                     @foreach (json_decode($submission->json)->comments as $lineNumber => $comment)
 
-                        <!-- TODO have this template here and in js file, try to remove duplicate -->
-                        <tr class="commment-container" id="commment-container-{{$lineNumber}}">
-                            <td>
-                                <p>{{$lineNumber}}</p>
-                            </td>
+                        <tr class="comment-container" id="comment-container-{{$lineNumber}}">
                             <td class="comment-input-container">
+                                <p>{{str_replace("_", " ", $lineNumber)}}</p>
                                 <input type="text" class="form-control" name="{{$lineNumber}}" value="{{$comment}}" @if (!$isMarkable) disabled @endif>
                             </td>
                             @if ($isMarkable)

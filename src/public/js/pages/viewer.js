@@ -93,21 +93,9 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-  adjustNumberContainerWidth();
-});
 /**
- * Adjusts the width of the number containers to match the width of the
- * last container.
+ * This fucntion creates the open close slide used for mobile devices.
  */
-
-window.adjustNumberContainerWidth = function adjustNumberContainerWidth() {
-  // Loops through all the number containers and
-  var maxWidth = $('.viewer-number-container').last().width(); // Sets the width of all the number containers
-
-  $('.viewer-number-container').width(maxWidth);
-};
-
 $('#viewer-left-container-menu-button').click(function () {
   // Gets the button.
   var button = $('#viewer-left-container-menu-button');
@@ -133,21 +121,29 @@ $('#viewer-left-container-menu-button').click(function () {
 
   $(button).children().first().attr("src", imageSrc);
 });
+/**
+ * This function makes an inline comment. This function is called when the user
+ * clicks a line of code.
+ */
 
 window.makeLineComment = function makeLineComment($lineContainerId) {
   // Gets the line comments container
   var lineCommentContainer = $('#line-comments-container-table'); // Create a HTML element.
 
-  var htmlElementString = "<tr class=\"commment-container\" id=\"commment-container-" + $lineContainerId + "\"><td><p>" + $lineContainerId + "</p></td><td class=\"comment-input-container\"><input type=\"text\" class=\"form-control\" name=\"" + $lineContainerId + "\"></td><td><button type=\"button\" class=\"checkmate-button\" onclick=\"deleteLineComment(" + $lineContainerId + ")\"><img src=\"/storage/images/icon/dropdown-trash.png\" /></button></td></tr>"; // Appends the new element to the end of the line comments container.
+  var htmlElementString = "<tr class=\"comment-container\" id=\"comment-container-" + $lineContainerId + "\"><td class=\"comment-input-container\"><p>" + $lineContainerId + "</p><input type=\"text\" class=\"form-control\" name=\"" + $lineContainerId + "\"></td><td><button type=\"button\" class=\"checkmate-button\" onclick=\"deleteLineComment(" + $lineContainerId + ")\"><img src=\"/storage/images/icon/dropdown-trash.png\" /></button></td></tr>"; // Appends the new element to the end of the line comments container.
 
   $(lineCommentContainer).append(htmlElementString); // Give the text box focus.
 
   $("#line-comment-" + $lineContainerId).focus();
 };
+/**
+ * This function deletes an inline comment.
+ */
+
 
 window.deleteLineComment = function deleteLineComment($lineContainerId) {
   // Finds the comment container with the given id.
-  var commentContainer = $('#commment-container-' + $lineContainerId); // Deletes the comment container.
+  var commentContainer = $('#comment-container-' + $lineContainerId); // Deletes the comment container.
 
   commentContainer.remove();
 };

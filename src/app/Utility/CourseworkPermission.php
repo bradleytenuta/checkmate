@@ -9,23 +9,6 @@ use App\Utility\Time;
 class CourseworkPermission
 {
     /**
-     * Checks that the user can edit coursework in the given module.
-     */
-    public static function canEdit($module)
-    {
-        // If the user is admin and a student in the module then module 
-        if (ModulePermission::isStudentAdmin($module)) {
-            return false;
-        }
-
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Checks the current user can create coursework.
      */
     public static function canCreate($module)
@@ -47,11 +30,6 @@ class CourseworkPermission
      */
     public static function canShow($coursework)
     {
-        // If the user is admin and a student in the module then module 
-        if (ModulePermission::isStudentAdmin($coursework->module)) {
-            return false;
-        }
-
         // If the user has admin role.
         if (Auth::user()->hasAdminRole())
         {
@@ -73,23 +51,6 @@ class CourseworkPermission
             return false;
         }
         return true;
-    }
-
-    /**
-     * Checks to see if the user can delete a coursework.
-     */
-    public static function canDelete($module)
-    {
-        // If the user is admin and a student in the module then module 
-        if (ModulePermission::isStudentAdmin($module)) {
-            return false;
-        }
-
-        if (Auth::user()->hasAdminRole() || ModulePermission::hasRole($module, Auth::user(), "professor"))
-        {
-            return true;
-        }
-        return false;
     }
 
     /**

@@ -179,6 +179,21 @@ This table contains a list of all the users and the modules they are signed up t
 
 Global permissions for users.
 
+## Jobs & Queues
+
+##### How do they work?
+
+In order to create jobs which Laravel will then run whenever it's ready, you first need to create a job within the `app/Jobs` folder. Within the handle method is what the job will run. A job also needs a constructor, if you want to pass variables to a job, then add those variables to a constructor and save them through there. In order to request a job you have to use this code: `{JOBCLASS}::dispatch()`. This will tell Laravel to run this job whenever it can.
+
+I have decided to use the database approach to running jobs in Laravel. In order to do this, I had to update the value `QUEUE_CONNECTION=database` in the `.env` file. This told Laravel we want to use the database when running jobs. Next we had to create a table for jobs to be saved in, so Laravel can pull them out when they are ready to be run and also a table for where failed jobs go, so they can be run again manually if needed. In order to create these tables, use the following commands (The names of these databases should not be changed): `php artisan queue:table` and `php artisan queue:failed-table`, note: you must remember to run migrate on these new tables before you can use them.
+
+So when your website is running, when the `{JOBCLASS}::dispatch()` is called, a job will be added to the job table. The Job wont be run unless laravel is running its queue system. In order to run this, you have to run the command: `php artisan queue:work`. Laravel will then start working its way through the jobs queued. This command does not end and so should be run in a seperate shell.
+
+Useful sources:
+
+- [https://laravel-news.com/laravel-jobs-and-queues-101](https://laravel-news.com/laravel-jobs-and-queues-101)
+- [https://laravel.com/docs/6.x/queues](https://laravel.com/docs/6.x/queues)
+
 ## Moss
 
 ##### Instructions

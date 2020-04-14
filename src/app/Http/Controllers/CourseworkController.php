@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Coursework;
 use App\Module;
 use App\Submission;
-use App\Utility\ModulePermission;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Utility\Time;
 use App\Utility\CourseworkPermission;
+use App\Utility\ModulePermission;
 use Redirect;
 
 class CourseworkController extends Controller
@@ -65,7 +65,12 @@ class CourseworkController extends Controller
     public function createCoursework($module_id, Request $request)
     {
         // Validates the request. Makes sure the content is valid.
-        $this->validationCheck($request);
+        try {
+            $this->validationCheck($request);
+        } catch(ValidationException $exception) {
+            return Redirect::back()->withErrors(['msg', 'Validation check failed!']);
+        }
+
         $request->validate([
             'module_id' => ['required', 'integer']
         ]);
@@ -112,7 +117,7 @@ class CourseworkController extends Controller
 
         // Checks to see if the user has the admin role.
         // Or has permission to edit the module.
-        if (CourseworkPermission::canEdit($module))
+        if (ModulePermission::canEdit($module))
         {
             return view('pages.edit.coursework', ['coursework' => $coursework]);
         } else
@@ -149,7 +154,7 @@ class CourseworkController extends Controller
         }
 
         // Checks the user has permission to edit the coursework.
-        if (!CourseworkPermission::canEdit($module))
+        if (!ModulePermission::canEdit($module))
         {
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to edit this coursework.']);
         }
@@ -184,7 +189,7 @@ class CourseworkController extends Controller
         }
 
         // Checks the user has permission to delete the coursework.
-        if (!CourseworkPermission::canDelete($module))
+        if (!ModulePermission::canDelete($module))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }

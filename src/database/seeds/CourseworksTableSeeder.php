@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use App\Utility\FileSystem;
 use App\Utility\Time;
 use Faker\Factory as Faker;
 use App\Coursework;
@@ -34,6 +35,7 @@ class CourseworksTableSeeder extends Seeder {
         // Loads all the test files.
         $files = File::files(storage_path('app/seeding/tests'));
         $faker = Faker::create();
+
         // Adds a random number of java tests to the courseworks.
         foreach (Coursework::all() as $coursework)
         {
@@ -57,8 +59,7 @@ class CourseworksTableSeeder extends Seeder {
                 $test->save();
 
                 // Copies the file over
-                $file = str_replace("var/www/html/storage/app/", "", $file); // For Nginx server.
-                $file = str_replace("opt/atlassian/pipelines/agent/build/src/storage/app/", "", $file); // For bitbucket pipelines server.
+                $file = FileSystem::cleanFilePath($file);
                 Storage::copy($file, $test->file_path);
             }
         }

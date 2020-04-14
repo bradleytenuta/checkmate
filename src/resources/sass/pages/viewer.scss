@@ -75,24 +75,25 @@ body {
     min-height: 100px;
     max-height: 250px;
 }
-.commment-container > td {
+.comment-container > td {
     padding-bottom: 10px;
 }
 .comment-input-container {
     width: 100%;
 }
-.commment-container p {
+.comment-container p {
     margin: 6px;
 }
-.commment-container button {
+.comment-container button {
     height: 28px;
     min-height: 28px;
     width: 28px;
     min-width: 28px;
     margin: 4px;
     padding: 0px;
+    margin-top: 35px;
 }
-.commment-container img {
+.comment-container img {
     height: 20px;
 }
 @media screen and (min-width: 600px) {
@@ -106,6 +107,9 @@ body {
     #viewer-left-container-menu {
         display: none;
     }
+    .viewer-row:nth-child(odd) { 
+        background: #f8f8f8;
+    }
 }
 // -------------------
 // End Of Viewer Left Container
@@ -117,11 +121,10 @@ body {
     display: flex;
     white-space: nowrap;
 }
-.viewer-row:nth-child(odd) { 
-    background: #f8f8f8;
-}
 .viewer-row pre {
     margin: 0px;
+    font-size: 100%;
+    color: black;
 }
 // On row hover, show comment icon.
 .viewer-row-hover:hover .viewer-number-container img {
@@ -139,6 +142,7 @@ body {
 // -------------------
 .viewer-number-container {
     padding: 0px 10px 0px 5px;
+    min-width: 52px;
 }
 .viewer-number-container img {
     height: 15px;
@@ -154,7 +158,7 @@ body {
 .viewer-line-container {
     padding-right: 50px;
 }
-.viewer-code-container {
+.tab-pane {
     height: 100%;
 }
 .viewer-right-container {
@@ -169,3 +173,14 @@ body {
 }
 // -------------------
 // End Of Viewer Right container
+
+// Viewer Text Highlighting
+// -------------------
+.hljs {
+    display: inherit!important;
+    overflow-x: inherit!important;
+    padding: inherit!important;
+    background: inherit!important;
+}
+// -------------------
+// End Of Viewer Text Highlighting

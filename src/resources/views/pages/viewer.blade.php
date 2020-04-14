@@ -3,12 +3,16 @@
 <!-- CSS section -->
 @section ('dynamic-css')
     <link href="{{ URL::asset('css/pages/viewer.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
 @endsection
 <!-- End of CSS section -->
 
 <!-- JS section -->
 @section ('dynamic-js')
     <script src="{{ URL::asset('js/pages/viewer.js') }}" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 @endsection
 <!-- End of JS section -->
 

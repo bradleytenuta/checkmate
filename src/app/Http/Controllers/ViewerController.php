@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Utility\CourseworkPermission;
 use App\Utility\ModulePermission;
+use App\Utility\FileSystem;
 use App\Module;
 use App\Coursework;
 use App\Submission;
@@ -32,7 +33,7 @@ class ViewerController extends Controller
         }
 
         // Gets all the files from the submission.
-        $files = File::files(storage_path('app/' . $submission->file_path));
+        $files = FileSystem::extractSubmission($submission);
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => true, 'files' => $files]);
@@ -60,7 +61,7 @@ class ViewerController extends Controller
         }
 
         // Gets all the files from the submission.
-        $files = File::files(storage_path('app/' . $submission->file_path));
+        $files = FileSystem::extractSubmission($submission);
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => false, 'files' => $files]);
@@ -81,7 +82,8 @@ class ViewerController extends Controller
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to mark this coursework.']);
         }
 
-        $files = File::files(storage_path('app/public/coursework/' . $coursework_id . '/tests' . '/' . $test_id));
+        // Gets zip file and extracts those tests into a list of files.
+        $files = FileSystem::extractTest($coursework_id, $test_id);
 
         // Shows the view.
         return view('pages.viewer', ['submission' => null, 'coursework' => $coursework, 'isMarkable' => false, 'files' => $files]);
@@ -120,13 +122,9 @@ class ViewerController extends Controller
         $jsonObj = json_decode($submission->json);
         // Creates an array of all line comments
         $lineComments = array();
-        foreach($request->input() as $lineNumber => $comment)
+        $request_input = array_slice($request->input(), 3); // removes the first 3 elements from request input.
+        foreach($request_input as $lineNumber => $comment)
         {
-            // If the key is not a user id then skip to next value in loop.
-            if (!is_int($lineNumber)) {
-                continue;
-            }
-
             // Adds the values to the array
             $lineComments[$lineNumber] = $comment;
         }

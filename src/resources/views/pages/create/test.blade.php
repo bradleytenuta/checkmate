@@ -47,7 +47,7 @@
     <!-- Info box for creating a test -->
     <div class="form-group row alert alert-primary" role="alert">
         <div class="col-sm-12">
-            <p class="mb-0">File should be of type: '{{ \App\Utility\CourseworkType::getTestFileExtension($coursework->coursework_type_id) }}'</p>
+            <p class="mb-0">File should be of type: '.zip'</p>
         </div>
     </div>
 

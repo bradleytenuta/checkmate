@@ -7,6 +7,7 @@ use App\Module;
 use App\Coursework;
 use App\Test;
 use App\Utility\CourseworkPermission;
+use App\Utility\ModulePermission;
 use App\Utility\CourseworkType;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
@@ -51,12 +52,11 @@ class TestController extends Controller
             throw ValidationException::withMessages(['Permission Fail' => 'The user does not have permission to create a test.']);
         }
 
-        // Checks to see if the file contains the .java extension.
+        // Checks to see if the file contains the .zip extension.
         $filename = $request->file->getClientOriginalName();
-        $correct_file_type = CourseworkType::getTestFileExtension($coursework->coursework_type_id);
-        if (!(strpos($filename, "." . $correct_file_type) == true))
+        if (!(strpos($filename, ".zip") == true))
         {
-            throw ValidationException::withMessages(['Invalid File Type' => 'File is not of type ' . $correct_file_type]);
+            throw ValidationException::withMessages(['Invalid File Type' => "File is not of type '.zip'"]);
         }
 
         // Validation of the form.
@@ -69,6 +69,7 @@ class TestController extends Controller
         $test->public = ($request['test_type'] == "true");
         $test->coursework_id = $coursework->id;
         $test->file_name = $filename;
+
         // Saves the test to the database.
         // This is done beforehand so we have an id assgined to it.
         $test->save();
@@ -100,7 +101,7 @@ class TestController extends Controller
         }
 
         // Checks the user has permission to delete the coursework.
-        if (!CourseworkPermission::canDelete($module))
+        if (!ModulePermission::canDelete($module))
         {
             throw ValidationException::withMessages(['Delete Fail' => 'The current user does not have permission to delete the module.']);
         }
