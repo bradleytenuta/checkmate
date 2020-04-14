@@ -25,7 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('courseworkstatechecker:cron')->everyMinute();
+        // Runs the coursework checker.
+        $schedule->command('courseworkstatechecker:cron')->hourly();
+
+        // Runs the Laravel Queue worker.
+        // This means every minute, the queue will execute all the pending jobs.
+        // Once there are no more jobs to run, it will end.
+        $schedule->command('queue:work')->everyMinute();
     }
 
     /**

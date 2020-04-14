@@ -39,7 +39,5 @@ class CourseworkStateChecker extends Command
     public function handle()
     {
         Time::checkAllCourseworkStates();
-        \Log::info("CourseworkStateChecker:Cron is working fine!");
-        $this->info("CourseworkStateChecker:Cron is working fine!");
     }
 }
