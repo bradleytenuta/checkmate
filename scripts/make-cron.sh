@@ -2,11 +2,11 @@
 
 cd ..
 
-# Deletes everything from the crontab. (From the current user)
-crontab -r
+# Deletes everything from the root crontab.
+sudo crontab -r
 
-# Writes the current crontab to a file. 
-crontab -l > tempfile
+# Writes the current root crontab to a file. 
+sudo crontab -l > tempfile
 
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
@@ -32,11 +32,11 @@ crontab -l > tempfile
 # When the schedule:run command is executed, Laravel will evaluate 
 # your scheduled tasks and runs the tasks that are due.
 # Echos the new job to add to the crontab.
-echo "* * * * * sudo docker-compose run --rm artisan schedule:run >> /dev/null 2>&1" >> tempfile
-# >> /dev/null 2>&1 = This redirects the standard output to null. So the output is discarded.
+echo "* * * * * cd /home/vm902559/checkmate && sudo docker-compose run --rm artisan schedule:run >> /home/vm902559/checkmate/logs/rootcron.log 2>&1" >> tempfile
 
-# Installs the temp file into the crontab.
-crontab tempfile
+# Installs the temp file into the root crontab.
+sudo crontab tempfile
+echo "root crontab created"
 
 # Deletes the temp file.
-rm tempfile
+sudo rm tempfile
