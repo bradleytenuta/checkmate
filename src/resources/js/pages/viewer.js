@@ -14,6 +14,9 @@ window.adjustNumberContainerWidth = function adjustNumberContainerWidth() {
     $('.viewer-number-container').width(maxWidth);
 }
 
+/**
+ * This fucntion creates the open close slide used for mobile devices.
+ */
 $('#viewer-left-container-menu-button').click(function(){
 
     // Gets the button.
@@ -42,6 +45,10 @@ $('#viewer-left-container-menu-button').click(function(){
     $(button).children().first().attr("src", imageSrc);
 });
 
+/**
+ * This function makes an inline comment. This function is called when the user
+ * clicks a line of code.
+ */
 window.makeLineComment = function makeLineComment($lineContainerId) {
     // Gets the line comments container
     var lineCommentContainer = $('#line-comments-container-table');
@@ -60,6 +67,9 @@ window.makeLineComment = function makeLineComment($lineContainerId) {
     $("#line-comment-" + $lineContainerId).focus();
 };
 
+/**
+ * This function deletes an inline comment.
+ */
 window.deleteLineComment = function deleteLineComment($lineContainerId) {
     // Finds the comment container with the given id.
     var commentContainer = $('#comment-container-' + $lineContainerId);

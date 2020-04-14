@@ -6,7 +6,7 @@
                 <div class="viewer-row @if($isMarkable) viewer-row-hover @endif" @if($isMarkable) onclick="makeLineComment('{{$file->getRelativePathname()}} - {{($lineIndex + 1)}}')" @endif>
                     <div class="viewer-number-container">{{$lineIndex + 1}}@if($isMarkable)<img src="{{  Storage::url('/images/icon/comment.png') }}" />@endif</div>
                     <div class="viewer-line-container">
-                        <pre>{{ \App\Utility\Viewer::formatLine($line) }}</pre>
+                        <pre><code class="java">{{ \App\Utility\Viewer::formatLine($line) }}</code></pre>
                     </div>
                 </div>
             @endforeach

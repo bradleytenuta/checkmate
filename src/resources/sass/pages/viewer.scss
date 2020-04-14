@@ -123,6 +123,8 @@ body {
 }
 .viewer-row pre {
     margin: 0px;
+    font-size: 100%;
+    color: black;
 }
 // On row hover, show comment icon.
 .viewer-row-hover:hover .viewer-number-container img {
@@ -170,3 +172,14 @@ body {
 }
 // -------------------
 // End Of Viewer Right container
+
+// Viewer Text Highlighting
+// -------------------
+.hljs {
+    display: inherit!important;
+    overflow-x: inherit!important;
+    padding: inherit!important;
+    background: inherit!important;
+}
+// -------------------
+// End Of Viewer Text Highlighting

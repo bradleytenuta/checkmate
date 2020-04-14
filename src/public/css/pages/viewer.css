@@ -136,6 +136,8 @@ body {
 
 .viewer-row pre {
   margin: 0px;
+  font-size: 100%;
+  color: black;
 }
 
 .viewer-row-hover:hover .viewer-number-container img {
@@ -175,5 +177,12 @@ body {
   .viewer-right-container {
     width: calc(100% - 360px);
   }
+}
+
+.hljs {
+  display: inherit !important;
+  overflow-x: inherit !important;
+  padding: inherit !important;
+  background: inherit !important;
 }
 
