@@ -151,6 +151,7 @@ body {
 
 .viewer-number-container {
   padding: 0px 10px 0px 5px;
+  min-width: 52px;
 }
 
 .viewer-number-container img {
@@ -163,7 +164,7 @@ body {
   padding-right: 50px;
 }
 
-.viewer-code-container {
+.tab-pane {
   height: 100%;
 }
 
