@@ -33,7 +33,7 @@ class ViewerController extends Controller
         }
 
         // Gets all the files from the submission.
-        $files = FileSystem::extractSubmission($submission);
+        $files = FileSystem::extractSubmissionToFiles($submission);
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => true, 'files' => $files]);
@@ -61,7 +61,7 @@ class ViewerController extends Controller
         }
 
         // Gets all the files from the submission.
-        $files = FileSystem::extractSubmission($submission);
+        $files = FileSystem::extractSubmissionToFiles($submission);
 
         // Shows the view.
         return view('pages.viewer', ['submission' => $submission, 'coursework' => $coursework, 'isMarkable' => false, 'files' => $files]);

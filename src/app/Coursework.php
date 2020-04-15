@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\MossRunner;
 
 class Coursework extends Model
 {
@@ -48,6 +49,24 @@ class Coursework extends Model
         {
             $this->open = $boolean;
             $this->save();
+
+            // If the coursework state is no closed, then run the moss job.
+            if ($this->open == false)
+            {
+                $this->runMoss();
+            }
+            
+        }
+    }
+
+    /**
+     * Creates a job for each submission in the coursework.
+     */
+    public function runMoss()
+    {
+        foreach ($this->submissions as $submission)
+        {
+            MossRunner::dispatch($submission->id);
         }
     }
 }
