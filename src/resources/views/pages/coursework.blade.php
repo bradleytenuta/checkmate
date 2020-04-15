@@ -28,9 +28,10 @@
         @include('components.test.list.list', ['tests'=>$coursework->tests])
     @endif
 
+    @include('components.submission.title', ['title'=>'Submissions'])
+
     <!-- Submission Container -->
     <div id="submission-container">
-        <h1>Submission</h1>
         <div class="checkmate-submission-form">
             <!-- Error messages if there are any -->
             @include('components.form.error')

@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use App\Utility\ModulePermission;
 use App\Utility\FileSystem;
+use App\Utility\Time;
 use App\Json\SubmissionJson;
 use Faker\Factory as Faker;
 use App\Submission;
@@ -23,6 +24,16 @@ class SubmissionSeeder extends Seeder
 
         // Marks some of the submissions.
         $this->markSubmissions();
+
+        // Runs moss on all submissions.
+        foreach (Coursework::all() as $coursework)
+        {
+            // If deadline has been reached.
+            if (Time::dateHasPassed($coursework))
+            {
+                $coursework->runMoss();
+            }
+        }
     }
 
     /**

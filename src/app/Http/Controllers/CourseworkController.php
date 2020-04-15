@@ -202,6 +202,18 @@ class CourseworkController extends Controller
     }
 
     /**
+     * This function runs moss for the submissions within the coursework.
+     * This is done automatically when the courseworks deadline is passed.
+     * However this is a manual approach.
+     */
+    public function runMoss($module_id, $coursework_id)
+    {
+        $coursework = Coursework::findOrFail($coursework_id);
+        $coursework->runMoss();
+        return Redirect::back();
+    }
+
+    /**
      * Checks that all the infromation entered for creating or editing a coursework is valid.
      */
     private function validationCheck(Request $request)
