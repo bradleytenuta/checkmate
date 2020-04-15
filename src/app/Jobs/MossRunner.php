@@ -11,6 +11,7 @@ use Symfony\Component\Process\Process;
 use App\Utility\CourseworkType;
 use App\Utility\FileSystem;
 use App\Submission;
+use Exception;
 
 require 'simple_html_dom.php';
 
@@ -87,6 +88,10 @@ class MossRunner implements ShouldQueue
             // Gets the url from the output. The url is the final line outputted from moss.
             $matches = array();
             preg_match('/http.*/', $process->getOutput(), $matches);
+            if (empty($matches))
+            {
+                throw Exception::withMessages(['No Matches in URL.' => $process->getErrorOutput()]);
+            }
             $url = $matches[0]; // Gets the first and only match (which is the url).
 
             // Webscrapes the url for results.

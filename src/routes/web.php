@@ -30,6 +30,7 @@ Route::get('modules/{module_id}/courseworks/create', 'CourseworkController@showC
 Route::post('modules/{module_id}/courseworks/edit', 'CourseworkController@editCoursework')->name('coursework.edit')->middleware('auth');
 Route::get('modules/{module_id}/courseworks/{coursework_id}/edit/', 'CourseworkController@showEditCoursework')->name('coursework.edit.show')->middleware('auth');
 Route::post('modules/{module_id}/courseworks/{coursework_id}/delete', 'CourseworkController@deleteCoursework')->name('coursework.delete')->middleware('auth');
+Route::get('modules/{module_id}/courseworks/{coursework_id}/moss', 'CourseworkController@runMoss')->name('coursework.moss')->middleware('auth');
 Route::get('modules/{module_id}/courseworks/{coursework_id}', 'CourseworkController@show')->name('coursework.show')->middleware('auth');
 
 // Test Routes

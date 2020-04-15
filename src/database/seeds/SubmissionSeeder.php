@@ -23,6 +23,16 @@ class SubmissionSeeder extends Seeder
 
         // Marks some of the submissions.
         $this->markSubmissions();
+
+        // Runs moss on all submissions.
+        foreach (Coursework::all() as $coursework)
+        {
+            // If deadline has been reached.
+            if (Time::dateHasPassed($coursework))
+            {
+                $coursework->runMoss();
+            }
+        }
     }
 
     /**

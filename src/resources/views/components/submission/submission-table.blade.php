@@ -18,6 +18,7 @@
                     <th><div class="form-check form-check-inline">Mark</div></th>
                     <th><div class="form-check form-check-inline">Marker</div></th>
                     <th><div class="form-check form-check-inline">Link</div></th>
+                    <th><div class="form-check form-check-inline">Plagiarism</div></th>
                 </tr>
             </table>
         </div>
@@ -35,6 +36,7 @@
                     <th><div class="form-check form-check-inline">Mark</div></th>
                     <th><div class="form-check form-check-inline">Marker</div></th>
                     <th><div class="form-check form-check-inline">Link</div></th>
+                    <th><div class="form-check form-check-inline">Plagiarism</div></th>
                 </tr>
 
                 @foreach ($coursework->module->users as $user)
@@ -47,8 +49,10 @@
                         $submission = $coursework->submissions->firstWhere('user_id', $user->id);
                         $submitted = $submission != null;
                         $userMarker = null;
+                        $submission_json_obj = null;
                         if ($submitted)
                         {
+                            $submission_json_obj = json_decode($submission->json);
                             $userMarker = $coursework->module->users->firstWhere('id', $submission->marker_id);
                         }
                     @endphp
@@ -104,6 +108,27 @@
                                         type="button" class="form-check-input">Mark</a>
                                 @else
                                     <div>N/A</div>
+                                @endif
+                            </div>
+                        </td>
+                        <!-- Plagiarism -->
+                        <td>
+                            <div class="form-check form-check-inline">
+                                @if ($submitted)
+                                    @if (!empty($submission_json_obj->moss_results))
+                                        <a class="form-check-input submission-table-moss-dropdown-button">View</a>
+                                        <div class="submission-table-moss-dropdown">
+                                            <ul>
+                                                @foreach ($submission_json_obj->moss_results as $index => $value)
+                                                    <li>{{ $index }} : {{ $value }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @else
+                                        <div class="form-check-input">N/A</div>
+                                    @endif
+                                @else
+                                    <div class="form-check-input">N/A</div>
                                 @endif
                             </div>
                         </td>

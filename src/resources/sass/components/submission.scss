@@ -10,11 +10,40 @@
     display: table-row;
 }
 
+.submission-table-moss-dropdown {
+    position: absolute;
+    width: 200px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-top: 35px;
+    z-index: 1;
+    display: none;
+}
+
+.submission-table-moss-dropdown > ul {
+    margin: 0px;
+    padding-inline-start: 20px;
+}
+
+.submission-table-moss-dropdown-button {
+    color: #3490dc!important;
+}
+
+.submission-table-moss-dropdown-button:hover {
+    color: #1d68a7!important;
+    text-decoration: underline!important;
+    cursor: pointer!important;
+}
+
+.submission-table-moss-dropdown-button:hover + .submission-table-moss-dropdown {
+    display: block;
+}
+
 @media screen and (min-width: 600px) {
     #submission-header-row {
         display: table-row;
     }
-    
     #submission-header-row-mobile {
         display: none;
     }
