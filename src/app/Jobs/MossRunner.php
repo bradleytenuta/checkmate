@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
 use App\Utility\CourseworkType;
 use App\Utility\FileSystem;
 use App\Submission;
-use Exception;
+use Illuminate\Support\Facades\Log;
 
 require 'simple_html_dom.php';
 
@@ -75,7 +75,7 @@ class MossRunner implements ShouldQueue
             // Command to indicate we are comparing directories.
             // The constructor submission compare path.
             // The submission to compare temp path.
-            $process = Process::fromShellCommandline('cd ../ && perl moss.pl -l ' .
+            $process = Process::fromShellCommandline('perl moss.pl -l ' .
                 $language_type .
                 ' -d ' .
                 $submission_tmp_path . '/* ' .
@@ -90,12 +90,12 @@ class MossRunner implements ShouldQueue
             preg_match('/http.*/', $process->getOutput(), $matches);
             if (empty($matches))
             {
-                throw Exception::withMessages(['No Matches in URL.' => $process->getErrorOutput()]);
+                Log::error($process->getErrorOutput());
             }
             $url = $matches[0]; // Gets the first and only match (which is the url).
 
             // Webscrapes the url for results.
-            $moss_result = webscrape($url);
+            $moss_result = $this->webscrape($url);
 
             // Adds result to array.
             $new_moss_results[$c_submission->user->id] = $moss_result;
