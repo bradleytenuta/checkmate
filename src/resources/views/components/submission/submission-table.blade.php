@@ -18,7 +18,7 @@
                     <th><div class="form-check form-check-inline">Mark</div></th>
                     <th><div class="form-check form-check-inline">Marker</div></th>
                     <th><div class="form-check form-check-inline">Link</div></th>
-                    <th><div class="form-check form-check-inline">Plagiarism</div></th>
+                    <th><div class="form-check form-check-inline">Moss</div></th>
                 </tr>
             </table>
         </div>
@@ -36,7 +36,7 @@
                     <th><div class="form-check form-check-inline">Mark</div></th>
                     <th><div class="form-check form-check-inline">Marker</div></th>
                     <th><div class="form-check form-check-inline">Link</div></th>
-                    <th><div class="form-check form-check-inline">Plagiarism</div></th>
+                    <th><div class="form-check form-check-inline">Moss</div></th>
                 </tr>
 
                 @foreach ($coursework->module->users as $user)
@@ -111,7 +111,7 @@
                                 @endif
                             </div>
                         </td>
-                        <!-- Plagiarism -->
+                        <!-- Moss -->
                         <td>
                             <div class="form-check form-check-inline">
                                 @if ($submitted)

@@ -2,7 +2,7 @@
 
 <!-- JS section -->
 @section ('dynamic-js')
-    <script src="{{ URL::asset('js/components/form.js') }}" defer></script>
+    <script src="{{ URL::asset('js/components/list.js') }}" defer></script>
 @endsection
 <!-- End of JS section -->
 

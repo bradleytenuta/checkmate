@@ -20,14 +20,14 @@
                 Create Coursework
             </a>
 
-            <!-- TODO: Add are you sure? message -->
-            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+            <!-- Delete Button -->
+            <a href="#" data-toggle="modal" data-target="#confirmation-modal">
                 <img src="{{ Storage::url('/images/icon/dropdown-trash.png') }}" />
                 Delete
             </a>
-            <form id="delete-form" action="{{ route('module.delete', ['module_id' => $module->id]) }}" method="POST" style="display: none;">
-                @csrf
-            </form>
         </div>
     @endif
 </div>
+
+<!-- Modal -->
+@include('components.form.confirmation-modal', ['route'=> route('module.delete', ['module_id' => $module->id])])

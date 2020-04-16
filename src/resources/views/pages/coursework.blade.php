@@ -19,15 +19,13 @@
     <!-- Coursework Card -->
     @include('components.coursework.page.infobox', ['module' => $coursework->module])
 
-    <!-- Assessor and Professor View -->
-    <!-- TODO: Change so public tests are displayed for students -->
-    @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
-        <!-- All Tests Cards -->
-        @include('components.test.list.title', ['title'=>'Unit Tests'])
-        <!-- List of tests -->
-        @include('components.test.list.list', ['tests'=>$coursework->tests])
-    @endif
+    <!-- All Tests Cards -->
+    @include('components.test.list.title', ['title'=>'Unit Tests'])
 
+    <!-- List of tests -->
+    @include('components.test.list.list', ['tests'=>$coursework->tests])
+
+    <!-- Submission Title -->
     @include('components.submission.title', ['title'=>'Submissions'])
 
     <!-- Submission Container -->

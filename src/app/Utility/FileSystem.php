@@ -7,6 +7,7 @@ use App\Jobs\TempCleaner;
 use ZipArchive;
 use File;
 use DateInterval;
+use Illuminate\Validation\ValidationException;
 
 class FileSystem
 {

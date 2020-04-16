@@ -54,11 +54,18 @@
             </div>
         </div>
 
-        <!-- Password row -->
-        <!-- TODO: Make this harder to change, ask for old password and new password twice -->
+        <!-- Password first row -->
         <div class="form-group row">
             <div class="col-sm-12">
-                <label for="email">Password</label>
+                <label for="password_typed_first">New Password</label>
+                <input type="password" class="form-control" name="password_typed_first" id="password_typed_first" autofocus>
+            </div>
+        </div>
+
+        <!-- Password row -->
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label for="password">Type New Password Again</label>
                 <input type="password" class="form-control" name="password" id="password" autofocus>
             </div>
         </div>
@@ -68,16 +75,14 @@
             <div class="col-sm-12">
                 <button type="submit" class="btn btn-primary">Save</button>
 
-                <!-- TODO: Add an are you sure? message -->
-                <a href="#" type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">Delete</a>
+                <!-- Delete Button -->
+                <a href="#" type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmation-modal">Delete</a>
             </div>
         </div>
     </form>
 
-    <!-- Form to delete current user -->
-    <form id="delete-form" action="{{ route('user.delete', ['user_id' => $user->id]) }}" method="POST" style="display: none;">
-        @csrf
-    </form>
+    <!-- Modal -->
+    @include('components.form.confirmation-modal', ['route'=> route('user.delete', ['user_id' => $user->id])])
 
 @endsection
 <!-- End of the Section-->
