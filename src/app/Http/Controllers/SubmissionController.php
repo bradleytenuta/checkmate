@@ -11,6 +11,7 @@ use App\Utility\ModulePermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use File;
+use Illuminate\Validation\ValidationException;
 
 class SubmissionController extends Controller
 {

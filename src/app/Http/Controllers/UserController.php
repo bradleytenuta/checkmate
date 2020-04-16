@@ -10,6 +10,7 @@ use App\Submission;
 use App\GlobalRole;
 use Illuminate\Support\Facades\DB;
 use Redirect;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -87,7 +88,13 @@ class UserController extends Controller
         // Updates the password, only if the property isn't empty.
         if (!empty($request['password']))
         {
-            $user->password = Hash::make($request['password']);
+            // Checks that both passwords are a match.
+            if ($request['password'] == $request['password_typed_first'])
+            {
+                $user->password = Hash::make($request['password']);
+            } else {
+                throw ValidationException::withMessages(['Edit Fail' => 'The two passwords do not match.']);
+            }
         }
 
         // Saves the user to the database.

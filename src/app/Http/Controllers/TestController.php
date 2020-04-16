@@ -11,6 +11,7 @@ use App\Utility\ModulePermission;
 use App\Utility\CourseworkType;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
+use Illuminate\Validation\ValidationException;
 
 class TestController extends Controller
 {

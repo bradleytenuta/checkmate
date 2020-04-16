@@ -14,6 +14,7 @@ use App\Submission;
 use App\Test;
 use File;
 use Redirect;
+use Illuminate\Validation\ValidationException;
 
 class ViewerController extends Controller
 {

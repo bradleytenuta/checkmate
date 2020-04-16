@@ -54,11 +54,18 @@
             </div>
         </div>
 
-        <!-- Password row -->
-        <!-- TODO: Make this harder to change, ask for old password and new password twice -->
+        <!-- Password first row -->
         <div class="form-group row">
             <div class="col-sm-12">
-                <label for="email">Password</label>
+                <label for="password_typed_first">New Password</label>
+                <input type="password" class="form-control" name="password_typed_first" id="password_typed_first" autofocus>
+            </div>
+        </div>
+
+        <!-- Password row -->
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label for="password">Type New Password Again</label>
                 <input type="password" class="form-control" name="password" id="password" autofocus>
             </div>
         </div>
