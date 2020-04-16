@@ -15,14 +15,14 @@
                 Edit
             </a>
 
-            <!-- TODO: Add are you sure? message -->
-            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+            <!-- Delete Button -->
+            <a href="#" data-toggle="modal" data-target="#confirmation-modal">
                 <img src="{{ Storage::url('/images/icon/dropdown-trash.png') }}" />
                 Delete
             </a>
-            <form id="delete-form" action="{{ route('coursework.delete', ['module_id' => $module->id, 'coursework_id' => $coursework->id]) }}" method="POST" style="display: none;">
-                @csrf
-            </form>
         </div>
     @endif
 </div>
+
+<!-- Modal -->
+@include('components.form.confirmation-modal', ['route'=> route('coursework.delete', ['module_id' => $module->id, 'coursework_id' => $coursework->id])])
