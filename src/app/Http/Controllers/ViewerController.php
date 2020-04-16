@@ -78,7 +78,7 @@ class ViewerController extends Controller
         $test = Test::findOrFail($test_id);
 
         // Checks the user has permission to mark.
-        if (!CourseworkPermission::canMark($module))
+        if (!CourseworkPermission::canMark($module) && !ModulePermission::hasRole($coursework->module, Auth::user(), 'student'))
         {
             throw ValidationException::withMessages(['Permission Fail' => 'The current user does not have permission to mark this coursework.']);
         }

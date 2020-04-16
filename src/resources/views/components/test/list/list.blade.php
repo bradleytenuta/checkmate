@@ -3,14 +3,27 @@
     <div class="grid-sizer col-lg-2"></div>
 
     <!-- A list of all the cards -->
-    @foreach ($tests as $test)
-        <div class="grid-item col-lg-4 mb-2">
-            <div class="card list-card-container">
-                <!-- Test Card -->
-                @include('components.test.card', ['test' => $test])
+    @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
+        @foreach ($tests as $test)
+            <div class="grid-item col-lg-4 mb-2">
+                <div class="card list-card-container">
+                    <!-- Test Card -->
+                    @include('components.test.card', ['test' => $test])
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    @else
+        @foreach ($tests as $test)
+            @if ($test->public)
+                <div class="grid-item col-lg-4 mb-2">
+                    <div class="card list-card-container">
+                        <!-- Test Card -->
+                        @include('components.test.card', ['test' => $test])
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    @endif
 </div>
 
 <!-- Display empty message if no cards shown -->
