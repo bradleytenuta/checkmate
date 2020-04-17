@@ -9,3 +9,6 @@ RUN apk add --no-cache libzip-dev && docker-php-ext-configure zip --with-libzip=
 
 # Includes perl to be installed within the php container.
 RUN apk add perl
+
+# Adds docker-compose to the php container. This is so it can create maven containers and run them.
+RUN apk add docker-compose
