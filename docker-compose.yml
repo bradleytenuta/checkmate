@@ -46,6 +46,8 @@ services:
     container_name: php
     volumes:
       - ./src:/var/www/html
+      # This includes docker inside the php container. As it takes it from the host machine. Only works on Linux.
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "9000:9000"
     networks:
