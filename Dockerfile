@@ -15,6 +15,3 @@ RUN apk add perl
 RUN apk add docker openrc
 RUN apk update
 RUN service docker start
-
-# Builds all the docker containers that are used for testing.
-RUN cd kits/java && docker build --tag kits-java:1.0 .
