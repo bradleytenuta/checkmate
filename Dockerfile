@@ -14,6 +14,3 @@ RUN apk add perl
 # Adds docker-compose to the php container. This is so it can create maven containers and run them.
 RUN apk add docker openrc
 RUN apk update
-
-# Builds all the docker containers that are used for testing.
-RUN cd kits/java && docker build --tag kits-java:1.0 .
