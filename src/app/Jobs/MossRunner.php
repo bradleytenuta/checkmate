@@ -14,7 +14,7 @@ use App\Utility\FileSystem;
 use App\Submission;
 use Illuminate\Support\Facades\Log;
 
-require 'simple_html_dom.php';
+require_once 'simple_html_dom.php';
 
 /**
  * This class requires: 'Symfony\Component\Process\Process'.
