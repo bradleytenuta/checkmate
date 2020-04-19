@@ -7,13 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+
 use Symfony\Component\Process\Process;
 use App\Utility\CourseworkType;
 use App\Utility\FileSystem;
 use App\Submission;
 use Illuminate\Support\Facades\Log;
 
-require 'simple_html_dom.php';
+require_once 'simple_html_dom.php';
 
 /**
  * This class requires: 'Symfony\Component\Process\Process'.

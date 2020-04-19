@@ -58,6 +58,9 @@ class SubmissionController extends Controller
         // Saves the zip file.
         $request->file->store($submission->file_path);
 
+        // Creates a job to run the tests on the submission now that its complete.
+        $coursework->runTests();
+
         // Redirects the user back to the coursework page.
         return redirect()->route('coursework.show', ['module_id' => $module_id, 'coursework_id' => $coursework->id]);
     }

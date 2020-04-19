@@ -33,6 +33,9 @@ class SubmissionSeeder extends Seeder
             {
                 $coursework->runMoss();
             }
+
+            // Runs the test on a submission.
+            $coursework->runTests();
         }
     }
 

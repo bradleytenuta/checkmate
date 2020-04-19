@@ -46,8 +46,21 @@ services:
     container_name: php
     volumes:
       - ./src:/var/www/html
+      # This includes docker inside the php container. As it takes it from the host machine. Only works on Linux.
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "9000:9000"
+    networks:
+      - laravel
+
+  # The java test container. This container is made with a maven image.
+  maven:
+    image: maven:3.6.2-jdk-8
+    container_name: maven
+    volumes:
+      - ./src/kits/java:/var/www/html/kits/java
+    working_dir: /var/www/html/kits/java
+    entrypoint: ['mvn','test','surefire-report:report']
     networks:
       - laravel
 
@@ -80,6 +93,6 @@ services:
     depends_on:
       - mysql
     working_dir: /var/www/html
-    entrypoint: ['/var/www/html/artisan']
+    entrypoint: ['php', '/var/www/html/artisan']
     networks:
       - laravel

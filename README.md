@@ -20,6 +20,8 @@ Below you can run commands for composer, npm or artisan. Just add your desired c
 
 In order to turn off the docker containers, run the command `docker-compose down`.
 
+- `docker exec -it <container-name> sh` can be used to enter the terminal of a running container.
+
 ##### How to use Docker Compose
 
 Docker compose is a tool for defining and running multi container docker applications. The full documentation can be found [here](https://docs.docker.com/compose/). 

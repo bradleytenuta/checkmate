@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Jobs\MossRunner;
+use App\Jobs\JavaTestRunner;
 
 class Coursework extends Model
 {
@@ -50,7 +51,7 @@ class Coursework extends Model
             $this->open = $boolean;
             $this->save();
 
-            // If the coursework state is no closed, then run the moss job.
+            // If the coursework state is now closed, then run the moss job.
             if ($this->open == false)
             {
                 $this->runMoss();
@@ -67,6 +68,21 @@ class Coursework extends Model
         foreach ($this->submissions as $submission)
         {
             MossRunner::dispatch($submission->id);
+        }
+    }
+
+    /**
+     * Creates a job for each submission in the coursework.
+     */
+    public function runTests()
+    {
+        // Runs this section if the coursework type is java.
+        if ($this->coursework_type_id == 1)
+        {
+            foreach ($this->submissions as $submission)
+            {
+                JavaTestRunner::dispatch($submission->id);
+            }
         }
     }
 }

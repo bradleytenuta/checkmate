@@ -214,6 +214,17 @@ class CourseworkController extends Controller
     }
 
     /**
+     * This function runs all the tests on all the submissions
+     * and then displays the results.
+     */
+    public function runTests($module_id, $coursework_id)
+    {
+        $coursework = Coursework::findOrFail($coursework_id);
+        $coursework->runTests();
+        return Redirect::back();
+    }
+
+    /**
      * Checks that all the infromation entered for creating or editing a coursework is valid.
      */
     private function validationCheck(Request $request)
