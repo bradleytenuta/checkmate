@@ -53,6 +53,16 @@ services:
     networks:
       - laravel
 
+  # The java test container. This container is made with a maven image.
+  maven:
+    image: maven:3.6.2-jdk-8
+    container_name: maven
+    volumes:
+      - ./src/kits/java:/var/www/html/kits/java
+    working_dir: /var/www/html/kits/java
+    networks:
+      - laravel
+
   composer:
     image: composer:latest
     container_name: composer
