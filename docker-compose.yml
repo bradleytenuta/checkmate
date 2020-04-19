@@ -60,6 +60,7 @@ services:
     volumes:
       - ./src/kits/java:/var/www/html/kits/java
     working_dir: /var/www/html/kits/java
+    entrypoint: ['mvn','test','surefire-report:report']
     networks:
       - laravel
 
