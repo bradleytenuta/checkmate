@@ -17,6 +17,10 @@
     </li>
 
     @if ($submission != null)
+        @php
+            $submission_json_obj = json_decode($submission->json);
+        @endphp
+
         <!-- The marker of the submission -->
         <li class="nav-item">
             @if ($submission->marker_id != null)
@@ -36,9 +40,12 @@
             @endif
         </li>
         <!-- The Unit Test results -->
-        <!-- TODO: Display Unit test results -->
         <li class="nav-item">
-            <p class="nav-link disabled">Tests: N/A</p>
+            @if (!empty($submission_json_obj->test_results))
+                <p class="nav-link disabled">Tests: {{ $submission_json_obj->test_results['result'] }}</p>
+            @else
+                <p class="nav-link disabled">Tests: N/A</p>
+            @endif
         </li>
     @endif
 </ul>

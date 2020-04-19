@@ -132,6 +132,20 @@
                                 @endif
                             </div>
                         </td>
+                        <!-- Test Results -->
+                        <td>
+                            <div class="form-check form-check-inline">
+                                @if ($submitted)
+                                    @if (!empty($submission_json_obj->test_results))
+                                        <div class="form-check-input">{{ $submission_json_obj->test_results['result'] }}</div>
+                                    @else
+                                        <div class="form-check-input">N/A</div>
+                                    @endif
+                                @else
+                                    <div class="form-check-input">N/A</div>
+                                @endif
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </table>

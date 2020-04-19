@@ -12,6 +12,9 @@
         </div>
     </div>
 @else
+    @php
+        $submission_json_obj = json_decode($previousSubmission->json);
+    @endphp
     <!-- If the user did submit some coursework -->
     <div class="form-group row alert alert-primary" role="alert">
         <div class="col-sm-12">
@@ -25,9 +28,13 @@
                 <p>{{ $previousSubmission->score }}</p>
             @endif
             
-            <!-- TODO: Display Unit test results -->
+            <!-- Test Results -->
             <h6>Test Score</h6>
-            <p>N/A</p>
+            @if (!empty($submission_json_obj->test_results))
+                <p>{{ $submission_json_obj->test_results['result'] }}</p>
+            @else
+                <p>N/A</p>
+            @endif
 
             <h6>Main Feedback</h6>
             @if ($previousSubmission->main_feedback == null)
