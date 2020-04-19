@@ -31,7 +31,9 @@
             <!-- Test Results -->
             <h6>Test Score</h6>
             @if (!empty($submission_json_obj->test_results))
-                <p>{{ $submission_json_obj->test_results['result'] }}</p>
+                @foreach ($submission_json_obj->test_results as $value)
+                    <p>{{ $value }}</p>
+                @endforeach
             @else
                 <p>N/A</p>
             @endif

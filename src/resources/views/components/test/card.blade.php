@@ -16,10 +16,10 @@
 
     <!-- Delete Test -->
     @if ($test->coursework->open)
-        <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('delete-test-form').submit();">
+        <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('delete-test-form-{{ $test->id }}').submit();">
             Delete
         </a>
-        <form id="delete-test-form" action="{{ route('test.delete', ['module_id' => $test->coursework->module->id, 'coursework_id' => $test->coursework->id, 'test_id' => $test->id]) }}" method="POST" style="display: none;">
+        <form id="delete-test-form-{{ $test->id }}" action="{{ route('test.delete', ['module_id' => $test->coursework->module->id, 'coursework_id' => $test->coursework->id, 'test_id' => $test->id]) }}" method="POST" style="display: none;">
             @csrf
         </form>
     @endif

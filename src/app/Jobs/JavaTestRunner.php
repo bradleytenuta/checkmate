@@ -44,23 +44,16 @@ class JavaTestRunner implements ShouldQueue
     {
         // Gets the submission from id.
         $submission = Submission::findOrFail($this->submission_id);
+        $report_folder = 'report';
 
         // Copies the tests and submission files into the maven project.
         $this->copyFiles($submission);
 
         // Starts and waits for maven.
-        Process::fromShellCommandline('docker start maven')->start()->wait();
+        $this->runMaven($submission, $report_folder);
 
-        // Extracts the report and saves it to the submission.
-        // Makes sure old report doesnt exist and creates the folder.
-        $report_folder = 'report';
-        Process::fromShellCommandline('cd storage/app/' . $submission->file_path . ' && rm -r ' . $report_folder)->start()->wait();
-        Process::fromShellCommandline('cd storage/app/' . $submission->file_path . ' && mkdir ' . $report_folder)->start()->wait();
-        // Copies file into folder and we wait for it to be finished.
-        Process::fromShellCommandline('cd kits/java/com.checkmate.kit.java.core/target/site && ' .
-            'cp surefire-report.html ./../../../../../storage/app' .
-            $submission->file_path . $report_folder)->start()->wait();
-        $this->extractResults($submission);
+        // Extracts results from report file in submission.
+        $this->extractResults($submission, $report_folder);
 
         // Cleans up the maven project for next test.
         $this->clean();
@@ -89,23 +82,58 @@ class JavaTestRunner implements ShouldQueue
             $parent_path = dirname($files[0]);
 
             // Copies over all the files.
-            Process::fromShellCommandline('cd ' . $parent_path . ' && cp * ' .
-                './../../../kits/java/com.checkmate.kit.java.core/src/test/java')->start()->wait();
+            $process = Process::fromShellCommandline('cd ' . $parent_path . ' && cp * ' .
+                './../../../kits/java/com.checkmate.kit.java.core/src/test/java');
+            $process->start();
+            $process->wait();
         }
 
         // Extarcts the submission and copies them over.
         $extracted_files_path = FileSystem::extractSubmissionToPath($submission);
 
         // Copies over all the files.
-        Process::fromShellCommandline('cd ' . $extracted_files_path . ' && cp * ' .
-                './../../../kits/java/com.checkmate.kit.java.core/src/main/java')->start()->wait();
+        $process = Process::fromShellCommandline('cd ' . $extracted_files_path . ' && cp * ' .
+                './../../../kits/java/com.checkmate.kit.java.core/src/main/java');
+        $process->start();
+        $process->wait();
+    }
+
+    /**
+     * This function runs maven and then copies the report file into
+     * the submission storage area.
+     */
+    private function runMaven($submission, $report_folder)
+    {
+        // Runs maven.
+        $process = Process::fromShellCommandline('docker start maven');
+        $process->start();
+        $process->wait();
+
+        // Sleeps 10 seconds after running maven.
+        sleep(10);
+
+        // Extracts the report and saves it to the submission.
+        // Makes sure old report doesnt exist and creates the folder.
+        $process = Process::fromShellCommandline('cd storage/app/' . $submission->file_path . ' && rm -r ' . $report_folder);
+        $process->start();
+        $process->wait();
+        $process = Process::fromShellCommandline('cd storage/app/' . $submission->file_path . ' && mkdir ' . $report_folder);
+        $process->start();
+        $process->wait();
+
+        // Copies file into folder and we wait for it to be finished.
+        $process = Process::fromShellCommandline('cd kits/java/com.checkmate.kit.java.core/target/site && ' .
+            'cp surefire-report.html ./../../../../../storage/app/' .
+            $submission->file_path . $report_folder);
+        $process->start();
+        $process->wait();
     }
 
     /**
      * This function reads the report and creates some json for the submission on how the submission
      * did against the tests.
      */
-    private function extractResults($submission)
+    private function extractResults($submission, $report_folder)
     {
         // The report file path.
         $report_file_path = $submission->file_path . $report_folder . "/surefire-report.html";
@@ -114,7 +142,7 @@ class JavaTestRunner implements ShouldQueue
         $html = file_get_html(storage_path('app/' . $report_file_path));
 
         // Extracts the test results.
-        $result_string = $html->find('tr[class=b] > td', 5)->innertext; // Gets the 6th td it finds.
+        $result_string = $html->find('tr[class=b] > td', 4)->innertext; // Gets the 5th td it finds.
 
         // Formats into a string.
         $result_string = "Success Rate: " . $result_string;

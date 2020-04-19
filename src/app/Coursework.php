@@ -55,7 +55,6 @@ class Coursework extends Model
             if ($this->open == false)
             {
                 $this->runMoss();
-                $this->runTests();
             }
             
         }

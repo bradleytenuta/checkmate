@@ -7,7 +7,7 @@
 
             @if (\App\Utility\CourseworkPermission::canMark($coursework->module))
                 <!-- Add Moss button -->
-                <div id="list-filter-container" class="list-title-button-group" data-toggle="buttons">
+                <div id="list-filter-container" class="list-title-button-group submission-marker-buttons" data-toggle="buttons">
                     <a
                         href="{{ route('coursework.moss', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id]) }}"
                         type="button" class="btn btn-primary button-with-image">
@@ -16,7 +16,7 @@
                 </div>
 
                 <!-- Add Test button -->
-                <div id="list-filter-container" class="list-title-button-group" data-toggle="buttons">
+                <div id="list-filter-container" class="list-title-button-group submission-marker-buttons" data-toggle="buttons">
                     <a
                         href="{{ route('coursework.test', ['module_id' => $coursework->module->id, 'coursework_id' => $coursework->id]) }}"
                         type="button" class="btn btn-primary button-with-image">

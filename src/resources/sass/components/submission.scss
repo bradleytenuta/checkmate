@@ -40,6 +40,10 @@
     display: block;
 }
 
+.submission-marker-buttons {
+    width: auto;
+}
+
 @media screen and (min-width: 600px) {
     #submission-header-row {
         display: table-row;

@@ -42,7 +42,9 @@
         <!-- The Unit Test results -->
         <li class="nav-item">
             @if (!empty($submission_json_obj->test_results))
-                <p class="nav-link disabled">Tests: {{ $submission_json_obj->test_results['result'] }}</p>
+                @foreach ($submission_json_obj->test_results as $value)
+                    <p class="nav-link disabled">Tests: {{ $value }}</p>
+                @endforeach
             @else
                 <p class="nav-link disabled">Tests: N/A</p>
             @endif

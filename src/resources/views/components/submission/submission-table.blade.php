@@ -19,6 +19,7 @@
                     <th><div class="form-check form-check-inline">Marker</div></th>
                     <th><div class="form-check form-check-inline">Link</div></th>
                     <th><div class="form-check form-check-inline">Moss</div></th>
+                    <th><div class="form-check form-check-inline">Tests</div></th>
                 </tr>
             </table>
         </div>
@@ -37,6 +38,7 @@
                     <th><div class="form-check form-check-inline">Marker</div></th>
                     <th><div class="form-check form-check-inline">Link</div></th>
                     <th><div class="form-check form-check-inline">Moss</div></th>
+                    <th><div class="form-check form-check-inline">Tests</div></th>
                 </tr>
 
                 @foreach ($coursework->module->users as $user)
@@ -137,7 +139,9 @@
                             <div class="form-check form-check-inline">
                                 @if ($submitted)
                                     @if (!empty($submission_json_obj->test_results))
-                                        <div class="form-check-input">{{ $submission_json_obj->test_results['result'] }}</div>
+                                        @foreach ($submission_json_obj->test_results as $value)
+                                            <div class="form-check-input">{{ $value }}</div>
+                                        @endforeach
                                     @else
                                         <div class="form-check-input">N/A</div>
                                     @endif
