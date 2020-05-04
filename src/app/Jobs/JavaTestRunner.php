@@ -50,17 +50,25 @@ class JavaTestRunner implements ShouldQueue
         // Cleans up the maven project.
         $this->clean();
 
-        // Copies the tests and submission files into the maven project.
-        $this->copyFiles($submission);
+        try
+        {
+            // Copies the tests and submission files into the maven project.
+            $this->copyFiles($submission);
 
-        // Starts and waits for maven.
-        $this->runMaven($submission, $report_folder);
+            // Starts and waits for maven.
+            $this->runMaven($submission, $report_folder);
 
-        // Extracts results from report file in submission.
-        $this->extractResults($submission, $report_folder);
-
-        // Cleans up the maven project.
-        $this->clean();
+            // Extracts results from report file in submission.
+            $this->extractResults($submission, $report_folder);
+        } catch (exception $e)
+        {
+            // Throws the exception.
+            throw $e;
+        } finally
+        {
+            // Cleans up the maven project.
+            $this->clean();
+        }
     }
 
     /**
