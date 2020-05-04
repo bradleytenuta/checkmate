@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Process;
 use App\Utility\FileSystem;
 use App\Submission;
@@ -85,7 +86,7 @@ class JavaTestRunner implements ShouldQueue
             foreach ($test_files as $file)
             {
                 $destinationPath = 'kits/java/com.checkmate.kit.java.core/src/test/java/';
-                $fileName = $file->getClientOriginalName();
+                $fileName = basename($file);
                 Storage::put($destinationPath . $fileName, file_get_contents($file->getRealPath()));
             }
         }
@@ -97,7 +98,7 @@ class JavaTestRunner implements ShouldQueue
         foreach ($submission_files as $file)
         {
             $destinationPath = 'kits/java/com.checkmate.kit.java.core/src/main/java/';
-            $fileName = $file->getClientOriginalName();
+            $fileName = basename($file);
             Storage::put($destinationPath . $fileName, file_get_contents($file->getRealPath()));
         }
     }
@@ -178,7 +179,7 @@ class JavaTestRunner implements ShouldQueue
         $src_files = Storage::allFiles('kits/java/com.checkmate.kit.java.core/src/main/java');
         foreach ($src_files as $src_file)
         {
-            if (strpos($src_file->getClientOriginalName(), '.java') !== false)
+            if (strpos(basename($src_file), '.java') !== false)
             {
                 Storage::delete($src_file);
             }
@@ -188,7 +189,7 @@ class JavaTestRunner implements ShouldQueue
         $test_files = Storage::allFiles('kits/java/com.checkmate.kit.java.core/src/test/java');
         foreach ($test_files as $test_file)
         {
-            if (strpos($test_file->getClientOriginalName(), '.java') !== false)
+            if (strpos(basename($test_file), '.java') !== false)
             {
                 Storage::delete($test_file);
             }
