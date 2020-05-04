@@ -58,8 +58,8 @@ services:
     image: maven:3.6.2-jdk-8
     container_name: maven
     volumes:
-      - ./src/kits/java:/var/www/html/kits/java
-    working_dir: /var/www/html/kits/java
+      - ./src/storage/app/kits/java:/var/www/html/storage/app/kits/java
+    working_dir: /var/www/html/storage/app/kits/java
     entrypoint: ['mvn','test','surefire-report:report']
     networks:
       - laravel

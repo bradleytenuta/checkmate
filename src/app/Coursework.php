@@ -81,7 +81,9 @@ class Coursework extends Model
         {
             foreach ($this->submissions as $submission)
             {
-                JavaTestRunner::dispatch($submission->id);
+                // Dispatches job after 1 minute.
+                JavaTestRunner::dispatch($submission->id)
+                ->delay(now()->addMinutes(1));
             }
         }
     }

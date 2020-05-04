@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Process;
 use App\Utility\FileSystem;
 use App\Submission;
@@ -46,17 +47,28 @@ class JavaTestRunner implements ShouldQueue
         $submission = Submission::findOrFail($this->submission_id);
         $report_folder = 'report';
 
-        // Copies the tests and submission files into the maven project.
-        $this->copyFiles($submission);
-
-        // Starts and waits for maven.
-        $this->runMaven($submission, $report_folder);
-
-        // Extracts results from report file in submission.
-        $this->extractResults($submission, $report_folder);
-
-        // Cleans up the maven project for next test.
+        // Cleans up the maven project.
         $this->clean();
+
+        try
+        {
+            // Copies the tests and submission files into the maven project.
+            $this->copyFiles($submission);
+
+            // Starts and waits for maven.
+            $this->runMaven($submission, $report_folder);
+
+            // Extracts results from report file in submission.
+            $this->extractResults($submission, $report_folder);
+        } catch (exception $e)
+        {
+            // Throws the exception.
+            throw $e;
+        } finally
+        {
+            // Cleans up the maven project.
+            $this->clean();
+        }
     }
 
     /**
@@ -70,32 +82,33 @@ class JavaTestRunner implements ShouldQueue
         $coursework = $submission->coursework;
         foreach ($coursework->tests as $test)
         {
-            $files = FileSystem::extractTest($coursework->id, $test->id);
+            $test_files = FileSystem::extractTest($coursework->id, $test->id);
 
             // Checks if empty.
-            if (empty($files))
+            if (empty($test_files))
             {
                 continue;
             }
 
-            // Gets the prents name.
-            $parent_path = dirname($files[0]);
-
-            // Copies over all the files.
-            $process = Process::fromShellCommandline('cd ' . $parent_path . ' && cp * ' .
-                './../../../kits/java/com.checkmate.kit.java.core/src/test/java');
-            $process->start();
-            $process->wait();
+            // Copies over each test file into the maven test folder.
+            foreach ($test_files as $file)
+            {
+                $destinationPath = 'kits/java/com.checkmate.kit.java.core/src/test/java/';
+                $fileName = basename($file);
+                Storage::put($destinationPath . $fileName, file_get_contents($file->getRealPath()));
+            }
         }
 
-        // Extarcts the submission and copies them over.
-        $extracted_files_path = FileSystem::extractSubmissionToPath($submission);
+        // Extarcts the submission files.
+        $submission_files = FileSystem::extractSubmissionToFiles($submission);
 
-        // Copies over all the files.
-        $process = Process::fromShellCommandline('cd ' . $extracted_files_path . ' && cp * ' .
-                './../../../kits/java/com.checkmate.kit.java.core/src/main/java');
-        $process->start();
-        $process->wait();
+        // Copies the submission files into the maven project.
+        foreach ($submission_files as $file)
+        {
+            $destinationPath = 'kits/java/com.checkmate.kit.java.core/src/main/java/';
+            $fileName = basename($file);
+            Storage::put($destinationPath . $fileName, file_get_contents($file->getRealPath()));
+        }
     }
 
     /**
@@ -109,24 +122,23 @@ class JavaTestRunner implements ShouldQueue
         $process->start();
         $process->wait();
 
-        // Sleeps 10 seconds after running maven.
-        sleep(10);
+        // Sleeps for seconds after running maven.
+        sleep(20);
 
-        // Extracts the report and saves it to the submission.
-        // Makes sure old report doesnt exist and creates the folder.
-        $process = Process::fromShellCommandline('cd storage/app/' . $submission->file_path . ' && rm -r ' . $report_folder);
-        $process->start();
-        $process->wait();
-        $process = Process::fromShellCommandline('cd storage/app/' . $submission->file_path . ' && mkdir ' . $report_folder);
-        $process->start();
-        $process->wait();
+        // If the report folder doesnt exist, then create it, otherwise delete its contents.
+        if (Storage::exists($submission->file_path . $report_folder))
+        {
+            // Deletes the contents of the report folder.
+            $report_files = Storage::allFiles($submission->file_path . $report_folder);
+            Storage::delete($report_files);
+        } else
+        {
+            Storage::makeDirectory($submission->file_path . $report_folder);
+        }
 
-        // Copies file into folder and we wait for it to be finished.
-        $process = Process::fromShellCommandline('cd kits/java/com.checkmate.kit.java.core/target/site && ' .
-            'cp surefire-report.html ./../../../../../storage/app/' .
-            $submission->file_path . $report_folder);
-        $process->start();
-        $process->wait();
+        // Copies the test report into the submission report folder.
+        Storage::move('kits/java/com.checkmate.kit.java.core/target/site/surefire-report.html',
+            $submission->file_path . $report_folder . '/surefire-report.html');
     }
 
     /**
@@ -161,9 +173,34 @@ class JavaTestRunner implements ShouldQueue
      */
     private function clean()
     {
-        Process::fromShellCommandline('cd kits/java && rm -r target')->start();
-        Process::fromShellCommandline('cd kits/java/com.checkmate.kit.java.core && rm -r target')->start();
-        Process::fromShellCommandline('cd kits/java/com.checkmate.kit.java.core/src/main/java && rm -r *')->start();
-        Process::fromShellCommandline('cd kits/java/com.checkmate.kit.java.core/src/test/java && rm -r *')->start();
+        // Deletes the target directories.
+        if (Storage::exists('kits/java/target'))
+        {
+            Storage::deleteDirectory('kits/java/target');
+        }
+        if (Storage::exists('kits/java/com.checkmate.kit.java.core/target'))
+        {
+            Storage::deleteDirectory('kits/java/com.checkmate.kit.java.core/target');
+        }
+
+        // Deletes all java src files.
+        $src_files = Storage::allFiles('kits/java/com.checkmate.kit.java.core/src/main/java');
+        foreach ($src_files as $src_file)
+        {
+            if (strpos(basename($src_file), '.java') !== false)
+            {
+                Storage::delete($src_file);
+            }
+        }
+
+        // Deletes all java test files.
+        $test_files = Storage::allFiles('kits/java/com.checkmate.kit.java.core/src/test/java');
+        foreach ($test_files as $test_file)
+        {
+            if (strpos(basename($test_file), '.java') !== false)
+            {
+                Storage::delete($test_file);
+            }
+        }
     }
 }
